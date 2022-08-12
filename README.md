@@ -81,14 +81,14 @@ Additional workflow information can be found here: [Git Feature Branch Workflow]
 ### Installing Dependencies
 From within the root directory:
 
-> ![npm](./npm.png)
+> npm
 >```sh
 >npm install
 >```
 
 <br/>
 
-> ![yarn](./yarn.png)
+> yarn
 >```sh
 > yarn install
 >```
