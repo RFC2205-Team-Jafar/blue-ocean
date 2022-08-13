@@ -12,7 +12,7 @@
 
 
 ***
-Note: I have set up the useLocation.jsx file to format the lat/long returns to the same shape that we see from the Google API so they can be used interchangeably to get use location.
+Note: I have set up the useLocation.jsx file to format the lat/long returns to the same shape that we see from the Google API so they can be used interchangeably to get user location.
 
     geos : {
       lat: /* User Latitude xx.xxxx */,

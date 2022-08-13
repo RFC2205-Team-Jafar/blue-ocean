@@ -1,20 +1,20 @@
-// Gets users current location
-const UserLocation = () => {
-  let geos = {}
-  const options = {
-    timeout: 5000,
-    maximumAge: 0
-  };
-  navigator.geolocation.getCurrentPosition(success, error, options);
-  // Converts data to match the same object shape as Google's API to make DB calls simpler
-  function success(pos) {
-    geos.lat = pos.coords.latitude;
-    geos.lng = pos.coords.longitude;
+// Grab user location in the background when called
+exports.UserLocation() {
+  try {
+    const position = await getCurrentPosition()
+    const geos = { lat: position.coords.latitude, lng: position.coords.longitude }
+  } catch (err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`)
   }
-  // Log warning if user has location turned off or other errors
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-}
 
-export default UserLocation;
+  function getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        position => resolve(position),
+        error => reject(error)
+      )
+    })
+  }
+  console.log(geos)
+  // Use context to set global state for location
+}
