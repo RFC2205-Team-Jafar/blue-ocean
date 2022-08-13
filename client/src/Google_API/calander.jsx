@@ -12,7 +12,7 @@ https://support.google.com/calendar/thread/23205641/advanced-embed-option-descri
 */
 
 const embedCalendar = () => {
-  let email = 'nicholas.kempkes@gmail.com';
+  let email = process.env.EMAIL;
   let titleColor = '6362a3';
   return (
     <iframe src={`https://calendar.google.com/calendar/embed?src=${encodeURI(email)}&mode=WEEK&showPrint=0&showCalendars=0&showTitle=0&bgcolor=%23${titleColor}`} style={{position: "fixed", right: "30px", bottom: "10px", border:"solid 1px #777", width:"800px", height:"400px", frameBorder:"0px", scrolling:"yes", borderRadius:"5px", boxShadow: "2px 2px 10px black"}}></iframe>
