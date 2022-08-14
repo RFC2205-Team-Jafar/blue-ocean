@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { AllContext } from '../index.jsx';
+
 
 const Login = () => {
+
+  const { counter } = useContext(AllContext);
+
+
   return (
   <>
-    <h1>Login In </h1>
+    <h1>Login In { counter } </h1>
     <div><Link to="/seeker">Redirect to Seeker view </Link></div>
     <div><Link to="/recruiter">Redirect to Recruiter view </Link></div>
     <div><Link to="/">Back to Home</Link></div>

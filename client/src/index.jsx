@@ -6,11 +6,11 @@ import {
   Link
 } from "react-router-dom";
 import { createRoot } from "react-dom/client";
-import Home from './components/home';
-import Seeker from './components/seeker';
-import Recruiter from './components/recruiter';
-import Login from './components/login.js';
-import SignUp from './components/signUp.js';
+import Home from './pages/home';
+import Seeker from './pages/seeker';
+import Recruiter from './pages/recruiter';
+import Login from './pages/login.js';
+import SignUp from './pages/signUp.js';
 
 export const AllContext = createContext();
 
