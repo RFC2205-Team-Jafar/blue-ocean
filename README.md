@@ -1,3 +1,14 @@
+
+<div align="left">
+<img src="https://img.shields.io/github/package-json/dependency-version/RFC2205-Team-Jafar/blue-ocean/react" />
+<!-- <img src="https://img.shields.io/github/package-json/dependency-version/RFC2205-Team-Jafar/blue-ocean/webpack" />
+<img src="https://img.shields.io/github/package-json/dependency-version/RFC2205-Team-Jafar/blue-ocean/axios"/>
+<img src="https://img.shields.io/github/package-json/dependency-version/RFC2205-Team-Jafar/blue-ocean/nodemon"/>
+<img src="https://img.shields.io/github/package-json/dependency-version/RFC2205-Team-Jafar/blue-ocean/dev/jest"/> -->
+</div>
+
+<br/>
+
 # blue-ocean
 
 >Our team was recruited to create a job board hosting service targeted at job seekers who are just entering the workforce, making a career change, or looking to find a second job
