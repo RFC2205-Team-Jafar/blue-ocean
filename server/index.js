@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
   res.send('Hello Team Jafar');
 });
 
+app.post('/uploadFile', (req,res) => {
+  console.log('req', req)
+  console.log('in server')
+});
+
 
 if (!module.parent) {
   app.listen(process.env.PORT);
