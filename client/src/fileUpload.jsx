@@ -19,7 +19,6 @@ const FileUpload= (fileType) => {
         'content-type': 'multipart/form-data',
       }
     }
-    console.log('formData', formData)
     axios.post('/uploadFile', formData, config)
     .then(() => {console.log('file uploaded')})
     .catch((err) => {console.log('err occurred in upload')})
