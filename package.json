@@ -11,15 +11,12 @@
     "server": "nodemon server/index.js"
   },
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^0.27.2",
-=======
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.10.0",
     "@mui/styled-engine-sc": "^5.10.0",
->>>>>>> 5de562ad3ad8b1f03cf055ea4a017b12b404bf81
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "path": "^0.12.7",
