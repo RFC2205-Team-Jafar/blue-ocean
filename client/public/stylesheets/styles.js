@@ -1,9 +1,7 @@
 /*==================== EXTERNAL MODULES ====================*/
-import styled from 'styled-components';
+import styled from "styled-components";
 
 /*==================== INTERNAL MODULES ====================*/
-
-
 
 /*==================== EXPORTS ====================*/
 
@@ -13,10 +11,7 @@ import styled from 'styled-components';
 =====================================
 */
 
-export const P = styled.p`
-
-`;
-
+export const P = styled.p``;
 
 /*
 =====================================
@@ -24,10 +19,7 @@ export const P = styled.p`
 =====================================
 */
 
-export const Button = styled.button`
-
-`;
-
+export const Button = styled.button``;
 
 /*
 =====================================
@@ -44,24 +36,29 @@ export const modalBG = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const Header = styled.header`
-
+export const StyledHeader = styled.header`
+  background-color: #ebfbff;
+  padding: 40px 0;
 `;
 
-export const Footer = styled.footer`
+export const ImgGalleryContainer = styled.div`
+  width:33%
+`
 
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
 `;
 
-export const Section = styled.section`
+export const Footer = styled.footer``;
 
-`;
+export const Section = styled.section``;
 
-export const Container = styled.div`
+export const Container = styled.div``;
 
-`;
-export const Div = styled.div`
-
-`;
+export const Div = styled.div``;
 
 export const Column = styled.div`
   display: flex;
@@ -89,20 +86,15 @@ export const Label = styled.label`
 =====================================
 */
 
-export const Form = styled.form`
+export const Form = styled.form``;
 
-`;
-
-
-  /*
+/*
 =====================================
                 INPUTS
 =====================================
 */
 
-export const Input = styled.input`
-
-`;
+export const Input = styled.input``;
 
 /*
 =====================================
@@ -110,10 +102,12 @@ export const Input = styled.input`
 =====================================
 */
 
-export const Img = styled.img`
+export const Logo = styled.img``;
 
-`;
+export const HeaderImg = styled.img`
+  width: 100%
+`
 
-export const Thumbnail = styled.img`
+export const Img = styled.img``;
 
-`;
+export const Thumbnail = styled.img``;
