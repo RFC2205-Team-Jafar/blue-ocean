@@ -31,12 +31,12 @@ const firebaseConfig = {
       .catch(err => {alert(err.message)});
   };
   /* Need to build the login with email and password function out*/
-  // const logInWithEmailAndPassword = (email, password) => {
-  //   signInWithEmailAndPassword(auth, email, password)
-  //     .then(res => {
-  //       axios.get()
-  //     })
-  // }
+  const logInWithEmailAndPassword = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(res => {
+        axios.get()
+      })
+  }
   const registerWithEmailAndPassword = (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(res => {
