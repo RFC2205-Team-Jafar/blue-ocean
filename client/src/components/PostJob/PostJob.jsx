@@ -31,6 +31,10 @@ export default function PostJob() {
     // set modify the background of the clicked button to be a different color
     return ''
   };
+  const handleJobType = () => {
+    // set modify the background of the clicked button to be a different color
+    return ''
+  };
 
   /*----- RENDER METHODS -----*/
   const renderCompany = () => {
@@ -158,13 +162,14 @@ const renderAvailablePositions = () => {
 const renderJobType = () => {
   return (
     <Label>Job Type
-      <Input
-        type='text'
-        placeholder='Company Name'
-        name='jobType'
-        onChange={handleChange}
-        >
-      </Input>
+      <ButtonGroup>
+        <Button value='fullTime' name='jobType' onClick={handleJobType}>Full Time</Button>
+        <Button value='partTime' name='jobType' onClick={handleJobType}>Part Time</Button>
+        <Button value='contract' name='jobType' onClick={handleJobType}>Contract</Button>
+        <Button value='temp' name='jobType' onClick={handleJobType}>Temp Position</Button>
+        <Button value='seasonal' name='jobType' onClick={handleJobType}>Seasonal</Button>
+        <Button value='internship' name='jobType' onClick={handleJobType}>Internship</Button>
+      </ButtonGroup>
     </Label>
   )
 }
