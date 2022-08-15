@@ -1,6 +1,6 @@
 // Grab user location in the background when called
 // Invoke as Promise?
-exports.UserLocation() {
+const userLocation = async function() {
   let geos;
   try {
     const position = await getCurrentPosition()
@@ -27,3 +27,5 @@ exports.UserLocation() {
   //TODO
   // Use context to set global state for location
 }
+
+export default userLocation;

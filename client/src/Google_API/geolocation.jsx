@@ -1,5 +1,5 @@
 // Converts provided zipcode over to latitude and longitude that will be used elsewhere for calculating distance between locations.
-exports.GeoConverter(zipcode) {
+const geoConverter = function(zipcode) {
   let getGeo = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${process.env.GOOGLE_API_TOKEN}`;
 
   const geoConverter = axios.post(getGeo)
@@ -8,6 +8,8 @@ exports.GeoConverter(zipcode) {
     console.log(geos);
   });
 }
+
+export default geoConverter;
 
 
 
