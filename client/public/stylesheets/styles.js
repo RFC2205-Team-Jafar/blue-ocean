@@ -1,9 +1,24 @@
-/*==================== EXTERNAL MODULES ====================*/
-import styled from "styled-components";
+/*========== EXTERNAL MODULES ==========*/
+import styled, {createGlobalStyle} from 'styled-components';
 
-/*==================== INTERNAL MODULES ====================*/
+/*========== INTERNAL MODULES ==========*/
 
-/*==================== EXPORTS ====================*/
+
+
+/*========== EXPORTS ==========*/
+
+/*
+=====================================
+                THEMES
+=====================================
+*/
+
+export const GlobalStyle = createGlobalStyle`
+body {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-color: #414141;
+}
+`;
 
 /*
 =====================================
@@ -54,9 +69,19 @@ export const Nav = styled.nav`
 
 export const Footer = styled.footer``;
 
-export const Section = styled.section``;
+`;
 
-export const Container = styled.div``;
+export const Page = styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Container = styled.div`
+
+`;
+
+export const Div = styled.div`
 
 export const Div = styled.div``;
 
@@ -76,7 +101,16 @@ export const Row = styled.div`
 
 export const Label = styled.label`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const ButtonGroup = styled.div`
+  display:flex;
+  margin: 10px;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 `;
 
@@ -86,7 +120,12 @@ export const Label = styled.label`
 =====================================
 */
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 /*
 =====================================
@@ -94,7 +133,21 @@ export const Form = styled.form``;
 =====================================
 */
 
-export const Input = styled.input``;
+export const Input = styled.input`
+  border: solid;
+  border-width: thin;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  font-size: 12pt;
+  font-weight: light;
+  background-color: transparent;
+  width: 10em;
+  padding: 2px;
+  margin: 10px;
+  text-align: center;
+`;
 
 /*
 =====================================

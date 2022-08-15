@@ -3,6 +3,7 @@ bundle.js
 yarn.lock
 package-lock.json
 .env
+*.LICENSE.txt
 
 # Logs
 logs
