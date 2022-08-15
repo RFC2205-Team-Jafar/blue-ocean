@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,10 +11,16 @@ import Seeker from './pages/seeker';
 import Recruiter from './pages/recruiter';
 import Login from './pages/login.js';
 import SignUp from './pages/signUp.js';
+// Grabs user location when page is first loaded
+import userLocation from './Google_API/userLocation.jsx'
+
 
 export const AllContext = createContext();
-
+// ismounted? Grab lat & long of user
 const App = () => {
+  useEffect(() => {
+    userLocation();
+  }, [])
 
   const [counter, setCounter] = useState(5);
 
@@ -29,9 +35,9 @@ const App = () => {
           <Route path="/seeker" element={<Seeker />} />
           <Route path="/recruiter" element={<Recruiter />} />
         </Routes>
-
       </AllContext.Provider>
     </Router>
+
   )
 }
 
