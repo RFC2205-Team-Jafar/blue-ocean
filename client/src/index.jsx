@@ -49,10 +49,6 @@ const App = () => {
             <Route path="postAJob" element={<NewJob />} />
            </Route>
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/seeker" element={<Seeker />} />
-          <Route path="/recruiter" element={<Recruiter />} />
         </Routes>
       </AllContext.Provider>
     </Router>
