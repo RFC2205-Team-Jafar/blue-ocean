@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,10 +16,18 @@ import RecruiterProfile from './components/TestComponents/RecruiterProfile.js';
 import ActivePostings from './components/TestComponents/ActivePostings.js';
 import NewJob from './components/TestComponents/NewJob.js';
 
-export const AllContext = createContext();
+// Grabs user location when page is first loaded
+import userLocation from './Google_API/userLocation.jsx'
 
+
+export const AllContext = createContext();
+// ismounted? Grab lat & long of user
 const App = () => {
   // states
+  useEffect(() => {
+    userLocation();
+  }, [])
+
   const [counter, setCounter] = useState(5);
 
   return (
@@ -41,14 +49,17 @@ const App = () => {
             <Route path="postAJob" element={<NewJob />} />
            </Route>
 
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/seeker" element={<Seeker />} />
+          <Route path="/recruiter" element={<Recruiter />} />
         </Routes>
       </AllContext.Provider>
     </Router>
+
   )
 }
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 
-
-// path="jobsForSeeker"
