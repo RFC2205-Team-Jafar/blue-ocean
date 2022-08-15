@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { StyledModal } from './StyledModal';
-import { auth, signInWithEmailAndPassword, signInWithGoogle } from "../firebase.jsx";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
@@ -41,7 +41,7 @@ const LoginForm = () => {
           <button onClick={signInWithGoogle}>Login with Google</button>
         </div>
         <div>
-          Don't have an account? <Link to="/signUp">Sign up</Link> now.
+          Don't have an account? <Link to="signUp">Create</Link> an account now.
         </div>
       </StyledModal>
     </>
