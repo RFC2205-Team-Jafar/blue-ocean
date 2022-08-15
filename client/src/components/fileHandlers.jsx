@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const FileUpload= (fileType) => {
+const fileUpload = (fileType) => {
 
   const [file, setFile] = useState()
 
@@ -10,7 +10,6 @@ const FileUpload= (fileType) => {
   }
 
   const handleUpload = (event) => {
-    event.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', file.name);
@@ -35,4 +34,13 @@ const FileUpload= (fileType) => {
   )
 }
 
-export default FileUpload;
+
+const fileViewer = (fileURL) => {
+
+  return (
+    <iframe id="file" src= {fileURL} width="1000" height="1000"  frameborder="0" />
+  )
+
+}
+
+export {fileUpload, fileViewer};

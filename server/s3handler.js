@@ -2,13 +2,15 @@ const {S3} = require("aws-sdk");
 require("dotenv").config();
 
 
-exports.s3Upload = async (file) => {
+exports.s3Upload = async (file, fileName) => {
+
+  console.log('file', file)
 
   const s3 = new S3();
 
   const param = {
     Bucket: process.env.AWS_BUCKET_NAME,
-    Key: `${file.orginalname}`, //name of file,
+    Key: `${fileName}`, //name of file,
     Body: file.buffer
   }
 

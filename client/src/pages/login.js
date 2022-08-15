@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { AllContext } from '../index.jsx';
-import SampleLoginForm from '../components/SampleLoginForm';
+import SampleLoginForm from '../components/ModalTemplate/SampleLoginForm';
 
 const Login = () => {
 
   const { counter } = useContext(AllContext);
-
 
   return (
     <>

@@ -6,18 +6,6 @@ import {
   Link
 } from "react-router-dom";
 import { createRoot } from "react-dom/client";
-<<<<<<< HEAD
-import FileUpload from './fileUpload.jsx'
-const root = createRoot(document.getElementById("root"));
-
-const App = () => {
-  return (
-  <div>
-  <h1>Hello World</h1>
-  {FileUpload("Resume")}
-  {FileUpload("Cover Letter")}
-  </div>
-=======
 import Home from './pages/home';
 import Seeker from './pages/seeker';
 import Recruiter from './pages/recruiter';
@@ -44,7 +32,6 @@ const App = () => {
 
       </AllContext.Provider>
     </Router>
->>>>>>> 4c7871a23730ab3dc6e80eddb68281005b5b38de
   )
 }
 
