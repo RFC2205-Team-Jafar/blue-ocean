@@ -6,6 +6,9 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
+const jobsRoutes = require('./jobsRoutes');
+const userRoutes = require('./userRoutes');
+
 
 // middlewares here
 app.use(cors());
@@ -16,9 +19,10 @@ app.use(express.static(path.join(__dirname, "../client/public")));
 
 
 // routes here
-app.get('/', (req, res) => {
-  res.send('Hello Team Jafar');
-});
+app.use('/jobs', jobsRoutes);
+app.use('/user', userRoutes);
+
+
 
 
 if (!module.parent) {
