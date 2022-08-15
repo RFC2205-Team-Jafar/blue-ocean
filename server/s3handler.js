@@ -2,7 +2,7 @@ const {S3} = require("aws-sdk");
 require("dotenv").config();
 
 
-exports.s3Upload = async (file, fileName) => {
+exports.s3Upload = async (file) => {
 
   console.log('file', file)
 
@@ -10,10 +10,19 @@ exports.s3Upload = async (file, fileName) => {
 
   const param = {
     Bucket: process.env.AWS_BUCKET_NAME,
-    Key: `${fileName}`, //name of file,
-    Body: file.buffer
+    Key: `${file.originalname}`, //name of file,
+    Body: file.buffer,
   }
 
-  return await s3.upload(param).promise()
+  const response = await s3.upload(param).promise()
+  console.log('response', response)
+  const key = response.key
+  const url = key.replace(/\s/g, "+")
+  return `https://jafar-2022.s3.amazonaws.com/${url}`
 
+}
+
+exports.parseResume = async(resume, searchWords) => {
+
+  const resumetxt =
 }

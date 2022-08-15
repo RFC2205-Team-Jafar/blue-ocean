@@ -15,7 +15,8 @@ const Home = () => {
     <h1><Link to="/signUp">Sign Up </Link></h1>
     {fileUpload("Resume")}
     {fileUpload("Cover Letter")}
-    {fileViewer("https://jafar-2022.s3.amazonaws.com/testingname")}
+    {fileViewer("https://jafar-2022.s3.amazonaws.com/Jean+Kim+Resume+.docx")}
+    {fileViewer("https://jafar-2022.s3.amazonaws.com/Clover.docx")}
   </>
   )
 };
