@@ -1,5 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 
 /*========== INTERNAL MODULES ==========*/
 
@@ -13,7 +13,12 @@ import styled from 'styled-components';
 =====================================
 */
 
-
+export const GlobalStyle = createGlobalStyle`
+body {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-color: #414141;
+}
+`;
 
 /*
 =====================================

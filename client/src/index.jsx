@@ -16,7 +16,8 @@ import Recruiter from './pages/Recruiter';
 import RecruiterProfile from './components/TestComponents/RecruiterProfile.js';
 import ActivePostings from './components/TestComponents/ActivePostings.js';
 import NewJob from './components/TestComponents/NewJob.js';
-
+import PostJob from './components/PostJob/PostJob.jsx'
+import {GlobalStyle} from '../public/stylesheets/styles';
 // Grabs user location when page is first loaded
 import userLocation from './Google_API/userLocation.jsx'
 
@@ -34,33 +35,35 @@ const App = () => {
   return (
     <Router>
       <AllContext.Provider value={{ counter, setCounter }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
+        {/* <GlobalStyle> */}
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          <Route path="signUp" element={<SignUp />} />
+            <Route path="signUp" element={<SignUp />} />
 
-          <Route path="seeker" element={<Seeker />} >
-            <Route index element={<JobsForSeeker />} />
-            <Route path="profile" element={<SeekerProfile />} />
-          </Route>
+            <Route path="seeker" element={<Seeker />} >
+              <Route index element={<JobsForSeeker />} />
+              <Route path="profile" element={<SeekerProfile />} />
+            </Route>
 
-          <Route path="recruiter" element={<Recruiter />} >
-            <Route index element={<ActivePostings />} />
-            <Route path="profile" element={<RecruiterProfile />} />
-            <Route path="postAJob" element={<NewJob />} />
-           </Route>
+            <Route path="recruiter" element={<Recruiter />} >
+              <Route index element={<ActivePostings />} />
+              <Route path="profile" element={<RecruiterProfile />} />
+              <Route path="postAJob" element={<PostJob />} />
+            </Route>
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/seeker" element={<Seeker />} />
-          <Route path="/recruiter" element={<Recruiter />} />
-        </Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/seeker" element={<Seeker />} />
+            <Route path="/recruiter" element={<Recruiter />} />
+          </Routes>
+        {/* </GlobalStyle> */}
       </AllContext.Provider>
     </Router>
 
   )
 }
 
+
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
-

@@ -6,7 +6,6 @@ import EmbedCalendar from '../Google_API/calendar.jsx'
 
 /*========== INTERNAL MODULES ==========*/
 import {Page} from '../../public/stylesheets/styles';
-import PostJob from '../components/PostJob/PostJob.jsx'
 
 const Recruiter = () => {
   return (
@@ -23,7 +22,6 @@ const Recruiter = () => {
       {/* Element from nested route will be rendered into <Outlet /> */}
       <Outlet />
       <h1>Recruiter View </h1>
-      <PostJob />
       <Link to="/"> Back to Home </Link>
       <EmbedCalendar/>
     </Page>
