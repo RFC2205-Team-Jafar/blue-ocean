@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from "react-router-dom";
+import EmbedCalendar from '../Google_API/calendar.jsx'
 
 const Recruiter = () => {
   return (
@@ -15,6 +16,9 @@ const Recruiter = () => {
       <div><Link to="postAJob">Post a new job</Link></div>
       {/* Element from nested route will be rendered into <Outlet /> */}
       <Outlet />
+      <h1>Recruiter View </h1>
+      <Link to="/"> Back to Home </Link>
+      <EmbedCalendar/>
     </>
   )
 };
