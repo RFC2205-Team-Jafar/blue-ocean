@@ -1,7 +1,7 @@
 ### node etc ###
 bundle.js
 yarn.lock
-package-json.lock
+package-lock.json
 .env
 
 # Logs
@@ -36,3 +36,5 @@ bower_components/
 .floobit
 .floo
 .flooignore
+
+server/.DS_Store
