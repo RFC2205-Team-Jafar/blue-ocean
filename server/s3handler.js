@@ -22,7 +22,13 @@ exports.s3Upload = async (file) => {
 
 }
 
+const axios = require('axios')
 exports.parseResume = async(resume, searchWords) => {
-
-  const resumetxt =
+  console.log(resume, searchWords)
+  axios.get(resume)
+  .then((res) => {
+    var resumetxt = res.data
+    var jsfile = new Buffer.from(resumetxt).toString('base64')
+    console.log(jsfile)
+  })
 }

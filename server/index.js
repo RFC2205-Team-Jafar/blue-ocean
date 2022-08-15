@@ -4,7 +4,7 @@ const path = require('path');
 //FOR DOCUMENT  UPLOADNG
 require("dotenv").config();
 const multer = require("multer");
-const {s3Upload} = require("./s3handler");
+const {s3Upload, parseResume} = require("./s3handler");
 //DOCUMENT UPLOADING END
 
 const app = express();
@@ -40,6 +40,21 @@ app.post("/uploadFile", upload.array("file"), async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+app.get("/downloadFile", async (req, res) => {
+
+  // var resume = "https://jafar-2022.s3.amazonaws.com/Clover.docx"
+  var resume = "https://jafar-2022.s3.amazonaws.com/Jean+Kim+Resume++(1).pdf"
+  var searchWords = ["lucky", "calm",  "bites"]
+
+  try {
+    const results = await parseResume(resume, searchWords)
+    return res.json({ status: "success" });
+  } catch (err) {
+    console.log(err);
+  }
+
 });
 
 module.exports.app = app;
