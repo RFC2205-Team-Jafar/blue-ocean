@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useContext } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,37 +21,38 @@ import userLocation from './Google_API/userLocation.jsx'
 
 
 export const AllContext = createContext();
-// ismounted? Grab lat & long of user
-const App = () => {
-  // states
-  useEffect(() => {
-    userLocation();
-  }, [])
 
+const App = () => {
   const [counter, setCounter] = useState(5);
+  const [location, setLocation] = useState({})
+  // Grabs user location asynchronously when mounted
+  useEffect(() => {
+    userLocation().then(data => setLocation(data));
+  }, [])
 
   return (
     <Router>
-      <AllContext.Provider value={{ counter, setCounter }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
+      <AllContext.Provider value={{ counter, setCounter, location, setLocation }}>
 
-          <Route path="signUp" element={<SignUp />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-          <Route path="seeker" element={<Seeker />} >
-            <Route index element={<JobsForSeeker />} />
-            <Route path="profile" element={<SeekerProfile />} />
-          </Route>
+        <Route path="signUp" element={<SignUp />} />
 
-          <Route path="recruiter" element={<Recruiter />} >
-            <Route index element={<ActivePostings />} />
-            <Route path="profile" element={<RecruiterProfile />} />
-            <Route path="postAJob" element={<NewJob />} />
-           </Route>
+        <Route path="seeker" element={<Seeker />} >
+          <Route index element={<JobsForSeeker />} />
+          <Route path="profile" element={<SeekerProfile />} />
+        </Route>
 
-        </Routes>
-      </AllContext.Provider>
-    </Router>
+        <Route path="recruiter" element={<Recruiter />} >
+          <Route index element={<ActivePostings />} />
+          <Route path="profile" element={<RecruiterProfile />} />
+          <Route path="postAJob" element={<NewJob />} />
+        </Route>
+
+      </Routes>
+    </AllContext.Provider>
+  </Router>
 
   )
 }
