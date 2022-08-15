@@ -1,5 +1,7 @@
-// Grab user location in the background when called
-// Invoke as Promise?
+import { useContext, useState } from "react";
+import { AllContext } from "../index.jsx";
+
+
 const userLocation = async function() {
   let geos;
   try {
@@ -23,9 +25,7 @@ const userLocation = async function() {
       )
     })
   }
-  console.log(geos)
-  //TODO
-  // Use context to set global state for location
+  return geos
 }
 
 export default userLocation;
