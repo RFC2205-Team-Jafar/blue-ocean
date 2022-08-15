@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 const fileUpload = (fileType) => {
 
-  const [file, setFile] = useState()
-
-  const handleChange = (event) => {
-    setFile(event.target.files[0]);
-  }
-
+  const fileInputRef = useRef()
   const handleUpload = (event) => {
+    const[file] = event.target.files;
+    console.log(file)
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', file.name);
@@ -24,13 +21,12 @@ const fileUpload = (fileType) => {
   }
 
   return (
-    <div className="file-upload">
-      <form>
-        <h1>{fileType}</h1>
-        <input type="file" onChange={handleChange} />
-        <button type="submit" onClick={handleUpload}>Upload</button>
-      </form>
-    </div>
+    <>
+    <button onClick={()=>fileInputRef.current.click()}>
+        Upload A {fileType}
+      </button>
+      <input onChange={handleUpload} multiple={false} ref={fileInputRef} type='file' hidden/>
+    </>
   )
 }
 
