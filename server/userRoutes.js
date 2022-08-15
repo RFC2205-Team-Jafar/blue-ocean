@@ -3,8 +3,6 @@ const router = express.Router();
 
 const authChecker = () => {};
 
-router.use(authChecker());
-
 // Pull user profile from DB
 router.get('/:uuid', authChecker, (req, res) => {
   // use uuid to query db and find out user type
