@@ -22,6 +22,7 @@ const firebaseConfig = {
   const analytics = getAnalytics(app);
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
+
   const signInWithGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then(res => {
@@ -30,7 +31,6 @@ const firebaseConfig = {
       })
       .catch(err => {alert(err.message)});
   };
-  /* Need to build the login with email and password function out*/
   const logInWithEmailAndPassword = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(res => {
@@ -55,4 +55,4 @@ const firebaseConfig = {
 
 //once authenticated, call firebase.auth().currentUser.uid
 
-export {registerWithEmailAndPassword};
+export {auth, signInWithGoogle, logInWithEmailAndPassword, registerWithEmailAndPassword};
