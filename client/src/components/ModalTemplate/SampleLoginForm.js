@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { StyledModal } from './StyledModal';
+import {initializeApp} from "firebase/app";
 
-const SampleLoginForm = () => {
+
+const LoginForm = () => {
   // You should not need to change anything from Line 6-10
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -25,6 +27,7 @@ const SampleLoginForm = () => {
         <div>Password</div>
         <input type="password" />
         <button> Sign in </button>
+        {/*Sign in with Google button here*/}
 
       </StyledModal>
     </>
