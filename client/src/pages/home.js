@@ -4,15 +4,18 @@ import { AllContext } from '../index.jsx';
 
 const Home = () => {
 
-  const { counter } = useContext(AllContext);
-
   return (
-  <>
-    <h1>LinkedOut Navbar  </h1>
-    <h1>Home Counter: {counter} </h1>
-    <h1><Link to="/login"> Login Modal to Authenticate </Link></h1>
-    <h1><Link to="/signUp">Sign Up </Link></h1>
-  </>
+    <>
+      <h1> LinkedOut Navbar      <span>signUp/login(modal)</span> </h1>
+
+      {/* create account shall be placed in login modal */}
+      <Link to="signUp">Create Account</Link>
+
+      <h1> Image Gallery </h1>
+
+      <h1> Jobs (newest 20) </h1>
+
+    </>
   )
 };
 
