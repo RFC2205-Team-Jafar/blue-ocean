@@ -5,9 +5,8 @@ import {fileUpload, fileViewer} from '../components/fileHandlers.jsx';
 
 const Home = () => {
 
-  const { counter } = useContext(AllContext);
-
   return (
+<<<<<<< HEAD
   <>
     <h1>LinkedOut Navbar  </h1>
     <h1>Home Counter: {counter} </h1>
@@ -18,6 +17,19 @@ const Home = () => {
     {fileViewer("https://jafar-2022.s3.amazonaws.com/Jean+Kim+Resume+.docx")}
     {fileViewer("https://jafar-2022.s3.amazonaws.com/Clover.docx")}
   </>
+=======
+    <>
+      <h1> LinkedOut Navbar      <span>signUp/login(modal)</span> </h1>
+
+      {/* create account shall be placed in login modal */}
+      <Link to="signUp">Create Account</Link>
+
+      <h1> Image Gallery </h1>
+
+      <h1> Jobs (newest 20) </h1>
+
+    </>
+>>>>>>> 08db81fce5d2ccc7f879953303c0a3af27e738f1
   )
 };
 
