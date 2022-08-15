@@ -10,6 +10,7 @@ const Recruiter = () => {
       <h1>Recruiter View </h1>
       <Link to="/"> Back to Home </Link>
       <EmbedCalendar/>
+      <InterviewInviteModal/>
     </>
   )
 };
