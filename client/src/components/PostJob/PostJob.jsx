@@ -34,7 +34,7 @@ export default function PostJob() {
   };
 
   const handleClick = ({ target: { name, value } }) => {
-    // set modify the background of the clicked button to be a different color
+    //TODO: set modify the background of the clicked button to be a different color
     setJobPosting(prev => ({
       ...prev,
       [name]: value
