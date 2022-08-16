@@ -33,17 +33,17 @@ export const InterviewInviteModal = () => {
       <ContentDiv>
         <form>
           <label><b>Start Date</b></label>
-          <input name="date" type="date" onChange={(e) => handleChange(e.target)}/>
+          <input name="startDate" type="date" onChange={(e) => handleChange(e.target)}/>
           <label><b>Start Time</b></label>
-          <input name="time" type="time" onChange={(e) => handleChange(e.target)}/>
+          <input name="startTime" type="time" onChange={(e) => handleChange(e.target)}/>
           <label><b>End Date</b></label>
-          <input name="date" type="date" onChange={(e) => handleChange(e.target)}/>
+          <input name="endDate" type="date" onChange={(e) => handleChange(e.target)}/>
           <label><b>End Time</b></label>
-          <input name="time" type="time" onChange={(e) => handleChange(e.target)}/>
+          <input name="endTime" type="time" onChange={(e) => handleChange(e.target)}/>
           <label><b>Location</b></label>
           <input name="location" type="text" placeholder="zoom.url OR 123 adress" onChange={(e) => handleChange(e.target)}/>
-          <label><b>Summary</b></label>
-          <input name="summary" type="text" placeholder="Important information for applicant to know"
+          <label><b>Description</b></label>
+          <input name="description" type="text" placeholder="Important information for applicant to know"
             onChange={(e) => handleChange(e.target)}/>
         </form>
         <button onClick= {() => handleSubmit()}>Submit</button>
