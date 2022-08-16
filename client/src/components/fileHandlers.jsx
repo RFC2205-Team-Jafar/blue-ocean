@@ -20,8 +20,9 @@ const fileUpload = (fileType) => {
       }
     }
     axios.post(`uploadFile`, formData, config)
-      .then(() => {
+      .then((res) => {
         setUploaded(true)
+        console.log(res.data.url)
      })
       .catch((err) => { console.log('err occurred in upload') })
   }
