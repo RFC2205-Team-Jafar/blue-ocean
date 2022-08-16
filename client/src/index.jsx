@@ -28,8 +28,6 @@ const App = () => {
   useEffect(() => {
     userLocation();
   }, [])
-
-  const [counter, setCounter] = useState(5);
   const [location, setLocation] = useState({})
   // Grabs user location asynchronously when mounted
   useEffect(() => {
@@ -38,7 +36,7 @@ const App = () => {
 
   return (
     <Router>
-      <AllContext.Provider value={{ counter, setCounter, location, setLocation }}>
+      <AllContext.Provider value={{ location, setLocation }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="signUp" element={<SignUp />} />
@@ -51,7 +49,6 @@ const App = () => {
           <Route path="profile" element={<RecruiterProfile />} />
           <Route path="postAJob" element={<NewJob />} />
         </Route>
-            <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/seeker" element={<Seeker />} />
             <Route path="/recruiter" element={<Recruiter />} />
