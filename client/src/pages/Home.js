@@ -4,7 +4,6 @@ import { AllContext } from '../index.jsx';
 
 import LoginForm from "../components/loginComponents/LoginForm.jsx";
 
-
 const Home = () => {
 
   return (
@@ -15,7 +14,6 @@ const Home = () => {
 
       <LoginForm />
       <Link to="signUp">Create Account</Link>
-
 
       <h1> Image Gallery </h1>
 
