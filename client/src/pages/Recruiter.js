@@ -1,7 +1,10 @@
+
 /*========== EXTERNAL MODULES ==========*/
+
 import React from 'react';
 import { Link, Outlet } from "react-router-dom";
 import EmbedCalendar from '../Google_API/calendar.jsx'
+
 
 
 /*========== INTERNAL MODULES ==========*/
@@ -27,6 +30,8 @@ const Recruiter = () => {
       <Outlet />
       <Link to="/"> Back to Home </Link>
       <EmbedCalendar/>
+
+
     </Page>
   )
 };
@@ -38,3 +43,4 @@ export default Recruiter;
 
 
 /*========== STYLES ==========*/
+
