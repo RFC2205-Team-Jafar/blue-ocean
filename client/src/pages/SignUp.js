@@ -17,10 +17,10 @@ const SignUp = () => {
   const [zipCode, setZipCode] = useState("");
   const [company, setCompany] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   // const history = useHistory();
   const {signup} = useAuth();
-  console.log('signup: ', signup);
+  // console.log('signup: ', signup);
 
   //---------------------- Embedded Functions -------------------
   const register = () => {
@@ -37,14 +37,14 @@ const SignUp = () => {
     geoConverter(zipCode)
     .then(geos => {
       lat = geos.lat;
-      long = geos.long;
+      long = geos.lng;
     })
     .catch(err => {console.log('lat long err: ', err)})
     setLoading(true);
     signup(email, password)
-      .then(user => {
-        const uid = user.uid;
-        // console.log('uid: ', uid);
+      .then(res => {
+        const uid = res.user.uid;
+        // console.log('res: ', res);
         const body = {
           user_uuid: uid,
           first_name: firstName,
@@ -57,10 +57,17 @@ const SignUp = () => {
           // resume_url: ,
           company_name: company
         };
-        console.log('body: ', body)
+        // console.log('body: ', body)
       })
       .then(() => setLoading(false))
-      .catch(err => alert("There was an error creating your account: ", err.message))
+      .then(() => {
+        if (accountType === "seeker") {
+          navigate("/seeker", {replace: true});
+        } else {
+          navigate("/recruiter", {replace: true});
+        }
+      })
+      .catch(err => console.log("There was an error creating your account: ", err))
   };
 
   //-------------------- Returned DOM --------------------------
