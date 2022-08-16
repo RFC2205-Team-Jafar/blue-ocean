@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
-import {auth, registerWithEmailAndPassword, signInWithGoogle} from "../components/firebase.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import {useAuth} from '../components/AuthContext.jsx';
 
 const SignUp = () => {
 
@@ -10,13 +9,14 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [user, error] = useAuthState(auth);
   const [accountType, setAccountType] = useState("");
   const [preferredIndustry, setPreferredIndustry] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [company, setCompany] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // const history = useHistory();
+  const {signup} = useAuth();
 
   //---------------------- Embedded Functions -------------------
   const register = () => {
@@ -28,9 +28,11 @@ const SignUp = () => {
     if (accountType === "seeker" && !zipCode)  alert ("Please enter a zip code");
     if (accountType === "recruiter" && !company)  alert ("Please enter a company");
     const name = firstName + " " + lastName;
-    registerWithEmailAndPassword(name, email, password)
+    setLoading(true);
+    signup(email, password)
       .then(user => {
         const uid = user.uid;
+        console.log('uid: ', uid);
         const body = {
           firstName: firstName,
           lastName: lastName,
@@ -39,9 +41,10 @@ const SignUp = () => {
           accountType: accountType,
           preferredIndustry: preferredIndustry,
           zipCode: zipCode,
-          company: company,
+          company: company
         }
       })
+      .then(() => setLoading(false))
       .catch(err => alert("There was an error creating your account: ", err.message))
   };
 
@@ -104,7 +107,7 @@ const SignUp = () => {
           <h2>Zip Code</h2>
             <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} placeholder="Zip Code" />
           <button>Resume Upload Here</button>
-          <button onClick={register}>Create Account</button>
+          <button onClick={register} disabled={loading}>Create Account</button>
         </div>
       </div>
     )
@@ -134,7 +137,7 @@ const SignUp = () => {
           <h2>Company</h2>
             <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
         </div>
-        <button onClick={register}>Create Account</button>
+        <button onClick={register} disabled={loading}>Create Account</button>
       </div>
     )
   }
