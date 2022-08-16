@@ -21,7 +21,6 @@ import {AuthProvider} from './components/AuthContext.jsx';
 // Grabs user location when page is first loaded
 import userLocation from './Google_API/userLocation.jsx'
 
-
 export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
