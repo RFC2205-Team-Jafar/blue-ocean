@@ -10,7 +10,7 @@ const {s3Upload, parseResume} = require("./s3handler");
 //DOCUMENT UPLOADING END
 
 const app = express();
-
+const routes = require('./routes.js');
 // middlewares here
 app.use(express.static(path.join(__dirname, "../client/public")));
 app.use(cors({
@@ -19,11 +19,7 @@ app.use(cors({
 }));
 app.use(compression());
 
-// routes here
-app.get('/', (req, res) => {
-  res.send('Hello Team Jafar');
-});
-
+app.use('/', routes);
 
 if (!module.parent) {
   app.listen(process.env.PORT);
