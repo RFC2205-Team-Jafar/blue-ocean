@@ -14,6 +14,7 @@ const SignUp = () => {
   const [accountType, setAccountType] = useState("");
   const [preferredIndustry, setPreferredIndustry] = useState("");
   const [zipCode, setZipCode] = useState("");
+  const [company, setCompany] = useState("");
   // const history = useHistory();
 
   //---------------------- Embedded Functions -------------------
@@ -24,11 +25,23 @@ const SignUp = () => {
     if (!password) alert("Please enter a password");
     if (accountType === "seeker" && !preferredIndustry)  alert ("Please select your preferred industry");
     if (accountType === "seeker" && !zipCode)  alert ("Please enter a zip code");
+    if (accountType === "seeker" && !company)  alert ("Please enter a company");
     const name = firstName + " " + lastName;
     registerWithEmailAndPassword(name, email, password)
-      .then(res => {
-        console.log('res: ',res);
-        // const uid = res.uid
+      .then(user => {
+        console.log('user: ',user);
+        const uid = user.uid;
+        const body = {
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+          accountType: accountType,
+          preferredIndustry: preferredIndustry,
+          zipCode: zipCode,
+          company: company
+        }
+
       })
       .catch(err => alert("There was an error creating your account: ", err.message))
   };
@@ -45,8 +58,14 @@ const SignUp = () => {
           <h2>Last Name</h2>
             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
           <h2>Account Type</h2>
-            <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
+            <span>
+              <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
+              <div>Job Seeker</div>
+            </span>
+            <span>
+              <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
+              <div>Recruiter</div>
+            </span>
         </div>
         <br/>
         <h3> Please select account type.</h3>
@@ -63,8 +82,14 @@ const SignUp = () => {
           <h2>Last Name</h2>
             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
           <h2>Account Type</h2>
+          <span>
             <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
+            <div>Job Seeker</div>
+            </span>
+            <span>
+              <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
+              <div>Recruiter</div>
+            </span>
           <h2>Email</h2>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="youremail@domain.com" />
           <h2>Password</h2>
@@ -95,12 +120,20 @@ const SignUp = () => {
           <h2>Last Name</h2>
             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
           <h2>Account Type</h2>
-            <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
+            <span>
+              <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
+              <div>Job Seeker</div>
+            </span>
+            <span>
+              <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
+              <div>Recruiter</div>
+            </span>
           <h2>Email</h2>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="youremail@domain.com" />
           <h2>Password</h2>
             <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+          <h2>Company</h2>
+            <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
         </div>
         <button onClick={register}>Create Account</button>
       </div>
