@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Column } from '../../public/stylesheets/styles.js'
 import { AllContext } from "../index.jsx";
 import sendInvite from "./calendar_event.jsx";
-import { GoogleLogin } from "react-google-login"
 
 import geoConverter from "./geolocation.jsx";
 
