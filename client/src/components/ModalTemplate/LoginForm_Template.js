@@ -3,7 +3,7 @@ import { StyledModal } from './StyledModal';
 import {initializeApp} from "firebase/app";
 
 
-const LoginForm = () => {
+const SampleLoginForm = () => {
   // You should not need to change anything from Line 6-10
   const [modalOpen, setModalOpen] = useState(false);
 
