@@ -22,7 +22,7 @@ module.exports = {
     }
   },
 
-  // WORKING
+  //TO DO: Convert zip to lat and long
   addAJob: async (req, res) => {
     const jobPosting = req.body; // expect body to contain full listing info (recruiter info + job)
     try {
