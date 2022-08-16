@@ -10,7 +10,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [user, loading, error] = useAuthState(auth);
-  const {login} = useAuth();
+  const {login, googleLogin} = useAuth();
   const [loading, setLoading] = useState(false);
 
   //----------------Modal Functions ----------------------
@@ -23,6 +23,14 @@ const LoginForm = () => {
   const handlePlainLogin = () => {
     setLoading(true);
     login(email, password)
+    .then(() => {
+      setLoading(false);
+    })
+    .catch(err => {console.log('There was an error logging in: ', err)})
+  }
+  const handleGoogleLogin = () => {
+    setLoading(true);
+    googleLogin()
     .then(() => {
       setLoading(false);
     })
