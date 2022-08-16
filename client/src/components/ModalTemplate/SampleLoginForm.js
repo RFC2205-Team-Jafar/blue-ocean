@@ -34,4 +34,4 @@ const LoginForm = () => {
   )
 }
 
-export default SampleLoginForm;
+export default LoginForm;
