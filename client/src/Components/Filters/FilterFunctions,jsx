@@ -1,0 +1,13 @@
+import React, { Component } from 'react';
+
+class FilterFunctions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+}
+
+export default FilterFunctions
