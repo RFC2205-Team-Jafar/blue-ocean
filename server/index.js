@@ -46,6 +46,7 @@ app.post("/uploadFile", upload.array("file"), async (req, res) => {
   }
 });
 
+
 // app.get("/downloadFile", async (req, res) => {
 
 //   // var resume = "https://jafar-2022.s3.amazonaws.com/Clover.docx"
