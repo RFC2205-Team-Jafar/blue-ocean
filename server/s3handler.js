@@ -12,6 +12,8 @@ exports.s3Upload = async (file) => {
     Body: file.buffer,
   }
 
+  console.log(file)
+
   const response = await s3.upload(param).promise()
   const key = response.key
   const url = key.replace(/\s/g, "+")
@@ -25,7 +27,9 @@ exports.parseResume = async(resume, searchWords) => {
   axios.get(resume)
   .then((res) => {
     var resumetxt = res.data
-    var jsfile = new Buffer.from(resumetxt).toString('base64')
-    console.log(jsfile)
+    console.log(res.files)
+    // console.log('res', resumetxt.toString('utf16le'))
+    // var jsfile = new Buffer.from(resumetxt).toString('base64')
+    // console.log(jsfile)
   })
 }
