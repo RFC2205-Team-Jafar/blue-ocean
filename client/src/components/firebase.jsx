@@ -20,38 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-
-  const signInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then(res => {
-        const user = res.user;
-        //send res.user.uid to db
-      })
-      .catch(err => {alert(err.message)});
-  };
-  const logInWithEmailAndPassword = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(res => {
-        axios.get()
-      })
-  }
-  const registerWithEmailAndPassword = (name, email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(res => {
-        const user = res.user;
-        return user;
-      })
-      .catch(err => {alert(err.message)});
-  };
+export const auth = getAuth(app);
 
 
-
-
-//call firebase.auth().signInWithEmailAndPassword(email, password);
-  //.then(res => {console.log(res)}) //res contains uuid (pass to DB)
-
-//once authenticated, call firebase.auth().currentUser.uid
-
-export {auth, signInWithGoogle, logInWithEmailAndPassword, registerWithEmailAndPassword};
+export default app;
