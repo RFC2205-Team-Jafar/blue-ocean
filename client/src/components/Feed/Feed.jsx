@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
-import {Container, Column, Label, Row, Input, Section} from '../../../public/stylesheets/styles.js';
+import {Container, Column, Label, Row, Input, FeedSection} from '../../../public/stylesheets/styles.js';
 
 
 /*========== EXPORTS ==========*/
@@ -51,14 +51,14 @@ export default function Feed() {
     if (postings) {
       return postings.map(post => {
         return (
-          <Column>
+          <JobPosting>
               <h3>Job Title</h3>
               <h4>Job Location</h4>
               <p>
                 Job Description:
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum . . .
               </p>
-          </Column>
+          </JobPosting>
         )
       })
     }
@@ -74,7 +74,9 @@ export default function Feed() {
 
     if (targetPost) {
       return (
-        <Column>
+        <Column
+          style={{alignItems: 'flex-start'}}
+          >
           <h3>Job Title</h3>
           <h4>Job Location</h4>
           <p>
@@ -85,6 +87,19 @@ export default function Feed() {
 
             Morbi tincidunt augue interdum velit. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. In eu mi bibendum neque egestas. Erat pellentesque adipiscing commodo elit at imperdiet dui. Massa tincidunt nunc pulvinar sapien et ligula. Platea dictumst quisque sagittis purus sit amet volutpat. Quam quisque id diam vel quam elementum pulvinar etiam non. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Ipsum nunc aliquet bibendum enim facilisis. Ullamcorper sit amet risus nullam eget felis eget nunc. Ac feugiat sed lectus vestibulum mattis ullamcorper. Morbi tristique senectus et netus et malesuada fames ac turpis. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Lectus urna duis convallis convallis.
           </p>
+          <Row>
+            <Button
+              variant='contained'
+              sx={{
+                transform: 'scale(.75)'
+              }}
+              >+ Cover Letter
+            </Button>
+            <Button
+              variant='contained'
+              >Apply
+            </Button>
+          </Row>
         </Column>
       )
     }
@@ -93,23 +108,19 @@ export default function Feed() {
 
 /*----- RENDERER -----*/
 return (
-  <Section>
+  <FeedSection>
       <Row>
-        <h3>This is the Job Feed</h3>
+        <h3 style={{padding: '10px'}}>This is the Job Feed Section</h3>
       </Row>
       <Row>
-        <Column
-          style={{width: '50%'}}
-        >
+        <ListSection>
           {renderList()}
-        </Column>
-        <Column
-          style={{width: '50%', alignItems: 'flex-start'}}
-        >
+        </ListSection>
+        <DetailSection>
           {renderDetail()}
-        </Column>
+        </DetailSection>
       </Row>
-    </Section>
+    </FeedSection>
   )
 }
 
@@ -117,3 +128,40 @@ return (
 
 
 /*========== STYLES ==========*/
+const ListSection = styled(Column)`
+  margin: 10px;
+  width: 48%;
+  height: 800px;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const JobPosting = styled(Column)`
+  background-color: #fff;
+  border: solid thin transparent;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  &:hover {
+    border: solid thin #000;
+    /* border-width: thin;
+    border-color: #000; */
+  }
+`;
+
+const DetailSection = styled(Column)`
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 48%;
+  height: 800px;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
