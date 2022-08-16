@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
@@ -16,6 +18,8 @@ export default function PostJob() {
   const [jobPosting, setJobPosting] = useState({ recruiter_uuid: 'rxXyEEJqImavbPtUBHrINcvIK5p2' });
   const [keywords, setKeywords] = useState([]);
   const [zipCode, setZipCode] = useState();
+  const [salaryPass, setSalaryPass] = useState(true);
+  const [postSuccess, setPostSuccess] = useState(false);
 
 
   /*----- LIFESTYLE METHODS -----*/
@@ -45,37 +49,39 @@ export default function PostJob() {
     event.preventDefault();
     if (jobPosting) {
       if (jobPosting.salary_low < (jobPosting.salary_high * .8)) {
-        alert('Minimum Salary must be within 20% of Maximum Salary')
+        setSalaryPass(false);
+        setTimeout(() => setSalaryPass(true), 3000);
+        // alert('Minimum Salary must be within 20% of Maximum Salary')
         return
       }
     }
     // geoConverter(jobPosting.zipcode);
     /*
     TODO:
-     - add conversion to Laat and long
+    - add conversion to Laat and long
      - attach Lat and Long to state as coord_lat and coord_long
      - remove zipcode property from state object
-    */
-   if (jobPosting.employment_type && jobPosting.employment_type === 'remote') {
+     */
+    if (jobPosting.employment_type && jobPosting.employment_type === 'remote') {
       setJobPosting(prev => ({
         ...prev,
         isRemote: true
       }))
     } else {
-     setJobPosting(prev => ({
-       ...prev,
-       isRemote: false
-     }))
-   }
-   if (keywords) {
+      setJobPosting(prev => ({
+        ...prev,
+        isRemote: false
+      }))
+    }
+    if (keywords) {
       setJobPosting(prev => ({
         ...prev,
         requested_keywords: keywords
       }))
-   }
+    }
 
-
-    alert('Job Posted');
+    setPostSuccess(true);
+    setTimeout(() => setPostSuccess(false), 3000);
   };
 
 
@@ -286,9 +292,32 @@ const renderPostJob = () => {
   )
 }
 
+const renderSalaryError = () => {
+  if (!salaryPass) {
+    return (
+      <Alert severity='error'>
+        <AlertTitle>Error</AlertTitle>
+        Minimum Salary must be within <strong>20%</strong> of Maximum Salary
+      </Alert>
+    )
+  }
+}
+
+const renderJobPosted = () => {
+  if (postSuccess) {
+    return (
+      <Alert severity='success'>
+        <AlertTitle>Success</AlertTitle>
+        Your job has been posted!
+      </Alert>
+    )
+  }
+}
+
 /*----- RENDERER -----*/
-return (
-  <Form>
+  return (
+    <Form>
+      {renderJobPosted()}
       <Row>
         <h1>Post a Job</h1>
       </Row>
@@ -296,6 +325,7 @@ return (
       {renderLocation()}
       {renderIndustry()}
       {renderJobTitle()}
+      {renderSalaryError()}
       {renderSalary()}
       {renderPayRate()}
       {renderDescription()}
