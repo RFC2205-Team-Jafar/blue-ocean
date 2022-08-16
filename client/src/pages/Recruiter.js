@@ -15,7 +15,6 @@ const Recruiter = () => {
   return (
     <Page>
       <h1>Recruiter View </h1>
-      <PostJob />
 
       <h1>Site logo  +  Recruiter  Account</h1>
 
