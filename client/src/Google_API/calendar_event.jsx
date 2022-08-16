@@ -2,44 +2,54 @@
 // https://developers.google.com/calendar/quickstart/js
 // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
 // stored credentials.
+
+
+// SET UP GOOGLE ENVIRONMENT
+var gapi = window.gapi;
+var CLIENT_ID = "[CLIENT ID]";
+var API_KEY = " [API_KEY]";
+const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+const SCOPES = "https://www.googleapis.com/auth/calendar";
+
+// SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
+gapi.load('client:auth2', () => {
+  console.log('loaded client');
+  window.gapi.client
+    .init({
+      clientId: CLIENT_ID,
+      apiKey: API_KEY,
+      scope: SCOPES,
+      discoveryDocs: DISCOVERY_DOCS,
+      plugin_name: 'GreenHorn'
+    })
+    .then(() => {
+      return gapi.client.request({
+        'path': 'https://www.googleapis.com/auth/calendar',
+        "headers": {'Content-Type': 'application/json'}
+      })
+    })
+  // LOADS CALENDAR DATA
+  gapi.client.load('calendar', 'v3', () => console.log('loaded calendar'));
+  // gapi.client.init({
+  //   apiKey: API_KEY,
+  //   clientId: CLIENT_ID,
+  //   discoveryDocs: DISCOVERY_DOCS,
+  //   scope: SCOPES
+  // })
+})
 const sendInvite = function (data) {
-  // let gapi = window.gapi
-  // let CLIENT_ID = process.env.GOOGLE_API_TOKEN
-  // let API_KEY = "PASTE YOUR API KEY HERE"
-  // let DISCOVERY_DOCS=["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-  // let SCOPES = "https://www.googleapis.com/auth/calendar.events"
-
-
-  // gapi.load('client:auth2', () => {
-  //   gapi.client.init({
-  //     apiKey: API_KEY,
-  //     clientId: CLIENT_ID,
-  //     discoveryDocs: DISCOVERY_DOCS,
-  //     scope: SCOPES,
-  //   })
+  console.log(data);
 
 
 
 
-  // var resource = {
-  //   "summary": data.summary,
-  //   "location": data.location,
-  //   "start": {
-  //     "dateTime": `${data.startDate}T${data.startTime}:00.000-07:00`
-  //   },
-  //   "end": {
-  //     "dateTime": `${data.endDate}T${data.endTime}:00.000-07:00`
-  //   }
-  // };
-  // var request = gapi.client.calendar.events.insert({
-  //   'calendarId': 'primary',
-  //   'resource': resource
-  // });
-  // request.execute(function (resp) {
-  //   console.log(resp);
-  // });
 }
 export default sendInvite;
+
+
+
+
+
 
 
 
