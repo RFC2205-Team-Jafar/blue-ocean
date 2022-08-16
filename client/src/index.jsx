@@ -40,7 +40,6 @@ const App = () => {
   return (
     <Router>
       <AllContext.Provider value={{ counter, setCounter, location, setLocation }}>
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="signUp" element={<SignUp />} />

@@ -15,6 +15,7 @@ const SignUp = () => {
   const [preferredIndustry, setPreferredIndustry] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [company, setCompany] = useState("");
+
   // const history = useHistory();
 
   //---------------------- Embedded Functions -------------------
@@ -137,18 +138,6 @@ const SignUp = () => {
       </div>
     )
   }
-
-  // return (
-  // <>
-
-  //     {}
-  //   </div>
-  //   {/* After authentication, redirect based on role. Following tags shall be switched to navigate and use in .then() of authentication */}
-
-  //   <div><Link to="/seeker">Redirect to Seeker view </Link></div>
-  //   <div><Link to="/recruiter">Redirect to Recruiter view </Link></div>
-  // </>
-  // )
 
 };
 
