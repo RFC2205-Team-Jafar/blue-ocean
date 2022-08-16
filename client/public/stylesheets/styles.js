@@ -66,7 +66,10 @@ export const Footer = styled.footer`
 `;
 
 export const Section = styled.section`
-
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  background-color: #999999;
 `;
 
 export const Page = styled.div`
