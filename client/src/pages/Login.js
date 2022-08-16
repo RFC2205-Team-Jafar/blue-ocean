@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import { AllContext } from '../index.jsx';
-import SampleLoginForm from '../components/ModalTemplate/SampleLoginForm';
+import SampleLoginForm from '../components/ModalTemplate/LoginForm_Template';
 
 const Login = () => {
 
