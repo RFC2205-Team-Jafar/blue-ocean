@@ -34,12 +34,10 @@ export default function Feed() {
   };
 
 
-
-
   /*----- RENDER METHODS -----*/
 
 
-/*----- RENDERER -----*/
+  /*----- RENDERER -----*/
   return (
     <FeedSection>
         <Row>
