@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
@@ -118,6 +119,7 @@ const SignUp = () => {
   //   <div><Link to="/recruiter">Redirect to Recruiter view </Link></div>
   // </>
   // )
+
 };
 
 export default SignUp;
