@@ -25,23 +25,21 @@ const SignUp = () => {
     if (!password) alert("Please enter a password");
     if (accountType === "seeker" && !preferredIndustry)  alert ("Please select your preferred industry");
     if (accountType === "seeker" && !zipCode)  alert ("Please enter a zip code");
-    if (accountType === "seeker" && !company)  alert ("Please enter a company");
+    if (accountType === "recruiter" && !company)  alert ("Please enter a company");
     const name = firstName + " " + lastName;
     registerWithEmailAndPassword(name, email, password)
       .then(user => {
-        console.log('user: ',user);
         const uid = user.uid;
         const body = {
-          email: email,
-          password: password,
           firstName: firstName,
           lastName: lastName,
+          email: email,
+          password: password,
           accountType: accountType,
           preferredIndustry: preferredIndustry,
           zipCode: zipCode,
-          company: company
+          company: company,
         }
-
       })
       .catch(err => alert("There was an error creating your account: ", err.message))
   };
@@ -82,9 +80,9 @@ const SignUp = () => {
           <h2>Last Name</h2>
             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
           <h2>Account Type</h2>
-          <span>
-            <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <div>Job Seeker</div>
+            <span>
+              <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
+              <div>Job Seeker</div>
             </span>
             <span>
               <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
@@ -151,6 +149,7 @@ const SignUp = () => {
   //   <div><Link to="/recruiter">Redirect to Recruiter view </Link></div>
   // </>
   // )
+
 };
 
 export default SignUp;
