@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AllContext } from "../index.jsx";
+import HeaderGallery from "../Components/Header/HeaderGallery.jsx";
+import FilterFunctions from "../Components/Filters/FilterFunctions.jsx";
 
 const Home = () => {
   return (
