@@ -116,7 +116,6 @@ export default function PostJob() {
   }
 
   const renderSalary = () => {
-    // TODO: create checking logic to ensure that min salary is atleast 80% of max salary
     return (
       <Label>Salary Range
       <Label>Salary Start
