@@ -11,14 +11,16 @@ const fileUpload = (fileType) => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', file.name);
+    formData.append('user_uuid', 'some uuid')
+    formData.append('listing_id', 'somelisting or null')
+    console.log(formData)
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
       }
     }
-    axios.post('/uploadFile', formData, config)
+    axios.post(`uploadFile`, formData, config)
       .then(() => {
-        console.log('file uploaded');
         setUploaded(true)
      })
       .catch((err) => { console.log('err occurred in upload') })
@@ -26,7 +28,7 @@ const fileUpload = (fileType) => {
 
   if(uploaded){
     return (
-      <p>{fileType} uploaded</p>
+      <p>{fileType} uploaded </p>
     )
   } else {
     return (
@@ -41,7 +43,6 @@ const fileUpload = (fileType) => {
 
 }
 
-
 const fileViewer = (fileURL) => {
 
   if(fileURL.includes('.doc')){
@@ -54,7 +55,7 @@ const fileViewer = (fileURL) => {
     <div>
     <a href = {fileURL}>Download</a>
     <br/>
-    <iframe src= {url} width = "100%" height = "70%"></iframe>
+    <iframe src= {url} width = "100%" height = "800px"></iframe>
     </div>
   )
 

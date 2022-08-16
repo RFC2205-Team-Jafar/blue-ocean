@@ -4,8 +4,6 @@ require("dotenv").config();
 
 exports.s3Upload = async (file) => {
 
-  console.log('file', file)
-
   const s3 = new S3();
 
   const param = {
@@ -15,7 +13,6 @@ exports.s3Upload = async (file) => {
   }
 
   const response = await s3.upload(param).promise()
-  console.log('response', response)
   const key = response.key
   const url = key.replace(/\s/g, "+")
   return `https://jafar-2022.s3.amazonaws.com/${url}`
