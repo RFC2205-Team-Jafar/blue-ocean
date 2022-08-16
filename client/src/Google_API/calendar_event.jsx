@@ -2,15 +2,15 @@
 // https://developers.google.com/calendar/quickstart/js
 // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
 // stored credentials.
+  // SET UP GOOGLE ENVIRONMENT
+  var gapi = window.gapi;
+  var CLIENT_ID = ""; //TODO add Client_ID
+  var API_KEY = ""; // TODO add API key
+  const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+  const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-import axios from 'axios';
-// SET UP GOOGLE ENVIRONMENT
-var gapi = window.gapi;
-var CLIENT_ID = "Client Key";
-var API_KEY = "Api Key";
-const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-const SCOPES = "https://www.googleapis.com/auth/calendar";
-
+const sendInvite = function (data) {
+  console.log(data);
 // SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
 gapi.load('client:auth2', () => {
   console.log('loaded client');
@@ -25,54 +25,49 @@ gapi.load('client:auth2', () => {
     .then(() => {
       return gapi.client.request({
         'path': 'https://www.googleapis.com/auth/calendar',
-        "headers": {'Content-Type': 'application/json'}
+        "headers": { 'Content-Type': 'application/json' }
       })
     })
   // LOADS CALENDAR DATA
   gapi.client.load('calendar', 'v3', () => console.log('loaded calendar'));
-  // gapi.client.init({
-  //   apiKey: API_KEY,
-  //   clientId: CLIENT_ID,
-  //   discoveryDocs: DISCOVERY_DOCS,
-  //   scope: SCOPES
-  // })
+  gapi.auth2.getAuthInstance().signIn()
+    .then(() =>   {
+      var event = {
+      'summary': 'Interview Invitation',
+      'location': data.inviteInfo.location,
+      'description': data.inviteInfo.description,
+      'start': {
+        'dateTime': data.inviteInfo.startDate+"T"+data.inviteInfo.startTime+":00-07:00",
+        'timeZone': 'America/Los_Angeles'
+      },
+      'end': {
+        'dateTime': data.inviteInfo.endDate+"T"+data.inviteInfo.endTime+":00-07:00",
+        'timeZone': 'America/Los_Angeles'
+      },
+      'attendees': [
+        {'email': ''}, //TODO Add email
+      ],
+      'reminders': {
+        'useDefault': false,
+        'overrides': [
+          {'method': 'email', 'minutes': 24 * 60},
+          {'method': 'popup', 'minutes': 10}
+        ]
+      },
+      "sendUpdates": "all"
+    };
+
+    var request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event,
+      "sendNotifications": true,
+    });
+
+    request.execute(function(event) {
+      console.log(event.data);
+      console.log('Event created: ' + event.htmlLink);
+    });
+  })
 })
-const sendInvite = function (data) {
-  console.log(data);
-  var event = {
-    'summary': 'Interview Invitation',
-    'location': data.inviteInfo.location,
-    'description': data.inviteInfo.description,
-    'start': {
-      'dateTime': data.inviteInfo.startDate+"T"+data.inviteInfo.startTime+":00-07:00",
-      'timeZone': 'America/Los_Angeles'
-    },
-    'end': {
-      'dateTime': data.inviteInfo.endDate+"T"+data.inviteInfo.endTime+":00-07:00",
-      'timeZone': 'America/Los_Angeles'
-    },
-    'attendees': [
-      {'email': ''},
-      {'email': ''}
-    ],
-    'reminders': {
-      'useDefault': false,
-      'overrides': [
-        {'method': 'email', 'minutes': 24 * 60},
-        {'method': 'popup', 'minutes': 10}
-      ]
-    },
-    "sendUpdates": "all"
-  };
-
-  var request = gapi.client.calendar.events.insert({
-    'calendarId': 'primary',
-    'resource': event,
-    "sendNotifications": true,
-  });
-
-  request.execute(function(event) {
-    console.log('Event created: ' + event.htmlLink);
-  });
 }
 export default sendInvite;
