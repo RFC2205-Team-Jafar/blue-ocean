@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+/*========== EXTERNAL MODULES ==========*/
+import React from 'react';
+import { Link, Outlet } from "react-router-dom";
 import EmbedCalendar from '../Google_API/calendar.jsx'
-import { InterviewInviteModal } from '../Google_API/interviewInvite.jsx'
+
+
+/*========== INTERNAL MODULES ==========*/
+import {Page} from '../../public/stylesheets/styles';
+import PostJob from '../components/PostJob/PostJob.jsx'
 
 const Recruiter = () => {
-  const [showInterview, setShowInterview] = useState(false);
-
-  const handleClose = () => setShowInterview(false);
-  const handleShow = () => setShowInterview(true);
-
   return (
-    <>
+    <Page>
       <h1>Recruiter View </h1>
+      <PostJob />
+
+      <h1>Site logo  +  Recruiter  Account</h1>
+
+      {/* Profile shall be placed in a modal */}
+      <div><Link to="profile" >Profile</Link></div>
+
+      <div> Image Gallery </div>
+
+      <div><Link to="">Active postings</Link></div>
+      <div><Link to="postAJob">Post a new job</Link></div>
+      {/* Element from nested route will be rendered into <Outlet /> */}
+      <Outlet />
       <Link to="/"> Back to Home </Link>
       <EmbedCalendar/>
-      <InterviewInviteModal props={handleClose, handleShow}/>
-    </>
+    </Page>
   )
 };
 
+
+
+/*========== EXPORTS ==========*/
 export default Recruiter;
+
+
+/*========== STYLES ==========*/
