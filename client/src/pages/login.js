@@ -15,6 +15,7 @@ const Login = () => {
       <div><Link to="/seeker">Redirect to Seeker view </Link></div>
       <div><Link to="/recruiter">Redirect to Recruiter view </Link></div>
       <div><Link to="/">Back to Home</Link></div>
+
     </>
   )
 };
