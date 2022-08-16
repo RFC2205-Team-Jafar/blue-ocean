@@ -38,8 +38,7 @@ const upload = multer({
 app.post("/uploadFile", upload.array("file"), async (req, res) => {
   try {
     const results = await s3Upload(req.files[0]);
-    console.log('results', results);
-    return res.json({ status: "success" });
+    return res.json({ url: results });
   } catch (err) {
     console.log(err);
   }
@@ -47,8 +46,8 @@ app.post("/uploadFile", upload.array("file"), async (req, res) => {
 
 app.get("/downloadFile", async (req, res) => {
 
-  // var resume = "https://jafar-2022.s3.amazonaws.com/Clover.docx"
-  var resume = "https://jafar-2022.s3.amazonaws.com/Jean+Kim+Resume++(1).pdf"
+  var resume = "https://jafar-2022.s3.amazonaws.com/Clover.docx"
+  // var resume = "https://jafar-2022.s3.amazonaws.com/Jean+Kim+Resume++(1).pdf"
   var searchWords = ["lucky", "calm",  "bites"]
 
   try {
