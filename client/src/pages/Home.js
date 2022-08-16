@@ -22,8 +22,8 @@ const Home = () => {
 
       <h1> Jobs (newest 20) </h1>
 
-      {fileUpload('Resume')}
-      {fileViewer('https://jafar-2022.s3.amazonaws.com/Clover.docx')}
+      {/* {fileUpload('Resume')}
+      {fileViewer('https://jafar-2022.s3.amazonaws.com/Clover.docx')} */}
 
     </>
   )
