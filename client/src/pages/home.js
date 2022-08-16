@@ -1,22 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AllContext } from '../index.jsx';
+import { AllContext } from "../index.jsx";
+import Header from "../Components/Header/Header.jsx";
+import HeaderGallery from "../Components/Header/HeaderGallery.jsx";
+import FilterButtons from "../Components/Filters/FilterButtons.jsx";
 
 const Home = () => {
-
   return (
     <>
-      <h1> LinkedOut Navbar      <span>signUp/login(modal)</span> </h1>
+      <h1>
+        {" "}
+        LinkedOut Navbar <span>signUp/login(modal)</span>{" "}
+      </h1>
 
       {/* create account shall be placed in login modal */}
       <Link to="signUp">Create Account</Link>
 
-      <h1> Image Gallery </h1>
+      {/* <h1> Image Gallery </h1> */}
+
+      <HeaderGallery />
+
+      <FilterButtons />
 
       <h1> Jobs (newest 20) </h1>
-
     </>
-  )
+  );
 };
 
 export default Home;

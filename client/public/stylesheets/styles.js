@@ -67,13 +67,13 @@ export const Nav = styled.nav`
   margin-bottom: 40px;
 `;
 
-export const Footer = styled.footer``;
+export const Footer = styled.footer``
 
-`;
+;
 
 export const Page = styled.div`
   display:flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
 `;
 
@@ -81,13 +81,11 @@ export const Container = styled.div`
 
 `;
 
-export const Div = styled.div`
-
 export const Div = styled.div``;
 
 export const Column = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
   justify-items: center;
 `;
@@ -158,7 +156,8 @@ export const Input = styled.input`
 export const Logo = styled.img``;
 
 export const HeaderImg = styled.img`
-  width: 100%
+  width: auto;
+  height: 250px;
 `
 
 export const Img = styled.img``;
