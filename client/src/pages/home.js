@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AllContext } from "../index.jsx";
 import Header from "../Components/Header/Header.jsx";
 import HeaderGallery from "../Components/Header/HeaderGallery.jsx";
-import FilterButtons from "../Components/Filters/FilterButtons.jsx";
+import FilterFunctions from "../Components/Filters/FilterFunctions.jsx";
 
 const Home = () => {
   return (
@@ -20,7 +20,7 @@ const Home = () => {
 
       <HeaderGallery />
 
-      <FilterButtons />
+      <FilterFunctions />
 
       <h1> Jobs (newest 20) </h1>
     </>
