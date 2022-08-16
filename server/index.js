@@ -46,12 +46,15 @@ app.post("/uploadFile", upload.array("file"), async (req, res) => {
 
 app.get("/downloadFile", async (req, res) => {
 
-  var resume = "https://jafar-2022.s3.amazonaws.com/Clover.docx"
+  // var resume = "https://jafar-2022.s3.amazonaws.com/Clover.docx"
   // var resume = "https://jafar-2022.s3.amazonaws.com/Jean+Kim+Resume++(1).pdf"
-  var searchWords = ["lucky", "calm",  "bites"]
+  // var searchWords = ["jean", "kim", "potato", "React", "linkedin"]
+  var resume = "https://jafar-2022.s3.amazonaws.com/Tripp+(8)+.doc"
+  var searchWords = ["tripp", "home", "Ready", "bites"]
 
   try {
     const results = await parseResume(resume, searchWords)
+    console.log('results', results)
     return res.json({ status: "success" });
   } catch (err) {
     console.log(err);

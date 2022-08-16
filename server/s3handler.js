@@ -20,10 +20,11 @@ exports.s3Upload = async (file) => {
 }
 
 exports.parseResume = async(resume, searchWords) => {
+
   var split = resume.split('.com/')
   var unformatted = split[1]
   var key = unformatted.replace(/\+/g, ' ')
-  console.log(key)
+
   const s3 = new S3();
   const param = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -31,46 +32,27 @@ exports.parseResume = async(resume, searchWords) => {
   }
 
   const {Body} = await s3.getObject(param).promise()
-  const contains = []
+  const buf = JSON.stringify(Body);
+  const parsed = JSON.parse(buf);
+  const searchString = parsed.data.join('');
+  const found = [];
+
   for(var i = 0; i < searchWords.length; i++){
-    const buf = Buffer.from(searchWords[i])
-    if(Body.includes(buf)){
-      console.log(buf.toString())
+    let wordbuf = Buffer.from(searchWords[i])
+    let wordbufstring = JSON.stringify(wordbuf)
+    let wordData = JSON.parse(wordbufstring)
+    let word = wordData.data.join('')
+    console.log(typeof word)
+    console.log('word', searchWords[i])
+    console.log('buf', word)
+
+    if(searchString.includes(word)){
+      found.push(searchWords[i])
+      console.log(found)
     }
   }
 
-  // const search = searchWords.join(' ')
-  // const buf = Buffer.from(search)
-  // console.log(buf)
-  // console.log(buf.toString('utf8'))
-  // console.log(Body.toString())
-  // <Buffer 25 50 44 46 2d 31 2e 37 0d 0a 25 b5 b5 b5 b5 0d 0a 31 20 30 20 6f 62 6a 0d 0a 3c 3c 2f 54 79 70 65 2f 43 61 74 61 6c 6f 67 2f 50 61 67 65 73 20 32 20 ... 221827 more bytes>
-  // console.log(typeof Body)
-  // console.log(charCodeAt(buf[0]))
-  // console.log(Body.toString('utf8').codePointAt(0).toString(16))
-  // console.log(buf.charCodeAt(0))
-  // console.log(typeof file.buffer)
+  return found
+
 }
 
-function hex_to_ascii(str1)
- {
-  var hex  = str1.toString();
-  var str = '';
-  for (var n = 0; n < hex.length; n += 2) {
-    str += String.fromCharCode(parseInt(hex.substr(n, 2), 8));
-  }
-  return str;
- }
-// const axios = require('axios')
-
-// exports.parseResume = async(resume, searchWords) => {
-//   console.log(resume, searchWords)
-//   axios.get(resume)
-//   .then((res) => {
-//     var resumetxt = res.data
-//     console.log(res.data)
-//     console.log('res', resumetxt.toString('utf16le'))
-//     var jsfile = new Buffer.from(resumetxt).toString('base64')
-//     console.log(jsfile)
-//   })
-// }
