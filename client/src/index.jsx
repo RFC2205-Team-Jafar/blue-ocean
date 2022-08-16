@@ -40,23 +40,18 @@ const App = () => {
   return (
     <Router>
       <AllContext.Provider value={{ counter, setCounter, location, setLocation }}>
-        {/* <GlobalStyle> */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-
-            <Route path="signUp" element={<SignUp />} />
-
-            <Route path="seeker" element={<Seeker />} >
-              <Route index element={<JobsForSeeker />} />
-              <Route path="profile" element={<SeekerProfile />} />
-            </Route>
-
-            <Route path="recruiter" element={<Recruiter />} >
-              <Route index element={<ActivePostings />} />
-              <Route path="profile" element={<RecruiterProfile />} />
-              <Route path="postAJob" element={<PostJob />} />
-            </Route>
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="signUp" element={<SignUp />} />
+        <Route path="seeker" element={<Seeker />} >
+          <Route index element={<JobsForSeeker />} />
+          <Route path="profile" element={<SeekerProfile />} />
+        </Route>
+        <Route path="recruiter" element={<Recruiter />} >
+          <Route index element={<ActivePostings />} />
+          <Route path="profile" element={<RecruiterProfile />} />
+          <Route path="postAJob" element={<NewJob />} />
+        </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/seeker" element={<Seeker />} />

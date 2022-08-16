@@ -41,8 +41,7 @@ const firebaseConfig = {
     createUserWithEmailAndPassword(auth, email, password)
       .then(res => {
         const user = res.user;
-        console.log(user);
-        //send res.user.uid to DB
+        return user;
       })
       .catch(err => {alert(err.message)});
   };
