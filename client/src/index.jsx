@@ -39,7 +39,7 @@ const App = () => {
 
   return (
     <Router>
-      <AllContext.Provider value={{ counter, setCounter }}>
+      <AllContext.Provider value={{ counter, setCounter, location, setLocation }}>
         {/* <GlobalStyle> */}
           <Routes>
             <Route path="/" element={<Home />} />

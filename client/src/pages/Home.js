@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import { AllContext } from '../index.jsx';
+import LoginForm from "../components/loginComponents/LoginForm.jsx";
 
 const Home = () => {
 
@@ -9,7 +10,7 @@ const Home = () => {
       <h1> LinkedOut Navbar      <span>signUp/login(modal)</span> </h1>
 
       {/* create account shall be placed in login modal */}
-      <Link to="signUp">Create Account</Link>
+      <LoginForm />
 
       <h1> Image Gallery </h1>
 
