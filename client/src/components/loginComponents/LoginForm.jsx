@@ -25,6 +25,11 @@ const LoginForm = () => {
     login(email, password)
     .then(() => {
       setLoading(false);
+      if (accountType = "seeker") {
+        navigate("./Seeker.js", {replace: true});
+      } else {
+        navigate("./Recruiter.js", {replace: true});
+      }
     })
     .catch(err => {console.log('There was an error logging in: ', err)})
   }
@@ -33,6 +38,11 @@ const LoginForm = () => {
     googleLogin()
     .then(() => {
       setLoading(false);
+      if (accountType = "seeker") {
+        navigate("/seeker", {replace: true});
+      } else {
+        navigate("/recruiter", {replace: true});
+      }
     })
     .catch(err => {console.log('There was an error logging in: ', err)})
   }
