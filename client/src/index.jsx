@@ -11,7 +11,6 @@ import SignUp from './pages/SignUp.js';
 import Seeker from './pages/Seeker';
 import SeekerProfile from './components/TestComponents/SeekerProfile.js';
 import JobsForSeeker from './components/TestComponents/JobsForSeeker.js';
-import Login from './pages/Login';
 import Recruiter from './pages/Recruiter';
 import RecruiterProfile from './components/TestComponents/RecruiterProfile.js';
 import ActivePostings from './components/TestComponents/ActivePostings.js';
