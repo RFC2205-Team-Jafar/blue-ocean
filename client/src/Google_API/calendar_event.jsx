@@ -4,10 +4,10 @@
 // stored credentials.
   // SET UP GOOGLE ENVIRONMENT
   var gapi = window.gapi;
-  var CLIENT_ID = ""; //TODO add Client_ID
-  var API_KEY = ""; // TODO add API key
-  const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-  const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+  var CLIENT_ID = "";
+  var API_KEY = "";
+  const DISCOVERY_DOCS = [""];
+  const SCOPES = "";
 
 const sendInvite = function (data) {
   console.log(data);
