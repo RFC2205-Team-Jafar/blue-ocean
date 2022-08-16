@@ -68,10 +68,9 @@ export default function PostJob() {
      }))
    }
    if (keywords) {
-      const keywordString = keywords.join(',');
       setJobPosting(prev => ({
         ...prev,
-        requested_keywords: keywordString
+        requested_keywords: keywords
       }))
    }
 
@@ -175,11 +174,11 @@ const renderPayRate = () => {
   return (
     <Label>Pay Rate
       <ButtonGroup>
-        <Button value='hourly' name='pay_adjuster' onClick={handleClick}>per hour</Button>
-        <Button value='daily' name='pay_adjuster' onClick={handleClick}>per day</Button>
-        <Button value='weekly' name='pay_adjuster' onClick={handleClick}>per week</Button>
-        <Button value='monthly' name='pay_adjuster' onClick={handleClick}>per month</Button>
-        <Button value='yearly' name='pay_adjuster' onClick={handleClick}>per year</Button>
+        <Button value='hour' name='pay_adjuster' onClick={handleClick}>per hour</Button>
+        <Button value='day' name='pay_adjuster' onClick={handleClick}>per day</Button>
+        <Button value='week' name='pay_adjuster' onClick={handleClick}>per week</Button>
+        <Button value='month' name='pay_adjuster' onClick={handleClick}>per month</Button>
+        <Button value='year' name='pay_adjuster' onClick={handleClick}>per year</Button>
       </ButtonGroup>
     </Label>
   )
@@ -236,11 +235,11 @@ const renderJobType = () => {
     <Label>Job Type
       <ButtonGroup>
         <Button value='Full Time' name='employment_type' onClick={handleClick}>Full Time</Button>
-        <Button value='partTime' name='employment_type' onClick={handleClick}>Part Time</Button>
-        <Button value='contract' name='employment_type' onClick={handleClick}>Contract</Button>
-        <Button value='temp' name='employment_type' onClick={handleClick}>Temp Position</Button>
-        <Button value='seasonal' name='employment_type' onClick={handleClick}>Seasonal</Button>
-        <Button value='internship' name='employment_type' onClick={handleClick}>Internship</Button>
+        <Button value='Part Time' name='employment_type' onClick={handleClick}>Part Time</Button>
+        <Button value='Contract' name='employment_type' onClick={handleClick}>Contract</Button>
+        <Button value='Temp Position' name='employment_type' onClick={handleClick}>Temp Position</Button>
+        <Button value='Seasonal' name='employment_type' onClick={handleClick}>Seasonal</Button>
+        <Button value='Internship' name='employment_type' onClick={handleClick}>Internship</Button>
       </ButtonGroup>
     </Label>
   )
