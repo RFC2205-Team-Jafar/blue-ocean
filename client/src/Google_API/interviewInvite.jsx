@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { Column } from '../../public/stylesheets/styles.js'
+import { Column, Form, modalBG, Label } from '../../public/stylesheets/styles.js'
 import { AllContext } from "../index.jsx";
 import sendInvite from "./calendar_event.jsx";
 
@@ -34,21 +34,21 @@ export const InterviewInviteModal = () => {
       <button onClick={() => handleShow()} >Test</button>
       <ModalDiv block={show ? 'block' : 'none'}>
         <ContentDiv>
-          <form>
-            <label><b>Start Date</b></label>
+          <Form>
+            <Label><b>Start Date</b></Label>
             <input name="startDate" type="date" onChange={(e) => handleChange(e.target)} />
-            <label><b>Start Time</b></label>
+            <Label><b>Start Time</b></Label>
             <input name="startTime" type="time" onChange={(e) => handleChange(e.target)} />
-            <label><b>End Date</b></label>
+            <Label><b>End Date</b></Label>
             <input name="endDate" type="date" onChange={(e) => handleChange(e.target)} />
-            <label><b>End Time</b></label>
+            <Label><b>End Time</b></Label>
             <input name="endTime" type="time" onChange={(e) => handleChange(e.target)} />
-            <label><b>Location</b></label>
+            <Label><b>Location</b></Label>
             <input name="location" type="text" placeholder="zoom.url OR 123 adress" onChange={(e) => handleChange(e.target)} />
-            <label><b>Description</b></label>
+            <Label><b>Description</b></Label>
             <input name="description" type="text" placeholder="Important information for applicant to know"
               onChange={(e) => handleChange(e.target)} />
-          </form>
+          </Form>
           <button onClick={() => handleSubmit()}>Submit</button>
           <button onClick={handleClose}> Close </button>
         </ContentDiv>

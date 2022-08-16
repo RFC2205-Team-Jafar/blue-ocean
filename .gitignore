@@ -4,6 +4,7 @@ yarn.lock
 package-lock.json
 .env
 *.LICENSE.txt
+Totally_Not_Tokens.txt
 
 # Logs
 logs
