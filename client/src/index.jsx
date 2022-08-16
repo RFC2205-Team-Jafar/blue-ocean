@@ -27,7 +27,9 @@ const App = () => {
   useEffect(() => {
     userLocation();
   }, [])
-  const [location, setLocation] = useState({})
+
+  const [location, setLocation] = useState({});
+  const [resumeUrl, setResumeUrl] = useState('');
   // Grabs user location asynchronously when mounted
   useEffect(() => {
     userLocation().then(data => setLocation(data));

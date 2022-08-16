@@ -3,34 +3,28 @@ const client = require('./db.js');
 
 
 module.exports = {
-  findUserType: async (req, res) => {
-    const { uuid } = req.query;
-    const data  = await model.findUserType(uuid);
-    res.send(data);
-  },
-
-  addSeeker: async (req, res) => {
-    const seeker = req.body;
-    try {
-      await model.addSeeker(seeker);
-      res.sendStatus(201);
-    } catch(e) {
-      console.log('eeeeee', e);
+  addUser: async (req, res) => {
+    const user = req.body; // expect body to contain full user info
+    if (user.userType === 'seeker') {
+      try {
+        await model.addSeeker(user);
+        res.sendStatus(201);
+      } catch(e) {
+        console.log('eeeeee', e);
+      }
+    } else if (user.userType === 'recruiter') {
+      try {
+        await model.addRecruiter(user);
+        res.sendStatus(201);
+      } catch(e) {
+        console.log('eeeeee', e);
+      }
     }
   },
 
-  addRecruiter: async (req, res) => {
-    const recruiter = req.body;
-    try {
-      await model.addRecruiter(recruiter);
-      res.sendStatus(201);
-    } catch(e) {
-      console.log('eeeeee', e);
-    }
-  },
-
+  // WORKING
   addAJob: async (req, res) => {
-    const jobPosting = req.body;
+    const jobPosting = req.body; // expect body to contain full listing info (recruiter info + job)
     try {
       await model.addAJob(jobPosting);
       res.sendStatus(201);
@@ -39,8 +33,9 @@ module.exports = {
     }
   },
 
+  // WORKING
   applyForAJob: async (req, res) => {
-    const { application } = req.body;
+    const application = req.body;
     try {
       await model.applyForAJob(application);
       res.sendStatus(201);
@@ -49,34 +44,54 @@ module.exports = {
     }
   },
 
+  // WORKING
+  // set candidate status to 'not considered'
   removeCandidate: async (req, res) => {
-    const { seeker_uuid } = req.body;
+
+    const { seeker_uuid, listing_id } = req.body;
     try {
-      await model.removeCandidate(seeker_uuid);
-      res.sendStatus(201);
+      await model.removeCandidate(seeker_uuid, listing_id);
+      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeee', e);
     }
   },
 
-  // Do we track we get the job so application_status set to True
+  // WORKING
+  // set listing status to 'false' and set all candidate status to 'not considered'
   closePosting: async (req, res) => {
     const { listing_id } = req.body;
     try {
       await model.closePosting(listing_id);
-      res.sendStatus(201);
+      await model.removeAllCandidates(listing_id);
+      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeee', e);
     }
   },
 
+  // WORKING
   verifySalary: async (req, res) => {
     const userInfo = req.body;
     try {
       await model.verifySalary(userInfo);
-      res.sendStatus(201);
+      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeee', e);
     }
-  }
+  },
+
+
+
+
+  // use to query user type when logging in
+  findUserType: async (req, res) => {
+    const { uuid } = req.query; // expect req.query to contain a uuid;
+    try {
+      const data  = await model.findUserType(uuid);
+      res.send(data);
+    } catch(e) {
+      console.log('eeeeee', e);
+    }
+  },
 }
