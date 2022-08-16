@@ -20,7 +20,6 @@ import {GlobalStyle} from '../public/stylesheets/styles';
 // Grabs user location when page is first loaded
 import userLocation from './Google_API/userLocation.jsx'
 
-
 export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
