@@ -14,26 +14,16 @@ const Recruiter = () => {
   return (
     <Page>
       <h1>Recruiter View </h1>
-
-      <h1>Site logo + Recruiter Account</h1>
-
-      {/* Profile shall be placed in a modal */}
-      <div>
-        <Link to="profile">Profile</Link>
-      </div>
-
+      <h1>Site logo  +  Recruiter  Account</h1>
       <HeaderGallery />
-      <div>
-        <Link to="">Active postings</Link>
-      </div>
-      <Feed />
-      <div>
-        <Link to="postAJob">Post a new job</Link>
-      </div>
-      {/* Element from nested route will be rendered into <Outlet /> */}
+
+      <div><Link to="profile" >Profile</Link></div>
+      <div><Link to="">Active postings</Link></div>
+      <div><Link to="postAJob">Post a new job</Link></div>
       <Outlet />
+
       <Link to="/"> Back to Home </Link>
-      <EmbedCalendar />
+      <EmbedCalendar/>
     </Page>
   );
 };
