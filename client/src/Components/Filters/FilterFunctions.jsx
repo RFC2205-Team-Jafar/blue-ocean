@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Row } from "../../../public/stylesheets/styles.js";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 
 class FilterFunctions extends React.Component {
   constructor(props) {
@@ -14,13 +18,12 @@ class FilterFunctions extends React.Component {
       minDistance: 5,
 
       maxDistance: "",
-
-      isApplied: false,
     };
 
     this.setIndustry = this.setIndustry.bind(this);
     this.setSite = this.setSite.bind(this);
     this.setEmployment = this.setEmployment.bind(this);
+    this.setMaxDist = this.setMaxDist.bind(this);
   }
 
   setIndustry(event) {
@@ -52,6 +55,9 @@ class FilterFunctions extends React.Component {
   }
 
   setMaxDist(event) {
+    this.setState({
+      maxDistance: event.target.value,
+    });
     console.log(event.target.value);
   }
 
@@ -65,62 +71,59 @@ class FilterFunctions extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <label>
+      <Row>
+        <InputLabel>
           {" "}
           Industry:
-          <select onChange={this.setIndustry}>
-            <option value="select"> Select </option>
-            <option value="Transportation"> Transportation </option>
-            <option value="Education"> Education </option>
-            <option value="Art"> Art </option>
-            <option value="Tech"> Tech </option>
-            <option value="Music"> Music </option>
-            <option value="Aviation"> Aviation </option>
-            <option value="Food"> Food </option>
-            <option value="Healthcare"> Healthcare </option>
-            <option value="Construction"> Construction </option>
-          </select>
-        </label>
-        <label>
+          <Select onChange={this.setIndustry}>
+            <MenuItem value="select"> Select </MenuItem>
+            <MenuItem value="Transportation"> Transportation </MenuItem>
+            <MenuItem value="Education"> Education </MenuItem>
+            <MenuItem value="Art"> Art </MenuItem>
+            <MenuItem value="Tech"> Tech </MenuItem>
+            <MenuItem value="Music"> Music </MenuItem>
+            <MenuItem value="Aviation"> Aviation </MenuItem>
+            <MenuItem value="Food"> Food </MenuItem>
+            <MenuItem value="Healthcare"> Healthcare </MenuItem>
+            <MenuItem value="Construction"> Construction </MenuItem>
+          </Select>
+        </InputLabel>
+        <InputLabel>
           {" "}
           Site:
-          <select onChange={this.setSite}>
-            <option value="select"> Select </option>
-            <option value="Remote"> Remote </option>
-            <option value="On-Site"> On-Site </option>
-          </select>
-        </label>
-        <label>
+          <Select onChange={this.setSite}>
+            <MenuItem value="select"> Select </MenuItem>
+            <MenuItem value="Remote"> Remote </MenuItem>
+            <MenuItem value="On-Site"> On-Site </MenuItem>
+          </Select>
+        </InputLabel>
+        <InputLabel>
           {" "}
           Employment Type:
-          <select onChange={this.setEmployment}>
-            <option value="select"> Select </option>
-            <option value="Part-Time"> Part-Time </option>
-            <option value="Full-Time"> Full-Time </option>
-            <option value="Contract"> Contract </option>
-            <option value="Internship"> Internship </option>
-            <option value="Temp-Position"> Temp-Position </option>
-            <option value="Seasonal"> Seasonal </option>
-          </select>
-        </label>
-        <label>
+          <Select onChange={this.setEmployment}>
+            <MenuItem value="select"> Select </MenuItem>
+            <MenuItem value="Part-Time"> Part-Time </MenuItem>
+            <MenuItem value="Full-Time"> Full-Time </MenuItem>
+            <MenuItem value="Contract"> Contract </MenuItem>
+            <MenuItem value="Internship"> Internship </MenuItem>
+            <MenuItem value="Temp-Position"> Temp-Position </MenuItem>
+            <MenuItem value="Seasonal"> Seasonal </MenuItem>
+          </Select>
+        </InputLabel>
+        <InputLabel>
           {" "}
           Max Distance:
-          <select onChange={this.setMaxDist}>
-            <option value="select"> Select </option>
-            <option value="10mi"> Within 10 miles </option>
-            <option value="15mi"> Within 15 miles </option>
-            <option value="25mi"> Within 25 miles </option>
-            <option value="50mi"> Within 50 miles</option>
-            <option value="100mi"> Within 100 miles </option>
-          </select>
-        </label>
+          <Select onChange={this.setMaxDist}>
+            <MenuItem value="select"> Select </MenuItem>
+            <MenuItem value="10"> Within 10 miles </MenuItem>
+            <MenuItem value="15"> Within 15 miles </MenuItem>
+            <MenuItem value="25"> Within 25 miles </MenuItem>
+            <MenuItem value="50"> Within 50 miles</MenuItem>
+            <MenuItem value="100"> Within 100 miles </MenuItem>
+          </Select>
+        </InputLabel>
         <button onClick={this.fetchFilteredListing}> Apply Filters </button>
-        <div>
-          <button> Applied Jobs </button>
-        </div>
-      </React.Fragment>
+      </Row>
     );
   }
 }
