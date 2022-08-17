@@ -4,28 +4,39 @@ const controller = require('./controller.js');
 
 const authChecker = () => {};
 
-router.post('/jobs/user', authChecker, (req, res) => {
+// middleware that triggers upload.array('file)
 
+
+router.post('/jobs/adduser', controller.addUser);
+
+router.post('/jobs/addajob', controller.addAJob);
+
+router.post('/jobs/applyforajob', controller.applyForAJob); // resume parser middleware
+
+router.put('/jobs/removecandidate', controller.removeCandidate);
+
+router.put('/jobs/closeposting', controller.closePosting);
+
+router.put('/jobs/verifysalary', controller.verifySalary);
+
+// UPLOAD DOC AND CONVERT TO URL
+
+const multer = require("multer");
+const {s3Upload} = require("./s3handler");
+const storage = multer.memoryStorage();
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 1000000000, files: 2 },
 });
 
-router.post('', authChecker, (req, res) => {
-
-})
-
-router.post('', authChecker, (req, res) => {
-
-});
-
-router.put('', authChecker, (req, res) => {
-
-});
-
-router.put('', authChecker, (req, res) => {
-
-});
-
-router.put('', authChecker, (req, res) => {
-
+router.post("/uploadFile", upload.array("file"), async (req, res) => {
+  try {
+    const results = await s3Upload(req.files[0]);
+    return res.json({ url: results });  // send back the url in an object
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
