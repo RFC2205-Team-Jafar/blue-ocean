@@ -22,6 +22,11 @@ const fileUpload = (fileType) => {
     axios.post(`uploadFile`, formData, config)
       .then((res) => {
         setUploaded(true)
+        if(fileType === 'resume' || fileType === 'Resume'){
+          //set state
+        } else {
+
+        }
         console.log(res.data.url)
      })
       .catch((err) => { console.log('err occurred in upload') })
