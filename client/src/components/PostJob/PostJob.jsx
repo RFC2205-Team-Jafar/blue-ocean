@@ -51,18 +51,22 @@ export default function PostJob() {
       if (jobPosting.salary_low < (jobPosting.salary_high * .8)) {
         setSalaryPass(false);
         setTimeout(() => setSalaryPass(true), 3000);
-        // alert('Minimum Salary must be within 20% of Maximum Salary')
         return
       }
     }
-    // geoConverter(jobPosting.zipcode);
     /*
     TODO:
     - add conversion to Laat and long
-     - attach Lat and Long to state as coord_lat and coord_long
-     - remove zipcode property from state object
-     */
-    if (jobPosting.employment_type && jobPosting.employment_type === 'remote') {
+    - attach Lat and Long to state as coord_lat and coord_long
+    - remove zipcode property from state object
+    */
+    if (jobPosting.zipcode) {
+      const zipcode = Number(jobPosting.zipcode)
+      geoConverter(zipcode)
+      .then(latLong => alert(latLong))
+    }
+
+    if (jobPosting.job_type && jobPosting.job_type === 'remote') {
       setJobPosting(prev => ({
         ...prev,
         isRemote: true
@@ -73,6 +77,7 @@ export default function PostJob() {
         isRemote: false
       }))
     }
+
     if (keywords) {
       setJobPosting(prev => ({
         ...prev,
