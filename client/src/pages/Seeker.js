@@ -21,8 +21,8 @@ const Seeker = () => {
       <div><Link to="">Jobs for you</Link></div>
       <FilterFunctions/>
       <FilterStatus/>
+      {/* <Feed view={{view:'seeker'}}/> */}
       <Outlet />
-      <Feed view={{view:'seeker'}}/>
 
       <Link to="/">Back to Home</Link>
       <EmbedCalendar />
