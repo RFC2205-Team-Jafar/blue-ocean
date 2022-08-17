@@ -128,15 +128,15 @@ module.exports = {
   },
 
   addSeeker: (seeker) => {
-    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url } = seeker;
-    const queryString = `INSERT INTO "Seekers" VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}')`;
+    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
+    const queryString = `INSERT INTO "Seekers"
+                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
     return client.query(queryString);
   },
 
   addRecruiter: (recruiter) => {
-    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
-    const queryString = `INSERT INTO "Seekers"
-                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
+    const { user_uuid, first_name, last_name, company_name } = recruiter;
+    const queryString = `INSERT INTO "Recruiters" VALUES ('${user_uuid}', '${first_name}', '${last_name}', '${company_name}')`;
     return client.query(queryString);
   },
 
