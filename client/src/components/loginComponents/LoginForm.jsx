@@ -1,22 +1,30 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { StyledModal } from './StyledModal';
 import {useAuth} from '../AuthContext.jsx';
 import axios from 'axios';
+import { AllContext } from "../../index.jsx";
 
 
 const LoginForm = () => {
 
   //----------------State Hooks  -------------------------
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [accountType, setAccountType] = useState("");
-  const {login, googleLogin} = useAuth();
-  const [loading, setLoading] = useState(false);
-
-  //----------------Modal Functions ----------------------
+  const {email, setEmail } = useContext(AllContext);
+  const {accountType, setAccountType} = useContext(AllContext);
+  // const {login, googleLogin} = useAuth();
+  const {firstName, setFirstName} = useContext(AllContext);
+  const {lastName, setLastName} = useContext(AllContext);
+  const {preferredIndustry, setPreferredIndustry} = useContext(AllContext);
+  const {zipCode, setZipCode} = useContext(AllContext);
+  const {company, setCompany} = useContext(AllContext);
+  const {coord_lat, setCoord_lat} = useContext(AllContext);
+  const {coord_long, setCoord_long} = useContext(AllContext);
+  const {resuemUrl, setResumeUrl} = useContext(AllContext);
+  // local states
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
+//----------------Modal Functions ----------------------
   const hideModal = () => {
     setModalOpen(false);
   };
@@ -43,19 +51,19 @@ const LoginForm = () => {
     })
     .catch(err => {console.log('There was an error logging in: ', err)})
   }
-  const handleGoogleLogin = () => {
-    setLoading(true);
-    googleLogin()
-    .then(() => {
-      setLoading(false);
-      if (accountType = "seeker") {
-        navigate("/seeker", {replace: true});
-      } else {
-        navigate("/recruiter", {replace: true});
-      }
-    })
-    .catch(err => {console.log('There was an error logging in: ', err)})
-  }
+  // const handleGoogleLogin = () => {
+  //   setLoading(true);
+  //   googleLogin()
+  //   .then(() => {
+  //     setLoading(false);
+  //     if (accountType = "seeker") {
+  //       navigate("/seeker", {replace: true});
+  //     } else {
+  //       navigate("/recruiter", {replace: true});
+  //     }
+  //   })
+  //   .catch(err => {console.log('There was an error logging in: ', err)})
+  // }
   //---------------- DOM Return -------------------------
   return (
     <>
@@ -72,7 +80,7 @@ const LoginForm = () => {
           <div>Password</div>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
           <button onClick={() => handlePlainLogin()}> Login </button>
-          <button onClick={() => handleGoogleLogin()}>Login with Google</button>
+          {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
         </div>
         <div>
           Don't have an account? <Link to="signUp">Create</Link> an account now.
