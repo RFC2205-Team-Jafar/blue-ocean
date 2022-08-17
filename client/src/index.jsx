@@ -48,7 +48,7 @@ const App = () => {
         <Route path="recruiter" element={<Recruiter />} >
           <Route index element={<ActivePostings />} />
           <Route path="profile" element={<RecruiterProfile />} />
-          <Route path="postAJob" element={<NewJob />} />
+          <Route path="postAJob" element={<PostJob />} />
         </Route>
           <Route path="signUp" element={<SignUp />} />
           <Route path="seeker" element={<Seeker />} />
