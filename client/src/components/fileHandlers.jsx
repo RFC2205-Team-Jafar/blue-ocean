@@ -21,7 +21,7 @@ const fileUpload = (fileType) => {
         'content-type': 'multipart/form-data',
       }
     }
-    axios.post(`uploadFile`, formData, config)
+    axios.post('/uploadFile', formData, config)
       .then((res) => {
         setUploaded(true)
         if(fileType === 'resume' || fileType === 'Resume'){
