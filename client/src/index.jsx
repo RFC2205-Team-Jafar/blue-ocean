@@ -36,12 +36,12 @@ const App = () => {
   return (
     <Router>
       <AllContext.Provider value={{ location, setLocation }}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="signUp" element={<SignUp />} />
-        <Route path="seeker" element={<Seeker />} >
-          <Route index element={<JobsForSeeker />} />
-          <Route path="profile" element={<SeekerProfile />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="signUp" element={<SignUp />} />
+          <Route path="seeker" element={<Seeker />} >
+            <Route index element={<JobsForSeeker />} />
+            <Route path="profile" element={<SeekerProfile />} />
         </Route>
         <Route path="recruiter" element={<Recruiter />} >
           <Route index element={<ActivePostings />} />
@@ -51,11 +51,9 @@ const App = () => {
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/seeker" element={<Seeker />} />
             <Route path="/recruiter" element={<Recruiter />} />
-          </Routes>
-        {/* </GlobalStyle> */}
+        </Routes>
       </AllContext.Provider>
     </Router>
-
   )
 }
 
