@@ -1,28 +1,35 @@
-import React, { useContext } from 'react';
+/*========== EXTERNAL MODULES ==========*/
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { AllContext } from '../index.jsx';
-import EmbedCalendar from '../Google_API/calendar.jsx'
 
+/*========== INTERNAL MODULES ==========*/
+import { AllContext } from "../index.jsx";
+import EmbedCalendar from "../Google_API/calendar.jsx";
+import Feed from "../components/Feed/Feed.jsx";
+import HeaderGallery from "../Components/Header/ImageGallery.jsx";
+import FilterFunctions from "../Components/Filters/FilterFunctions.jsx";
+import FilterStatus from "../Components/Filters/FilterStatus.jsx";
 
 const Seeker = () => {
-
   return (
     <>
+      <h1>Seeker View </h1>
       <h1>Site logo  +  Seeker  Account</h1>
+      <HeaderGallery/>
 
-      {/* Profile shall be placed in a modal */}
       <div><Link to="profile" >Profile</Link></div>
-
-      <div> Image Gallery </div>
       <div><Link to="">Jobs for you</Link></div>
-
-      {/* Element from nested route will be rendered into <Outlet /> */}
+      <FilterFunctions/>
+      <FilterStatus/>
       <Outlet />
 
       <Link to="/">Back to Home</Link>
-      <EmbedCalendar/>
+      <EmbedCalendar />
     </>
-  )
+  );
 };
 
+/*========== EXPORTS ==========*/
 export default Seeker;
+
+/*========== STYLES ==========*/

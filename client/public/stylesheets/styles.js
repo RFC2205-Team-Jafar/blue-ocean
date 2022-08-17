@@ -26,10 +26,7 @@ body {
 =====================================
 */
 
-export const P = styled.p`
-
-`;
-
+export const P = styled.p``;
 
 /*
 =====================================
@@ -37,10 +34,7 @@ export const P = styled.p`
 =====================================
 */
 
-export const Button = styled.button`
-
-`;
-
+export const Button = styled.button``;
 
 /*
 =====================================
@@ -57,21 +51,42 @@ export const modalBG = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const Header = styled.header`
-
+export const StyledHeader = styled.header`
+  background-color: #ebfbff;
+  padding: 40px 0;
 `;
 
-export const Footer = styled.footer`
+export const ImgGalleryContainer = styled.div`
+  width:33%
+`
 
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
 `;
 
-export const Section = styled.section`
+export const Footer = styled.footer``
 
+;
+
+export const FeedSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  background-color: #999999;
+  overflow: scroll;
+  border-radius: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Page = styled.div`
   display:flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
 `;
 
@@ -79,13 +94,11 @@ export const Container = styled.div`
 
 `;
 
-export const Div = styled.div`
-
-`;
+export const Div = styled.div``;
 
 export const Column = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
   justify-items: center;
 `;
@@ -125,8 +138,7 @@ export const Form = styled.form`
   justify-content: center;
 `;
 
-
-  /*
+/*
 =====================================
                 INPUTS
 =====================================
@@ -154,10 +166,14 @@ export const Input = styled.input`
 =====================================
 */
 
-export const Img = styled.img`
+export const Logo = styled.img``;
 
-`;
+export const HeaderImg = styled.img`
+  width: auto;
+  height: 250px;
+`
 
-export const Thumbnail = styled.img`
+export const Img = styled.img``;
 
-`;
+export const Thumbnail = styled.img``;
+
