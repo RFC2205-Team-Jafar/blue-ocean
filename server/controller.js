@@ -22,7 +22,7 @@ module.exports = {
     }
   },
 
-  //TO DO: Convert zip to lat and long
+  // WORKING
   addAJob: async (req, res) => {
     const jobPosting = req.body; // expect body to contain full listing info (recruiter info + job)
     try {
@@ -44,8 +44,7 @@ module.exports = {
     }
   },
 
-  // WORKING
-  // set candidate status to 'not considered'
+  // WORKING set candidate status to 'not considered'
   removeCandidate: async (req, res) => {
 
     const { seeker_uuid, listing_id } = req.body;
@@ -57,8 +56,7 @@ module.exports = {
     }
   },
 
-  // WORKING
-  // set listing status to 'false' and set all candidate status to 'not considered'
+  // WORKING set listing status to 'false' and set all candidate status to 'not considered'
   closePosting: async (req, res) => {
     const { listing_id } = req.body;
     try {
@@ -79,19 +77,5 @@ module.exports = {
     } catch(e) {
       console.log('eeeeee', e);
     }
-  },
-
-
-
-
-  // use to query user type when logging in
-  findUserType: async (req, res) => {
-    const { uuid } = req.query; // expect req.query to contain a uuid;
-    try {
-      const data  = await model.findUserType(uuid);
-      res.send(data);
-    } catch(e) {
-      console.log('eeeeee', e);
-    }
-  },
+  }
 }
