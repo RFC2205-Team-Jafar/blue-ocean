@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import { AllContext } from '../../index.jsx';
 
 const Profile = () => {
-  // const { userType } = useContext(AllContext);
-  const userType = 'seeker';
+  const { userType } = useContext(AllContext);
 
   if (userType === 'seeker') {
-    // const { first_name, last_name, email, career_catogery, resumeURL, coord } = useContext(AllContext);
+    const { first_name, last_name, career_catogery, resumeURL, zip } = useContext(AllContext);
     return (
       <>
         <label> First Name: </label>
@@ -26,7 +25,7 @@ const Profile = () => {
       </>
     )
   } else if (userType === 'recruiter') {
-    const { first_name, last_name, email, company, }
+    const { first_name, last_name, email, company } = useContext(AllContext);
     return (
       <>
         <label> First Name: </label>
@@ -43,21 +42,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-const user = {
-  "recruiter_uuid": "rxXyEEJqImavbPtUBHrINcvIK5p2",
-  "company": "ACME",
-  "zipcode": "90210",
-  "job_type": "inPerson",
-  "industry": "Research",
-  "title": "Mad Scientist",
-  "salary_low": "80000",
-  "salary_high": "100000",
-  "pay_adjuster": "year",
-  "description": "Make questionable technology",
-  "num_positions": "1",
-  "employment_type": "Full Time",
-  "shift_schedule": "mondayToFriday",
-  "isRemote": false,
-  "requested_keywords": "chemistry, science, lack of restraint"
-};
