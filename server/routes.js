@@ -18,7 +18,8 @@ router.get('/jobs/:uuid/applied', controller.applied);
 
 
 router.post('/jobs/user', authChecker, (req, res) => {
-// middleware that triggers upload.array('file)
+    // middleware that triggers upload.array('file)
+});
 
 
 router.post('/jobs/adduser', controller.addUser);
