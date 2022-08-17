@@ -68,7 +68,7 @@ export const NavBar = styled(AppBar)({
 
 export const ImgGalleryContainer = styled.div`
   width:33%
-`
+`;
 
 export const Nav = styled.nav`
   display: flex;
@@ -77,9 +77,8 @@ export const Nav = styled.nav`
   margin-bottom: 40px;
 `;
 
-export const Footer = styled.footer``
-
-;
+export const Footer = styled.footer`
+`;
 
 export const FeedSection = styled.section`
   display: flex;

@@ -23,19 +23,4 @@ if (!module.parent) {
   console.log("Listening on", process.env.PORT || 3000);
 }
 
-
-app.get("/downloadFile", async (req, res) => {
-  var resume = "https://jafar-2022.s3.amazonaws.com/Tripp+(8)+.doc"
-  var searchWords = "tripp, home, Ready, bites"
-
-  try {
-    const results = await parseResume(resume, searchWords)
-    console.log('results', results)
-    return res.json({ status: "success" });
-  } catch (err) {
-    console.log(err);
-  }
-
-});
-
 module.exports.app = app;
