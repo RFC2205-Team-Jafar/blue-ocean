@@ -19,22 +19,14 @@ module.exports = {
   },
 
   addAJob: (j) => {
-
-    // {
-    //   "zipcode": "90210",
-    //   "job_type": "inPerson",
-    //   "shift_schedule": "mondayToFriday",
-    // }
-
-    //convert zipcode to lat & long first
     const queryString = `INSERT INTO "Listings"
                             (recruiter_uuid, industry, coord_lat, coord_long, is_remote, title, salary_low, salary_high, pay_adjuster, "desc", num_positions, employment_type, requested_keywords, company)
-                        VALUES ('${j.recruiter_uuid}', '${j.industry}', ${COORD_LAT}, ${COORD_LONG}, ${j.   isRemote}, '${j.title}', ${j.salary_low}, ${j.salary_high}, '${j.pay_adjuster}', '${j.description}', ${j.num_positions}, '${j.employment_type}', '${j.requested_keywords}', '${j.company}')`;
+                        VALUES ('${j.recruiter_uuid}', '${j.industry}', ${j.coord_lat}, ${j.coord_long}, ${j.   isRemote}, '${j.title}', ${j.salary_low}, ${j.salary_high}, '${j.pay_adjuster}', '${j.description}', ${j.num_positions}, '${j.employment_type}', '${j.requested_keywords}', '${j.company}')`;
     return client.query(queryString);
   },
 
   applyForAJob: (application) => {
-    // what is matched_keywords???????
+    // what is matched_keywords??????? from resume parser
     const { seeker_uuid, listing_id, coverletter_url, matched_keywords } = application;
     const queryString = `INSERT INTO "SubmittedApplications"
                             (seeker_uuid, listing_id, coverletter_url, matched_keywords)
