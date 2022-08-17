@@ -1,5 +1,6 @@
 /*========== EXTERNAL MODULES ==========*/
 import styled, {createGlobalStyle} from 'styled-components';
+import AppBar from '@mui/material/AppBar';
 
 /*========== INTERNAL MODULES ==========*/
 
@@ -16,7 +17,7 @@ import styled, {createGlobalStyle} from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: #414141;
+  /* background-color: #414141; */
 }
 `;
 
@@ -26,10 +27,7 @@ body {
 =====================================
 */
 
-export const P = styled.p`
-
-`;
-
+export const P = styled.p``;
 
 /*
 =====================================
@@ -37,10 +35,7 @@ export const P = styled.p`
 =====================================
 */
 
-export const Button = styled.button`
-
-`;
-
+export const Button = styled.button``;
 
 /*
 =====================================
@@ -57,17 +52,34 @@ export const modalBG = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const Header = styled.header`
-
+export const StyledHeader = styled.header`
+  background-color: #ebfbff;
+  padding: 40px 0;
 `;
 
-export const Footer = styled.footer`
+export const NavBar = styled(AppBar)({
+  backgroundColor: 'transparent',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor:'#f44336',
+    borderColor:'#f44336',
+  },
+});
 
+export const ImgGalleryContainer = styled.div`
+  width:33%
+`
+
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
 `;
 
-export const Section = styled.section`
+export const Footer = styled.footer``
 
-`;
+;
 
 export const FeedSection = styled.section`
   display: flex;
@@ -84,7 +96,7 @@ export const FeedSection = styled.section`
 
 export const Page = styled.div`
   display:flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
 `;
 
@@ -92,13 +104,11 @@ export const Container = styled.div`
 
 `;
 
-export const Div = styled.div`
-
-`;
+export const Div = styled.div``;
 
 export const Column = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
   justify-items: center;
 `;
@@ -108,6 +118,12 @@ export const Row = styled.div`
   flex-direction: row;
   align-items: center;
   justify-items: center;
+`;
+
+export const ButtonTray = styled(Row)`
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -138,8 +154,7 @@ export const Form = styled.form`
   justify-content: center;
 `;
 
-
-  /*
+/*
 =====================================
                 INPUTS
 =====================================
@@ -167,10 +182,14 @@ export const Input = styled.input`
 =====================================
 */
 
-export const Img = styled.img`
+export const Logo = styled.img``;
 
-`;
+export const HeaderImg = styled.img`
+  width: auto;
+  height: 250px;
+`
 
-export const Thumbnail = styled.img`
+export const Img = styled.img``;
 
-`;
+export const Thumbnail = styled.img``;
+
