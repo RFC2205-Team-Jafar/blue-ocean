@@ -21,7 +21,7 @@ const Seeker = () => {
       <div><Link to="">Jobs for you</Link></div>
       {/* Element from nested route will be rendered into <Outlet /> */}
       <Outlet />
-      <Feed />
+      <Feed view={{view:'seeker'}}/>
 
       <Link to="/">Back to Home</Link>
       <EmbedCalendar/>
