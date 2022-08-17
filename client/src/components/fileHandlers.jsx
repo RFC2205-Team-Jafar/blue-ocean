@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
+
 
 const fileUpload = (fileType) => {
 
@@ -19,9 +21,17 @@ const fileUpload = (fileType) => {
         'content-type': 'multipart/form-data',
       }
     }
-    axios.post(`uploadFile`, formData, config)
-      .then(() => {
+    axios.post('/uploadFile', formData, config)
+      .then((res) => {
         setUploaded(true)
+        if(fileType === 'resume' || fileType === 'Resume'){
+          //set state // me and Andrew integrate sometime tomorrow
+          console.log('resume', res.data.url)
+
+        } else {
+          console.log('cover letter', res.data.url)
+          //set state for cover letter -- also in global
+        }
      })
       .catch((err) => { console.log('err occurred in upload') })
   }
@@ -33,9 +43,9 @@ const fileUpload = (fileType) => {
   } else {
     return (
       <>
-      <button onClick={()=>fileInputRef.current.click()}>
+      <Button variant='contained' onClick={()=>fileInputRef.current.click()}>
           Upload A {fileType}
-        </button>
+        </Button>
         <input onChange={handleUpload} multiple={false} ref={fileInputRef} type='file' hidden/>
       </>
     )
