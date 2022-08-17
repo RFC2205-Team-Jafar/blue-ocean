@@ -131,13 +131,17 @@ export default function PostJob() {
   const renderIndustry = () => {
     return (
       <Label>Job Industry
-        <Input
-          type='text'
-          placeholder='Technology'
-          name='industry'
-          onChange={handleChange}
-          >
-        </Input>
+        <ButtonGroup>
+          <Button value='Art' name='industry' onClick={handleClick}>Art</Button>
+          <Button value='Aviation' name='industry' onClick={handleClick}>Aviation</Button>
+          <Button value='Construction' name='industry' onClick={handleClick}>Construction</Button>
+          <Button value='Education' name='industry' onClick={handleClick}>Education</Button>
+          <Button value='Food' name='industry' onClick={handleClick}>Food</Button>
+          <Button value='Healthcare' name='industry' onClick={handleClick}>Healthcare</Button>
+          <Button value='Music' name='industry' onClick={handleClick}>Music</Button>
+          <Button value='Tech' name='industry' onClick={handleClick}>Tech</Button>
+          <Button value='Transportation' name='industry' onClick={handleClick}>Transportation</Button>
+        </ButtonGroup>
       </Label>
     )
   }
