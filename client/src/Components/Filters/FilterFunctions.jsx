@@ -32,7 +32,6 @@ class FilterFunctions extends React.Component {
     this.setState({
       industry: event.target.value,
     });
-    console.log(this.state.industry);
   }
 
   setSite(event) {
@@ -51,21 +50,18 @@ class FilterFunctions extends React.Component {
         isRemote: 2,
       });
     }
-    console.log(event.target.value);
   }
 
   setEmployment(event) {
     this.setState({
       employmentType: event.target.value,
     });
-    console.log(event.target.value);
   }
 
   setMaxDist(event) {
     this.setState({
       maxDistance: event.target.value,
     });
-    console.log(event.target.value);
   }
 
   fetchFilteredListing = () => {
