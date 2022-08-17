@@ -19,7 +19,7 @@ exports.s3Upload = async (file) => {
 
 }
 
-exports.parseResume = async(resume, searchWords) => {
+exports.parseResume = async(resume, searchFor) => {
 
   var split = resume.split('.com/')
   var unformatted = split[1]
@@ -35,6 +35,7 @@ exports.parseResume = async(resume, searchWords) => {
   const buf = JSON.stringify(Body);
   const parsed = JSON.parse(buf);
   const searchString = parsed.data.join('');
+  const searchWords = searchFor.split(', ')
   const found = [];
 
   for(var i = 0; i < searchWords.length; i++){
@@ -42,10 +43,6 @@ exports.parseResume = async(resume, searchWords) => {
     let wordbufstring = JSON.stringify(wordbuf)
     let wordData = JSON.parse(wordbufstring)
     let word = wordData.data.join('')
-    console.log(typeof word)
-    console.log('word', searchWords[i])
-    console.log('buf', word)
-
     if(searchString.includes(word)){
       found.push(searchWords[i])
       console.log(found)
