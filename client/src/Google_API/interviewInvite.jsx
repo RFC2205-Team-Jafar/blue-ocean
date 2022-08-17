@@ -1,10 +1,18 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { Column } from '../../public/stylesheets/styles.js'
+import { Column, Form, modalBG, Label } from '../../public/stylesheets/styles.js'
 import { AllContext } from "../index.jsx";
 import sendInvite from "./calendar_event.jsx";
 
-import geoConverter from "./geolocation.jsx";
+// Material UI
+import FormLabel from "@mui/material/FormLabel";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+
+// End Material UI
 
 export const InterviewInviteModal = () => {
 
@@ -34,23 +42,23 @@ export const InterviewInviteModal = () => {
       <button onClick={() => handleShow()} >Test</button>
       <ModalDiv block={show ? 'block' : 'none'}>
         <ContentDiv>
-          <form>
-            <label><b>Start Date</b></label>
-            <input name="startDate" type="date" onChange={(e) => handleChange(e.target)} />
-            <label><b>Start Time</b></label>
-            <input name="startTime" type="time" onChange={(e) => handleChange(e.target)} />
-            <label><b>End Date</b></label>
-            <input name="endDate" type="date" onChange={(e) => handleChange(e.target)} />
-            <label><b>End Time</b></label>
-            <input name="endTime" type="time" onChange={(e) => handleChange(e.target)} />
-            <label><b>Location</b></label>
-            <input name="location" type="text" placeholder="zoom.url OR 123 adress" onChange={(e) => handleChange(e.target)} />
-            <label><b>Description</b></label>
-            <input name="description" type="text" placeholder="Important information for applicant to know"
+          <FormControl>
+            <FormLabel><b>Start Date</b></FormLabel>
+            <TextField name="startDate" type="date" onChange={(e) => handleChange(e.target)} />
+            <FormLabel><b>Start Time</b></FormLabel>
+            <TextField name="startTime" type="time" onChange={(e) => handleChange(e.target)} />
+            <FormLabel><b>End Date</b></FormLabel>
+            <TextField name="endDate" type="date" onChange={(e) => handleChange(e.target)} />
+            <FormLabel><b>End Time</b></FormLabel>
+            <TextField name="endTime" type="time" onChange={(e) => handleChange(e.target)} />
+            <FormLabel><b>Location</b></FormLabel>
+            <TextField name="location" type="text" placeholder="zoom.url OR 123 adress" onChange={(e) => handleChange(e.target)} />
+            <FormLabel><b>Description</b></FormLabel>
+            <TextField name="description" type="text" placeholder="Important information for applicant to know"
               onChange={(e) => handleChange(e.target)} />
-          </form>
-          <button onClick={() => handleSubmit()}>Submit</button>
-          <button onClick={handleClose}> Close </button>
+          </FormControl>
+          <Button onClick={() => handleSubmit()}>Submit</Button>
+          <Button onClick={handleClose}> Close </Button>
         </ContentDiv>
       </ModalDiv>
     </div>
