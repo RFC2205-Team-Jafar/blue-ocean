@@ -21,7 +21,9 @@ const EmbedCalendar = () => {
 
 
 
+
   let email = ''; //ANCHOR Replace with email from DB and also ensure that firebase gives auth to read
+
   let titleColor = '6362a3';
   return (
     <div className="calendarWrapper" ref={ref}>

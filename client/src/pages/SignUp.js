@@ -1,21 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import {useAuth} from '../components/AuthContext.jsx';
 import geoConverter from '../Google_API/geolocation.jsx';
-
-
+import axios from 'axios';
+import { AllContext } from '../index.jsx';
+// import {fileUpload} from '../components/fileHandlers.jsx'
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);
   //---------------------- State Hooks --------------------------
-  const [email, setEmail] = useState("");
+  const {email, setEmail } = useContext(AllContext);
+  const {accountType, setAccountType} = useContext(AllContext);
+  // const {login, googleLogin} = useAuth();
+  const {firstName, setFirstName} = useContext(AllContext);
+  const {lastName, setLastName} = useContext(AllContext);
+  const {preferredIndustry, setPreferredIndustry} = useContext(AllContext);
+  const {zipCode, setZipCode} = useContext(AllContext);
+  const {company, setCompany} = useContext(AllContext);
+  const {coord_lat, setCoord_lat} = useContext(AllContext);
+  const {coord_long, setCoord_long} = useContext(AllContext);
+  const {resuemUrl, setResumeUrl} = useContext(AllContext);
+  // local states
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [accountType, setAccountType] = useState("");
-  const [preferredIndustry, setPreferredIndustry] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [company, setCompany] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // const history = useHistory();
@@ -36,8 +42,8 @@ const SignUp = () => {
     var long;
     geoConverter(zipCode)
     .then(geos => {
-      lat = geos.lat;
-      long = geos.lng;
+      setCoord_lat(geos.lat);
+      setCoord_long(geos.lng);
     })
     .catch(err => {console.log('lat long err: ', err)})
     setLoading(true);
@@ -50,15 +56,17 @@ const SignUp = () => {
           first_name: firstName,
           last_name: lastName,
           email: email,
-          account_type: accountType,
+          userType: accountType,
           pref_industry: preferredIndustry,
-          zipCode: zipCode,
-          coord_lat: lat,
-          coord_long: long,
-          // resume_url: ,
+          zip: zipCode,
+          coord_lat: coord_lat,
+          coord_long: coord_long,
+          resume_url: resumeUrl,
           company_name: company
         };
-        // console.log('body: ', body)
+        axios.post('/jobs/adduser', body)
+        .then((res) => console.log(res))
+        .catch(err => console.log(err));
       })
       .then(() => setLoading(false))
       .then(() => {
@@ -129,7 +137,8 @@ const SignUp = () => {
             </select>
           <h2>Zip Code</h2>
             <input type="text" value={zipCode} onChange={(e) => setZipCode(Number(e.target.value))} placeholder="Zip Code" />
-          <button>Resume Upload Here</button>
+          {/* {fileUpload('resume')} */}
+          <button onClick={register} disabled={loading}>Create Account</button>
           <button onClick={register} disabled={loading}>Create Account</button>
         </div>
       </div>
