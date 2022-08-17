@@ -10,6 +10,25 @@ import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
 /*========== EXPORTS ==========*/
 export default function DetailApplicant({ applicant }) {
 
+  /*
+  NOTE:
+    add PUT request to remove candidate using '/jobs/removecandidate'
+    EXPECTS:
+      {
+        "seeker_uuid": "oSl2HNei1PTAsG3TijrfidKJ6dI2",
+        "listing_id": 99
+      }
+  */
+  /*
+  NOTE:
+    add PUT request to close posting using '/jobs/closeposting'
+    EXPECTS:
+      {
+        "listing_id": 93
+      }
+  */
+
+
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
