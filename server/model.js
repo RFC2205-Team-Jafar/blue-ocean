@@ -122,11 +122,6 @@ const isRecruiter = (uuid) => {
 
 
 module.exports = {
-  findUserType: (uuid) => {
-    const queryString = `SELECT account_type FROM "Firebase" WHERE user_uuid = ${uuid}`;
-    return client.query(queryString);
-  },
-
   addSeeker: (seeker) => {
     const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
@@ -141,9 +136,9 @@ module.exports = {
   },
 
   addToFirebase: (user) => {
-    const { userType, user_uuid } = user;
+    const { account_type, user_uuid } = user;
     const queryString = `INSERT INTO "Firebase"
-                         VALUES ('${userType}', '${user_uuid}')`;
+                         VALUES ('${account_type}', '${user_uuid}')`;
     return client,query(queryString);
   },
 
