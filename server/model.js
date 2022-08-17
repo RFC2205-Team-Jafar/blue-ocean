@@ -17,22 +17,57 @@ const getUser = (uuid, userType) => {
 }
 
 
-const getJobs = (/*need to know what the filters are again*/) => {
-
+const getJobs = (industry, isRemote, employmentType, maxDistance) => {
+    // console.log("industry: ",industry)
+    if(isRemote >= 2){
+        // console.log("remote is not 1 or 0");    
+        return client.query(`
+            SELECT json_agg(jobs)
+            FROM(
+                SELECT * 
+                FROM "Listings"
+                WHERE industry = '${industry}'
+                AND employment_type = '${employmentType}'
+            ) as jobs
+        `)
+    } else {
+        return client.query(`
+            SELECT json_agg(jobs)
+            FROM(
+                SELECT * 
+                FROM "Listings"
+                WHERE industry = '${industry}'
+                AND employment_type = '${employmentType}'
+                AND is_remote = ${isRemote}
+            ) as jobs
+        `)
+    }
 }
 
 
 
 /*-------------Helper Queries---------------*/
 
+// const appliedJobs = (uuid) => {
+//     return client.query(`
+//     SELECT json_agg(applications)
+//     FROM (
+//         SELECT * 
+//         FROM "SubmittedApplications"
+//         WHERE seeker_uuid = '${uuid}' 
+//     ) as applications
+//     `)
+// }
+
 const appliedJobs = (uuid) => {
     return client.query(`
-    SELECT json_agg(applications)
+    SELECT json_agg(listings)
     FROM (
-        SELECT * 
-        FROM "SubmittedApplications"
-        WHERE seeker_uuid = '${uuid}' 
-    ) as applications
+        SELECT *
+        FROM "Listings" 
+        WHERE listing_id 
+        IN (SELECT listing_id FROM "SubmittedApplications" WHERE seeker_uuid = '${uuid}')
+    ) as listings
     `)
 }
 
