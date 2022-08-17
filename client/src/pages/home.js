@@ -7,7 +7,6 @@ import { InterviewInviteModal } from "../Google_API/interviewInvite.jsx";
 import PostJob from "../components/PostJob/PostJob.jsx";
 import HeaderGallery from "../Components/Header/ImageGallery.jsx";
 import FilterFunctions from "../Components/Filters/FilterFunctions.jsx";
-import FilterStatus from "../Components/Filters/FilterStatus.jsx";
 
 const Home = () => {
   return (
