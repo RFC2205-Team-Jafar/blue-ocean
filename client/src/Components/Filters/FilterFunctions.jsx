@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
-
+import SalarySliderSteps from "./FilterSalary.jsx";
 class FilterFunctions extends React.Component {
   constructor(props) {
     super(props);
@@ -20,12 +20,21 @@ class FilterFunctions extends React.Component {
       minDistance: 5,
 
       maxDistance: "",
+
+      salary: 10,
     };
 
     this.setIndustry = this.setIndustry.bind(this);
     this.setSite = this.setSite.bind(this);
     this.setEmployment = this.setEmployment.bind(this);
     this.setMaxDist = this.setMaxDist.bind(this);
+    this.setSalary = this.setSalary.bind(this);
+  }
+
+  setSalary(event) {
+    this.setState({
+      salary: event.target.value
+    })
   }
 
   setIndustry(event) {
@@ -75,10 +84,11 @@ class FilterFunctions extends React.Component {
   render() {
     return (
       <FilterRow>
+        <SalarySliderSteps onChange={this.setSalary} />
         <InputLabel>
           {" "}
           Industry:
-          <Select onChange={this.setIndustry} value="">
+          <Select onChange={this.setIndustry}>
             <MenuItem value="Art"> Art </MenuItem>
             <MenuItem value="Aviation"> Aviation </MenuItem>
             <MenuItem value="Construction"> Construction </MenuItem>
@@ -93,7 +103,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Site:
-          <Select onChange={this.setSite} value="">
+          <Select onChange={this.setSite}>
             <MenuItem value="Both"> Both </MenuItem>
             <MenuItem value="Remote"> Remote </MenuItem>
             <MenuItem value="On-Site"> On-Site </MenuItem>
@@ -102,7 +112,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Employment Type:
-          <Select onChange={this.setEmployment} value="">
+          <Select onChange={this.setEmployment}>
             <MenuItem value="Part-Time"> Part-Time </MenuItem>
             <MenuItem value="Full-Time"> Full-Time </MenuItem>
             <MenuItem value="Contract"> Contract </MenuItem>
@@ -114,7 +124,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Max Distance:
-          <Select onChange={this.setMaxDist} value="">
+          <Select onChange={this.setMaxDist}>
             <MenuItem value="10"> Within 10 miles </MenuItem>
             <MenuItem value="15"> Within 15 miles </MenuItem>
             <MenuItem value="25"> Within 25 miles </MenuItem>
