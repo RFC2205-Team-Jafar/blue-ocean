@@ -5,10 +5,11 @@ import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Row } from '../../../public/stylesheets/styles.js';
+import DetailItem from './DetailItem.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailList({ displayPost, postings }) {
+export default function DetailList({ displayPost, postings, view: { view }, applicants }) {
   /*
   TODO: send children to be rendered to the function as props along with an
   identifier to indicate that it is on the job seeker or the recruiters page
@@ -30,15 +31,16 @@ export default function DetailList({ displayPost, postings }) {
   // };
 
   /*----- RENDER METHODS -----*/
+
   const renderDetail = (targetPost) => {
     /*
     NOTE:
     - on page load, renders detailed information on the first listing,
     - should conditionally render buttons specific to the parent page
     */
-    targetPost = targetPost || postings[0];
+   targetPost = targetPost || postings[0];
 
-    if (targetPost) {
+    if (targetPost && view === 'seeker') {
       return (
         <Column
           style={{alignItems: 'flex-start'}}
@@ -68,6 +70,12 @@ export default function DetailList({ displayPost, postings }) {
           </Row>
         </Column>
       )
+    }
+
+    if (applicants && view === "recruiter") {
+      return applicants.map(applicant => {
+        return <DetailItem applicant={applicant}/>
+    })
     }
   }
 

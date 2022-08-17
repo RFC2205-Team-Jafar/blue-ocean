@@ -9,7 +9,7 @@ import Post from './Post.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings }) {
+export default function PostList({ handleClick, postings, view }) {
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
@@ -30,7 +30,7 @@ export default function PostList({ handleClick, postings }) {
     - should conditionally render buttons specific to the parent page
     - on Click -> sends the clicked posting information to the Details listing
     */
-    if (postings) return postings.map(post => <Post handleClick={handleClick}/>)
+    if (postings) return postings.map(post => <Post handleClick={handleClick} view={view}/>)
   }
 
 
