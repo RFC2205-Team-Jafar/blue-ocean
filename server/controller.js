@@ -6,19 +6,26 @@ const  signOn = async (req, res) => {
     uuid = req.params.uuid;
     const isSeeker = await model.isSeeker(uuid);
     const isRecruiter = await model.isRecruiter(uuid);
+    let isRemote = 2;
+    let maxDistance = 50;
+    let employmentType= "Full Time";
+
     // console.log(isSeeker.rows[0].exists);
     if(isSeeker.rows[0].exists) {
         try {
             const user = await model.getUser(uuid, "seeker");
             const appliedJobs = await model.appliedJobs(uuid)
+            const defaultJobs = await model.getJobs(user.rows[0].pref_industry,isRemote,employmentType,maxDistance);
 
             let resData = {
                 ...user.rows[0],
-                appliedJobs: appliedJobs.rows[0].json_agg
+                appliedJobs: appliedJobs.rows[0].json_agg,
+                defaultJobs: defaultJobs.rows[0].json_agg
             }
 
             res.status(200).send(resData);
-        } catch {
+        } catch (error) {
+            console.log(error);
             res.sendStatus(500);
         }
     } else if(isRecruiter.rows[0].exists) {
