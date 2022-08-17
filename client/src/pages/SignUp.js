@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import {useAuth} from '../components/AuthContext.jsx';
 import geoConverter from '../Google_API/geolocation.jsx';
+import axios from 'axios';
 
 
 
@@ -50,7 +51,7 @@ const SignUp = () => {
           first_name: firstName,
           last_name: lastName,
           email: email,
-          account_type: accountType,
+          userType: accountType,
           pref_industry: preferredIndustry,
           zipCode: zipCode,
           coord_lat: lat,
@@ -58,7 +59,9 @@ const SignUp = () => {
           // resume_url: ,
           company_name: company
         };
-        // console.log('body: ', body)
+        axios.post('/jobs/adduser', body)
+        .then((res) => console.log(res))
+        .catch(err => console.log(err));
       })
       .then(() => setLoading(false))
       .then(() => {

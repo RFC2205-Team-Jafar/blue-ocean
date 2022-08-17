@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { StyledModal } from './StyledModal';
 import {useAuth} from '../AuthContext.jsx';
+import axios from 'axios';
 
 
 const LoginForm = () => {
@@ -9,7 +10,7 @@ const LoginForm = () => {
   //----------------State Hooks  -------------------------
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, loading, error] = useAuthState(auth);
+  const [accountType, setAccountType] = useState("");
   const {login, googleLogin} = useAuth();
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +24,15 @@ const LoginForm = () => {
   const handlePlainLogin = () => {
     setLoading(true);
     login(email, password)
+    .then((res => {
+      const uid = res.user.uid
+      axios.get(`/jobs/getuser/${uid}`) //rework this route
+      .then((res => {
+        console.log('handlePlainLogin axios get res: ', res)
+        setAccountType(res.body.accountType);
+      }))
+      .catch(err => console.log('there was an error from the server login: ', err))
+    })) //two important pieces: res.user.uid, res.user.email
     .then(() => {
       setLoading(false);
       if (accountType = "seeker") {
