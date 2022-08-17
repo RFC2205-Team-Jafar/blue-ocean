@@ -11,7 +11,6 @@ import EmbedCalendar from '../Google_API/calendar.jsx'
 import {Page} from '../../public/stylesheets/styles';
 import PostJob from '../components/PostJob/PostJob.jsx'
 import Feed from '../components/Feed/Feed.jsx';
-import { InterviewInviteModal } from '../Google_API/interviewInvite.jsx';
 
 const Recruiter = () => {
   return (
