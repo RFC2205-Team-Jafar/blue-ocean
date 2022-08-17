@@ -2,7 +2,8 @@
 
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import EmbedCalendar from "../Google_API/calendar.jsx";
+import EmbedCalendar from '../Google_API/calendar.jsx';
+
 
 /*========== INTERNAL MODULES ==========*/
 import { Page } from "../../public/stylesheets/styles";
@@ -19,6 +20,7 @@ const Recruiter = () => {
 
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Active postings</Link></div>
+      {/* <Feed view={{view:'recruiter'}} applicants={[1, 2, 3, 4, 5, 6]}/> */}
       <div><Link to="postAJob">Post a new job</Link></div>
       <Outlet />
 
@@ -30,5 +32,7 @@ const Recruiter = () => {
 
 /*========== EXPORTS ==========*/
 export default Recruiter;
+
+
 
 /*========== STYLES ==========*/

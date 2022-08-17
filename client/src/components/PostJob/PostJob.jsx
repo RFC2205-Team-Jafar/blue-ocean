@@ -51,18 +51,22 @@ export default function PostJob() {
       if (jobPosting.salary_low < (jobPosting.salary_high * .8)) {
         setSalaryPass(false);
         setTimeout(() => setSalaryPass(true), 3000);
-        // alert('Minimum Salary must be within 20% of Maximum Salary')
         return
       }
     }
-    // geoConverter(jobPosting.zipcode);
-    /*
-    TODO:
-    - add conversion to Laat and long
-     - attach Lat and Long to state as coord_lat and coord_long
-     - remove zipcode property from state object
-     */
-    if (jobPosting.employment_type && jobPosting.employment_type === 'remote') {
+
+    if (jobPosting.zipcode) {
+      const zipcode = Number(jobPosting.zipcode)
+      geoConverter(zipcode)
+      .then(latLong => setJobPosting(prev => ({
+        ...prev,
+        coord_lat: latLong.lat,
+        coord_long: latLong.lng
+      })))
+      .catch(err => console.error(err))
+    }
+
+    if (jobPosting.job_type && jobPosting.job_type === 'remote') {
       setJobPosting(prev => ({
         ...prev,
         isRemote: true
@@ -73,6 +77,7 @@ export default function PostJob() {
         isRemote: false
       }))
     }
+
     if (keywords) {
       setJobPosting(prev => ({
         ...prev,
@@ -107,7 +112,7 @@ export default function PostJob() {
       <Label>Company Zipcode
         <Input
           type='text'
-          placeholder='90210'
+          placeholder='10001'
           name='zipcode'
           onChange={handleChange}
           >
@@ -126,13 +131,17 @@ export default function PostJob() {
   const renderIndustry = () => {
     return (
       <Label>Job Industry
-        <Input
-          type='text'
-          placeholder='Technology'
-          name='industry'
-          onChange={handleChange}
-          >
-        </Input>
+        <ButtonGroup>
+          <Button value='Art' name='industry' onClick={handleClick}>Art</Button>
+          <Button value='Aviation' name='industry' onClick={handleClick}>Aviation</Button>
+          <Button value='Construction' name='industry' onClick={handleClick}>Construction</Button>
+          <Button value='Education' name='industry' onClick={handleClick}>Education</Button>
+          <Button value='Food' name='industry' onClick={handleClick}>Food</Button>
+          <Button value='Healthcare' name='industry' onClick={handleClick}>Healthcare</Button>
+          <Button value='Music' name='industry' onClick={handleClick}>Music</Button>
+          <Button value='Tech' name='industry' onClick={handleClick}>Tech</Button>
+          <Button value='Transportation' name='industry' onClick={handleClick}>Transportation</Button>
+        </ButtonGroup>
       </Label>
     )
   }
