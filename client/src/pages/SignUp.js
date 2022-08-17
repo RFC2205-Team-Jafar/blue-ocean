@@ -173,7 +173,6 @@ const SignUp = () => {
             </>
           }
           <button onClick={register} disabled={loading}>Create Account</button>
-          <button onClick={register} disabled={loading}>Create Account</button>
         </div>
       </div>
     )
