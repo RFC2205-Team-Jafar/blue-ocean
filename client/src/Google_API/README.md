@@ -18,3 +18,14 @@ Note: I have set up the useLocation.jsx file to format the lat/long returns to t
       lat: /* User Latitude xx.xxxx */,
       lng: /* User Longitute xx.xxxx */
     };
+
+***
+
+## Google Calendar Event Creation
+
+> Google Client ID and API Key will be required to utilize this application. Got to the link below to set up credentials and then add them to the calaned)event.jsx file
+
+https://developers.google.com/workspace/guides/create-credentials
+
+
+The calendar_event.jsx operation is not dependant on firebase authentication. Users will be prompted to sign into their Google accounts once they click on the Submit button within the interviewInvite modal.

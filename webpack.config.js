@@ -12,9 +12,9 @@ module.exports = {
   // [output] is a configuration object to determine how and where to bundle our code
   output: {
     // [path] is where to output
-    path: path.join(__dirname, './client/public'),
+    path: path.join(__dirname, "./client/public"),
     // [filename] is the name of the file
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   // [module] will allow us to set any external modules we have added to webpack
   module: {
@@ -24,18 +24,34 @@ module.exports = {
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "babel-loader",
       },
       // Second rule is to check for css files and load them with the following loaders
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"],
+      },
+
+      //Third rule will be used to load local image files
+      {
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        include: /images/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              // outputPath: "images/",
+              // publicPath: "images/",
+            },
+          },
+        ],
       }
     ]
   },
   resolve: {
     alias: {
-      '@mui/styled-engine': '@mui/styled-engine-sc'
+      "@mui/styled-engine": "@mui/styled-engine-sc",
     },
   },
-}
+};
