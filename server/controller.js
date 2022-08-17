@@ -231,14 +231,15 @@ module.exports = {
     }
   },
 
-
+  // TO CONFIRM
   changeProfile: async (req, res) => {
-    const { userType } = req.body;
+    const { account_type } = req.body;
     try {
-      if (userType === 'seeker') {
+      await model.changeUserEmail(req.body);
+      if (account_type === 'seeker') {
         await model.changeSeekerProfile(req.body);
-      } else if (userType === 'recruiter') {
-        await modal.changeRecruiterProfile(req.body);
+      } else if (account_type === 'recruiter') {
+        await model.changeRecruiterProfile(req.body);
       }
     } catch(e) {
       console.log('eeeeeee', e);
