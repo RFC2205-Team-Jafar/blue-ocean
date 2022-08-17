@@ -9,7 +9,7 @@ import EmbedCalendar from '../Google_API/calendar.jsx';
 import { Page } from "../../public/stylesheets/styles";
 import PostJob from "../components/PostJob/PostJob.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-import HeaderGallery from "../Components/Header/ImageGallery.jsx";
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
 
 const Recruiter = () => {
   return (
