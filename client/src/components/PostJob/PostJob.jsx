@@ -85,8 +85,12 @@ export default function PostJob() {
       }))
     }
 
-    setPostSuccess(true);
-    setTimeout(() => setPostSuccess(false), 3000);
+    axios.put('/jobd')
+    .then(success => {
+      setPostSuccess(true);
+      setTimeout(() => setPostSuccess(false), 3000);
+    })
+    .catch(err => console.error(err))
   };
 
 
