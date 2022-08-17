@@ -6,6 +6,8 @@ import LoginForm from "../components/loginComponents/LoginForm.jsx";
 import { InterviewInviteModal } from "../Google_API/interviewInvite.jsx"
 import PostJob from '../components/PostJob/PostJob.jsx'
 
+import {fileUpload} from '../components/fileHandlers.jsx'
+
 const Home = () => {
 
   return (
@@ -22,6 +24,7 @@ const Home = () => {
       <h1> Image Gallery </h1>
 
       <h1> Jobs (newest 20) </h1>
+      {fileUpload('Resume')}
 
     </>
   )
