@@ -13,20 +13,21 @@ const  signOn = async (req, res) => {
         let isRemote = 2;
         let maxDistance = 50;
         let employmentType= "Full Time";
-    
+        let minSalary = 0;
+
         // console.log(isSeeker.rows[0].exists);
         if(isSeeker.rows[0].exists) {
             try {
                 const user = await model.getUser(uuid, "seeker");
                 const appliedJobs = await model.appliedJobs(uuid)
-                const defaultJobs = await model.getJobs(user.rows[0].pref_industry,isRemote,employmentType,maxDistance);
-    
+                const defaultJobs = await model.getJobs(user.rows[0].pref_industry,isRemote,employmentType,maxDistance,minSalary);
+
                 let resData = {
                     ...user.rows[0],
                     appliedJobs: appliedJobs.rows[0].json_agg,
                     defaultJobs: defaultJobs.rows[0].json_agg
                 }
-    
+
                 res.status(200).send(resData);
             } catch (error) {
                 console.log(error);
@@ -41,9 +42,9 @@ const  signOn = async (req, res) => {
                     ...user.rows[0],
                     listings: listings.rows[0].json_agg
                     //I forget what else is suppose to be returned during the sign in of recruiter
-                    // Is it just the recruiters associated job listings? 
+                    // Is it just the recruiters associated job listings?
                 }
-    
+
                 res.status(200).send(resData);
             } catch {
                 res.sendStatus(500);
@@ -64,15 +65,17 @@ const filter = async (req, res) => {
     let isRemote = req.query.isRemote || 2
     let maxDistance = req.query.maxDistance || 50;
     let employmentType= req.query.employmentType || "Full Time";
+    let minSalary = parseInt(req.query.minSalary) || 0;
 
+    // console.log(typeof minSalary)
     try {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
-    
+
         if(isSeeker.rows[0].exists) {
             try {
 
-                const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance);
+                const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance, minSalary);
 
                 res.status(200).send(filteredJobs.rows[0].json_agg)
             } catch  (err) {
@@ -116,7 +119,7 @@ const noAuth = (req, res) => {
 }
 
 const applied = (req, res) => {
-    
+
 }
 
 
@@ -152,7 +155,7 @@ const isRecruiter = (req, res) => {
 module.exports = {
   addUser: async (req, res) => {
     const user = req.body; // expect body to contain full user info
-    if (user.userType === 'seeker') {
+    if (user.account_type === 'seeker') {
       try {
         await model.addSeeker(user);
         await model.addToFirebase(user);
@@ -160,7 +163,7 @@ module.exports = {
       } catch(e) {
         console.log('eeeeee', e);
       }
-    } else if (user.userType === 'recruiter') {
+    } else if (user.account_type === 'recruiter') {
       try {
         await model.addRecruiter(user);
         await model.addToFirebase(user);
