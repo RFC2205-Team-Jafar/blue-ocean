@@ -76,35 +76,3 @@ const DetailSection = styled(Column)`
     display: none;
   }
 `;
-
-const DetailHeader = styled(Row)`
-
-`;
-
-const DetailBody = styled(Column)`
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-  height: 800px;
-  overflow: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const ApplicantName = styled(Row)`
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  font-size: 16pt;
-  font-weight: bold;
-`;
-
-const ApplicantLocation = styled(Row)`
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  font-size: 12pt;
-`;
