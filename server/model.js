@@ -29,8 +29,8 @@ const getJobsNoAuth = () => {
 
 
 const getJobs = (industry, isRemote, employmentType, maxDistance) => {
-    // console.log("industry: ",industry)
-    if(isRemote >= 2){
+    console.log("inside models", isRemote);
+    if(isRemote == 2){
         // console.log("remote is not 1 or 0");    
         return client.query(`
             SELECT json_agg(jobs)
@@ -41,7 +41,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 AND employment_type = '${employmentType}'
             ) as jobs
         `)
-    } else {
+    } else if(isRemote == 1) {
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
@@ -49,7 +49,18 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
-                AND is_remote = ${isRemote}
+                AND is_remote = true
+            ) as jobs
+        `)
+    } else if(isRemote == 0) {
+        return client.query(`
+            SELECT json_agg(jobs)
+            FROM(
+                SELECT * 
+                FROM "Listings"
+                WHERE industry = '${industry}'
+                AND employment_type = '${employmentType}'
+                AND is_remote = false
             ) as jobs
         `)
     }
