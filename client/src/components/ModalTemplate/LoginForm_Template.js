@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StyledModal } from './StyledModal';
+import {initializeApp} from "firebase/app";
+
 
 const SampleLoginForm = () => {
   // You should not need to change anything from Line 6-10
@@ -25,6 +27,7 @@ const SampleLoginForm = () => {
         <div>Password</div>
         <input type="password" />
         <button> Sign in </button>
+        {/*Sign in with Google button here*/}
 
       </StyledModal>
     </>
