@@ -82,5 +82,19 @@ module.exports = {
     } catch(e) {
       console.log('eeeeee', e);
     }
-  }
+  },
+
+
+  changeProfile: async (req, res) => {
+    const { userType } = req.body;
+    try {
+      if (userType === 'seeker') {
+        await model.changeSeekerProfile(req.body);
+      } else if (userType === 'recruiter') {
+        await modal.changeRecruiterProfile(req.body);
+      }
+    } catch(e) {
+      console.log('eeeeeee', e);
+    }
+  },
 }
