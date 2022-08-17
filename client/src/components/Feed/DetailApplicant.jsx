@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { InterviewInviteModal } from '../../Google_API/interviewInvite.jsx'
 
 
 /*========== EXPORTS ==========*/
@@ -55,7 +56,8 @@ return (
       <ApplicantLocation>Applicant Location</ApplicantLocation>
       <ButtonTray>
         <ApplicantButton variant='outlined'>Reject</ApplicantButton>
-        <Button variant='contained'>Schedule Interview</Button>
+        {/* <Button variant='contained'>Schedule Interview</Button> */}
+        <InterviewInviteModal/>
       </ButtonTray>
     </ApplicantHeader>
     <ApplicantBody>

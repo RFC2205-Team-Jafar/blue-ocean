@@ -12,11 +12,8 @@ import Seeker from './pages/Seeker';
 import Profile from './components/Profile/Profile.js';
 import Feed from './components/Feed/Feed.jsx';
 
-// import JobsForSeeker from './components/TestComponents/JobsForSeeker.js';
+
 import Recruiter from './pages/Recruiter';
-// import RecruiterProfile from './components/TestComponents/RecruiterProfile.js';
-// import ActivePostings from './components/TestComponents/ActivePostings.js';
-// import NewJob from './components/TestComponents/NewJob.js';
 import PostJob from './components/PostJob/PostJob.jsx'
 import { GlobalStyle } from '../public/stylesheets/styles';
 import { AuthProvider } from './components/AuthContext.jsx';
@@ -27,9 +24,6 @@ export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
   // states
-  useEffect(() => {
-    userLocation();
-  }, [])
 
   const [location, setLocation] = useState({});
   const [resumeUrl, setResumeUrl] = useState('');
@@ -55,14 +49,7 @@ const App = () => {
               <Route path="profile" element={<Profile userType={'recruiter'} />} />
               <Route path="postAJob" element={<PostJob />} />
             </Route>
-
-            {/* CONFIRM AND DELETE  */}
-            {/* <Route path="signUp" element={<SignUp />} />
-            <Route path="seeker" element={<Seeker />} />
-            <Route path="recruiter" element={<Recruiter />} /> */}
-
           </Routes>
-          {/* </GlobalStyle> */}
         </AllContext.Provider>
       </AuthProvider>
     </Router>
