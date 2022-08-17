@@ -4,10 +4,10 @@
 // stored credentials.
   // SET UP GOOGLE ENVIRONMENT
   var gapi = window.gapi;
-  var CLIENT_ID = "";
-  var API_KEY = "";
-  const DISCOVERY_DOCS = [""];
-  const SCOPES = "";
+  var CLIENT_ID = ; //ANCHOR Add CLIENT ID
+  var API_KEY = ; //ANCHOR Add API Key
+  const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+  const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
 const sendInvite = function (data) {
   console.log(data);
@@ -37,15 +37,15 @@ gapi.load('client:auth2', () => {
       'location': data.inviteInfo.location,
       'description': data.inviteInfo.description,
       'start': {
-        'dateTime': data.inviteInfo.startDate+"T"+data.inviteInfo.startTime+":00-07:00",
-        'timeZone': 'America/Los_Angeles'
+        'dateTime': data.inviteInfo.startDate+"T"+data.inviteInfo.startTime+":00-05:00",
+        'timeZone': 'America/Chicago'
       },
       'end': {
-        'dateTime': data.inviteInfo.endDate+"T"+data.inviteInfo.endTime+":00-07:00",
-        'timeZone': 'America/Los_Angeles'
+        'dateTime': data.inviteInfo.endDate+"T"+data.inviteInfo.endTime+":00-05:00",
+        'timeZone': 'America/Chicago'
       },
       'attendees': [
-        {'email': ''}, //TODO Add email
+        {'email': ''}, //ANCHOR Add email
       ],
       'reminders': {
         'useDefault': false,
