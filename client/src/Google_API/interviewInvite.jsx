@@ -7,6 +7,12 @@ import sendInvite from "./calendar_event.jsx";
 import geoConverter from "./geolocation.jsx";
 
 export const InterviewInviteModal = () => {
+
+  const handleSubmit = () => {
+    sendInvite(inviteInfo);
+    handleClose();
+  }
+
   const [show, setShow] = useState(false);
   const [inviteInfo, setInviteInfo] = useState({});
 
@@ -21,35 +27,32 @@ export const InterviewInviteModal = () => {
       }
     }))
   }
-  const handleSubmit = (e) => {
-    sendInvite(inviteInfo);
-    handleClose();
-  }
+
 
   return (
     <div>
-    <button onClick = {() => handleShow()} >Test</button>
-    <ModalDiv block={ show ? 'block' : 'none' }>
-      <ContentDiv>
-        <form>
-          <label><b>Start Date</b></label>
-          <input name="startDate" type="date" onChange={(e) => handleChange(e.target)}/>
-          <label><b>Start Time</b></label>
-          <input name="startTime" type="time" onChange={(e) => handleChange(e.target)}/>
-          <label><b>End Date</b></label>
-          <input name="endDate" type="date" onChange={(e) => handleChange(e.target)}/>
-          <label><b>End Time</b></label>
-          <input name="endTime" type="time" onChange={(e) => handleChange(e.target)}/>
-          <label><b>Location</b></label>
-          <input name="location" type="text" placeholder="zoom.url OR 123 adress" onChange={(e) => handleChange(e.target)}/>
-          <label><b>Description</b></label>
-          <input name="description" type="text" placeholder="Important information for applicant to know"
-            onChange={(e) => handleChange(e.target)}/>
-        </form>
-        <button onClick= {() => handleSubmit()}>Submit</button>
-        <button onClick = {handleClose}> Close </button>
-      </ContentDiv>
-    </ModalDiv>
+      <button onClick={() => handleShow()} >Test</button>
+      <ModalDiv block={show ? 'block' : 'none'}>
+        <ContentDiv>
+          <form>
+            <label><b>Start Date</b></label>
+            <input name="startDate" type="date" onChange={(e) => handleChange(e.target)} />
+            <label><b>Start Time</b></label>
+            <input name="startTime" type="time" onChange={(e) => handleChange(e.target)} />
+            <label><b>End Date</b></label>
+            <input name="endDate" type="date" onChange={(e) => handleChange(e.target)} />
+            <label><b>End Time</b></label>
+            <input name="endTime" type="time" onChange={(e) => handleChange(e.target)} />
+            <label><b>Location</b></label>
+            <input name="location" type="text" placeholder="zoom.url OR 123 adress" onChange={(e) => handleChange(e.target)} />
+            <label><b>Description</b></label>
+            <input name="description" type="text" placeholder="Important information for applicant to know"
+              onChange={(e) => handleChange(e.target)} />
+          </form>
+          <button onClick={() => handleSubmit()}>Submit</button>
+          <button onClick={handleClose}> Close </button>
+        </ContentDiv>
+      </ModalDiv>
     </div>
   )
 };
