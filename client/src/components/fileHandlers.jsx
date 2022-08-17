@@ -1,32 +1,35 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
-
+import { AllContext } from '../index.jsx';
 
 const fileUpload = (fileType) => {
 
   const fileInputRef = useRef()
   const [uploaded, setUploaded] = useState(false);
+  const { resumeUrl, setResumeUrl } = useContext(AllContext);
+  const { coverLetterUrl, setCoverLetterUrl } = useContext(AllContext);
+
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', file.name);
-    formData.append('user_uuid', 'some uuid')
-    formData.append('listing_id', 'somelisting or null')
-    console.log(formData)
+
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
       }
     }
+
     axios.post('/uploadFile', formData, config)
       .then((res) => {
         setUploaded(true)
         if(fileType === 'resume' || fileType === 'Resume'){
           //set state // me and Andrew integrate sometime tomorrow
           console.log('resume', res.data.url)
+          setResumeUrl(res.data.url);
 
         } else {
           console.log('cover letter', res.data.url)
@@ -53,9 +56,10 @@ const fileUpload = (fileType) => {
 
 }
 
+
 const fileViewer = (fileURL) => {
 
-  if(fileURL.includes('.doc')){
+  if (fileURL.includes('.doc')) {
     var url = `https://docs.google.com/gview?url=${fileURL}&embedded=true`
   } else {
     var url = fileURL
@@ -63,9 +67,9 @@ const fileViewer = (fileURL) => {
 
   return (
     <div>
-    <a href = {fileURL}>Download</a>
-    <br/>
-    <iframe src= {url} width = "100%" height = "800px"></iframe>
+      <a href={fileURL}>Download</a>
+      <br />
+      <iframe src={url} width="100%" height="800px"></iframe>
     </div>
   )
 
