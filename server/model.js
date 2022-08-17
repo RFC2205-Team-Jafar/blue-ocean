@@ -7,8 +7,9 @@ module.exports = {
   },
 
   addSeeker: (seeker) => {
-    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url } = seeker;
-    const queryString = `INSERT INTO "Seekers" VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}')`;
+    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
+    const queryString = `INSERT INTO "Seekers"
+                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
     return client.query(queryString);
   },
 
@@ -16,6 +17,13 @@ module.exports = {
     const { user_uuid, first_name, last_name, company_name } = recruiter;
     const queryString = `INSERT INTO "Recruiters" VALUES ('${user_uuid}', '${first_name}', '${last_name}', '${company_name}')`;
     return client.query(queryString);
+  },
+
+  addToFirebase: (user) => {
+    const { userType, user_uuid } = user;
+    const queryString = `INSERT INTO "Firebase"
+                         VALUES ('${userType}', '${user_uuid}')`;
+    return client,query(queryString);
   },
 
   addAJob: (j) => {
@@ -26,7 +34,6 @@ module.exports = {
   },
 
   applyForAJob: (application) => {
-    // what is matched_keywords??????? from resume parser
     const { seeker_uuid, listing_id, coverletter_url, matched_keywords } = application;
     const queryString = `INSERT INTO "SubmittedApplications"
                             (seeker_uuid, listing_id, coverletter_url, matched_keywords)
