@@ -19,7 +19,7 @@ const getUser = (uuid, userType) => {
 
 const getJobsNoAuth = () => {
         return client.query(`
-            SELECT * 
+            SELECT *
             FROM "Listings"
             ORDER BY
                 listing_id DESC
@@ -31,11 +31,11 @@ const getJobsNoAuth = () => {
 const getJobs = (industry, isRemote, employmentType, maxDistance) => {
     // console.log("inside models", isRemote);
     if(isRemote == 2){
-        // console.log("remote is not 1 or 0");    
+        // console.log("remote is not 1 or 0");
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
-                SELECT * 
+                SELECT *
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
@@ -45,7 +45,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
-                SELECT * 
+                SELECT *
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
@@ -56,7 +56,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
-                SELECT * 
+                SELECT *
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
@@ -75,8 +75,8 @@ const appliedJobs = (uuid) => {
     SELECT json_agg(listings)
     FROM (
         SELECT *
-        FROM "Listings" 
-        WHERE listing_id 
+        FROM "Listings"
+        WHERE listing_id
         IN (SELECT listing_id FROM "SubmittedApplications" WHERE seeker_uuid = '${uuid}')
     ) as listings
     `)
@@ -86,9 +86,9 @@ const listings = (uuid) => {
     return client.query(`
     SELECT json_agg(listings)
     FROM (
-        SELECT * 
+        SELECT *
         FROM "Listings"
-        WHERE recruiter_uuid = '${uuid}' 
+        WHERE recruiter_uuid = '${uuid}'
     ) as listings
     `)
 }
@@ -107,7 +107,7 @@ const listings = (uuid) => {
 
 const isSeeker = (uuid) => {
     return client.query(`
-    SELECT exists 
+    SELECT exists
         (SELECT 1 FROM "Seekers" WHERE user_uuid = '${uuid}'  LIMIT 1);
     `)
 }
@@ -115,7 +115,7 @@ const isSeeker = (uuid) => {
 
 const isRecruiter = (uuid) => {
     return client.query(`
-    SELECT exists 
+    SELECT exists
         (SELECT 1 FROM "Recruiters" WHERE user_uuid = '${uuid}'  LIMIT 1);
     `)
 }
