@@ -69,12 +69,13 @@ const DetailSection = styled(Column)`
   padding: 10px;
   margin: 10px;
   width: 48%;
+  height: 900px;
   overflow: scroll;
 
   &::-webkit-scrollbar {
     display: none;
   }
-  `;
+`;
 
 const DetailHeader = styled(Row)`
 

@@ -100,4 +100,3 @@ const ApplicantResume = styled(Row)`
   font-weight: bold;
   font-size: 12pt;
 `;
-
