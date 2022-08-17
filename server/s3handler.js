@@ -49,7 +49,7 @@ exports.parseResume = async(resume, searchFor) => {
     }
   }
 
-  return found
+  return found.join(', ')
 
 }
 
