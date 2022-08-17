@@ -34,10 +34,19 @@ const LoginForm = () => {
     login(email, password)
     .then((res => {
       const uid = res.user.uid
-      axios.get(`/jobs/getuser/${uid}`) //rework this route
+      axios.get(`/jobs/${uid}/signon`)
       .then((res => {
-        console.log('handlePlainLogin axios get res: ', res)
+        console.log('handlePlainLogin axios get res.body: ', res.body)
         setAccountType(res.body.accountType);
+        setEmail(res.body.email);
+        setFirstName(res.body.first_name);
+        setLastName(res.body.last_name);
+        setCompany(res.body.company_name);
+        setCoord_lat(res.body.coord_lat);
+        setCoord_long(res.body.coord_long);
+        setResumeUrl(res.body.resume_url);
+        setZipCode(res.body.zip);
+        setPreferredIndustry(res.body.pref_industry);
       }))
       .catch(err => console.log('there was an error from the server login: ', err))
     })) //two important pieces: res.user.uid, res.user.email

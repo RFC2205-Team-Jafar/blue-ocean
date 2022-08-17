@@ -26,7 +26,6 @@ const SignUp = () => {
   const navigate = useNavigate();
   // const history = useHistory();
   const {signup} = useAuth();
-  // console.log('signup: ', signup);
 
   //---------------------- Embedded Functions -------------------
   const register = () => {
@@ -56,7 +55,7 @@ const SignUp = () => {
           first_name: firstName,
           last_name: lastName,
           email: email,
-          userType: accountType,
+          account_type: accountType,
           pref_industry: preferredIndustry,
           zip: zipCode,
           coord_lat: coord_lat,
