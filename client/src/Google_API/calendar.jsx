@@ -22,7 +22,10 @@ const EmbedCalendar = () => {
 
 
   let email = ''; //ANCHOR Replace with email from DB and also ensure that firebase gives auth to read
+<<<<<<< HEAD
   let titleColor = '6362a3';
+=======
+>>>>>>> 7140e93ce5d80a5819b4c3e53eecf37d2d1a9cd9
   return (
     <div className="calendarWrapper" ref={ref}>
         <Button_Calendar onClick={() => setShowCalendar(oldState => !oldState)}>Calendar</Button_Calendar>
