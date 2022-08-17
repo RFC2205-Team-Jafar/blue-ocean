@@ -110,6 +110,12 @@ export const Row = styled.div`
   justify-items: center;
 `;
 
+export const ButtonTray = styled(Row)`
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+`;
+
 export const Label = styled.label`
   display: flex;
   flex-direction: column;

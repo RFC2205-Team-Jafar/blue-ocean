@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Row } from '../../../public/stylesheets/styles.js';
+import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
 import DetailItem from './DetailItem.jsx';
 
 
@@ -55,7 +55,7 @@ export default function DetailList({ displayPost, postings, view: { view }, appl
 
             Morbi tincidunt augue interdum velit. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. In eu mi bibendum neque egestas. Erat pellentesque adipiscing commodo elit at imperdiet dui. Massa tincidunt nunc pulvinar sapien et ligula. Platea dictumst quisque sagittis purus sit amet volutpat. Quam quisque id diam vel quam elementum pulvinar etiam non. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Ipsum nunc aliquet bibendum enim facilisis. Ullamcorper sit amet risus nullam eget felis eget nunc. Ac feugiat sed lectus vestibulum mattis ullamcorper. Morbi tristique senectus et netus et malesuada fames ac turpis. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Lectus urna duis convallis convallis.
           </p>
-          <Row>
+          <ButtonTray>
             <Button
               variant='contained'
               sx={{
@@ -67,7 +67,7 @@ export default function DetailList({ displayPost, postings, view: { view }, appl
               variant='contained'
               >Apply
             </Button>
-          </Row>
+          </ButtonTray>
         </Column>
       )
     }
