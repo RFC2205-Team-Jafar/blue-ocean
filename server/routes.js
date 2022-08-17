@@ -4,28 +4,16 @@ const controller = require('./controller.js');
 
 const authChecker = () => {};
 
-router.post('/jobs/user', authChecker, (req, res) => {
+router.post('/jobs/adduser', controller.addUser);
 
-});
+router.post('/jobs/addajob', controller.addAJob);
 
-router.post('', authChecker, (req, res) => {
+router.post('/jobs/applyforajob', controller.applyForAJob);
 
-})
+router.put('/jobs/removecandidate', controller.removeCandidate);
 
-router.post('', authChecker, (req, res) => {
+router.put('/jobs/closeposting', controller.closePosting);
 
-});
-
-router.put('', authChecker, (req, res) => {
-
-});
-
-router.put('', authChecker, (req, res) => {
-
-});
-
-router.put('', authChecker, (req, res) => {
-
-});
+router.put('/jobs/verifysalary', controller.verifySalary);
 
 module.exports = router;
