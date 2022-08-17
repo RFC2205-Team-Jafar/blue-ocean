@@ -52,6 +52,7 @@ const App = () => {
 
   return (
     <Router>
+      <GlobalStyle />
       <AuthProvider>
         <AllContext.Provider
           value={{
@@ -73,11 +74,11 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="signUp" element={<SignUp />} />
             <Route path="seeker" element={<Seeker />} >
-              <Route index element={<Feed />} />
+              <Route index element={<Feed view={{view:'seeker'}}/>} />
               <Route path="profile" element={<Profile userType={'seeker'} />} />
             </Route>
             <Route path="recruiter" element={<Recruiter />} >
-              <Route index element={<Feed />} />
+              <Route index element={<Feed view={{view:'recruiter'}} applicants={[1, 2, 3, 4, 5, 6]} />} />
               <Route path="profile" element={<Profile userType={'recruiter'} />} />
               <Route path="postAJob" element={<PostJob />} />
             </Route>
