@@ -6,7 +6,7 @@ import LoginForm from "../components/loginComponents/LoginForm.jsx";
 import { InterviewInviteModal } from "../Google_API/interviewInvite.jsx"
 import PostJob from '../components/PostJob/PostJob.jsx'
 
-// import {fileUpload} from '../components/fileHandlers.jsx'
+import {fileUpload} from '../components/fileHandlers.jsx'
 
 const Home = () => {
 
@@ -22,6 +22,8 @@ const Home = () => {
       <div><Link to="signUp">Create Account</Link></div>
       <div><Link to="seeker">Redirect to Seeker view </Link></div>
       <div><Link to="recruiter">Redirect to Recruiter view </Link></div>
+
+      {fileUpload('Resume')}
 
 
     </>
