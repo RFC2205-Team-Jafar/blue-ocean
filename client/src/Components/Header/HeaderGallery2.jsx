@@ -14,7 +14,7 @@ function srcset(image, size, rows = 1, cols = 1) {
 export default function QuiltedImageList() {
   return (
     <ImageList
-      sx={{ width: 1680, height: 450 }}
+      sx={{ width: "100vw", height: "450" }}
       variant="quilted"
       cols={6}
       rowHeight={121}
@@ -38,9 +38,8 @@ export default function QuiltedImageList() {
 
 const itemData = [
   {
-    img: "https://images.unsplash.com/photo-1616587896846-496b91f59f1f",
+    img: "https://images.unsplash.com/photo-1616587896846-496b91f59f1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=60",
     title: "Man Working",
-
   },
   {
     img: "https://images.unsplash.com/photo-1634087990018-415aeb951215",
@@ -70,5 +69,4 @@ const itemData = [
     title: "Colleagues Talking",
     cols: 2,
   },
-
 ];

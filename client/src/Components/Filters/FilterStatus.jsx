@@ -12,10 +12,7 @@ class FilterStatus extends React.Component {
   }
 
   fetchApplied = () => {
-    axios
-      .get(
-        `localhost:3000/jobs/filter/${user.uuid}?status=${this.state.status}`
-      )
+    axios.get(`localhost:3000/jobs/filter/${user.uuid}?status=${this.state.status}`)
       .then((res) => {
         console.log(res.data);
         this.setState({
