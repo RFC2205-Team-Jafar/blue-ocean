@@ -24,7 +24,7 @@ const Recruiter = () => {
 
       <div> Image Gallery </div>
       <div><Link to="">Active postings</Link></div>
-      <Feed view={{view:'recruiter'}}/>
+      <Feed view={{view:'recruiter'}} applicants={[1, 2, 3, 4, 5, 6]}/>
       <div><Link to="postAJob">Post a new job</Link></div>
       {/* Element from nested route will be rendered into <Outlet /> */}
       <Outlet />
