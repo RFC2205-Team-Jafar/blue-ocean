@@ -15,7 +15,7 @@ import Grid from "@mui/material/Grid";
 // End Material UI
 
 export const InterviewInviteModal = () => {
-
+  console.log(useContext(AllContext));
   const handleSubmit = () => {
     sendInvite(inviteInfo);
     handleClose();
@@ -39,7 +39,7 @@ export const InterviewInviteModal = () => {
 
   return (
     <div>
-      <button onClick={() => handleShow()} >Test</button>
+      <Button variant='contained' onClick={() => handleShow()} >Schedule Interview</Button>
       <ModalDiv block={show ? 'block' : 'none'}>
         <ContentDiv>
           <FormControl>

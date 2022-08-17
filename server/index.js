@@ -38,4 +38,33 @@ app.get("/downloadFile", async (req, res) => {
 
 });
 
+
+function addEvent(event, auth) {
+  return new Promise(function(resolve, reject) {
+      calendar.events.insert({
+          auth: auth,
+          calendarId: 'primary',
+          resource: {
+              'summary': event.eventName,
+              'description': event.description,
+              'start': {
+                  'dateTime': event.startTime,
+                  'timeZone': TIME_ZONE,
+              },
+              'end': {
+                  'dateTime': event.endTime,
+                  'timeZone': TIME_ZONE,
+              },
+          },
+      }, (err, res) => {
+          if (err) {
+              console.log('Rejecting because of error');
+              reject(err);
+          }
+          console.log('Request successful');
+          resolve(res.data);
+      });
+  });
+}
+
 module.exports.app = app;
