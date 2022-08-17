@@ -25,7 +25,7 @@ if (!module.parent) {
 
 app.get("/downloadFile", async (req, res) => {
   var resume = "https://jafar-2022.s3.amazonaws.com/Tripp+(8)+.doc"
-  var searchWords = ["tripp", "home", "Ready", "bites"]
+  var searchWords = "tripp, home, Ready, bites"
 
   try {
     const results = await parseResume(resume, searchWords)

@@ -7,11 +7,11 @@ const authChecker = () => {};
 // middleware that triggers upload.array('file)
 
 
-router.post('/jobs/adduser', controller.addUser); // upload a resume
+router.post('/jobs/adduser', controller.addUser);
 
 router.post('/jobs/addajob', controller.addAJob);
 
-router.post('/jobs/applyforajob', controller.applyForAJob); // upload cover letter
+router.post('/jobs/applyforajob', controller.applyForAJob); // resume parser middleware
 
 router.put('/jobs/removecandidate', controller.removeCandidate);
 
@@ -22,7 +22,7 @@ router.put('/jobs/verifysalary', controller.verifySalary);
 // UPLOAD DOC AND CONVERT TO URL
 
 const multer = require("multer");
-const {s3Upload, parseResume} = require("./s3handler");
+const {s3Upload} = require("./s3handler");
 const storage = multer.memoryStorage();
 
 const upload = multer({
