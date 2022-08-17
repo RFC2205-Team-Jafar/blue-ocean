@@ -11,12 +11,12 @@ import EmbedCalendar from '../Google_API/calendar.jsx'
 import {Page} from '../../public/stylesheets/styles';
 import PostJob from '../components/PostJob/PostJob.jsx'
 import Feed from '../components/Feed/Feed.jsx';
+import { InterviewInviteModal } from '../Google_API/interviewInvite.jsx';
 
 const Recruiter = () => {
   return (
+    <div>
     <Page>
-      <h1>Recruiter View </h1>
-
       <h1>Site logo  +  Recruiter  Account</h1>
 
       {/* Profile shall be placed in a modal */}
@@ -33,6 +33,7 @@ const Recruiter = () => {
 
 
     </Page>
+    </div>
   )
 };
 
