@@ -29,7 +29,6 @@ export default function ActiveJob({ handleClick }) {
         <PostingLocation>Job Location</PostingLocation>
         <ButtonTray>
           <Button>Close Posting</Button>
-          <Button>Remove Posting</Button>
         </ButtonTray>
       </PostingHeader>
       <PostingBody>
