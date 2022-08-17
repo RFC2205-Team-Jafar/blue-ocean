@@ -82,7 +82,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Industry:
-          <Select onChange={this.setIndustry}>
+          <Select onChange={this.setIndustry} value="">
             <MenuItem value="Art"> Art </MenuItem>
             <MenuItem value="Aviation"> Aviation </MenuItem>
             <MenuItem value="Construction"> Construction </MenuItem>
@@ -97,7 +97,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Site:
-          <Select onChange={this.setSite}>
+          <Select onChange={this.setSite} value="">
             <MenuItem value="Both"> Both </MenuItem>
             <MenuItem value="Remote"> Remote </MenuItem>
             <MenuItem value="On-Site"> On-Site </MenuItem>
@@ -106,7 +106,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Employment Type:
-          <Select onChange={this.setEmployment}>
+          <Select onChange={this.setEmployment} value="">
             <MenuItem value="Part-Time"> Part-Time </MenuItem>
             <MenuItem value="Full-Time"> Full-Time </MenuItem>
             <MenuItem value="Contract"> Contract </MenuItem>
@@ -118,7 +118,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Max Distance:
-          <Select onChange={this.setMaxDist}>
+          <Select onChange={this.setMaxDist} value="">
             <MenuItem value="10"> Within 10 miles </MenuItem>
             <MenuItem value="15"> Within 15 miles </MenuItem>
             <MenuItem value="25"> Within 25 miles </MenuItem>
