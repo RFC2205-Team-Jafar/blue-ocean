@@ -10,6 +10,30 @@ import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
 /*========== EXPORTS ==========*/
 export default function DetailJob({ targetPost }) {
 
+  /*
+  NOTE:
+   - if view has applied to this job and interview date has passed
+    - render verify salary question using routes:
+      PUT request '/jobs/verifysalary'
+      {
+        "seeker_uuid": "oSl2HNei1PTAsG3TijrfidKJ6dI2",
+        "listing_id": 99,
+        "didReceivePromisedPay": false
+      }
+  */
+ /*
+  NOTE:
+   - POST request to '/jobs/applyajob'
+      {
+        "seeker_uuid": "oSl2HNei1PTAsG3TijrfidKJ6dI2",
+        "listing_id": 93,
+        "coverletter_url": "someCoverLetterUrl",
+        "resume_Url": "soemResumeUrl",
+        "requested_keywords": "react, postgres"
+      }
+    requested_keywords should be sent at as string
+  */
+
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
