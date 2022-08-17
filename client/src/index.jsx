@@ -11,16 +11,10 @@ import SignUp from './pages/SignUp.js';
 import Seeker from './pages/Seeker';
 import Profile from './components/Profile/Profile.js';
 import Feed from './components/Feed/Feed.jsx';
-
-// import JobsForSeeker from './components/TestComponents/JobsForSeeker.js';
 import Recruiter from './pages/Recruiter';
-// import RecruiterProfile from './components/TestComponents/RecruiterProfile.js';
-// import ActivePostings from './components/TestComponents/ActivePostings.js';
-// import NewJob from './components/TestComponents/NewJob.js';
 import PostJob from './components/PostJob/PostJob.jsx'
 import { GlobalStyle } from '../public/stylesheets/styles';
 import { AuthProvider } from './components/AuthContext.jsx';
-// Grabs user location when page is first loaded
 import userLocation from './Google_API/userLocation.jsx'
 
 export const AllContext = createContext();
@@ -41,13 +35,13 @@ const App = () => {
   const [coord_lat, setCoord_lat] = useState();
   const [coord_long, setCoord_long] = useState();
 
-  // const [location, setLocation] = useState({}); // ASK nick if still need this.
+  const [location, setLocation] = useState({}); // ASK nick if still need this.
   const [resumeUrl, setResumeUrl] = useState('');
   const [coverLetterUrl, setCoverLetterUrl] = useState('');
   // const [uploaded, setUploaded] = useState(false);
   // Grabs user location asynchronously when mounted
   useEffect(() => {
-    // userLocation().then(data => setLocation(data));
+    userLocation().then(data => setLocation(data));
   }, [])
 
   return (
@@ -56,7 +50,7 @@ const App = () => {
       <AuthProvider>
         <AllContext.Provider
           value={{
-            // location, setLocation,
+            location, setLocation,
             email, setEmail,
             firstName, setFirstName,
             lastName, setLastName,
@@ -82,14 +76,7 @@ const App = () => {
               <Route path="profile" element={<Profile userType={'recruiter'} />} />
               <Route path="postAJob" element={<PostJob />} />
             </Route>
-
-            {/* CONFIRM AND DELETE  */}
-            {/* <Route path="signUp" element={<SignUp />} />
-            <Route path="seeker" element={<Seeker />} />
-            <Route path="recruiter" element={<Recruiter />} /> */}
-
           </Routes>
-          {/* </GlobalStyle> */}
         </AllContext.Provider>
       </AuthProvider>
     </Router>
