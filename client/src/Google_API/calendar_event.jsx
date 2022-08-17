@@ -4,8 +4,8 @@
 // stored credentials.
 // SET UP GOOGLE ENVIRONMENT
 var gapi = window.gapi;
-var CLIENT_ID = ""; //ANCHOR Add CLIENT ID
-var API_KEY = ""; //ANCHOR Add API Key
+var CLIENT_ID = "288705266674-tj7qlfqv02t9r6jqi8opqbv6c5fmhurd.apps.googleusercontent.com"; //ANCHOR Add CLIENT ID
+var API_KEY = "[API_KEY]"; //ANCHOR Add API Key
 const DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
 ];
@@ -57,7 +57,7 @@ const sendInvite = function (data) {
             timeZone: "America/Chicago",
           },
           attendees: [
-            { email: "" }, //ANCHOR Add email
+            { email: "nicholas.kempkes@gmail.com" }, //ANCHOR Add email
           ],
           reminders: {
             useDefault: false,
