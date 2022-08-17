@@ -37,7 +37,7 @@ const  signOn = async (req, res) => {
                 // console.log(listings.rows[0]);
                 let resData = {
                     ...user.rows[0],
-                    listings: listings.rows[0]
+                    listings: listings.rows[0].json_agg
                     //I forget what else is suppose to be returned during the sign in of recruiter
                     // Is it just the recruiters associated job listings? 
                 }
@@ -63,18 +63,33 @@ const filter = async (req, res) => {
     let maxDistance = req.query.maxDistance || 50;
     let employmentType= req.query.employmentType || "Full Time";
 
-    console.log(typeof isRemote);
-
     try {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
     
         if(isSeeker.rows[0].exists) {
-            const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance);
-            // console.log(filteredJobs)
-            res.status(200).send(filteredJobs.rows[0].json_agg)
+            try {
+
+                const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance);
+
+                res.status(200).send(filteredJobs.rows[0].json_agg)
+            } catch  (err) {
+
+                console.log(err);
+                res.sendStatus(500)
+            }
         } else if(isRecruiter.rows[0].exists) {
-            
+            try {
+
+                //kind of faking functionality right now until we figure out how exactly we want to filter recruiter results
+                const filteredListings = await model.listings(uuid);
+
+                res.status(200).send(filteredListings.rows[0].json_agg)
+            } catch  (err) {
+
+                console.log(err);
+                res.sendStatus(500)
+            }
         } else {
             res.sendStatus(500);
         }
