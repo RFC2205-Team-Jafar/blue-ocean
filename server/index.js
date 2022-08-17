@@ -12,6 +12,7 @@ const {s3Upload, parseResume} = require("./s3handler");
 const app = express();
 const routes = require('./routes.js');
 // middlewares here
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/public")));
 app.use(cors({
   origin: '*',
@@ -45,6 +46,7 @@ app.post("/uploadFile", upload.array("file"), async (req, res) => {
     console.log(err);
   }
 });
+
 
 // app.get("/downloadFile", async (req, res) => {
 
