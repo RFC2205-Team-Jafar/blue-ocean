@@ -11,7 +11,7 @@ function srcset(image, size, rows = 1, cols = 1) {
   };
 }
 
-export default function QuiltedImageList() {
+export default function HeaderGallery() {
   return (
     <ImageList
       sx={{ width: "100vw", height: "450" }}
@@ -38,7 +38,7 @@ export default function QuiltedImageList() {
 
 const itemData = [
   {
-    img: "https://images.unsplash.com/photo-1616587896846-496b91f59f1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=60",
+    img: "https://images.unsplash.com/photo-1616587896846-496b91f59f1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=60",
     title: "Man Working",
   },
   {
@@ -52,7 +52,7 @@ const itemData = [
     cols: 2,
   },
   {
-    img: "https://images.unsplash.com/photo-1526657782461-9fe13402a841",
+    img: "https://images.unsplash.com/photo-1526657782461-9fe13402a841?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHdvcmtwbGFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=200&q=60",
     title: "Laptop",
   },
   {
