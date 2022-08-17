@@ -5,7 +5,7 @@ const client = require('./db.js');
 module.exports = {
   addUser: async (req, res) => {
     const user = req.body; // expect body to contain full user info
-    if (user.userType === 'seeker') {
+    if (user.account_type === 'seeker') {
       try {
         await model.addSeeker(user);
         await model.addToFirebase(user);
@@ -13,7 +13,7 @@ module.exports = {
       } catch(e) {
         console.log('eeeeee', e);
       }
-    } else if (user.userType === 'recruiter') {
+    } else if (user.account_type === 'recruiter') {
       try {
         await model.addRecruiter(user);
         await model.addToFirebase(user);
