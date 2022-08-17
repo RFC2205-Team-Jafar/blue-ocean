@@ -5,11 +5,12 @@ import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column } from '../../../public/stylesheets/styles.js';
-import Post from './Post.jsx';
+import PostedJob from './PostedJob.jsx';
+import ActiveJob from './ActiveJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings }) {
+export default function PostList({ handleClick, postings, view: { view } }) {
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
@@ -30,7 +31,9 @@ export default function PostList({ handleClick, postings }) {
     - should conditionally render buttons specific to the parent page
     - on Click -> sends the clicked posting information to the Details listing
     */
-    if (postings) return postings.map(post => <Post handleClick={handleClick}/>)
+    if (postings && view === 'seeker')return postings.map(post => <PostedJob handleClick={handleClick}/>)
+
+    if (postings && view === 'recruiter') return postings.map(post => <ActiveJob handleClick={handleClick}/>)
   }
 
 
@@ -49,7 +52,7 @@ return (
 const ListSection = styled(Column)`
   margin: 10px;
   width: 48%;
-  height: 800px;
+  height: 900px;
   overflow: scroll;
 
   &::-webkit-scrollbar {
