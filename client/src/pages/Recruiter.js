@@ -1,20 +1,25 @@
 /*========== EXTERNAL MODULES ==========*/
 
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import EmbedCalendar from "../Google_API/calendar.jsx";
+import EmbedCalendar from '../Google_API/calendar.jsx';
+
 
 /*========== INTERNAL MODULES ==========*/
 import { Page } from "../../public/stylesheets/styles";
 import PostJob from "../components/PostJob/PostJob.jsx";
 import Feed from "../components/Feed/Feed.jsx";
 import HeaderGallery from "../Components/Header/ImageGallery.jsx";
+import { AllContext } from '../index.jsx';
 
 const Recruiter = () => {
+
+  const { firstName } = useContext(AllContext);
+
   return (
     <Page>
-      <h1>Recruiter View </h1>
-      <h1>Site logo  +  Recruiter  Account</h1>
+      <h1>Site logo</h1>
+      <h1>Welcome back, Recruiter: {firstName}</h1>
       <HeaderGallery />
 
       <div><Link to="profile" >Profile</Link></div>
@@ -23,12 +28,14 @@ const Recruiter = () => {
       <Outlet />
 
       <Link to="/"> Back to Home </Link>
-      <EmbedCalendar/>
+      <EmbedCalendar />
     </Page>
   );
 };
 
 /*========== EXPORTS ==========*/
 export default Recruiter;
+
+
 
 /*========== STYLES ==========*/
