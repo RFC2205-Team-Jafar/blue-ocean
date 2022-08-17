@@ -13,22 +13,15 @@ import FilterStatus from "../Components/Filters/FilterStatus.jsx";
 const Seeker = () => {
   return (
     <>
-      <h1>Site logo + Seeker Account</h1>
+      <h1>Seeker View </h1>
+      <h1>Site logo  +  Seeker  Account</h1>
+      <HeaderGallery/>
 
-      {/* Profile shall be placed in a modal */}
-      <div>
-        <Link to="profile">Profile</Link>
-      </div>
-
-      <HeaderGallery />
-      <div>
-        <Link to="">Jobs for you</Link>
-      </div>
-      <FilterFunctions />
-      <FilterStatus />
-      {/* Element from nested route will be rendered into <Outlet /> */}
+      <div><Link to="profile" >Profile</Link></div>
+      <div><Link to="">Jobs for you</Link></div>
+      <FilterFunctions/>
+      <FilterStatus/>
       <Outlet />
-      <Feed />
 
       <Link to="/">Back to Home</Link>
       <EmbedCalendar />
