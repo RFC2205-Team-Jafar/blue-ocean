@@ -64,7 +64,7 @@ return (
 
 /*========== STYLES ==========*/
 const DetailSection = styled(Column)`
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
