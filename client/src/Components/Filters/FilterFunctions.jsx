@@ -74,9 +74,8 @@ class FilterFunctions extends React.Component {
   }
 
   fetchFilteredListing = () => {
-    axios
-      .get(
-        `localhost:3000/jobs/filter/${user.uuid}?industry=${this.state.industry}&maxDistance=${this.state.maxDistance}&minDistance=${this.state.minDistance}&isRemote=${this.state.isRemote}`
+    axios.get(
+        `localhost:3000/jobs/:uuid/filter/?industry=${this.state.industry}&maxDistance=${this.state.maxDistance}&minDistance=${this.state.minDistance}&isRemote=${this.state.isRemote}`
       )
       .then(console.log(res.data));
   };
@@ -87,7 +86,7 @@ class FilterFunctions extends React.Component {
         <SalarySliderSteps onChange={this.setSalary} />
         <InputLabel>
           {" "}
-          Industry:
+          Industry: 
           <Select onChange={this.setIndustry}>
             <MenuItem value="Art"> Art </MenuItem>
             <MenuItem value="Aviation"> Aviation </MenuItem>
