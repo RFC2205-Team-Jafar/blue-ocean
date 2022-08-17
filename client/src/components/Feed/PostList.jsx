@@ -49,7 +49,7 @@ return (
 const ListSection = styled(Column)`
   margin: 10px;
   width: 48%;
-  height: 800px;
+  height: 900px;
   overflow: scroll;
 
   &::-webkit-scrollbar {
