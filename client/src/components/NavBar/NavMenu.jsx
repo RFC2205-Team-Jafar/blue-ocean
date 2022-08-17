@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 /*========== INTERNAL MODULES ==========*/
 import { Row } from '../../../public/stylesheets/styles.js';
@@ -26,7 +28,14 @@ export default function NavMenu({}) {
 
   /*----- RENDERER -----*/
   // return <Img src={logo}/>
-  return <Logo src={'../../images/logoipsum.png'}/>
+  return (
+    <Button>
+      {/* <Menu>
+        <MenuItem>
+        </MenuItem>
+      </Menu> */}
+    </Button>
+  )
 }
 
 

@@ -1,6 +1,7 @@
 /*========== EXTERNAL MODULES ==========*/
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 
 /*========== INTERNAL MODULES ==========*/
@@ -30,7 +31,9 @@ export default function NavigationBar({view, applicants}) {
   return (
     <NavBar>
       <NavLogo/>
-      <LoginForm />
+      <Button>
+        <LoginForm />
+      </Button>
     </NavBar>
   )
 }
@@ -47,7 +50,7 @@ const NavBar = styled(AppBar)({
   height: '4em',
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'space-evenly',
+  justifyContent: 'space-between',
   alignItems: 'center',
   '&:hover': {
     color: '#fff',

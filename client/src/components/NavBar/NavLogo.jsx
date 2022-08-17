@@ -36,4 +36,5 @@ export default function NavLogo({}) {
 /*========== STYLES ==========*/
 const Logo = styled.img`
   width: 250px;
+  margin: 10px;
 `;
