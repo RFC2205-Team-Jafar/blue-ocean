@@ -1,5 +1,6 @@
 /*========== EXTERNAL MODULES ==========*/
 import styled, {createGlobalStyle} from 'styled-components';
+import AppBar from '@mui/material/AppBar';
 
 /*========== INTERNAL MODULES ==========*/
 
@@ -16,7 +17,7 @@ import styled, {createGlobalStyle} from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: #414141;
+  /* background-color: #414141; */
 }
 `;
 
@@ -55,6 +56,15 @@ export const StyledHeader = styled.header`
   background-color: #ebfbff;
   padding: 40px 0;
 `;
+
+export const NavBar = styled(AppBar)({
+  backgroundColor: 'transparent',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor:'#f44336',
+    borderColor:'#f44336',
+  },
+});
 
 export const ImgGalleryContainer = styled.div`
   width:33%
@@ -108,6 +118,12 @@ export const Row = styled.div`
   flex-direction: row;
   align-items: center;
   justify-items: center;
+`;
+
+export const ButtonTray = styled(Row)`
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 `;
 
 export const Label = styled.label`
