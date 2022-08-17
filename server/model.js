@@ -29,7 +29,7 @@ const getJobsNoAuth = () => {
 
 
 const getJobs = (industry, isRemote, employmentType, maxDistance) => {
-    console.log("inside models", isRemote);
+    // console.log("inside models", isRemote);
     if(isRemote == 2){
         // console.log("remote is not 1 or 0");    
         return client.query(`
