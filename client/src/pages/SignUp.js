@@ -1,22 +1,26 @@
 import React, {useEffect, useState} from 'react';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
-import {auth, registerWithEmailAndPassword, signInWithGoogle} from "../components/firebase.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import {useAuth} from '../components/AuthContext.jsx';
+import geoConverter from '../Google_API/geolocation.jsx';
+
+
 
 const SignUp = () => {
-
+  // console.log('useAuth: ', useAuth);
   //---------------------- State Hooks --------------------------
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [user, error] = useAuthState(auth);
   const [accountType, setAccountType] = useState("");
   const [preferredIndustry, setPreferredIndustry] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [company, setCompany] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   // const history = useHistory();
+  const {signup} = useAuth();
+  // console.log('signup: ', signup);
 
   //---------------------- Embedded Functions -------------------
   const register = () => {
@@ -28,21 +32,43 @@ const SignUp = () => {
     if (accountType === "seeker" && !zipCode)  alert ("Please enter a zip code");
     if (accountType === "recruiter" && !company)  alert ("Please enter a company");
     const name = firstName + " " + lastName;
-    registerWithEmailAndPassword(name, email, password)
-      .then(user => {
-        const uid = user.uid;
+    var lat;
+    var long;
+    geoConverter(zipCode)
+    .then(geos => {
+      lat = geos.lat;
+      long = geos.lng;
+    })
+    .catch(err => {console.log('lat long err: ', err)})
+    setLoading(true);
+    signup(email, password)
+      .then(res => {
+        const uid = res.user.uid;
+        // console.log('res: ', res);
         const body = {
-          firstName: firstName,
-          lastName: lastName,
+          user_uuid: uid,
+          first_name: firstName,
+          last_name: lastName,
           email: email,
-          password: password,
-          accountType: accountType,
-          preferredIndustry: preferredIndustry,
+          account_type: accountType,
+          pref_industry: preferredIndustry,
           zipCode: zipCode,
-          company: company,
+          coord_lat: lat,
+          coord_long: long,
+          // resume_url: ,
+          company_name: company
+        };
+        // console.log('body: ', body)
+      })
+      .then(() => setLoading(false))
+      .then(() => {
+        if (accountType === "seeker") {
+          navigate("/seeker", {replace: true});
+        } else {
+          navigate("/recruiter", {replace: true});
         }
       })
-      .catch(err => alert("There was an error creating your account: ", err.message))
+      .catch(err => console.log("There was an error creating your account: ", err))
   };
 
   //-------------------- Returned DOM --------------------------
@@ -102,9 +128,9 @@ const SignUp = () => {
               {/* <option value=""></option> */}
             </select>
           <h2>Zip Code</h2>
-            <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} placeholder="Zip Code" />
+            <input type="text" value={zipCode} onChange={(e) => setZipCode(Number(e.target.value))} placeholder="Zip Code" />
           <button>Resume Upload Here</button>
-          <button onClick={register}>Create Account</button>
+          <button onClick={register} disabled={loading}>Create Account</button>
         </div>
       </div>
     )
@@ -134,7 +160,7 @@ const SignUp = () => {
           <h2>Company</h2>
             <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
         </div>
-        <button onClick={register}>Create Account</button>
+        <button onClick={register} disabled={loading}>Create Account</button>
       </div>
     )
   }
