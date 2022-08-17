@@ -16,7 +16,7 @@ import styled, {createGlobalStyle} from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: #414141;
+  /* background-color: #414141; */
 }
 `;
 
