@@ -19,7 +19,6 @@ const Home = () => {
       <HeaderGallery />
       <FilterFunctions />
       <h1> Jobs (newest 20) </h1>
-      <Feed view={{view:'seeker'}}/>
       <div>
         <Link to="signUp">Create Account</Link>
       </div>
@@ -29,6 +28,7 @@ const Home = () => {
       <div>
         <Link to="recruiter">Redirect to Recruiter view </Link>
       </div>
+      <Feed view={{view:'seeker'}}/>
 
       {fileUpload("Resume")}
     </>
