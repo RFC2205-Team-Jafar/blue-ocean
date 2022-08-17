@@ -7,6 +7,7 @@ import { InterviewInviteModal } from "../Google_API/interviewInvite.jsx"
 import PostJob from '../components/PostJob/PostJob.jsx'
 
 
+
 const Home = () => {
   return (
 
@@ -17,6 +18,7 @@ const Home = () => {
 
       <LoginForm />
       <Link to="signUp">Create Account</Link>
+      <InterviewInviteModal/>
       <div><Link to="/seeker">Redirect to Seeker view </Link></div>
       <div><Link to="/recruiter">Redirect to Recruiter view </Link></div>
       <h1> Image Gallery </h1>
