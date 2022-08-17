@@ -1,16 +1,18 @@
-// Converts provided zipcode over to latitude and longitude that will be used elsewhere for calculating distance between locations.
 import React, {useEffect} from 'react';
 import axios from 'axios';
 import ReactDOM from "react-dom";
 
+// Async function that converts zipcode into latitude and longitude with Google API
 const geoConverter = function(zipcode) {
-  let token = '';
-  let getGeo = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${token}`;
-
+  let token = ''; // ANCHOR add Google API KEY
+  let getGeo = `https://maps.googleapis.com/maps/api/geocode/json?components=country:US|address=${zipcode}&key=${token}`;
   const geoConverter = axios.post(getGeo);
   return geoConverter.then(response => {
     const geos = response.data.results[0].geometry.location;
     return geos;
+  })
+  .catch(err => {
+    console.warn(err)
   });
 }
 
