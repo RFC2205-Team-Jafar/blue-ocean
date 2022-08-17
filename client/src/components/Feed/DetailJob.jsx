@@ -30,7 +30,7 @@ export default function DetailJob({ targetPost }) {
 
   /*----- RENDERER -----*/
   return (
-    <Column style={{alignItems: 'flex-start'}}>
+    <JobDetail>
       <DetailHeader>
       <JobTitle>Job Title</JobTitle>
       <JobLocation>Job Location</JobLocation>
@@ -58,7 +58,7 @@ export default function DetailJob({ targetPost }) {
           Morbi tincidunt augue interdum velit. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. In eu mi bibendum neque egestas. Erat pellentesque adipiscing commodo elit at imperdiet dui. Massa tincidunt nunc pulvinar sapien et ligula. Platea dictumst quisque sagittis purus sit amet volutpat. Quam quisque id diam vel quam elementum pulvinar etiam non. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Ipsum nunc aliquet bibendum enim facilisis. Ullamcorper sit amet risus nullam eget felis eget nunc. Ac feugiat sed lectus vestibulum mattis ullamcorper. Morbi tristique senectus et netus et malesuada fames ac turpis. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Lectus urna duis convallis convallis.
         </p>
       </DetailBody>
-    </Column>
+    </JobDetail>
   )
 }
 
@@ -81,6 +81,14 @@ const DetailBody = styled(Column)`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const JobDetail = styled(Column)`
+  align-items: flex-start;
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
 `;
 
 const JobTitle = styled(Row)`

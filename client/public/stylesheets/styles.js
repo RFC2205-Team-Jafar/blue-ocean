@@ -1,5 +1,6 @@
 /*========== EXTERNAL MODULES ==========*/
 import styled, {createGlobalStyle} from 'styled-components';
+import AppBar from '@mui/material/AppBar';
 
 /*========== INTERNAL MODULES ==========*/
 
@@ -60,6 +61,15 @@ export const modalBG = styled.div`
 export const Header = styled.header`
 
 `;
+
+export const NavBar = styled(AppBar)({
+  backgroundColor: 'transparent',
+  '&:hover': {
+    color: '#fff',
+    backgroundColor:'#f44336',
+    borderColor:'#f44336',
+  },
+});
 
 export const Footer = styled.footer`
 
