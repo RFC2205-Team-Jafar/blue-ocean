@@ -8,7 +8,7 @@ import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailItem({ applicant }) {
+export default function DetailApplicant({ applicant }) {
 
   /*----- STATE HOOKS -----*/
   // const [] = useState();
