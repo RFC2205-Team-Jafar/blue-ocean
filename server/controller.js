@@ -32,9 +32,10 @@ const  signOn = async (req, res) => {
         try {
             const user = await model.getUser(uuid, "recruiter");
             const listings = await model.listings(uuid);
+            // console.log(listings.rows[0]);
             let resData = {
                 ...user.rows[0],
-                listings: listings.rows[0].json_agg
+                listings: listings.rows[0]
                 //I forget what else is suppose to be returned during the sign in of recruiter
                 // Is it just the recruiters associated job listings? 
             }
@@ -53,7 +54,17 @@ const filter = (req, res) => {
 }
 
 const noAuth = (req, res) => {
-    
+    let lat = req.query.lat || 0
+    let long = req.query.lng || 0
+
+    model.getJobsNoAuth()
+    .then((success) => {
+        res.status(200).send(success.rows)
+    })
+    .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    })
 }
 
 const applied = (req, res) => {

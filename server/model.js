@@ -17,6 +17,17 @@ const getUser = (uuid, userType) => {
 }
 
 
+const getJobsNoAuth = () => {
+        return client.query(`
+            SELECT * 
+            FROM "Listings"
+            ORDER BY
+                listing_id DESC
+            LIMIT 20
+        `)
+}
+
+
 const getJobs = (industry, isRemote, employmentType, maxDistance) => {
     // console.log("industry: ",industry)
     if(isRemote >= 2){
@@ -48,17 +59,6 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
 
 /*-------------Helper Queries---------------*/
 
-// const appliedJobs = (uuid) => {
-//     return client.query(`
-//     SELECT json_agg(applications)
-//     FROM (
-//         SELECT * 
-//         FROM "SubmittedApplications"
-//         WHERE seeker_uuid = '${uuid}' 
-//     ) as applications
-//     `)
-// }
-
 const appliedJobs = (uuid) => {
     return client.query(`
     SELECT json_agg(listings)
@@ -82,6 +82,18 @@ const listings = (uuid) => {
     `)
 }
 
+// IN PROGRESS NEEDS TO RETURN ALL APPLICANTS FOR EACH LISTING AS WELL
+// const listings = (uuid) => {
+//     return client.query(`
+//         SELECT json_agg(listing)
+//         FROM (
+//             SELECT *
+//             FROM "Listings"
+//             WHERE recruiter_uuid = '${uuid}'
+//         ) as listing
+//     `)
+// }
+
 const isSeeker = (uuid) => {
     return client.query(`
     SELECT exists 
@@ -104,5 +116,6 @@ module.exports = {
     getUser,
     appliedJobs,
     listings,
-    getJobs
+    getJobs,
+    getJobsNoAuth
 }
