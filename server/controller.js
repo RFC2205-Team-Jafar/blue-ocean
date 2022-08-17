@@ -1,6 +1,6 @@
 const model = require('./model.js');
 const client = require('./db.js');
-
+const { parseResume } = require('./s3handler.js')
 
 module.exports = {
   addUser: async (req, res) => {
@@ -35,8 +35,11 @@ module.exports = {
 
   // WORKING
   applyForAJob: async (req, res) => {
-    const application = req.body;
+    let application = req.body;
+    let { resume_url, requested_keywords } = req.body;
     try {
+      let matched = await parseResume(resume_url, requested_keywords);
+      application.matched_keywords =  matched;
       await model.applyForAJob(application);
       res.sendStatus(201);
     } catch(e) {

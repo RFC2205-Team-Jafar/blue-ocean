@@ -19,6 +19,7 @@ exports.s3Upload = async (file) => {
 
 }
 
+// searchFor is a string from recruiter's requested keywords
 exports.parseResume = async(resume, searchFor) => {
 
   var split = resume.split('.com/')
@@ -35,7 +36,7 @@ exports.parseResume = async(resume, searchFor) => {
   const buf = JSON.stringify(Body);
   const parsed = JSON.parse(buf);
   const searchString = parsed.data.join('');
-  const searchWords = searchFor.split(', ')
+  const searchWords = searchFor.split(', ');
   const found = [];
 
   for(var i = 0; i < searchWords.length; i++){
@@ -45,7 +46,6 @@ exports.parseResume = async(resume, searchFor) => {
     let word = wordData.data.join('')
     if(searchString.includes(word)){
       found.push(searchWords[i])
-      console.log(found)
     }
   }
 

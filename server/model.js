@@ -26,7 +26,6 @@ module.exports = {
   },
 
   applyForAJob: (application) => {
-    // what is matched_keywords??????? from resume parser
     const { seeker_uuid, listing_id, coverletter_url, matched_keywords } = application;
     const queryString = `INSERT INTO "SubmittedApplications"
                             (seeker_uuid, listing_id, coverletter_url, matched_keywords)
