@@ -4,7 +4,7 @@ import axios from 'axios';
 import ReactDOM from "react-dom";
 
 const geoConverter = function(zipcode) {
-  let token = ' [API_KEY]';
+  let token = '';
   let getGeo = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${token}`;
 
   const geoConverter = axios.post(getGeo);

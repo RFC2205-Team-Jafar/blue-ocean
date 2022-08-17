@@ -54,16 +54,16 @@ export default function PostJob() {
         return
       }
     }
-    /*
-    TODO:
-    - add conversion to Laat and long
-    - attach Lat and Long to state as coord_lat and coord_long
-    - remove zipcode property from state object
-    */
+
     if (jobPosting.zipcode) {
       const zipcode = Number(jobPosting.zipcode)
       geoConverter(zipcode)
-      .then(latLong => alert(latLong))
+      .then(latLong => setJobPosting(prev => ({
+        ...prev,
+        coord_lat: latLong.lat,
+        coord_long: latLong.lng
+      })))
+      .catch(err => console.error(err))
     }
 
     if (jobPosting.job_type && jobPosting.job_type === 'remote') {
@@ -112,7 +112,7 @@ export default function PostJob() {
       <Label>Company Zipcode
         <Input
           type='text'
-          placeholder='90210'
+          placeholder='10001'
           name='zipcode'
           onChange={handleChange}
           >
