@@ -230,7 +230,6 @@ module.exports = {
       console.log('eeeeee', e);
     }
   },
-<<<<<<< HEAD
 
 
   changeProfile: async (req, res) => {
