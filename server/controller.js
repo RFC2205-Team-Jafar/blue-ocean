@@ -8,6 +8,7 @@ module.exports = {
     if (user.userType === 'seeker') {
       try {
         await model.addSeeker(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);
@@ -15,6 +16,7 @@ module.exports = {
     } else if (user.userType === 'recruiter') {
       try {
         await model.addRecruiter(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);
