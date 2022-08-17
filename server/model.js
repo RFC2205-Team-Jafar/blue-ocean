@@ -19,7 +19,7 @@ const getUser = (uuid, userType) => {
 
 const getJobsNoAuth = () => {
         return client.query(`
-            SELECT * 
+            SELECT *
             FROM "Listings"
             ORDER BY
                 listing_id DESC
@@ -28,39 +28,45 @@ const getJobsNoAuth = () => {
 }
 
 
-const getJobs = (industry, isRemote, employmentType, maxDistance) => {
-    // console.log("inside models", isRemote);
+const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
+    // console.log("inside models", minSalary);
     if(isRemote == 2){
-        // console.log("remote is not 1 or 0");    
+        // console.log("remote is not 1 or 0");
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
-                SELECT * 
+                SELECT *
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     } else if(isRemote == 1) {
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
-                SELECT * 
+                SELECT *
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
                 AND is_remote = true
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     } else if(isRemote == 0) {
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
-                SELECT * 
+                SELECT *
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
                 AND is_remote = false
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     }
@@ -75,8 +81,8 @@ const appliedJobs = (uuid) => {
     SELECT json_agg(listings)
     FROM (
         SELECT *
-        FROM "Listings" 
-        WHERE listing_id 
+        FROM "Listings"
+        WHERE listing_id
         IN (SELECT listing_id FROM "SubmittedApplications" WHERE seeker_uuid = '${uuid}')
     ) as listings
     `)
@@ -86,9 +92,9 @@ const listings = (uuid) => {
     return client.query(`
     SELECT json_agg(listings)
     FROM (
-        SELECT * 
+        SELECT *
         FROM "Listings"
-        WHERE recruiter_uuid = '${uuid}' 
+        WHERE recruiter_uuid = '${uuid}'
     ) as listings
     `)
 }
@@ -107,7 +113,7 @@ const listings = (uuid) => {
 
 const isSeeker = (uuid) => {
     return client.query(`
-    SELECT exists 
+    SELECT exists
         (SELECT 1 FROM "Seekers" WHERE user_uuid = '${uuid}'  LIMIT 1);
     `)
 }
@@ -115,18 +121,13 @@ const isSeeker = (uuid) => {
 
 const isRecruiter = (uuid) => {
     return client.query(`
-    SELECT exists 
+    SELECT exists
         (SELECT 1 FROM "Recruiters" WHERE user_uuid = '${uuid}'  LIMIT 1);
     `)
 }
 
 
 module.exports = {
-  findUserType: (uuid) => {
-    const queryString = `SELECT account_type FROM "Firebase" WHERE user_uuid = ${uuid}`;
-    return client.query(queryString);
-  },
-
   addSeeker: (seeker) => {
     const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
@@ -141,9 +142,9 @@ module.exports = {
   },
 
   addToFirebase: (user) => {
-    const { userType, user_uuid } = user;
+    const { account_type, user_uuid } = user;
     const queryString = `INSERT INTO "Firebase"
-                         VALUES ('${userType}', '${user_uuid}')`;
+                         VALUES ('${account_type}', '${user_uuid}')`;
     return client,query(queryString);
   },
 
