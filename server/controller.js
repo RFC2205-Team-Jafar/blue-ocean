@@ -13,20 +13,20 @@ const  signOn = async (req, res) => {
         let isRemote = 2;
         let maxDistance = 50;
         let employmentType= "Full Time";
-    
+
         // console.log(isSeeker.rows[0].exists);
         if(isSeeker.rows[0].exists) {
             try {
                 const user = await model.getUser(uuid, "seeker");
                 const appliedJobs = await model.appliedJobs(uuid)
                 const defaultJobs = await model.getJobs(user.rows[0].pref_industry,isRemote,employmentType,maxDistance);
-    
+
                 let resData = {
                     ...user.rows[0],
                     appliedJobs: appliedJobs.rows[0].json_agg,
                     defaultJobs: defaultJobs.rows[0].json_agg
                 }
-    
+
                 res.status(200).send(resData);
             } catch (error) {
                 console.log(error);
@@ -41,9 +41,9 @@ const  signOn = async (req, res) => {
                     ...user.rows[0],
                     listings: listings.rows[0].json_agg
                     //I forget what else is suppose to be returned during the sign in of recruiter
-                    // Is it just the recruiters associated job listings? 
+                    // Is it just the recruiters associated job listings?
                 }
-    
+
                 res.status(200).send(resData);
             } catch {
                 res.sendStatus(500);
@@ -68,7 +68,7 @@ const filter = async (req, res) => {
     try {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
-    
+
         if(isSeeker.rows[0].exists) {
             try {
 
@@ -116,7 +116,7 @@ const noAuth = (req, res) => {
 }
 
 const applied = (req, res) => {
-    
+
 }
 
 
@@ -155,6 +155,7 @@ module.exports = {
     if (user.userType === 'seeker') {
       try {
         await model.addSeeker(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);
@@ -162,6 +163,7 @@ module.exports = {
     } else if (user.userType === 'recruiter') {
       try {
         await model.addRecruiter(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);
