@@ -69,6 +69,19 @@ export const Section = styled.section`
 
 `;
 
+export const FeedSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  background-color: #999999;
+  overflow: scroll;
+  border-radius: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 export const Page = styled.div`
   display:flex;
   flex-direction: column;
