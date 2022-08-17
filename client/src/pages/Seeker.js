@@ -1,7 +1,11 @@
+/*========== EXTERNAL MODULES ==========*/
 import React, { useContext } from 'react';
 import { Link, Outlet } from "react-router-dom";
+
+/*========== INTERNAL MODULES ==========*/
 import { AllContext } from '../index.jsx';
 import EmbedCalendar from '../Google_API/calendar.jsx'
+import Feed from '../components/Feed/Feed.jsx';
 
 
 const Seeker = () => {
@@ -15,9 +19,9 @@ const Seeker = () => {
 
       <div> Image Gallery </div>
       <div><Link to="">Jobs for you</Link></div>
-
       {/* Element from nested route will be rendered into <Outlet /> */}
       <Outlet />
+      <Feed />
 
       <Link to="/">Back to Home</Link>
       <EmbedCalendar/>
@@ -25,4 +29,7 @@ const Seeker = () => {
   )
 };
 
+/*========== EXPORTS ==========*/
 export default Seeker;
+
+/*========== STYLES ==========*/
