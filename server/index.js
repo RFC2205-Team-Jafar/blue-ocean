@@ -18,8 +18,9 @@ app.use(compression());
 app.use('/', routes);
 
 if (!module.parent) {
-  app.listen(process.env.PORT);
-  console.log('Listening on', process.env.PORT);
+  const PORT = 3000;
+  app.listen(PORT);
+  console.log("Listening on", process.env.PORT || 3000);
 }
 
 
