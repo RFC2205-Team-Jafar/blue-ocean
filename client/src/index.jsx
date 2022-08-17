@@ -35,6 +35,7 @@ const App = () => {
 
   return (
     <Router>
+      <GlobalStyle/>
       <AllContext.Provider value={{ location, setLocation }}>
         <Routes>
           <Route path="/" element={<Home />} />
