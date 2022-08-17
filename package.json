@@ -8,7 +8,8 @@
   "scripts": {
     "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "shotgun":"rm -rf node_modules package-lock.json && npm install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
