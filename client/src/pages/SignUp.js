@@ -52,6 +52,7 @@ const SignUp = () => {
           email: email,
           account_type: accountType,
           pref_industry: preferredIndustry,
+          zipCode: zipCode,
           coord_lat: lat,
           coord_long: long,
           // resume_url: ,
