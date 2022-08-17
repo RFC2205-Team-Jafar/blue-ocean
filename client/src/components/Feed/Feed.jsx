@@ -10,7 +10,7 @@ import DetailList from './DetailList.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function Feed() {
+export default function Feed({view}) {
   /*
   TODO: send children to be rendered to the function as props along with an
   identifier to indicate that it is on the job seeker or the recruiters page
@@ -44,8 +44,8 @@ export default function Feed() {
           <h3 style={{padding: '10px'}}>This is the Job Feed Section</h3>
         </Row>
         <Row>
-          <PostList handleClick={handleClick} postings={postings}/>
-          <DetailList targetPost={targetPost} postings={postings} />
+          <PostList handleClick={handleClick} postings={postings} view={view} />
+          <DetailList targetPost={targetPost} postings={postings} view={view} />
         </Row>
     </FeedSection>
   )
