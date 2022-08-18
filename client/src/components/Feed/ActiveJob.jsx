@@ -12,16 +12,6 @@ import { Column, Label, Row, ButtonTray, JobPosting } from '../../../public/styl
 
 /*========== EXPORTS ==========*/
 export default function ActiveJob({ handleClick }) {
-  /*
-  NOTE:
-    add PUT request to close posting using '/jobs/closeposting'
-    EXPECTS:
-      {
-        "listing_id": 93
-      }
-  */
-
-
   /*----- STATE HOOKS -----*/
   const [canClose, setCanClose] = useState(true);
   const [closeSuccess, setCloseSuccess] = useState(false);
@@ -31,8 +21,16 @@ export default function ActiveJob({ handleClick }) {
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-const handleClose = () => {
-  axios.put('/jobs/closeposting',)
+  const handleClose = () => {
+    /*
+    NOTE:
+      add PUT request to close posting using '/jobs/closeposting'
+      EXPECTS:
+        {
+          "listing_id": 93
+        }
+    */
+    axios.put('/jobs/closeposting',)
   .then(onClose => {
     setCanClose(false);
     setCloseSuccess(true);
@@ -50,7 +48,12 @@ const handleClose = () => {
           position: 'absolute',
           top: '15px',
           right: '5px',
-          color: '#f44336'
+          color: '#f44336',
+          '&:hover': {
+            color: '#fff',
+            backgroundColor:'#f44336',
+            borderColor:'#f44336',
+          },
         }}
         onClick={handleClose}
         >Close Posting
@@ -80,7 +83,6 @@ const handleClose = () => {
             position: 'absolute',
             zIndex: '2',
             width: '90%',
-            // backgroundColor: '#8FC645'
           }}
           >
           <AlertTitle>Success</AlertTitle>
