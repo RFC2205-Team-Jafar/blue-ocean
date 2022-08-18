@@ -19,9 +19,10 @@ const firebaseConfig = {
   projectId: "project-linkedout",
   storageBucket: "project-linkedout.appspot.com",
   messagingSenderId: "485336557489",
-  appId: "1:485336557489:web:a17aca029441b8c897ff90",
-  measurementId: "G-R0L11JYQF6"
+  appId: "1:485336557489:web:4f8802349967304b97ff90",
+  measurementId: "G-MGRY9EJHWQ"
 };
+
 
 // Initialize Firebase
   const app = initializeApp(firebaseConfig);
