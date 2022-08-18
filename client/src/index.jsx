@@ -36,6 +36,7 @@ const App = () => {
   const [appliedJobs, setAppliedJobs] = useState();
   const [resumeUrl, setResumeUrl] = useState();
   const [coverLetterUrl, setCoverLetterUrl] = useState();
+  const [uuid, setUuid] = useState();
 
   const [location, setLocation] = useState({});
 
@@ -63,7 +64,8 @@ const App = () => {
             resumeUrl, setResumeUrl,
             coverLetterUrl, setCoverLetterUrl,
             defaultJobs, setDefaultJobs,
-            appliedJobs, setAppliedJobs
+            appliedJobs, setAppliedJobs,
+            uuid, setUuid
           }}>
           <Routes>
             <Route path="/" element={<Home />} />

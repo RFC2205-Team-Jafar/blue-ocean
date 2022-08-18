@@ -63,9 +63,6 @@ const SignUp = () => {
     if (accountType === "seeker" && !zipCode) alert("Please enter a zip code");
     if (accountType === "recruiter" && !company) alert("Please enter a company");
     const name = firstName + " " + lastName;
-    var lat;
-    var long;
-    console.log(zipCode);
     setLoading(true);
     signup(email, password)
       .then(res => {
@@ -89,18 +86,23 @@ const SignUp = () => {
           .catch(err => console.log(err));
       })
       .then(() => setLoading(false))
-      // .then(() => {
-      //   if (accountType === "seeker") {
-      //     navigate("/seeker", { replace: true });
-      //   } else {
-      //     navigate("/recruiter", { replace: true });
-      //   }
-      // })
+      .then(() => {
+        setAccountType();
+        setFirstName();
+        setLastName();
+        setCompany();
+        setCoord_lat();
+        setCoord_long();
+        setResumeUrl();
+        setZipCode();
+        setPreferredIndustry();
+        navigate("/", { replace: true });
+      })
       .catch(err => console.log("There was an error creating your account: ", err))
   };
 
   //-------------------- Returned DOM --------------------------
-  if (accountType === "") {
+  if (accountType === undefined) {
     return (
       <div>
 

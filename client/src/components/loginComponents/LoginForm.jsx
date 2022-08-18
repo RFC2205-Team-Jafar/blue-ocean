@@ -22,6 +22,7 @@ const LoginForm = () => {
   const {resuemUrl, setResumeUrl} = useContext(AllContext);
   const {defaultJobs, setDefaultJobs} = useContext(AllContext);
   const {appliedJobs, setAppliedJobs} = useContext(AllContext);
+  const {uuid, setUuid} = useContext(AllContext);
   const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,6 +40,7 @@ const LoginForm = () => {
     const uid = r.user.uid;
     const res = await axios.get(`/jobs/${uid}/signon`);
     console.log(res.data);
+    await setUuid(res.data.user_uuid);
     await setAccountType(res.data.account_type);
     await setFirstName(res.data.first_name);
     await setLastName(res.data.last_name);
