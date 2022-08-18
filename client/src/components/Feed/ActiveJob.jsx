@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Label, Row, ButtonTray, JobPosting } from '../../../public/stylesheets/styles.js';
@@ -9,17 +12,84 @@ import { Column, Label, Row, ButtonTray, JobPosting } from '../../../public/styl
 
 /*========== EXPORTS ==========*/
 export default function ActiveJob({ handleClick }) {
+  /*
+  NOTE:
+    add PUT request to close posting using '/jobs/closeposting'
+    EXPECTS:
+      {
+        "listing_id": 93
+      }
+  */
+
+
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
+  const [canClose, setCanClose] = useState(true);
+  const [closeSuccess, setCloseSuccess] = useState(false);
 
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-
+const handleClose = () => {
+  axios.put('/jobs/closeposting',)
+  .then(onClose => {
+    setCanClose(false);
+    setCloseSuccess(true);
+    setTimeout(() => setCloseSuccess(false), 3000);
+  })
+  .catch(err => console.error(err))
+}
 
   /*----- RENDER METHODS -----*/
+  const renderClose = () => {
+    if (canClose) {
+      return (
+      <Button
+        sx={{
+          position: 'absolute',
+          top: '15px',
+          right: '5px',
+          color: '#f44336'
+        }}
+        onClick={handleClose}
+        >Close Posting
+      </Button>
+      )
+    } else {
+      return (
+        <Button
+          sx={{
+            position: 'absolute',
+            top: '15px',
+            right: '5px'
+          }}
+          disabled
+          >CLOSED
+        </Button>
+      )
+    }
+  }
+
+  const renderAlert = () => {
+    if (closeSuccess) {
+      return (
+        <Alert
+          severity='error'
+          sx={{
+            position: 'absolute',
+            zIndex: '2',
+            width: '90%',
+            // backgroundColor: '#8FC645'
+          }}
+          >
+          <AlertTitle>Success</AlertTitle>
+          This posting has been <strong>closed</strong>
+        </Alert>
+      )
+    }
+  }
+
 
   /*----- RENDERER -----*/
   return (
@@ -31,14 +101,9 @@ export default function ActiveJob({ handleClick }) {
       >
       <PostingName>Job Title</PostingName>
       <PostingLocation>Job Location</PostingLocation>
-      <Button
-        sx={{
-          position: 'absolute',
-          top: '15px',
-          right: '5px'
-        }}
-        >Close Posting</Button>
+      {renderClose()}
       <PostingBody>
+        {renderAlert()}
         <p>
           Job Description:
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum . . .
