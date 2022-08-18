@@ -8,7 +8,8 @@ import { Column, Label, Row, JobPosting } from '../../../public/stylesheets/styl
 
 
 /*========== EXPORTS ==========*/
-export default function Post({ handleClick }) {
+export default function Post({ job, handleClick }) {
+  console.log(job);
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 

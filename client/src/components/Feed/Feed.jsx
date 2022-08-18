@@ -1,5 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import { Row, FeedSection, Column } from '../../../public/stylesheets/styles.js';
 import PostList from './PostList.jsx';
 import DetailList from './DetailList.jsx';
+import { AllContext } from '../../index.jsx';
 
 
 /*========== EXPORTS ==========*/
@@ -16,9 +17,16 @@ export default function Feed({view, applicants}) {
   identifier to indicate that it is on the job seeker or the recruiters page
   */
 
+/**
+ NOTE:
+ applied Jobs
+ default Jobs
+ */
+
   /*----- STATE HOOKS -----*/
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
+  const { defaultJobs, appliedJobs } = useContext(AllContext);
 
 
   /*----- LIFESTYLE METHODS -----*/
@@ -38,7 +46,7 @@ export default function Feed({view, applicants}) {
   const renderDetail = () => {
     if (view && view.view !== 'unsigned') {
       return (
-        <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants}/>
+        <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
       )
     }
   }
@@ -51,7 +59,7 @@ export default function Feed({view, applicants}) {
       <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
         <Row>
-          <PostList handleClick={handleClick} postings={postings} view={view} />
+          <PostList handleClick={handleClick} postings={postings} view={view} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
           {renderDetail()}
         </Row>
       </FeedSection>

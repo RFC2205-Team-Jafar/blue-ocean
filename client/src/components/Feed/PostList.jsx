@@ -10,7 +10,7 @@ import ActiveJob from './ActiveJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings, view: { view } }) {
+export default function PostList({ handleClick, postings, view: { view }, defaultJobs, appliedJobs }) {
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
@@ -32,8 +32,8 @@ export default function PostList({ handleClick, postings, view: { view } }) {
     - on Click -> sends the clicked posting information to the Details listing
     */
 
-    if (postings && view === 'seeker') {
-      const seeker = postings.map(post => <PostedJob handleClick={handleClick}/>)
+    if (defaultJobs && view === 'seeker') {
+      const seeker = defaultJobs.map(job => <PostedJob job={job} handleClick={handleClick}/>)
       return (
         <ListSection>
           {seeker}
