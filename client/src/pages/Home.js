@@ -14,10 +14,10 @@ import { fileUpload } from "../components/fileHandlers.jsx";
 const Home = () => {
   return (
     <>
-      <h1> LinkedOut Navbar </h1>
+      <h1> Greenhorn Navbar </h1>
       <LoginForm />
       <HeaderGallery />
-      <FilterFunctions />
+      {/* <FilterFunctions /> */}
       <h1> Jobs (newest 20) </h1>
       <div>
         <Link to="signUp">Create Account</Link>
