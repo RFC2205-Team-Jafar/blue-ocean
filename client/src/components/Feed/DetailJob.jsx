@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import {fileUpload} from '../fileHandlers.jsx';
 
 /*========== EXPORTS ==========*/
@@ -23,7 +26,7 @@ export default function DetailJob({ targetPost }) {
   */
  /*
   NOTE:
-   - POST request to '/jobs/applyajob'
+   - POST request to '/jobs/applyforajob'
       {
         "seeker_uuid": "oSl2HNei1PTAsG3TijrfidKJ6dI2",
         "listing_id": 93,
@@ -35,46 +38,84 @@ export default function DetailJob({ targetPost }) {
   */
 
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
+  const [canApply, setCanApply] = useState(true);
+  const [postSuccess, setPostSuccess] = useState(false);
 
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-  // const handleChange = ({target: {name, value}}) => {
-  //   setJobPosting(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // };
+  const handleApply = ({target: {name, value}}) => {
+  //   axios.post('/jobs/applyforajob',)
+  //   .then(applied => setCanApply(false))
+  //   .catch(err => console.error(err))
+    setCanApply(false);
+    setPostSuccess(true);
+    setTimeout(() => setPostSuccess(false), 3000);
+  };
 
   /*----- RENDER METHODS -----*/
+  const renderApply = () => {
+    if (canApply) {
+      return (
+      <Button
+        variant='contained'
+        onClick={handleApply}
+        sx={{
+          margin: '5px'
+        }}
+        >APPLY
+      </Button>
+      )
+    } else {
+      return (
+        <Button
+          variant='contained'
+          disabled
+          sx={{
+            margin: '5px'
+          }}
+          >APPLIED
+        </Button>
+      )
+    }
+  }
 
+  const renderSuccess = () => {
+    if (postSuccess) {
+      return (
+        <Alert
+          severity='success'
+          sx={{
+            position: 'absolute',
+            zIndex: '2',
+            width: '90%',
+            backgroundColor: '#8FC645'
+          }}
+          >
+          <AlertTitle>Success</AlertTitle>
+          Your job has been posted!
+        </Alert>
+      )
+    }
+  }
 
   /*----- RENDERER -----*/
   return (
     <JobDetail>
-      <DetailHeader>
-      <JobTitle>Job Title</JobTitle>
-      <JobLocation>Job Location</JobLocation>
-      <ButtonTray>
-        {fileUpload('Cover Letter')}
-        {/* <Button
-          variant='contained'
-          sx={{
-            transform: 'scale(.75)'
-          }}
-          >+ Cover Letter
-        </Button> */}
-        <Button
-          variant='contained'
-          >Apply
-        </Button>
-      </ButtonTray>
-      </DetailHeader>
-      <DetailBody>
+        <DetailHeader>
+        <JobTitle>Job Title</JobTitle>
+        <JobLocation>Job Location</JobLocation>
+        <JobSalary>Salary</JobSalary>
+        </DetailHeader>
+        <ButtonBox>
+          {renderApply()}
+          {fileUpload('Cover Letter')}
+        </ButtonBox>
         <JobDescription>Job Description:</JobDescription>
+      <DetailBody>
+        {renderSuccess()}
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor. Et magnis dis parturient montes nascetur. Lectus proin nibh nisl condimentum id. Nunc consequat interdum varius sit. Laoreet suspendisse interdum consectetur libero id faucibus. Platea dictumst quisque sagittis purus sit. Felis bibendum ut tristique et egestas quis. Scelerisque mauris pellentesque pulvinar pellentesque. Luctus accumsan tortor posuere ac ut consequat semper. Vitae aliquet nec ullamcorper sit amet risus nullam. At varius vel pharetra vel. Faucibus scelerisque eleifend donec pretium vulputate. Venenatis a condimentum vitae sapien pellentesque. Mauris augue neque gravida in fermentum. Velit egestas dui id ornare arcu odio ut sem nulla.
 
@@ -92,15 +133,16 @@ export default function DetailJob({ targetPost }) {
 
 /*========== STYLES ==========*/
 const DetailHeader = styled(Column)`
-
 `;
 
 const DetailBody = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  height: 800px;
+  min-height: 55em;
+  height: 100%
+  max-height: 1200px;
   overflow: scroll;
 
   &::-webkit-scrollbar {
@@ -109,11 +151,14 @@ const DetailBody = styled(Column)`
 `;
 
 const JobDetail = styled(Column)`
+  position: relative;
   align-items: flex-start;
-  background-color: #fff;
+  background-color: #fcfaf5;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow:  5px 5px 3px #84c9b7,
+           -5px -5px 3px #90d9c7;
 `;
 
 const JobTitle = styled(Row)`
@@ -129,6 +174,13 @@ const JobLocation = styled(Row)`
   align-items: flex-start;
   width: 100%;
   font-size: 12pt;
+`;
+
+const JobSalary = styled(Row)`
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  font-size: 10pt;
 `;
 
 const JobDescription = styled(Row)`
