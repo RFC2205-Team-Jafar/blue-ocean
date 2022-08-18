@@ -25,6 +25,7 @@
 .recruiterProfile div{
   display: flex;
   padding: 5px 5px;
+  margin: 5px 5px;
   flex-direction: column;
   justify-content: flex-start;
 }
