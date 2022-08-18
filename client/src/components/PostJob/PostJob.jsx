@@ -309,9 +309,9 @@ const renderSalaryError = () => {
         severity='error'
         sx={{
           position: 'absolute',
-          top: '50%',
+          top: '52%',
           zIndex: '2',
-          width: '90%',
+          width: '50%',
         }}
         >
         <AlertTitle>Error</AlertTitle>
@@ -328,9 +328,9 @@ const renderJobPosted = () => {
         severity='success'
         sx={{
           position: 'absolute',
-          top: '10%',
+          top: '1.5%',
           zIndex: '2',
-          width: '90%',
+          width: '50%',
           backgroundColor: '#8FC645'
         }}
         >
