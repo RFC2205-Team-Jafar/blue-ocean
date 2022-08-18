@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Label, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { Column, Label, Row, ButtonTray, JobPosting } from '../../../public/stylesheets/styles.js';
 
 
 /*========== EXPORTS ==========*/
@@ -23,14 +23,21 @@ export default function ActiveJob({ handleClick }) {
 
   /*----- RENDERER -----*/
   return (
-    <JobPosting onClick={ handleClick }>
-      <PostingHeader>
-        <PostingName>Job Title</PostingName>
-        <PostingLocation>Job Location</PostingLocation>
-        <ButtonTray>
-          <Button>Close Posting</Button>
-        </ButtonTray>
-      </PostingHeader>
+    <JobPosting
+      style={{
+        position: 'relative',
+      }}
+      onClick={ handleClick }
+      >
+      <PostingName>Job Title</PostingName>
+      <PostingLocation>Job Location</PostingLocation>
+      <Button
+        sx={{
+          position: 'absolute',
+          top: '15px',
+          right: '5px'
+        }}
+        >Close Posting</Button>
       <PostingBody>
         <p>
           Job Description:
@@ -43,18 +50,6 @@ export default function ActiveJob({ handleClick }) {
 
 
 
-
-/*========== STYLES ==========*/
-const JobPosting = styled(Column)`
-  background-color: #fcfaf5;
-  border: solid thin transparent;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  &:hover {
-    border: solid thin #8fc645;
-  }
-`;
 
 /*========== STYLES ==========*/
 const PostingHeader = styled(Column)`
@@ -91,19 +86,9 @@ const PostingBody = styled(Column)`
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  /* height: 800px; */
   overflow: scroll;
 
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const PostingContent = styled(Row)`
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 10px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 12pt;
 `;
