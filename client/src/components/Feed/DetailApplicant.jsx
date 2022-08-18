@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
@@ -21,14 +22,6 @@ export default function DetailApplicant({ applicant }) {
       }
   */
   /*
-  NOTE:
-    add PUT request to close posting using '/jobs/closeposting'
-    EXPECTS:
-      {
-        "listing_id": 93
-      }
-  */
-
 
   /*----- STATE HOOKS -----*/
   // const [] = useState();
