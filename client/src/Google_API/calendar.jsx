@@ -55,20 +55,12 @@ const EmbedCalendar = () => {
 
 export default EmbedCalendar;
 
-<<<<<<< HEAD
-const Button_Calendar = styled(Button)`
-  position: fixed;
-  bottom: 5px;
-  right: 30px;
-`;
-=======
 const Button_Calendar = styled(Button)({
   position: 'fixed',
   bottom: '5px',
   right: '20px',
 });
 
->>>>>>> dev
 
 const CalendarDiv = styled.div`
   position: fixed;
