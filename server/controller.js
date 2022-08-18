@@ -24,6 +24,7 @@ const  signOn = async (req, res) => {
 
                 let resData = {
                     ...user.rows[0],
+                    accountType: "seeker",
                     appliedJobs: appliedJobs.rows[0].json_agg,
                     defaultJobs: defaultJobs.rows[0].json_agg
                 }
@@ -40,6 +41,7 @@ const  signOn = async (req, res) => {
                 // console.log(listings.rows[0]);
                 let resData = {
                     ...user.rows[0],
+                    accountType: "recruiter",
                     listings: listings.rows[0].json_agg
                     //I forget what else is suppose to be returned during the sign in of recruiter
                     // Is it just the recruiters associated job listings?
