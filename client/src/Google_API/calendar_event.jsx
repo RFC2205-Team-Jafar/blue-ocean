@@ -6,14 +6,14 @@ import { AllContext } from "../index.jsx";
 // stored credentials.
 // SET UP GOOGLE ENVIRONMENT
 var gapi = window.gapi;
-var CLIENT_ID = "288705266674-tj7qlfqv02t9r6jqi8opqbv6c5fmhurd.apps.googleusercontent.com"; //ANCHOR Add CLIENT ID
-var API_KEY = "AIzaSyCZBlCg07Jx_8Sp3ee1EDbC6wH2rgdzJcw"; //ANCHOR Add API Key
+var CLIENT_ID = ""; //ANCHOR Add CLIENT ID
+var API_KEY = ""; //ANCHOR Add API Key
 const DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
 ];
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
-//const { email } = useContext(AllContext);
-const email = 'nicholas.kempkes@gmail.com'
+//const { email } = useContext(AllContext); // Waiting to email to be saved in state
+const email = ''
 
 const sendInvite = function (data) {
   // SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
