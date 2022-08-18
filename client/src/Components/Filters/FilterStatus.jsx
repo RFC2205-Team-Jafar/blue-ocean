@@ -7,24 +7,25 @@ class FilterStatus extends React.Component {
     super(props);
     this.state = {
       appliedJobs: [],
-      status: false,
     };
   }
 
   fetchApplied = () => {
-    axios.get(`localhost:3000/jobs/filter/${user.uuid}?status=${this.state.status}`)
-      .then((res) => {
-        console.log(res.data);
-        this.setState({
-          appliedJobs: [res.data][0],
-        });
+    axios.get(`jobs/oSl2HNei1PTAsG3TijrfidKJ6dI2/applied`).then((res) => {
+      console.log(res.data);
+      this.setState({
+        appliedJobs: [res.data][0],
       });
+    });
   };
 
   render() {
     return (
       <React.Fragment>
-        <Button variant="contained" onClick={this.fetchApplied}> Applied Jobs </Button>
+        <Button variant="contained" onClick={this.fetchApplied}>
+          {" "}
+          Applied Jobs{" "}
+        </Button>
       </React.Fragment>
     );
   }
