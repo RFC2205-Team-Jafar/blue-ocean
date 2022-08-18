@@ -16,6 +16,7 @@ const  signOn = async (req, res) => {
         let employmentType= "Full Time";
         let minSalary = 0;
 
+        // console.log(isSeeker.rows[0].exists);
         if(isSeeker.rows[0].exists) {
             try {
                 const user = await model.getUser(uuid, "seeker");
@@ -38,6 +39,7 @@ const  signOn = async (req, res) => {
             try {
                 const user = await model.getUser(uuid, "recruiter");
                 const listings = await model.listings(uuid);
+                console.log(listings);
                 let resData = {
                     ...user.rows[0],
                     account_type: "recruiter",
@@ -69,6 +71,7 @@ const filter = async (req, res) => {
     let employmentType= req.query.employmentType || "Full Time";
     let minSalary = parseInt(req.query.minSalary) || 0;
 
+    // console.log(typeof minSalary)
     try {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
@@ -131,6 +134,7 @@ const isSeeker = (req, res) => {
     uuid = req.params.uuid;
     model.isSeeker(uuid)
     .then((success) => {
+        // console.log(success);
         res.status(200).send(true);
     })
     .catch((err) => {
@@ -143,6 +147,7 @@ const isRecruiter = (req, res) => {
     uuid = req.params.uuid;
     model.isRecruiter(uuid)
     .then((success) => {
+        // console.log(success);
         res.status(200).send(true);
     })
     .catch((err) => {
@@ -157,13 +162,15 @@ module.exports = {
     if (user.account_type === 'seeker') {
       try {
         await model.addSeeker(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
-        console.log('7eeeee', e);
+        console.log('eeeeee', e);
       }
     } else if (user.account_type === 'recruiter') {
       try {
         await model.addRecruiter(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);
@@ -231,16 +238,15 @@ module.exports = {
     }
   },
 
-  // WORKING
+
   changeProfile: async (req, res) => {
-    const { account_type } = req.body;
+    const { userType } = req.body;
     try {
-      if (account_type === 'seeker') {
+      if (userType === 'seeker') {
         await model.changeSeekerProfile(req.body);
-      } else if (account_type === 'recruiter') {
-        await model.changeRecruiterProfile(req.body);
+      } else if (userType === 'recruiter') {
+        await modal.changeRecruiterProfile(req.body);
       }
-      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeeee', e);
     }

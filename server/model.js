@@ -1,5 +1,4 @@
 //MODEL
-
 const client = require('./db.js');
 
 const getUser = (uuid, userType) => {
@@ -30,8 +29,10 @@ const getJobsNoAuth = () => {
 }
 
 
-const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
+const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary) => {
+    // console.log("inside models", minSalary);
     if(isRemote == 2){
+        // console.log("remote is not 1 or 0");
         return client.query(`
             CREATE EXTENSION IF NOT EXISTS cube;
             CREATE EXTENSION IF NOT EXISTS earthdistance;
@@ -41,11 +42,11 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 WITH matchedseekerlat AS (
                     SELECT seeker.coord_lat
                     FROM "Seekers" as seeker
-                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                    WHERE user_uuid = '${uuid}'
                 ), matchedseekerlong AS (
                     SELECT seeker.coord_lat
                     FROM "Seekers" as seeker
-                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                    WHERE user_uuid = '${uuid}'
                 )
 
 
@@ -123,7 +124,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                     AND employment_type = '${employmentType}'
                     AND is_remote = false
                     AND ${minSalary} <= salary_low
-                    AND status = false
+                    AND status = true
             ) as jobs
         `)
     }
@@ -145,26 +146,57 @@ const appliedJobs = (uuid) => {
     `)
 }
 
+// const listings = (uuid) => {
+//     return client.query(`
+//     SELECT json_agg(listings)
+//     FROM (
+//         SELECT *
+//         FROM "Listings"
+//         WHERE recruiter_uuid = '${uuid}'
+//     ) as listings
+//     `)
+// }
+
 const listings = (uuid) => {
     return client.query(`
-    SELECT json_agg(listings)
-    FROM (
-        SELECT *
-        FROM "Listings"
-        WHERE recruiter_uuid = '${uuid}'
-    ) as listings
+        SELECT json_agg(listings)
+        FROM(
+            SELECT 
+                listing.listing_id,
+                listing.industry,
+                listing.coord_lat,
+                listing.coord_long,
+                listing.is_remote,
+                listing.title,
+                listing.salary_low,
+                listing.salary_high,
+                listing.pay_adjuster,
+                listing.desc,
+                listing.num_positions,
+                listing.employment_type,
+                listing.requested_keywords,
+                listing.status,
+                (
+                    SELECT json_agg(applicants) as applicants
+                    FROM (
+                        SELECT 
+                            seeker.*,
+                            submittedApp.coverletter_url,
+                            submittedApp.application_status,
+                            submittedApp.matched_keywords
+                        FROM "SubmittedApplications" as submittedApp, "Seekers" as seeker
+                        WHERE listing_id = listing.listing_id AND seeker.user_uuid = submittedApp.seeker_uuid
+                    )as applicants
+                )
+            FROM "Listings" as listing
+            WHERE recruiter_uuid = '${uuid}' AND status = true
+        ) as listings
     `)
 }
 
-// IN PROGRESS NEEDS TO RETURN ALL APPLICANTS FOR EACH LISTING AS WELL
-// const listings = (uuid) => {
+// const filterListings = (filteredKeyword, uuid) => {
 //     return client.query(`
-//         SELECT json_agg(listing)
-//         FROM (
-//             SELECT *
-//             FROM "Listings"
-//             WHERE recruiter_uuid = '${uuid}'
-//         ) as listing
+
 //     `)
 // }
 
@@ -202,7 +234,7 @@ module.exports = {
     const { account_type, user_uuid } = user;
     const queryString = `INSERT INTO "Firebase"
                          VALUES ('${account_type}', '${user_uuid}')`;
-    return client.query(queryString);
+    return client,query(queryString);
   },
 
   addAJob: (j) => {
@@ -250,35 +282,9 @@ module.exports = {
     const queryString = `UPDATE "SubmittedApplications"
                         SET "didReceivePromisedPay" = ${didReceivePromisedPay}, application_status = 'selected'
                         WHERE seeker_uuid = '${seeker_uuid}' and listing_id = $1`;
+    console.log(queryString);
     return client.query(queryString, [listing_id]);
   },
-
-  // WORKING
-  changeSeekerProfile: (userInfo) => {
-    const { user_uuid, first_name, last_name, zip, pref_industry, resume_url } = userInfo;
-    const queryString = `UPDATE "Seekers"
-                         SET first_name = $1,
-                             last_name = $2,
-                             pref_industry = $3,
-                             zip = $4,
-                             resume_url = $5
-                         WHERE user_uuid = $6`;
-    console.log(queryString);
-    return client.query(queryString, [first_name, last_name, pref_industry, zip, resume_url, user_uuid]);
-  },
-
-  // WORKING
-  changeRecruiterProfile: (userInfo) => {
-    console.log(userInfo);
-    const { user_uuid, first_name, last_name, company_name } = userInfo;
-    const queryString = `UPDATE "Recruiters"
-                         SET first_name = $1,
-                             last_name = $2,
-                             company_name = $3
-                         WHERE user_uuid = $4`;
-    return client.query(queryString, [first_name, last_name, company_name, user_uuid])
-  },
-
   isSeeker,
   isRecruiter,
   getUser,
