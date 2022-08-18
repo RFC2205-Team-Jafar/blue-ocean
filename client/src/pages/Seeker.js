@@ -6,9 +6,9 @@ import { Link, Outlet } from "react-router-dom";
 import { AllContext } from "../index.jsx";
 import EmbedCalendar from "../Google_API/calendar.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-import HeaderGallery from "../Components/Header/ImageGallery.jsx";
-import FilterFunctions from "../Components/Filters/FilterFunctions.jsx";
-import FilterStatus from "../Components/Filters/FilterStatus.jsx";
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
+import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
+import FilterStatus from "../components/Filters/FilterStatus.jsx";
 
 const Seeker = () => {
   return (
