@@ -78,11 +78,11 @@ const App = () => {
             {/* <Route path="signUpGoogle" element={<SignUpGoogle />} /> */}
             <Route path="seeker" element={<Seeker />} >
               <Route index element={<Feed view={{view:'seeker'}}/>} />
-              <Route path="profile" element={<Profile userType={'seeker'} />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="recruiter" element={<Recruiter />} >
               <Route index element={<Feed view={{view:'recruiter'}} applicants={[1, 2, 3, 4, 5, 6]} />} />
-              <Route path="profile" element={<Profile userType={'recruiter'} />} />
+              <Route path="profile" element={<Profile />} />
               <Route path="postAJob" element={<PostJob />} />
             </Route>
           </Routes>
