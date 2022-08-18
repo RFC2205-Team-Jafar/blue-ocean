@@ -22,7 +22,6 @@ export const AllContext = createContext();
 const App = () => {
 
   // states
-
   const [email, setEmail] = useState();
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -30,6 +29,7 @@ const App = () => {
   const [preferredIndustry, setPreferredIndustry] = useState();
   const [zipCode, setZipCode] = useState();
   const [company, setCompany] = useState();
+
   const [coord_lat, setCoord_lat] = useState();
   const [coord_long, setCoord_long] = useState();
   const [defaultJobs, setDefaultJobs] = useState();
@@ -52,6 +52,7 @@ const App = () => {
         <AllContext.Provider
           value={{
             location, setLocation,
+            uuid, setUuid,
             email, setEmail,
             firstName, setFirstName,
             lastName, setLastName,
@@ -65,11 +66,11 @@ const App = () => {
             coverLetterUrl, setCoverLetterUrl,
             defaultJobs, setDefaultJobs,
             appliedJobs, setAppliedJobs,
-            uuid, setUuid
           }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="signUp" element={<SignUp />} />
+            {/* <Route path="signUpGoogle" element={<SignUpGoogle />} /> */}
             <Route path="seeker" element={<Seeker />} >
               <Route index element={<Feed view={{view:'seeker'}}/>} />
               <Route path="profile" element={<Profile userType={'seeker'} />} />

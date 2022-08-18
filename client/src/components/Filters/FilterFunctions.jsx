@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Row } from "../../../public/stylesheets/styles.js";
 import styled from "styled-components";
@@ -6,79 +6,71 @@ import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
+import SalarySliderSteps from "./FilterSalary.jsx";
+import { AllContext } from "../../index.jsx";
 
-class FilterFunctions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      industry: "",
+function FilterFunctions() {
+  const [filteredListing, setFilteredListing] = useState([]);
+  const [industry, setIndustry] = useState("");
+  const [isRemote, setIsRemote] = useState(2);
+  const [employmentType, setEmploymentType] = useState("");
+  const [minDistance, setMinDistance] = useState(5);
+  const [maxDistance, setMaxDistance] = useState("");
+  const [minSalary, setMinSalary] = useState(0);
 
-      isRemote: 2,
+  const { uuid } = useContext(AllContext);
 
-      employmentType: "",
-
-      minDistance: 5,
-
-      maxDistance: "",
-    };
-
-    this.setIndustry = this.setIndustry.bind(this);
-    this.setSite = this.setSite.bind(this);
-    this.setEmployment = this.setEmployment.bind(this);
-    this.setMaxDist = this.setMaxDist.bind(this);
-  }
-
-  setIndustry(event) {
-    this.setState({
-      industry: event.target.value,
-    });
-  }
-
-  setSite(event) {
-    if (event.target.value === "Remote") {
-      this.setState({
-        isRemote: 1,
-      });
-    }
-    if (event.target.value === "On-Site") {
-      this.setState({
-        isRemote: 0,
-      });
-    }
-    if (event.target.value === "Both" || event.target.value === "") {
-      this.setState({
-        isRemote: 2,
-      });
-    }
-  }
-
-  setEmployment(event) {
-    this.setState({
-      employmentType: event.target.value,
-    });
-  }
-
-  setMaxDist(event) {
-    this.setState({
-      maxDistance: event.target.value,
-    });
-  }
-
-  fetchFilteredListing = () => {
-    axios
-      .get(
-        `localhost:3000/jobs/filter/${user.uuid}?industry=${this.state.industry}&maxDistance=${this.state.maxDistance}&minDistance=${this.state.minDistance}&isRemote=${this.state.isRemote}`
-      )
-      .then(console.log(res.data));
+  const handleSalary = (event) => {
+    setMinSalary(event.target.value);
   };
 
-  render() {
-    return (
+  const handleIndustry = (event) => {
+    setIndustry(event.target.value);
+  };
+
+  const handleRemote = (event) => {
+    if (event.target.value === "Remote") {
+      setIsRemote(1);
+    }
+    if (event.target.value === "On-Site") {
+      setIsRemote(0);
+    }
+    if (event.target.value === "Both" || event.target.value === "") {
+      setIsRemote(2);
+    }
+  };
+
+  const handleEmployment = (event) => {
+    setEmploymentType(event.target.value);
+  };
+
+  const handleMaxDist = (event) => {
+    setMaxDistance(event.target.value);
+  };
+
+  const fetchFilteredListing = () => {
+    axios
+      .get(
+        `jobs/:uuid/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&
+        minSalary=${minSalary}`
+      )
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setFilteredListing(res.data);
+      });
+  };
+
+  return (
+    <>
+      <div></div>
       <FilterRow>
+        <SalarySliderSteps handleSalary={handleSalary} />
         <InputLabel>
           {" "}
           Industry:
-          <Select onChange={this.setIndustry} value="">
+          <Select onChange={handleIndustry}>
             <MenuItem value="Art"> Art </MenuItem>
             <MenuItem value="Aviation"> Aviation </MenuItem>
             <MenuItem value="Construction"> Construction </MenuItem>
@@ -93,7 +85,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Site:
-          <Select onChange={this.setSite} value="">
+          <Select onChange={handleRemote}>
             <MenuItem value="Both"> Both </MenuItem>
             <MenuItem value="Remote"> Remote </MenuItem>
             <MenuItem value="On-Site"> On-Site </MenuItem>
@@ -102,7 +94,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Employment Type:
-          <Select onChange={this.setEmployment} value="">
+          <Select onChange={handleEmployment}>
             <MenuItem value="Part-Time"> Part-Time </MenuItem>
             <MenuItem value="Full-Time"> Full-Time </MenuItem>
             <MenuItem value="Contract"> Contract </MenuItem>
@@ -114,7 +106,7 @@ class FilterFunctions extends React.Component {
         <InputLabel>
           {" "}
           Max Distance:
-          <Select onChange={this.setMaxDist} value="">
+          <Select onChange={handleMaxDist}>
             <MenuItem value="10"> Within 10 miles </MenuItem>
             <MenuItem value="15"> Within 15 miles </MenuItem>
             <MenuItem value="25"> Within 25 miles </MenuItem>
@@ -122,13 +114,13 @@ class FilterFunctions extends React.Component {
             <MenuItem value="100"> Within 100 miles </MenuItem>
           </Select>
         </InputLabel>
-        <Button variant="contained" onClick={this.fetchFilteredListing}>
+        <Button variant="contained" onClick={fetchFilteredListing}>
           {" "}
           Apply Filters{" "}
         </Button>
       </FilterRow>
-    );
-  }
+    </>
+  );
 }
 
 export default FilterFunctions;

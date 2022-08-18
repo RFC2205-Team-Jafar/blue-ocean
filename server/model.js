@@ -54,7 +54,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -85,7 +85,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -117,7 +117,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -252,6 +252,33 @@ module.exports = {
                         WHERE seeker_uuid = '${seeker_uuid}' and listing_id = $1`;
     return client.query(queryString, [listing_id]);
   },
+
+  // WORKING
+  changeSeekerProfile: (userInfo) => {
+    const { user_uuid, first_name, last_name, zip, pref_industry, resume_url } = userInfo;
+    const queryString = `UPDATE "Seekers"
+                         SET first_name = $1,
+                             last_name = $2,
+                             pref_industry = $3,
+                             zip = $4,
+                             resume_url = $5
+                         WHERE user_uuid = $6`;
+    console.log(queryString);
+    return client.query(queryString, [first_name, last_name, pref_industry, zip, resume_url, user_uuid]);
+  },
+
+  // WORKING
+  changeRecruiterProfile: (userInfo) => {
+    console.log(userInfo);
+    const { user_uuid, first_name, last_name, company_name } = userInfo;
+    const queryString = `UPDATE "Recruiters"
+                         SET first_name = $1,
+                             last_name = $2,
+                             company_name = $3
+                         WHERE user_uuid = $4`;
+    return client.query(queryString, [first_name, last_name, company_name, user_uuid])
+  },
+
   isSeeker,
   isRecruiter,
   getUser,

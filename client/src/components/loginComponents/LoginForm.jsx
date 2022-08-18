@@ -1,35 +1,42 @@
-import React, {useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { StyledModal } from './StyledModal';
-import {useAuth} from '../AuthContext.jsx';
+import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
+import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
+import {Link as MUILink} from '@mui/material/Link';
+import { LockOutlined } from '@mui/icons-material';
 
 
 const LoginForm = () => {
 
+  const paperStyle={position: "relative", top: "150px", padding :20, height:'40vh', width:280, margin:"30px auto", borderRadius: '10px'};
+  const avatarStyle={backgroundColor:'#1bbd7e'};
+  const btnstyle={margin:'8px 0'};
+
   //----------------State Hooks  -------------------------
-  const {email, setEmail } = useContext(AllContext);
-  const {accountType, setAccountType} = useContext(AllContext);
+  const { uuid, setUuid } = useContext(AllContext);
+  const { email, setEmail } = useContext(AllContext);
+  const { accountType, setAccountType } = useContext(AllContext);
   // const {login, googleLogin} = useAuth();
-  const {firstName, setFirstName} = useContext(AllContext);
-  const {lastName, setLastName} = useContext(AllContext);
-  const {preferredIndustry, setPreferredIndustry} = useContext(AllContext);
-  const {zipCode, setZipCode} = useContext(AllContext);
-  const {company, setCompany} = useContext(AllContext);
-  const {coord_lat, setCoord_lat} = useContext(AllContext);
-  const {coord_long, setCoord_long} = useContext(AllContext);
-  const {resuemUrl, setResumeUrl} = useContext(AllContext);
-  const {defaultJobs, setDefaultJobs} = useContext(AllContext);
-  const {appliedJobs, setAppliedJobs} = useContext(AllContext);
-  const {uuid, setUuid} = useContext(AllContext);
+  const { firstName, setFirstName } = useContext(AllContext);
+  const { lastName, setLastName } = useContext(AllContext);
+  const { preferredIndustry, setPreferredIndustry } = useContext(AllContext);
+  const { zipCode, setZipCode } = useContext(AllContext);
+  const { company, setCompany } = useContext(AllContext);
+  const { coord_lat, setCoord_lat } = useContext(AllContext);
+  const { coord_long, setCoord_long } = useContext(AllContext);
+  const { resuemUrl, setResumeUrl } = useContext(AllContext);
+  const { defaultJobs, setDefaultJobs } = useContext(AllContext);
+  const { appliedJobs, setAppliedJobs } = useContext(AllContext);
   const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-//----------------Modal Functions ----------------------
+  //----------------Modal Functions ----------------------
   const hideModal = () => {
     setModalOpen(false);
   };
@@ -57,29 +64,45 @@ const LoginForm = () => {
     } else if (res.data.account_type === "recruiter") {
       navigate("/recruiter", { replace: true });
     }
-      setLoading(false);
+    setLoading(false);
   }
   //---------------- DOM Return -------------------------
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Click Here to Login </h1>
+      <h1 onClick={() => setModalOpen(true)} > Login </h1>
 
       {/* Modal Section */}
       <StyledModal
         show={modalOpen}
         handleClose={hideModal}>
-        <div className="login__container">
-          <div>Email </div>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address"/>
+        {/* <Grid> */}
+          <Paper elevation={10} style={paperStyle}>
+            <Grid align = 'center'>
+              <Avatar style={avatarStyle}><LockOutlined/></Avatar>
+              <h2>Sign In</h2>
+            </Grid>
+            <TextField label='Username' placeholder='Enter username' style={{paddingTop: "5px", paddingBottom:"7px"}} fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <TextField label='Password' placeholder='Enter password' style={{paddingTop: "5px", paddingBottom:"7px"}} type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={() => handlePlainLogin()}>Sign in</Button>
+            <Typography style={{textAlign: "center"}}> Don't have an account? <br/>
+                <Link to="signUp" onClick={() => {setModalOpen(false)}}>
+                Create
+                </Link>
+                &nbsp;one now.
+            </Typography>
+          </Paper>
+          {/* <div>Email </div>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address" />
           <div>Password</div>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
           <button onClick={() => handlePlainLogin()}> Login </button>
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
-        </div>
+        {/* </div>
         <div>
           Don't have an account? <Link to="signUp">Create</Link> an account now.
-        </div>
+        // </div> */}
+        {/* </Grid> */}
       </StyledModal>
     </>
   )
