@@ -14,6 +14,7 @@ import PostJob from "../components/PostJob/PostJob.jsx";
 import Feed from "../components/Feed/Feed.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import { AllContext } from '../index.jsx';
+import SignOut from '../components/Profile/SignOut.js';
 
 const Recruiter = () => {
 
@@ -21,6 +22,7 @@ const Recruiter = () => {
 
   return (
     <Page>
+
       <HeaderGallery />
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Active postings</Link></div>

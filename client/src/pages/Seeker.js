@@ -9,6 +9,8 @@ import Feed from "../components/Feed/Feed.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
 import FilterStatus from "../components/Filters/FilterStatus.jsx";
+import SignOut from '../components/Profile/SignOut.js';
+
 
 const Seeker = () => {
   const { firstName } = useContext(AllContext);

@@ -230,15 +230,16 @@ module.exports = {
     }
   },
 
-
+  // WORKING
   changeProfile: async (req, res) => {
-    const { userType } = req.body;
+    const { account_type } = req.body;
     try {
-      if (userType === 'seeker') {
+      if (account_type === 'seeker') {
         await model.changeSeekerProfile(req.body);
-      } else if (userType === 'recruiter') {
-        await modal.changeRecruiterProfile(req.body);
+      } else if (account_type === 'recruiter') {
+        await model.changeRecruiterProfile(req.body);
       }
+      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeeee', e);
     }

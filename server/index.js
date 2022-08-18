@@ -2,12 +2,14 @@ require("dotenv").config();
 const express = require('express');
 const compression = require('compression');
 const cors = require('cors');
+const morgan = require('morgan');
 const path = require('path');
 const app = express();
 const routes = require('./routes.js');
 
 // middlewares here
 app.use(express.json());
+app.use(morgan('tiny'));
 app.use(express.static(path.join(__dirname, "../client/public")));
 app.use(cors({
   origin: '*',

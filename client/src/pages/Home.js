@@ -18,9 +18,9 @@ const Home = () => {
     <>
       <HeaderGallery />
       <FilterFunctions />
-      <div>
-        <Link to="signUp">Create Account</Link>
-      </div>
+
+      <LoginForm />
+
       <div>
         <Link to="seeker">Redirect to Seeker view </Link>
       </div>
