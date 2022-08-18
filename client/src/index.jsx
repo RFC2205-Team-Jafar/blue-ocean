@@ -70,6 +70,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="signUp" element={<SignUp />} />
+            {/* <Route path="signUpGoogle" element={<SignUpGoogle />} /> */}
             <Route path="seeker" element={<Seeker />} >
               <Route index element={<Feed view={{view:'seeker'}}/>} />
               <Route path="profile" element={<Profile userType={'seeker'} />} />
