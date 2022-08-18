@@ -10,16 +10,17 @@ import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
 import Feed from "../components/Feed/Feed.jsx";
 import NavigationBar from '../components/NavBar/NavigationBar.jsx';
 
+
 import { fileUpload } from "../components/fileHandlers.jsx";
 
 const Home = () => {
   return (
     <>
-      {/* <NavigationBar/>
-      <h1> Greenhorn Navbar </h1> */}
+
+      <h1> LinkedOut Navbar </h1>
       <HeaderGallery />
-      {/* <FilterFunctions /> */}
-      {/* <h1> Jobs (newest 20) </h1> */}
+      <FilterFunctions />
+      <LoginForm />
       <div>
         <Link to="signUp">Create Account</Link>
       </div>

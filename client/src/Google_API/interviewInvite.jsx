@@ -18,7 +18,6 @@ import Grid from "@mui/material/Grid";
 import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
 
 export const InterviewInviteModal = () => {
-
   const handleSubmit = () => {
     sendInvite(inviteInfo);
     handleClose();
