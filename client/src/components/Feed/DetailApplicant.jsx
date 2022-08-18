@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import { InterviewInviteModal } from '../../Google_API/interviewInvite.jsx'
 
 
@@ -50,18 +50,21 @@ export default function DetailApplicant({ applicant }) {
 
 /*----- RENDERER -----*/
 return (
-  <ApplicantDetail>
+  <ApplicantDetail
+    style={{
+      position: 'relative',
+    }}
+    >
     <ApplicantHeader>
       <ApplicantName>Applicant Name</ApplicantName>
       <ApplicantLocation>Applicant Location</ApplicantLocation>
-      <ButtonTray>
-        <ApplicantButton variant='outlined'>Reject</ApplicantButton>
-        {/* <Button variant='contained'>Schedule Interview</Button> */}
-        <InterviewInviteModal/>
-      </ButtonTray>
-    </ApplicantHeader>
-    <ApplicantBody>
       <ApplicantResume>Applicant Resume:</ApplicantResume>
+    </ApplicantHeader>
+      <ButtonBox>
+        <InterviewInviteModal/>
+        <ApplicantButton variant='outlined'>Reject</ApplicantButton>
+      </ButtonBox>
+    <ApplicantBody>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor. Et magnis dis parturient montes nascetur. Lectus proin nibh nisl condimentum id. Nunc consequat interdum varius sit. Laoreet suspendisse interdum consectetur libero id faucibus. Platea dictumst quisque sagittis purus sit. Felis bibendum ut tristique et egestas quis. Scelerisque mauris pellentesque pulvinar pellentesque. Luctus accumsan tortor posuere ac ut consequat semper. Vitae aliquet nec ullamcorper sit amet risus nullam. At varius vel pharetra vel. Faucibus scelerisque eleifend donec pretium vulputate. Venenatis a condimentum vitae sapien pellentesque. Mauris augue neque gravida in fermentum. Velit egestas dui id ornare arcu odio ut sem nulla.
 
@@ -82,20 +85,18 @@ const ApplicantDetail = styled(Column)`
   background-color: #fcfaf5;
   margin: 10px;
   padding: 10px;
-  /* height: 300px; */
-  /* overflow: scroll; */
   border-radius: 10px;
+  box-shadow:  5px 5px 3px #84c9b7,
+           -5px -5px 3px #90d9c7;
 
-  /* &::-webkit-scrollbar {
-    display: none;
-  } */
 `;
 
 const ApplicantHeader = styled(Column)`
-
+   width: 100%;
 `;
 
 const ApplicantButton = styled(Button)({
+  margin: '3px',
   borderColor:'#f44336',
   color:'#f44336',
   '&:hover': {

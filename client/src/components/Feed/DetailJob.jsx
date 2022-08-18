@@ -7,7 +7,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 
 
 /*========== EXPORTS ==========*/
@@ -190,10 +190,4 @@ const JobDescription = styled(Row)`
   width: 100%;
   font-weight: bold;
   font-size: 12pt;
-`;
-
-const ButtonBox = styled(Column)`
-  top: 15px;
-  right: 5px;
-  position: absolute;
 `;
