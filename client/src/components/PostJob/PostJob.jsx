@@ -305,7 +305,15 @@ const renderPostJob = () => {
 const renderSalaryError = () => {
   if (!salaryPass) {
     return (
-      <Alert severity='error'>
+      <Alert
+        severity='error'
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          zIndex: '2',
+          width: '90%',
+        }}
+        >
         <AlertTitle>Error</AlertTitle>
         Minimum Salary must be within <strong>20%</strong> of Maximum Salary
       </Alert>
@@ -316,9 +324,18 @@ const renderSalaryError = () => {
 const renderJobPosted = () => {
   if (postSuccess) {
     return (
-      <Alert severity='success'>
+      <Alert
+        severity='success'
+        sx={{
+          position: 'absolute',
+          top: '10%',
+          zIndex: '2',
+          width: '90%',
+          backgroundColor: '#8FC645'
+        }}
+        >
         <AlertTitle>Success</AlertTitle>
-        Your job has been posted!
+        Your job has been <strong>posted!</strong>
       </Alert>
     )
   }
@@ -326,7 +343,7 @@ const renderJobPosted = () => {
 
 /*----- RENDERER -----*/
   return (
-    <Form>
+    <Form style={{position: 'relative'}}>
       {renderJobPosted()}
       <Row>
         <h1>Post a Job</h1>
