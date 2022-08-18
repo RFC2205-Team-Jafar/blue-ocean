@@ -16,10 +16,9 @@ import { fileUpload } from "../components/fileHandlers.jsx";
 const Home = () => {
   return (
     <>
+      <NavigationBar/>
       <HeaderGallery />
       <FilterFunctions />
-
-      <LoginForm />
 
       <div>
         <Link to="seeker">Redirect to Seeker view </Link>

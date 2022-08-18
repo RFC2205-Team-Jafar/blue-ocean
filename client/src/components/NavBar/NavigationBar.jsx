@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { Link } from "react-router-dom";
 
 /*========== INTERNAL MODULES ==========*/
 import { Row } from '../../../public/stylesheets/styles.js';
 import NavLogo from './NavLogo.jsx';
 import LoginForm from '../loginComponents/LoginForm.jsx';
 import {AllContext} from '../../index.jsx'
+import SignOut from '../Profile/SignOut.js'
 
 /*========== EXPORTS ==========*/
 export default function NavigationBar({view, applicants}) {
@@ -37,11 +39,18 @@ export default function NavigationBar({view, applicants}) {
   }
 
   const userPage = () => {
+    const name = firstName.toUpperCase()
     return (
-      <h1 style={{ 'color': '#1976d2', 'fontWeight': 'lighter' }}> <AccountCircleOutlinedIcon style={{ 'color': '#1976d2'}}/> Welcome Back {firstName}</h1>
-
+      <Row>
+      <Link to="profile" >
+      <AccountCircleOutlinedIcon style={{'color': 'black' }}/>
+      </Link>
+      <h3 style={{fontWeight: 'lighter', color: 'black' }}>
+      &nbsp; WELCOME BACK {name} | &nbsp;
+      </h3>
+      <SignOut/>
+      </Row>
       //profile button
-      //Sign out button from XX
     )
   }
 

@@ -6,6 +6,8 @@ import axios from 'axios';
 import { AllContext } from '../index.jsx';
 import Button from '@mui/material/Button';
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
+import NavigationBar from '../components/NavBar/NavigationBar.jsx';
+
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);
@@ -102,6 +104,7 @@ const SignUp = () => {
   if (accountType === undefined) {
     return (
       <div>
+        <NavigationBar/>
         <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>

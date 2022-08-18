@@ -6,8 +6,8 @@ import axios from 'axios';
 import { AllContext } from "../../index.jsx";
 import Button from '@mui/material/Button';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { MdOutlineLogin} from "react-icons/md";
-
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { Row } from '../../../public/stylesheets/styles.js';
 
 const LoginForm = () => {
 
@@ -66,12 +66,11 @@ const LoginForm = () => {
   return (
     <>
       {/* Plug in your title here */}
-      <h1 style={{ 'color': '#1976d2', 'fontWeight': 'lighter' }} onClick={() => setModalOpen(true)} >
-      <span>Login</span>
-      <span>
-      <MdOutlineLogin style={{ 'color': '#1976d2'}}/>
-      </span>
-      </h1>
+      <Row onClick={() => setModalOpen(true)} >
+      <h2 style={{fontWeight: 'lighter', 'color': 'black' }}>Login</h2>
+      &nbsp;
+      <LoginOutlinedIcon style={{'color': 'black' }} />
+      </Row>
 
 
       {/* Modal Section */}
@@ -88,7 +87,7 @@ const LoginForm = () => {
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
         </div>
         <div>
-          Don't have an account? <Link to="signUp" onClick={() => setModalOpen(false)}>Create</Link> an account now.
+          Don't have an account? <Link onClick={() => setModalOpen(false)} to="signUp">Create</Link> an account now.
         </div>
       </StyledModal>
     </>

@@ -15,6 +15,8 @@ import Feed from "../components/Feed/Feed.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import { AllContext } from '../index.jsx';
 import SignOut from '../components/Profile/SignOut.js';
+import NavigationBar from '../components/NavBar/NavigationBar.jsx';
+
 
 const Recruiter = () => {
 
@@ -22,7 +24,7 @@ const Recruiter = () => {
 
   return (
     <Page>
-
+      <NavigationBar/>
       <HeaderGallery />
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Active postings</Link></div>

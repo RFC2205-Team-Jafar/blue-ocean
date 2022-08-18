@@ -10,6 +10,7 @@ import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
 import FilterStatus from "../components/Filters/FilterStatus.jsx";
 import SignOut from '../components/Profile/SignOut.js';
+import NavigationBar from '../components/NavBar/NavigationBar.jsx';
 
 
 const Seeker = () => {
@@ -17,6 +18,7 @@ const Seeker = () => {
 
   return (
     <>
+      <NavigationBar/>
       <HeaderGallery />
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Jobs for you</Link></div>

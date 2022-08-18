@@ -26,9 +26,9 @@ const App = () => {
 
   // states
   const [email, setEmail] = useState();
-  const [firstName, setFirstName] = useState();
+  const [firstName, setFirstName] = useState('jean');
   const [lastName, setLastName] = useState();
-  const [accountType, setAccountType] = useState();
+  const [accountType, setAccountType] = useState('seeker');
   const [preferredIndustry, setPreferredIndustry] = useState();
   const [zipCode, setZipCode] = useState();
   const [company, setCompany] = useState();
@@ -72,7 +72,6 @@ const App = () => {
             defaultJobs, setDefaultJobs,
             appliedJobs, setAppliedJobs,
           }}>
-          <NavigationBar/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="signUp" element={<SignUp />} />

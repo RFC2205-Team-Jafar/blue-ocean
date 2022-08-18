@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useAuth } from '../AuthContext.jsx';
 import { Link, useNavigate } from "react-router-dom";
 import { AllContext } from '../../index.jsx';
-
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Row } from '../../../public/stylesheets/styles.js';
 
 const SignOut = () => {
   // global states
@@ -42,7 +43,7 @@ const SignOut = () => {
   }
 
   return (
-    <button onClick={() => handleLogOut()}>Sign Out</button>
+    <Row onClick={() => handleLogOut()}><h3 style = {{'fontWeight': 'lighter', 'color': 'black' }} > SIGN OUT</h3>  &nbsp; <LogoutIcon style={{ color: '000000'}}/> </Row>
   )
 };
 

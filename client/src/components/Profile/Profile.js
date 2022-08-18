@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-
 import { AllContext } from '../../index.jsx';
 import { fileUpload } from '../fileHandlers.jsx';
 
