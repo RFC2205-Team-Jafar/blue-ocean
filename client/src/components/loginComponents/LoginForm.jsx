@@ -37,7 +37,7 @@ const LoginForm = () => {
       axios.get(`/jobs/getuser/${uid}`) //rework this route
       .then((res => {
         console.log('handlePlainLogin axios get res: ', res)
-        setAccountType(res.body.accountType);
+        setAccountType(res.data.account_type); //CHANGED!!!!!
       }))
       .catch(err => console.log('there was an error from the server login: ', err))
     })) //two important pieces: res.user.uid, res.user.email
