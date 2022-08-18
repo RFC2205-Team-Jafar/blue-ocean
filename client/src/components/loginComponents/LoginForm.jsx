@@ -4,6 +4,9 @@ import { StyledModal } from './StyledModal';
 import {useAuth} from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
+import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
+// import Link as MUILinkfrom '@mui/material/Link';
+import { LockOutlinedIcon } from '@mui/icons-material';
 
 
 const LoginForm = () => {
