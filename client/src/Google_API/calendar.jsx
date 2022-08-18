@@ -53,7 +53,7 @@ export default EmbedCalendar;
 const Button_Calendar = styled(Button)({
   position: 'fixed',
   bottom: '5px',
-  right: '30px',
+  right: '20px',
 });
 
 
