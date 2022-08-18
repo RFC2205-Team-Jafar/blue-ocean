@@ -20,8 +20,8 @@ const Profile = () => {
 
   const updateProfile = () => {
     const data = {
-      user_uuid: 'rxXyEEJqImavbPtUBHrINcvIK5p2',//uuid, // 'oSl2HNei1PTAsG3TijrfidKJ6dI2'
-      account_type: 'recruiter', //accountType, // 'seeker'
+      user_uuid: uuid,
+      account_type: accountType,
       first_name: firstName,
       last_name: lastName,
       pref_industry: preferredIndustry,
