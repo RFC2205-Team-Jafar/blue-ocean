@@ -5,6 +5,7 @@ package-lock.json
 .env
 *.LICENSE.txt
 passwords.txt
+credentials.json
 
 # Logs
 logs
