@@ -16,8 +16,6 @@ const Seeker = () => {
   return (
     <>
       <HeaderGallery />
-      <h1>Welcome back, Seeker: {firstName}</h1>
-
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Jobs for you</Link></div>
       <FilterFunctions />

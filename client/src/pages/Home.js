@@ -16,11 +16,8 @@ import { fileUpload } from "../components/fileHandlers.jsx";
 const Home = () => {
   return (
     <>
-
-      <h1> LinkedOut Navbar </h1>
       <HeaderGallery />
       <FilterFunctions />
-      <LoginForm />
       <div>
         <Link to="signUp">Create Account</Link>
       </div>

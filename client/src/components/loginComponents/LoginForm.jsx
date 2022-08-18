@@ -67,9 +67,10 @@ const LoginForm = () => {
     <>
       {/* Plug in your title here */}
       <h1 style={{ 'color': '#1976d2', 'fontWeight': 'lighter' }} onClick={() => setModalOpen(true)} >
-      Login
-      &nbsp;
+      <span>Login</span>
+      <span>
       <MdOutlineLogin style={{ 'color': '#1976d2'}}/>
+      </span>
       </h1>
 
 

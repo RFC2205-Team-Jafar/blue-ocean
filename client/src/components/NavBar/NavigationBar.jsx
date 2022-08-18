@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 /*========== INTERNAL MODULES ==========*/
 import { Row } from '../../../public/stylesheets/styles.js';
@@ -37,7 +38,8 @@ export default function NavigationBar({view, applicants}) {
 
   const userPage = () => {
     return (
-      <h1> Welcome Back {firstName}</h1>
+      <h1 style={{ 'color': '#1976d2', 'fontWeight': 'lighter' }}> <AccountCircleOutlinedIcon style={{ 'color': '#1976d2'}}/> Welcome Back {firstName}</h1>
+
       //profile button
       //Sign out button from XX
     )
@@ -49,7 +51,7 @@ export default function NavigationBar({view, applicants}) {
   return (
     <NavBar>
       <NavLogo/>
-      {accountType === '' && loginPage()}
+      {accountType === undefined && loginPage()}
       {(accountType === 'seeker' || accountType === 'recruiter') && userPage()}
 
     </NavBar>

@@ -22,8 +22,6 @@ const Recruiter = () => {
   return (
     <Page>
       <HeaderGallery />
-      <h1>Welcome back, Recruiter: {firstName}</h1>
-
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Active postings</Link></div>
       <Outlet />
