@@ -62,6 +62,9 @@ export default function DetailJob({ targetPost }) {
       <Button
         variant='contained'
         onClick={handleApply}
+        sx={{
+          margin: '5px'
+        }}
         >APPLY
       </Button>
       )
@@ -70,6 +73,9 @@ export default function DetailJob({ targetPost }) {
         <Button
           variant='contained'
           disabled
+          sx={{
+            margin: '5px'
+          }}
           >APPLIED
         </Button>
       )
