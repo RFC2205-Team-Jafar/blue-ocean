@@ -4,10 +4,13 @@ require("dotenv").config();
 exports.s3Upload = async (file) => {
 
   const s3 = new S3();
+  let name = file.originalname;
+  let renamed = name.replace(/\'/g, "")
+  console.log('renamed', renamed)
 
   const param = {
     Bucket: process.env.AWS_BUCKET_NAME,
-    Key: `${file.originalname}`, //name of file,
+    Key: renamed, //name of file,
     Body: file.buffer,
   }
 
