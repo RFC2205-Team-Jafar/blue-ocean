@@ -63,8 +63,10 @@ function FilterFunctions() {
   };
 
   return (
-    <FilterRow>
-      <SalarySliderSteps onChange={handleSalary} />
+    <>
+      <div></div>
+      <FilterRow>
+        <SalarySliderSteps handleSalary={handleSalary} />
         <InputLabel>
           {" "}
           Industry:
@@ -112,11 +114,12 @@ function FilterFunctions() {
             <MenuItem value="100"> Within 100 miles </MenuItem>
           </Select>
         </InputLabel>
-      <Button variant="contained" onClick={fetchFilteredListing}>
-        {" "}
-        Apply Filters{" "}
-      </Button>
-    </FilterRow>
+        <Button variant="contained" onClick={fetchFilteredListing}>
+          {" "}
+          Apply Filters{" "}
+        </Button>
+      </FilterRow>
+    </>
   );
 }
 

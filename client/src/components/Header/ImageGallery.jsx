@@ -17,7 +17,7 @@ export default function HeaderGallery() {
       sx={{ width: "100vw", height: "450" }}
       variant="quilted"
       cols={6}
-      rowHeight={121}
+      rowHeight={250}
     >
       {itemData.map((item) => (
         <ImageListItem
