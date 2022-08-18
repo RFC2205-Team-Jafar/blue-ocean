@@ -54,11 +54,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-<<<<<<< HEAD
-                WHERE 
-=======
                 WHERE
->>>>>>> 9f039dcf15f3a36dc70aa125b1f21be448f33f02
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -88,6 +84,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                     POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))
                 ) as distance
                 FROM "Listings" business
+
                 WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
@@ -120,11 +117,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-<<<<<<< HEAD
-                WHERE 
-=======
                 WHERE
->>>>>>> 9f039dcf15f3a36dc70aa125b1f21be448f33f02
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
