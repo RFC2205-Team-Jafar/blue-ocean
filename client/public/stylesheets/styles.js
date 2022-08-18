@@ -84,6 +84,7 @@ export const Footer = styled.footer`
 
 export const FeedSection = styled.section`
   display: flex;
+  width: 90vw;
   max-width: 1440px;
   flex-direction: column;
   align-items: space-between;
