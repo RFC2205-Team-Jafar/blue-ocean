@@ -2,9 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import { InterviewInviteModal } from '../../Google_API/interviewInvite.jsx'
 import {fileViewer} from '../fileHandlers.jsx'
 
@@ -21,49 +24,88 @@ export default function DetailApplicant({ applicant }) {
       }
   */
   /*
-  NOTE:
-    add PUT request to close posting using '/jobs/closeposting'
-    EXPECTS:
-      {
-        "listing_id": 93
-      }
-  */
-
 
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
+  const [canReject, setCanReject] = useState(true);
+  const [rejectSuccess, setRejectSuccess] = useState(false);
 
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-  // const handleChange = ({target: {name, value}}) => {
-  //   setJobPosting(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // };
+  const handleReject = () => {
+    axios.put('/jobs/closeposting',)
+    .then(onClose => {
+      setCanReject(false);
+      setRejectSuccess(true);
+      setTimeout(() => setRejectSuccess(false), 3000);
+    })
+    .catch(err => console.error(err))
+}
 
   /*----- RENDER METHODS -----*/
+  const renderReject = () => {
+    if (canReject) {
+      return (
+      <ApplicantButton
+        onClick={handleReject}
+        >REJECT
+      </ApplicantButton>
+      )
+    } else {
+      return (
+        <ApplicantButton
+          disabled
+          >REJECTED
+        </ApplicantButton>
+      )
+    }
+  }
 
+  const renderAlert = () => {
+    if (rejectSuccess) {
+      return (
+        <Alert
+          severity='error'
+          sx={{
+            position: 'absolute',
+            zIndex: '2',
+            width: '90%',
+          }}
+          >
+          <AlertTitle>Success</AlertTitle>
+          This applicant has been <strong>rejected</strong>
+        </Alert>
+      )
+    }
+  }
 
 /*----- RENDERER -----*/
 return (
-  <ApplicantDetail>
+  <ApplicantDetail
+    style={{
+      position: 'relative',
+    }}
+    >
     <ApplicantHeader>
       <ApplicantName>Applicant Name</ApplicantName>
       <ApplicantLocation>Applicant Location</ApplicantLocation>
-      <ButtonTray>
-        <ApplicantButton variant='outlined'>Reject</ApplicantButton>
-        {/* <Button variant='contained'>Schedule Interview</Button> */}
-        <InterviewInviteModal/>
-      </ButtonTray>
+      <ApplicantResume>Applicant Resume:</ApplicantResume>
     </ApplicantHeader>
+      <ButtonBox>
+        <InterviewInviteModal/>
+        {renderReject()}
+      </ButtonBox>
     <ApplicantBody>
+<<<<<<< HEAD
       <ApplicantResume>Applicant Resume:</ApplicantResume>
       {fileViewer('https://jafar-2022.s3.amazonaws.com/Bandit.docx')}
       {/* <p>
+=======
+      {renderAlert()}
+      <p>
+>>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor. Et magnis dis parturient montes nascetur. Lectus proin nibh nisl condimentum id. Nunc consequat interdum varius sit. Laoreet suspendisse interdum consectetur libero id faucibus. Platea dictumst quisque sagittis purus sit. Felis bibendum ut tristique et egestas quis. Scelerisque mauris pellentesque pulvinar pellentesque. Luctus accumsan tortor posuere ac ut consequat semper. Vitae aliquet nec ullamcorper sit amet risus nullam. At varius vel pharetra vel. Faucibus scelerisque eleifend donec pretium vulputate. Venenatis a condimentum vitae sapien pellentesque. Mauris augue neque gravida in fermentum. Velit egestas dui id ornare arcu odio ut sem nulla.
 
         Aliquam etiam erat velit scelerisque in dictum. Aenean pharetra magna ac placerat vestibulum. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Augue neque gravida in fermentum et sollicitudin ac orci phasellus. Vulputate ut pharetra sit amet aliquam id. Mauris pharetra et ultrices neque ornare aenean euismod elementum. Mi bibendum neque egestas congue quisque egestas diam in arcu. Pellentesque elit ullamcorper dignissim cras tincidunt. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Etiam tempor orci eu lobortis elementum. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Morbi tempus iaculis urna id volutpat lacus laoreet. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Vitae sapien pellentesque habitant morbi tristique senectus et netus. Ut morbi tincidunt augue interdum velit euismod. Vel pretium lectus quam id leo in vitae turpis massa. Semper quis lectus nulla at volutpat. Pharetra et ultrices neque ornare aenean euismod elementum nisi. Tellus in metus vulputate eu scelerisque felis imperdiet. Sit amet nisl purus in.
@@ -80,23 +122,21 @@ return (
 
 /*========== STYLES ==========*/
 const ApplicantDetail = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   margin: 10px;
   padding: 10px;
-  /* height: 300px; */
-  /* overflow: scroll; */
   border-radius: 10px;
+  box-shadow:  5px 5px 3px #84c9b7,
+           -5px -5px 3px #90d9c7;
 
-  /* &::-webkit-scrollbar {
-    display: none;
-  } */
 `;
 
 const ApplicantHeader = styled(Column)`
-
+   width: 100%;
 `;
 
 const ApplicantButton = styled(Button)({
+  margin: '3px',
   borderColor:'#f44336',
   color:'#f44336',
   '&:hover': {
@@ -122,7 +162,7 @@ const ApplicantLocation = styled(Row)`
 `;
 
 const ApplicantBody = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;

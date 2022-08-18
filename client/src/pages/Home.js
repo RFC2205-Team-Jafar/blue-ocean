@@ -30,7 +30,10 @@ const Home = () => {
         <Link to="recruiter">Redirect to Recruiter view </Link>
       </div>
       <Feed view={{view:'seeker'}}/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
     </>
   );
 };

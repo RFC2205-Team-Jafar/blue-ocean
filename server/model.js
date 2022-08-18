@@ -28,8 +28,8 @@ const getJobsNoAuth = () => {
 }
 
 
-const getJobs = (industry, isRemote, employmentType, maxDistance) => {
-    // console.log("inside models", isRemote);
+const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
+    // console.log("inside models", minSalary);
     if(isRemote == 2){
         // console.log("remote is not 1 or 0");
         return client.query(`
@@ -39,6 +39,8 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     } else if(isRemote == 1) {
@@ -50,6 +52,8 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
                 AND is_remote = true
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     } else if(isRemote == 0) {
@@ -61,6 +65,8 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
                 AND is_remote = false
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     }
@@ -122,11 +128,6 @@ const isRecruiter = (uuid) => {
 
 
 module.exports = {
-  findUserType: (uuid) => {
-    const queryString = `SELECT account_type FROM "Firebase" WHERE user_uuid = ${uuid}`;
-    return client.query(queryString);
-  },
-
   addSeeker: (seeker) => {
     const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
@@ -141,9 +142,9 @@ module.exports = {
   },
 
   addToFirebase: (user) => {
-    const { userType, user_uuid } = user;
+    const { account_type, user_uuid } = user;
     const queryString = `INSERT INTO "Firebase"
-                         VALUES ('${userType}', '${user_uuid}')`;
+                         VALUES ('${account_type}', '${user_uuid}')`;
     return client,query(queryString);
   },
 
