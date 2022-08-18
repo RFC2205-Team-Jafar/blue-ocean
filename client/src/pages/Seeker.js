@@ -6,22 +6,23 @@ import { Link, Outlet } from "react-router-dom";
 import { AllContext } from "../index.jsx";
 import EmbedCalendar from "../Google_API/calendar.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-import HeaderGallery from "../Components/Header/ImageGallery.jsx";
-import FilterFunctions from "../Components/Filters/FilterFunctions.jsx";
-import FilterStatus from "../Components/Filters/FilterStatus.jsx";
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
+import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
+import FilterStatus from "../components/Filters/FilterStatus.jsx";
 
 const Seeker = () => {
+  const { firstName } = useContext(AllContext);
+
   return (
     <>
-      <h1>Seeker View </h1>
-      <h1>Site logo  +  Seeker  Account</h1>
-      <HeaderGallery/>
+      <h1>Site logo</h1>
+      <h1>Welcome back, Seeker: {firstName}</h1>
+      <HeaderGallery />
 
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Jobs for you</Link></div>
-      <FilterFunctions/>
-      <FilterStatus/>
-      {/* <Feed view={{view:'seeker'}}/> */}
+      <FilterFunctions />
+      <FilterStatus />
       <Outlet />
 
       <Link to="/">Back to Home</Link>

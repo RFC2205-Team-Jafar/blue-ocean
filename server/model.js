@@ -28,8 +28,8 @@ const getJobsNoAuth = () => {
 }
 
 
-const getJobs = (industry, isRemote, employmentType, maxDistance) => {
-    // console.log("inside models", isRemote);
+const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
+    // console.log("inside models", minSalary);
     if(isRemote == 2){
         // console.log("remote is not 1 or 0");
         return client.query(`
@@ -39,6 +39,8 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 FROM "Listings"
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     } else if(isRemote == 1) {
@@ -50,6 +52,8 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
                 AND is_remote = true
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     } else if(isRemote == 0) {
@@ -61,6 +65,8 @@ const getJobs = (industry, isRemote, employmentType, maxDistance) => {
                 WHERE industry = '${industry}'
                 AND employment_type = '${employmentType}'
                 AND is_remote = false
+                AND ${minSalary} <= salary_low
+                AND status = true
             ) as jobs
         `)
     }
