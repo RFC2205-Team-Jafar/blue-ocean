@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AllContext } from "../index.jsx";
+
 // Refer to the JavaScript quickstart on how to setup the environment:
 // https://developers.google.com/calendar/quickstart/js
 // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
@@ -12,10 +12,8 @@ const DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
 ];
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
-//const { email } = useContext(AllContext); // Waiting to email to be saved in state
-const email = ''
 
-const sendInvite = function (data) {
+const sendInvite = function (data, email) {
   // SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
   gapi.load("client:auth2", () => {
     console.log("loaded client");
@@ -60,7 +58,7 @@ const sendInvite = function (data) {
             timeZone: "America/Chicago",
           },
           attendees: [
-            { email: [email] }, //ANCHOR Add email
+            { email: [email] }
           ],
           reminders: {
             useDefault: false,
