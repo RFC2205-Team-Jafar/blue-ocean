@@ -9,10 +9,13 @@ const client = new Client({
   port: process.env.DB_PORT,
 });
 
-client.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to postGres");
-});
+client.connect()
+.then(() => {
+  console.log('\x1b[33m%s\x1b[0m', 'CONNECTED TO DATABASE');
+})
+.catch((err) => {
+  console.log(err.message);
+})
 
 
 module.exports = client;
