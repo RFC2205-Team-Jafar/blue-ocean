@@ -22,15 +22,13 @@ export const AllContext = createContext();
 const App = () => {
 
   // states
-
-  const [uuid, setUuid] = useState("");
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [accountType, setAccountType] = useState("");
-  const [preferredIndustry, setPreferredIndustry] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState();
+  const [firstName, setFirstName] = useState()
+  const [lastName, setLastName] = useState();
+  const [accountType, setAccountType] = useState();
+  const [preferredIndustry, setPreferredIndustry] = useState();
+  const [zipCode, setZipCode] = useState();
+  const [company, setCompany] = useState();
 
   const [coord_lat, setCoord_lat] = useState();
   const [coord_long, setCoord_long] = useState();
@@ -68,7 +66,6 @@ const App = () => {
             coverLetterUrl, setCoverLetterUrl,
             defaultJobs, setDefaultJobs,
             appliedJobs, setAppliedJobs,
-            uuid, setUuid
           }}>
           <Routes>
             <Route path="/" element={<Home />} />

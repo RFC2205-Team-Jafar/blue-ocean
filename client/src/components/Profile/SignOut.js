@@ -7,6 +7,7 @@ import { AllContext } from '../../index.jsx';
 const SignOut = () => {
   // global states
   const { logOut } = useAuth();
+  const { uuid, setUuid } = useContext(AllContext);
   const { email, setEmail } = useContext(AllContext);
   const { accountType, setAccountType } = useContext(AllContext);
   const { firstName, setFirstName } = useContext(AllContext);
@@ -23,6 +24,7 @@ const SignOut = () => {
   const handleLogOut = async () => {
     try {
       await logOut();
+      await setUuid();
       await setEmail();
       await setAccountType();
       await setFirstName();
