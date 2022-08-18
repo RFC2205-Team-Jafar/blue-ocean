@@ -24,7 +24,7 @@ const  signOn = async (req, res) => {
 
                 let resData = {
                     ...user.rows[0],
-                    accountType: "seeker",
+                    account_type: "seeker",
                     appliedJobs: appliedJobs.rows[0].json_agg,
                     defaultJobs: defaultJobs.rows[0].json_agg
                 }
