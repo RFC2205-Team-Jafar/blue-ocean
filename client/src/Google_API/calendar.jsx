@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import Button from "@mui/material/Button";
 import styled from 'styled-components';
+import { AllContext } from "../index.jsx";
 import { MdOutlineCalendarToday } from "react-icons/md";
 
 const EmbedCalendar = () => {
@@ -22,10 +23,7 @@ const EmbedCalendar = () => {
   }, [showCalendar])
 
 
-
-  //const { email } = useContext(AllContext); // Waiting to email to be saved in statef
-  //console.log('email: ', email);
-  const email = ''
+  const { email } = useContext(AllContext);
   let titleColor = '6362a3';
   return (
     <div className="calendarWrapper" ref={ref}>
