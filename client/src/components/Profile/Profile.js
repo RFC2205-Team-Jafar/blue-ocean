@@ -43,7 +43,7 @@ const Profile = () => {
     <>
       <div>
         Profile Updated Successfully!
-        <span onClick={() => setUpdated(false)}> &#10005; </span>
+        <span style={{ cursor: "pointer" }} onClick={() => setUpdated(false)}> &#10005; </span>
       </div>
     </>
   );
