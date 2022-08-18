@@ -230,13 +230,12 @@ module.exports = {
     }
   },
 
-  // TO CONFIRM
+  // WORKING
   changeProfile: async (req, res) => {
     const { account_type } = req.body;
     try {
       if (account_type === 'seeker') {
-        const res = await model.changeSeekerProfile(req.body);
-        // console.log(res);
+        await model.changeSeekerProfile(req.body);
       } else if (account_type === 'recruiter') {
         await model.changeRecruiterProfile(req.body);
       }
