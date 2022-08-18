@@ -4,17 +4,27 @@ import { StyledModal } from './StyledModal';
 import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
+<<<<<<< HEAD
 import {Grid, Paper, Avatar, TextField, Button, Typography, FormControlLabel} from "@mui/material";
+=======
+import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
+>>>>>>> 9f039dcf15f3a36dc70aa125b1f21be448f33f02
 import {Link as MUILink} from '@mui/material/Link';
 import { LockOutlined } from '@mui/icons-material';
 
 
 const LoginForm = () => {
 
+<<<<<<< HEAD
   const paperStyle={position: "relative", top: "150px", padding :20, height:'47vh', width:280, margin:"30px auto", borderRadius: '10px'};
   const avatarStyle={backgroundColor:'#1bbd7e'};
   const btnstyle={margin:'8px 0'}
   const closebtnstyle={ position: "relative", left: "100px", margin:'8px 0'};
+=======
+  const paperStyle={position: "relative", top: "150px", padding :20, height:'40vh', width:280, margin:"30px auto", borderRadius: '10px'};
+  const avatarStyle={backgroundColor:'#1bbd7e'};
+  const btnstyle={margin:'8px 0'};
+>>>>>>> 9f039dcf15f3a36dc70aa125b1f21be448f33f02
 
   //----------------State Hooks  -------------------------
   const { uuid, setUuid } = useContext(AllContext);

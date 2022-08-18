@@ -17,7 +17,7 @@ export default function HeaderGallery() {
       sx={{ width: "100vw", height: "450" }}
       variant="quilted"
       cols={6}
-      rowHeight={121}
+      rowHeight={250}
     >
       {itemData.map((item) => (
         <ImageListItem
@@ -42,30 +42,30 @@ const itemData = [
     title: "Man Working",
   },
   {
-    img: "https://images.unsplash.com/photo-1634087990018-415aeb951215",
-    title: "Lady Writing",
+    img: "https://images.unsplash.com/photo-1628017997653-a31314c14cd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHdvcmtpbmclMjBncmVlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=300&q=60",
+    title: "Lady Green Couch",
   },
   {
-    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODB8fHdvcmt8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
     title: "Laptop Hand",
     rows: 2,
     cols: 2,
   },
   {
-    img: "https://images.unsplash.com/photo-1526657782461-9fe13402a841?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHdvcmtwbGFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=200&q=60",
-    title: "Laptop",
+    img: "https://images.unsplash.com/photo-1507207908229-c59ddb730e40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHdvcmtpbmclMjBncmVlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=300&q=60",
+    title: "Man Walking Laptop",
   },
   {
-    img: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc",
+    img: "https://images.unsplash.com/photo-1611095973763-414019e72400?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHdvcmt8ZW58MHx8MHx8&auto=format&fit=crop&w=200&q=60",
+    title: "Man Laptop Green",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1534166998141-a8746ef4ab6e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDN8fGdyZWVuJTIwb2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     title: "Coffee Laptop",
-  },
-  {
-    img: "https://images.unsplash.com/photo-1531973576160-7125cd663d86",
-    title: "Office",
     cols: 2,
   },
   {
-    img: "https://images.unsplash.com/photo-1573496546038-82f9c39f6365",
+    img: "https://images.unsplash.com/photo-1573496546038-82f9c39f6365?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGJ1c2luZXNzJTIwd29tZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
     title: "Colleagues Talking",
     cols: 2,
   },
