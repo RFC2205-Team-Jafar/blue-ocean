@@ -65,53 +65,53 @@ function FilterFunctions() {
   return (
     <FilterRow>
       <SalarySliderSteps onChange={handleSalary} />
-      <InputLabel>
-        {" "}
-        Industry:
-        <Select onChange={handleIndustry}>
-          <MenuItem value="Art"> Art </MenuItem>
-          <MenuItem value="Aviation"> Aviation </MenuItem>
-          <MenuItem value="Construction"> Construction </MenuItem>
-          <MenuItem value="Education"> Education </MenuItem>
-          <MenuItem value="Food"> Food </MenuItem>
-          <MenuItem value="Healthcare"> Healthcare </MenuItem>
-          <MenuItem value="Music"> Music </MenuItem>
-          <MenuItem value="Tech"> Tech </MenuItem>
-          <MenuItem value="Transportation"> Transportation </MenuItem>
-        </Select>
-      </InputLabel>
-      <InputLabel>
-        {" "}
-        Site:
-        <Select onChange={handleRemote}>
-          <MenuItem value="Both"> Both </MenuItem>
-          <MenuItem value="Remote"> Remote </MenuItem>
-          <MenuItem value="On-Site"> On-Site </MenuItem>
-        </Select>
-      </InputLabel>
-      <InputLabel>
-        {" "}
-        Employment Type:
-        <Select onChange={handleEmployment}>
-          <MenuItem value="Part-Time"> Part-Time </MenuItem>
-          <MenuItem value="Full-Time"> Full-Time </MenuItem>
-          <MenuItem value="Contract"> Contract </MenuItem>
-          <MenuItem value="Internship"> Internship </MenuItem>
-          <MenuItem value="Temp-Position"> Temp-Position </MenuItem>
-          <MenuItem value="Seasonal"> Seasonal </MenuItem>
-        </Select>
-      </InputLabel>
-      <InputLabel>
-        {" "}
-        Max Distance:
-        <Select onChange={handleMaxDist}>
-          <MenuItem value="10"> Within 10 miles </MenuItem>
-          <MenuItem value="15"> Within 15 miles </MenuItem>
-          <MenuItem value="25"> Within 25 miles </MenuItem>
-          <MenuItem value="50"> Within 50 miles</MenuItem>
-          <MenuItem value="100"> Within 100 miles </MenuItem>
-        </Select>
-      </InputLabel>
+        <InputLabel>
+          {" "}
+          Industry:
+          <Select onChange={handleIndustry}>
+            <MenuItem value="Art"> Art </MenuItem>
+            <MenuItem value="Aviation"> Aviation </MenuItem>
+            <MenuItem value="Construction"> Construction </MenuItem>
+            <MenuItem value="Education"> Education </MenuItem>
+            <MenuItem value="Food"> Food </MenuItem>
+            <MenuItem value="Healthcare"> Healthcare </MenuItem>
+            <MenuItem value="Music"> Music </MenuItem>
+            <MenuItem value="Tech"> Tech </MenuItem>
+            <MenuItem value="Transportation"> Transportation </MenuItem>
+          </Select>
+        </InputLabel>
+        <InputLabel>
+          {" "}
+          Site:
+          <Select onChange={handleRemote}>
+            <MenuItem value="Both"> Both </MenuItem>
+            <MenuItem value="Remote"> Remote </MenuItem>
+            <MenuItem value="On-Site"> On-Site </MenuItem>
+          </Select>
+        </InputLabel>
+        <InputLabel>
+          {" "}
+          Employment Type:
+          <Select onChange={handleEmployment}>
+            <MenuItem value="Part-Time"> Part-Time </MenuItem>
+            <MenuItem value="Full-Time"> Full-Time </MenuItem>
+            <MenuItem value="Contract"> Contract </MenuItem>
+            <MenuItem value="Internship"> Internship </MenuItem>
+            <MenuItem value="Temp-Position"> Temp-Position </MenuItem>
+            <MenuItem value="Seasonal"> Seasonal </MenuItem>
+          </Select>
+        </InputLabel>
+        <InputLabel>
+          {" "}
+          Max Distance:
+          <Select onChange={handleMaxDist}>
+            <MenuItem value="10"> Within 10 miles </MenuItem>
+            <MenuItem value="15"> Within 15 miles </MenuItem>
+            <MenuItem value="25"> Within 25 miles </MenuItem>
+            <MenuItem value="50"> Within 50 miles</MenuItem>
+            <MenuItem value="100"> Within 100 miles </MenuItem>
+          </Select>
+        </InputLabel>
       <Button variant="contained" onClick={fetchFilteredListing}>
         {" "}
         Apply Filters{" "}
