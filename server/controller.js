@@ -151,19 +151,20 @@ const isRecruiter = (req, res) => {
 
 module.exports = {
   addUser: async (req, res) => {
+    console.log(req.body)
     const user = req.body; // expect body to contain full user info
     if (user.account_type === 'seeker') {
       try {
-        await model.addSeeker(user);
         await model.addToFirebase(user);
+        await model.addSeeker(user);
         res.sendStatus(201);
       } catch(e) {
-        console.log('eeeeee', e);
+        console.log('7eeeee', e);
       }
     } else if (user.account_type === 'recruiter') {
       try {
-        await model.addRecruiter(user);
         await model.addToFirebase(user);
+        await model.addRecruiter(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);

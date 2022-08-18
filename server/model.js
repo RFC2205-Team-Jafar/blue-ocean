@@ -123,9 +123,11 @@ const isRecruiter = (uuid) => {
 
 module.exports = {
   addSeeker: (seeker) => {
+    console.log("seeker: ", seeker)
     const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
-                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
+                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', "${resume_url}", '${zip}')`;
+                          console.log('queryString: ', queryString);
     return client.query(queryString);
   },
 

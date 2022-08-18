@@ -20,7 +20,7 @@ const SignUp = () => {
   const { company, setCompany } = useContext(AllContext);
   const { coord_lat, setCoord_lat } = useContext(AllContext);
   const { coord_long, setCoord_long } = useContext(AllContext);
-  const { resuemUrl, setResumeUrl } = useContext(AllContext);
+  const { resumeUrl, setResumeUrl } = useContext(AllContext);
   // local states
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -65,12 +65,7 @@ const SignUp = () => {
     const name = firstName + " " + lastName;
     var lat;
     var long;
-    geoConverter(zipCode)
-      .then(geos => {
-        setCoord_lat(geos.lat);
-        setCoord_long(geos.lng);
-      })
-      .catch(err => { console.log('lat long err: ', err) })
+    console.log(zipCode);
     setLoading(true);
     signup(email, password)
       .then(res => {
@@ -94,13 +89,13 @@ const SignUp = () => {
           .catch(err => console.log(err));
       })
       .then(() => setLoading(false))
-      .then(() => {
-        if (accountType === "seeker") {
-          navigate("/seeker", { replace: true });
-        } else {
-          navigate("/recruiter", { replace: true });
-        }
-      })
+      // .then(() => {
+      //   if (accountType === "seeker") {
+      //     navigate("/seeker", { replace: true });
+      //   } else {
+      //     navigate("/recruiter", { replace: true });
+      //   }
+      // })
       .catch(err => console.log("There was an error creating your account: ", err))
   };
 
@@ -162,7 +157,16 @@ const SignUp = () => {
             {/* <option value=""></option> */}
           </select>
           <h2>Zip Code</h2>
-          <input type="text" value={zipCode} onChange={(e) => setZipCode(Number(e.target.value))} placeholder="Zip Code" />
+          <input type="text" value={zipCode} onChange={(e) => {
+                                                              setZipCode(Number(e.target.value));
+                                                              geoConverter(zipCode)
+                                                              .then(geos => {
+                                                                console.log('geos: ', geos)
+                                                                setCoord_lat(geos.lat);
+                                                                setCoord_long(geos.lng);
+                                                              })
+                                                              .catch(err => { console.log('lat long err: ', err) })
+                                                              }} placeholder="Zip Code" />
           {uploaded
           ? <p> Resume Uploaded </p>
           : <>

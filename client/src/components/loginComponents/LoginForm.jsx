@@ -20,6 +20,7 @@ const LoginForm = () => {
   const {coord_lat, setCoord_lat} = useContext(AllContext);
   const {coord_long, setCoord_long} = useContext(AllContext);
   const {resuemUrl, setResumeUrl} = useContext(AllContext);
+  const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -52,11 +53,13 @@ const LoginForm = () => {
     })) //two important pieces: res.user.uid, res.user.email
     .then(() => {
       setLoading(false);
-      if (accountType = "seeker") {
-        navigate("./Seeker.js", {replace: true});
-      } else {
-        navigate("./Recruiter.js", {replace: true});
-      }
+    .then(() => {
+        if (accountType === "seeker") {
+          navigate("/seeker", { replace: true });
+        } else {
+          navigate("/recruiter", { replace: true });
+        }
+      })
     })
     .catch(err => {console.log('There was an error logging in: ', err)})
   }
