@@ -57,23 +57,12 @@ const Profile = () => {
   const renderAlert = () => {
     if (updated) {
       return (
-        <Alert
-          severity="success"
-        >
+        <Alert severity="success">
           <AlertTitle>Success! Your profile has been <strong>updated</strong>.</AlertTitle>
         </Alert>
       )
     }
   };
-
-
-  const msg = (
-    <>
-      <div className="msg">
-        {renderAlert()};
-      </div>
-    </>
-  );
 
   const seekerDOM = (
     <div className="seekerProfile">
@@ -179,7 +168,7 @@ const Profile = () => {
     <div className="profile">
       {accountType === 'seeker' && seekerDOM}
       {accountType === 'recruiter' && recruiterDOM}
-      {updated ? msg : <div className="msg"></div>}
+      {renderAlert()}
     </div>
   );
 
