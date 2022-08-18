@@ -8,7 +8,7 @@ import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
-
+import {fileUpload} from '../fileHandlers.jsx';
 
 /*========== EXPORTS ==========*/
 export default function DetailJob({ targetPost }) {
@@ -105,13 +105,7 @@ export default function DetailJob({ targetPost }) {
         </DetailHeader>
         <ButtonBox>
           {renderApply()}
-          <Button
-            variant='contained'
-            sx={{
-              transform: 'scale(.75)'
-            }}
-            >+ Cover Letter
-          </Button>
+          {fileUpload('Cover Letter')}
         </ButtonBox>
         <JobDescription>Job Description:</JobDescription>
       <DetailBody>

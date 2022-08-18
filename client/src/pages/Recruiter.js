@@ -12,7 +12,7 @@ import { HiPencilAlt } from "react-icons/hi";
 import { Page } from "../../public/stylesheets/styles";
 import PostJob from "../components/PostJob/PostJob.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-import HeaderGallery from "../Components/Header/ImageGallery.jsx";
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import { AllContext } from '../index.jsx';
 
 const Recruiter = () => {
