@@ -1,34 +1,24 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 
-class FilterStatus extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      appliedJobs: [],
-    };
-  }
+function FilterStatus() {
+  const [appliedJobs, setAppliedJobs] = useState([]);
 
-  fetchApplied = () => {
-    axios.get(`jobs/oSl2HNei1PTAsG3TijrfidKJ6dI2/applied`).then((res) => {
-      console.log(res.data);
-      this.setState({
-        appliedJobs: [res.data][0],
-      });
+  const fetchApplied = () => {
+    axios.get(`jobs/:uuid/applied`).then((res) => {
+      setAppliedJobs(res.data);
     });
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <Button variant="contained" onClick={this.fetchApplied}>
-          {" "}
-          Applied Jobs{" "}
-        </Button>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Button variant="contained" onClick={fetchApplied}>
+        {" "}
+        Applied Jobs{" "}
+      </Button>
+    </React.Fragment>
+  );
 }
 
 export default FilterStatus;
