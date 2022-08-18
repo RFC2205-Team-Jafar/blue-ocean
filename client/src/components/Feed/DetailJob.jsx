@@ -51,6 +51,8 @@ export default function DetailJob({ targetPost }) {
   //   .then(applied => setCanApply(false))
   //   .catch(err => console.error(err))
     setCanApply(false);
+    setPostSuccess(true);
+    setTimeout(() => setPostSuccess(false), 3000);
   };
 
   /*----- RENDER METHODS -----*/
@@ -72,8 +74,6 @@ export default function DetailJob({ targetPost }) {
         </Button>
       )
     }
-    setPostSuccess(true);
-    setTimeout(() => setPostSuccess(false), 3000);
   }
 
   const renderSuccess = () => {
@@ -81,7 +81,12 @@ export default function DetailJob({ targetPost }) {
       return (
         <Alert
           severity='success'
-          sx={{position: 'absolute', zIndex: '2'}}
+          sx={{
+            position: 'absolute',
+            zIndex: '2',
+            width: '90%',
+            backgroundColor: '#8FC645'
+          }}
           >
           <AlertTitle>Success</AlertTitle>
           Your job has been posted!
@@ -135,7 +140,9 @@ const DetailBody = styled(Column)`
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  height: 800px;
+  min-height: 55em;
+  height: 100%
+  max-height: 1200px;
   overflow: scroll;
 
   &::-webkit-scrollbar {
@@ -147,10 +154,11 @@ const JobDetail = styled(Column)`
   position: relative;
   align-items: flex-start;
   background-color: #fcfaf5;
-  height: 55em;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  box-shadow:  5px 5px 3px #84c9b7,
+           -5px -5px 3px #90d9c7;
 `;
 
 const JobTitle = styled(Row)`
