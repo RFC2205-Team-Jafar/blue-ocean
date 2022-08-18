@@ -6,29 +6,27 @@ import axios from 'axios';
 import { AllContext } from '../index.jsx';
 import { fileUpload } from '../components/fileHandlers.jsx'
 import Button from '@mui/material/Button';
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);
   //---------------------- State Hooks --------------------------
-  const { email, setEmail } = useContext(AllContext);
-  const { accountType, setAccountType } = useContext(AllContext);
-  // const {login, googleLogin} = useAuth();
-  const { firstName, setFirstName } = useContext(AllContext);
-  const { lastName, setLastName } = useContext(AllContext);
-  const { preferredIndustry, setPreferredIndustry } = useContext(AllContext);
-  const { zipCode, setZipCode } = useContext(AllContext);
-  const { company, setCompany } = useContext(AllContext);
-  const { coord_lat, setCoord_lat } = useContext(AllContext);
-  const { coord_long, setCoord_long } = useContext(AllContext);
-  const { resumeUrl, setResumeUrl } = useContext(AllContext);
+  const [ email, setEmail ] = useState();
+  const [ accountType, setAccountType ] = useState();
+  const [ firstName, setFirstName ] = useState();
+  const [ lastName, setLastName ] = useState();
+  const [ preferredIndustry, setPreferredIndustry ] = useState();
+  const [ zipCode, setZipCode ] = useState();
+  const [ company, setCompany ] = useState();
+  const [ coord_lat, setCoord_lat ] = useState();
+  const [ coord_long, setCoord_long ] = useState();
+  const [ resumeUrl, setResumeUrl ] = useState();
   // local states
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const history = useHistory();
+    // const {login, googleLogin} = useAuth();
   const { signup } = useAuth();
-  // console.log('signup: ', signup);
-  //add resume button
   const fileInputRef = useRef()
   const [uploaded, setUploaded] = useState(false);
 
@@ -105,7 +103,7 @@ const SignUp = () => {
   if (accountType === undefined) {
     return (
       <div>
-
+        <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
         <div className="registration_container">
@@ -117,8 +115,8 @@ const SignUp = () => {
           <span>
             <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
             <div>Job Seeker</div>
-          </span>
-          <span>
+          {/* </span>
+          <span> */}
             <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
             <div>Recruiter</div>
           </span>
@@ -130,6 +128,7 @@ const SignUp = () => {
   } else if (accountType === "seeker") {
     return (
       <div>
+        <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
         <div className="registration_container">
@@ -189,6 +188,7 @@ const SignUp = () => {
   } else if (accountType === "recruiter") {
     return (
       <div>
+        <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
         <div className="registration_container">
