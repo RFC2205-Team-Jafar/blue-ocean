@@ -31,17 +31,47 @@ export default function PostList({ handleClick, postings, view: { view } }) {
     - should conditionally render buttons specific to the parent page
     - on Click -> sends the clicked posting information to the Details listing
     */
-    if (postings && view === 'seeker')return postings.map(post => <PostedJob handleClick={handleClick}/>)
 
-    if (postings && view === 'recruiter') return postings.map(post => <ActiveJob handleClick={handleClick}/>)
+    if (postings && view === 'seeker') {
+      const seeker = postings.map(post => <PostedJob handleClick={handleClick}/>)
+      return (
+        <ListSection>
+          {seeker}
+        </ListSection>
+      )
+    }
+
+    if (postings && view === 'recruiter') {
+      const recruiter = postings.map(post => <ActiveJob handleClick={handleClick}/>)
+      return (
+        <ListSection>
+          {recruiter}
+        </ListSection>
+      )
+    }
   }
 
+  const renderUnsigned = () => {
+    if (postings && view === 'unsigned') {
+      const unsigned = postings.map(post => <PostedJob/>)
+      return (
+        <ListSection
+          style={{
+            width: '100%'
+          }}
+          >
+          {unsigned}
+        </ListSection>
+      )
+    }
+  }
 
-/*----- RENDERER -----*/
-return (
-  <ListSection>
-    {renderList()}
-  </ListSection>
+  /*----- RENDERER -----*/
+  return (
+    <>
+      {renderList()}
+      {renderUnsigned()}
+    </>
   )
 }
 

@@ -75,13 +75,16 @@ export default function PostJob() {
     }
 
     if (jobPosting.zipcode) {
-      const zipcode = Number(jobPosting.zipcode)
-      geoConverter(zipcode)
-      .then(latLong => setJobPosting(prev => ({
+      // const zipcode = Number(jobPosting.zipcode)
+      geoConverter(jobPosting.zipcode)
+      .then(latLong => {
+        setJobPosting(prev => ({
         ...prev,
         coord_lat: latLong.lat,
         coord_long: latLong.lng
-      })))
+        }))
+        console.log(jobPosting)
+      })
       .then(merge => axios.post('/jobs/addajob', jobPosting))
       .then(success => {
         setPostSuccess(true);

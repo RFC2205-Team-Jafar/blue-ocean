@@ -35,6 +35,13 @@ export default function Feed({view, applicants}) {
 
 
   /*----- RENDER METHODS -----*/
+  const renderDetail = () => {
+    if (view && view.view !== 'unsigned') {
+      return (
+        <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants}/>
+      )
+    }
+  }
 
 
   /*----- RENDERER -----*/
@@ -46,7 +53,7 @@ export default function Feed({view, applicants}) {
           {/* <h4 style={{paddingLeft: '5px'}}>Jobs based on your criteria</h4> */}
         <Row>
           <PostList handleClick={handleClick} postings={postings} view={view} />
-          <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants}/>
+          {renderDetail()}
         </Row>
     </FeedSection>
   )
