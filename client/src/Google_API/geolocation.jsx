@@ -9,6 +9,7 @@ const geoConverter = function(zipcode) {
   const geoConverter = axios.post(getGeo);
   return geoConverter.then(response => {
     const geos = response.data.results[0].geometry.location;
+    console.log('geolocation geos: ', geos)
     return geos;
   })
   .catch(err => {
