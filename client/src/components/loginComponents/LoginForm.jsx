@@ -4,6 +4,7 @@ import { StyledModal } from './StyledModal';
 import {useAuth} from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
+import Button from '@mui/material/Button';
 
 
 const LoginForm = () => {
@@ -79,7 +80,7 @@ const LoginForm = () => {
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address"/>
           <div>Password</div>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
-          <button onClick={() => handlePlainLogin()}> Login </button>
+          <Button variant='contained'  onClick={() => handlePlainLogin()}> Login </Button>
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
         </div>
         <div>

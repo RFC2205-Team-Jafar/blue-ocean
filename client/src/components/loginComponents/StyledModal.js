@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '@mui/material/Button';
+
 
 // This is the modal TEMPLATE. Do not modify.
 // Import statement: import { StyledModal } from './StyledModal'
@@ -36,7 +38,7 @@ export const StyledModal = ({
     <ModalDiv block={ show ? 'block' : 'none' }>
       <ContentDiv>
         {children}
-        <button onClick = {handleClose}> Close </button>
+        <Button variant='contained' onClick = {handleClose}> Close </Button>
       </ContentDiv>
     </ModalDiv>
   )

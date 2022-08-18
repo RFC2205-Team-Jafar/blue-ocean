@@ -4,7 +4,7 @@ import {useAuth} from '../components/AuthContext.jsx';
 import geoConverter from '../Google_API/geolocation.jsx';
 import axios from 'axios';
 import { AllContext } from '../index.jsx';
-// import {fileUpload} from '../components/fileHandlers.jsx'
+import Button from '@mui/material/Button';// import {fileUpload} from '../components/fileHandlers.jsx'
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);
@@ -138,8 +138,7 @@ const SignUp = () => {
           <h2>Zip Code</h2>
             <input type="text" value={zipCode} onChange={(e) => setZipCode(Number(e.target.value))} placeholder="Zip Code" />
           {/* {fileUpload('resume')} */}
-          <button onClick={register} disabled={loading}>Create Account</button>
-          <button onClick={register} disabled={loading}>Create Account</button>
+          <Button variant = 'contained' onClick={register} disabled={loading}>Create Account</Button>
         </div>
       </div>
     )
@@ -169,7 +168,7 @@ const SignUp = () => {
           <h2>Company</h2>
             <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
         </div>
-        <button onClick={register} disabled={loading}>Create Account</button>
+        <Button variant='contained' onClick={register} disabled={loading}>Create Account</Button>
       </div>
     )
   }

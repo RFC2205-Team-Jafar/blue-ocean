@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
-
+import {fileUpload} from '../fileHandlers.jsx'
 
 /*========== EXPORTS ==========*/
 export default function DetailJob({ targetPost }) {
@@ -59,13 +59,7 @@ export default function DetailJob({ targetPost }) {
       <JobTitle>Job Title</JobTitle>
       <JobLocation>Job Location</JobLocation>
       <ButtonTray>
-        <Button
-          variant='contained'
-          sx={{
-            transform: 'scale(.75)'
-          }}
-          >+ Cover Letter
-        </Button>
+        {fileUpload('Cover Letter')}
         <Button
           variant='contained'
           >Apply
