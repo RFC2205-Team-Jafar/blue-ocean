@@ -142,6 +142,24 @@ export const ButtonGroup = styled.div`
   align-items: center;
 `;
 
+export const JobPosting = styled(Column)`
+  background-color: #fcfaf5;
+  border: solid thin transparent;
+  margin: 10px;
+  padding: 10px;
+  min-height: 12em;
+  max-height: 20em;
+  overflow: clip;
+  border-radius: 10px;
+  box-shadow:  5px 5px 3px #84c9b7,
+           -5px -5px 3px #90d9c7;
+  &:hover {
+    border: solid thin #171816;
+    box-shadow:  6px 6px 12px #84c9b7,
+           -6px -6px 12px #90d9c7;
+  }
+`;
+
 /*
 =====================================
                 FORMS
