@@ -275,13 +275,11 @@ module.exports = {
                              zip = $4,
                              resume_url = $5
                          WHERE user_uuid = $6`;
-    console.log(queryString);
     return client.query(queryString, [first_name, last_name, pref_industry, zip, resume_url, user_uuid]);
   },
 
   // WORKING
   changeRecruiterProfile: (userInfo) => {
-    console.log(userInfo);
     const { user_uuid, first_name, last_name, company_name } = userInfo;
     const queryString = `UPDATE "Recruiters"
                          SET first_name = $1,
