@@ -4,8 +4,6 @@ yarn.lock
 package-lock.json
 .env
 *.LICENSE.txt
-credentials.json
-google.js
 
 # Logs
 logs
