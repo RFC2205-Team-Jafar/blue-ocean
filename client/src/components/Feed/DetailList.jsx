@@ -69,7 +69,7 @@ const DetailSection = styled(Column)`
   padding: 10px;
   margin: 10px;
   width: 48%;
-  height: 900px;
+  height: 1200px;
   overflow: scroll;
 
   &::-webkit-scrollbar {

@@ -3,13 +3,16 @@
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import EmbedCalendar from '../Google_API/calendar.jsx';
+import styled from 'styled-components';
+import Button from '@mui/material/Button';
+import { HiPencilAlt } from "react-icons/hi";
 
 
 /*========== INTERNAL MODULES ==========*/
 import { Page } from "../../public/stylesheets/styles";
 import PostJob from "../components/PostJob/PostJob.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-import HeaderGallery from "../Components/Header/ImageGallery.jsx";
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import { AllContext } from '../index.jsx';
 
 const Recruiter = () => {
@@ -24,10 +27,17 @@ const Recruiter = () => {
 
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Active postings</Link></div>
-      <div><Link to="postAJob">Post a new job</Link></div>
       <Outlet />
 
       <Link to="/"> Back to Home </Link>
+      <PostNewJob
+        variant='contained'
+        ><StyledLink to="postAJob">{<HiPencilAlt style={{
+          marginRight: '10px',
+          transform: 'scale(1.5)'
+        }}
+        />} New Posting</StyledLink>
+      </PostNewJob>
       <EmbedCalendar />
     </Page>
   );
@@ -39,3 +49,14 @@ export default Recruiter;
 
 
 /*========== STYLES ==========*/
+const PostNewJob = styled(Button)({
+  position: 'fixed',
+  bottom: '50px',
+  right: '20px',
+});
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  font-size: 14pt;
+`;

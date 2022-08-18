@@ -2,36 +2,110 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column, Label, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
+import { Column, Label, Row, ButtonTray, JobPosting } from '../../../public/stylesheets/styles.js';
 
 
 /*========== EXPORTS ==========*/
 export default function ActiveJob({ handleClick }) {
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
+  const [canClose, setCanClose] = useState(true);
+  const [closeSuccess, setCloseSuccess] = useState(false);
 
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-
+  const handleClose = () => {
+    /*
+    NOTE:
+      add PUT request to close posting using '/jobs/closeposting'
+      EXPECTS:
+        {
+          "listing_id": 93
+        }
+    */
+    axios.put('/jobs/closeposting',)
+  .then(onClose => {
+    setCanClose(false);
+    setCloseSuccess(true);
+    setTimeout(() => setCloseSuccess(false), 3000);
+  })
+  .catch(err => console.error(err))
+}
 
   /*----- RENDER METHODS -----*/
+  const renderClose = () => {
+    if (canClose) {
+      return (
+      <Button
+        sx={{
+          position: 'absolute',
+          top: '15px',
+          right: '5px',
+          color: '#f44336',
+          '&:hover': {
+            color: '#fff',
+            backgroundColor:'#f44336',
+            borderColor:'#f44336',
+          },
+        }}
+        onClick={handleClose}
+        >Close Posting
+      </Button>
+      )
+    } else {
+      return (
+        <Button
+          sx={{
+            position: 'absolute',
+            top: '15px',
+            right: '5px'
+          }}
+          disabled
+          >CLOSED
+        </Button>
+      )
+    }
+  }
+
+  const renderAlert = () => {
+    if (closeSuccess) {
+      return (
+        <Alert
+          severity='error'
+          sx={{
+            position: 'absolute',
+            zIndex: '2',
+            width: '90%',
+          }}
+          >
+          <AlertTitle>Success</AlertTitle>
+          This posting has been <strong>closed</strong>
+        </Alert>
+      )
+    }
+  }
+
 
   /*----- RENDERER -----*/
   return (
-    <JobPosting onClick={ handleClick }>
-      <PostingHeader>
-        <PostingName>Job Title</PostingName>
-        <PostingLocation>Job Location</PostingLocation>
-        <ButtonTray>
-          <Button>Close Posting</Button>
-        </ButtonTray>
-      </PostingHeader>
+    <JobPosting
+      style={{
+        position: 'relative',
+      }}
+      onClick={ handleClick }
+      >
+      <PostingName>Job Title</PostingName>
+      <PostingLocation>Job Location</PostingLocation>
+      {renderClose()}
       <PostingBody>
+        {renderAlert()}
         <p>
           Job Description:
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum . . .
@@ -43,18 +117,6 @@ export default function ActiveJob({ handleClick }) {
 
 
 
-
-/*========== STYLES ==========*/
-const JobPosting = styled(Column)`
-  background-color: #fff;
-  border: solid thin transparent;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  &:hover {
-    border: solid thin #000;
-  }
-`;
 
 /*========== STYLES ==========*/
 const PostingHeader = styled(Column)`
@@ -87,23 +149,13 @@ const PostingLocation = styled(Row)`
 `;
 
 const PostingBody = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
-  /* height: 800px; */
   overflow: scroll;
 
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const PostingContent = styled(Row)`
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 10px;
-  width: 100%;
-  font-weight: bold;
-  font-size: 12pt;
 `;
