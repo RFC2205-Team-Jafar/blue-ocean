@@ -1,4 +1,6 @@
-const client = require('./db.js');
+//MODEL
+
+client = require('./db.js');
 
 const getUser = (uuid, userType) => {
     if(userType === 'seeker') {
@@ -31,40 +33,97 @@ const getJobsNoAuth = () => {
 const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
     if(isRemote == 2){
         return client.query(`
+            CREATE EXTENSION IF NOT EXISTS cube;
+            CREATE EXTENSION IF NOT EXISTS earthdistance;
+
             SELECT json_agg(jobs)
             FROM(
-                SELECT *
-                FROM "Listings"
-                WHERE industry = '${industry}'
-                AND employment_type = '${employmentType}'
-                AND ${minSalary} <= salary_low
-                AND status = true
+                WITH matchedseekerlat AS (
+                    SELECT seeker.coord_lat
+                    FROM "Seekers" as seeker
+                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                ), matchedseekerlong AS (
+                    SELECT seeker.coord_lat
+                    FROM "Seekers" as seeker
+                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                )
+
+
+                SELECT *,(
+                    POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))
+                ) as distance
+                FROM "Listings" business
+
+                WHERE 
+                    (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
+                    AND industry = '${industry}'
+                    AND employment_type = '${employmentType}'
+                    AND ${minSalary} <= salary_low
+                    AND status = true
             ) as jobs
         `)
     } else if(isRemote == 1) {
         return client.query(`
+            CREATE EXTENSION IF NOT EXISTS cube;
+            CREATE EXTENSION IF NOT EXISTS earthdistance;
+
             SELECT json_agg(jobs)
             FROM(
-                SELECT *
-                FROM "Listings"
-                WHERE industry = '${industry}'
-                AND employment_type = '${employmentType}'
-                AND is_remote = true
-                AND ${minSalary} <= salary_low
-                AND status = true
+                WITH matchedseekerlat AS (
+                    SELECT seeker.coord_lat
+                    FROM "Seekers" as seeker
+                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                ), matchedseekerlong AS (
+                    SELECT seeker.coord_lat
+                    FROM "Seekers" as seeker
+                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                )
+
+
+                SELECT *,(
+                    POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))
+                ) as distance
+                FROM "Listings" business
+
+                WHERE 
+                    (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
+                    AND industry = '${industry}'
+                    AND employment_type = '${employmentType}'
+                    AND is_remote = true
+                    AND ${minSalary} <= salary_low
+                    AND status = true
             ) as jobs
         `)
     } else if(isRemote == 0) {
         return client.query(`
+            CREATE EXTENSION IF NOT EXISTS cube;
+            CREATE EXTENSION IF NOT EXISTS earthdistance;
+
             SELECT json_agg(jobs)
             FROM(
-                SELECT *
-                FROM "Listings"
-                WHERE industry = '${industry}'
-                AND employment_type = '${employmentType}'
-                AND is_remote = false
-                AND ${minSalary} <= salary_low
-                AND status = true
+                WITH matchedseekerlat AS (
+                    SELECT seeker.coord_lat
+                    FROM "Seekers" as seeker
+                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                ), matchedseekerlong AS (
+                    SELECT seeker.coord_lat
+                    FROM "Seekers" as seeker
+                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                )
+
+
+                SELECT *,(
+                    POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))
+                ) as distance
+                FROM "Listings" business
+
+                WHERE 
+                    (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
+                    AND industry = '${industry}'
+                    AND employment_type = '${employmentType}'
+                    AND is_remote = false
+                    AND ${minSalary} <= salary_low
+                    AND status = false
             ) as jobs
         `)
     }

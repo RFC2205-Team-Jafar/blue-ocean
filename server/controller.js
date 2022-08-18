@@ -1,3 +1,4 @@
+//CONTROLLER
 const { AsyncDependenciesBlock } = require('webpack');
 const model = require('./model.js');
 const client = require('./db.js');
@@ -25,7 +26,7 @@ const  signOn = async (req, res) => {
                     ...user.rows[0],
                     account_type: "seeker",
                     appliedJobs: appliedJobs.rows[0].json_agg,
-                    defaultJobs: defaultJobs.rows[0].json_agg
+                    defaultJobs: defaultJobs[2].rows[0].json_agg
                 }
 
                 res.status(200).send(resData);
@@ -76,7 +77,7 @@ const filter = async (req, res) => {
 
                 const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance, minSalary);
 
-                res.status(200).send(filteredJobs.rows[0].json_agg)
+                res.status(200).send(filteredJobs[2].rows[0].json_agg)
             } catch  (err) {
 
                 console.log(err);
