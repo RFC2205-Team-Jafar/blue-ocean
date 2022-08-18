@@ -39,16 +39,15 @@ export default function Feed({view, applicants}) {
 
   /*----- RENDERER -----*/
   return (
-    <FeedSection>
-        {/* <Row>
-          <h4 style={{padding-left: '5px'}}>Check out these opportunities</h4>
-        </Row> */}
-          {/* <h4 style={{paddingLeft: '5px'}}>Jobs based on your criteria</h4> */}
+    <>
+      <FeedHeader><h4>YOUR FEED</h4></FeedHeader>
+      <FeedSection>
         <Row>
           <PostList handleClick={handleClick} postings={postings} view={view} />
           <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants}/>
         </Row>
-    </FeedSection>
+      </FeedSection>
+    </>
   )
 }
 
@@ -56,3 +55,11 @@ export default function Feed({view, applicants}) {
 
 
 /*========== STYLES ==========*/
+
+const FeedHeader = styled(Row)`
+  font-size: 1pt;
+  font-weight: bold;
+  justify-content: center;
+  border: none;
+  border-top: 1em solid linear-gradient(50deg, rgba(119, 201, 212, 0.75), rgba(87, 188, 144, 0.75));
+`;
