@@ -21,9 +21,6 @@ export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
   // states
-  useEffect(() => {
-    userLocation();
-  }, [])
 
   const [uuid, setUuid] = useState("");
   const [email, setEmail] = useState("");
