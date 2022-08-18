@@ -17,6 +17,8 @@ import AppBar from '@mui/material/AppBar';
 export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  color: #171816;
+  max-width: 1440px;
   /* background-color: #414141; */
 }
 `;
@@ -84,7 +86,7 @@ export const FeedSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: space-between;
-  background-color: #999999;
+  background: linear-gradient(50deg, rgba(119, 201, 212, 0.75), rgba(87, 188, 144, 0.75));
   overflow: scroll;
   border-radius: 10px;
 

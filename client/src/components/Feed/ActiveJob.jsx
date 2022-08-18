@@ -46,13 +46,13 @@ export default function ActiveJob({ handleClick }) {
 
 /*========== STYLES ==========*/
 const JobPosting = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   border: solid thin transparent;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
   &:hover {
-    border: solid thin #000;
+    border: solid thin #8fc645;
   }
 `;
 
@@ -87,7 +87,7 @@ const PostingLocation = styled(Row)`
 `;
 
 const PostingBody = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;

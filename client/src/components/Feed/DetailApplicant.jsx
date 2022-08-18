@@ -79,7 +79,7 @@ return (
 
 /*========== STYLES ==========*/
 const ApplicantDetail = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   margin: 10px;
   padding: 10px;
   /* height: 300px; */
@@ -121,7 +121,7 @@ const ApplicantLocation = styled(Row)`
 `;
 
 const ApplicantBody = styled(Column)`
-  background-color: #fff;
+  background-color: #fcfaf5;
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
