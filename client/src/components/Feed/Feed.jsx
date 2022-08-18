@@ -31,6 +31,7 @@ export default function Feed({view, applicants}) {
       ...prev,
       [name]: value
     }))
+
   };
 
 
@@ -41,14 +42,12 @@ export default function Feed({view, applicants}) {
   return (
     <FeedSection>
         {/* <Row>
-<<<<<<< HEAD
           <h3 style={{padding: '10px'}}>This is the Job Feed Section</h3>
         </Row> */}
-=======
+        {/* <Row>
           <h4 style={{padding-left: '5px'}}>Check out these opportunities</h4>
         </Row> */}
           {/* <h4 style={{paddingLeft: '5px'}}>Jobs based on your criteria</h4> */}
->>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
         <Row>
           <PostList handleClick={handleClick} postings={postings} view={view} />
           <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants}/>

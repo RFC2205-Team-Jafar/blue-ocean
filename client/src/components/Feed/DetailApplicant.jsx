@@ -98,7 +98,6 @@ return (
         {renderReject()}
       </ButtonBox>
     <ApplicantBody>
-<<<<<<< HEAD
       <ApplicantResume>Applicant Resume:</ApplicantResume>
       {fileViewer('https://jafar-2022.s3.amazonaws.com/Bandit.docx')}
       {/* <p>

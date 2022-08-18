@@ -1,5 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
@@ -8,14 +8,16 @@ import AppBar from '@mui/material/AppBar';
 import { Row } from '../../../public/stylesheets/styles.js';
 import NavLogo from './NavLogo.jsx';
 import LoginForm from '../loginComponents/LoginForm.jsx';
-
+import {AllContext} from '../../index.jsx'
 
 /*========== EXPORTS ==========*/
 export default function NavigationBar({view, applicants}) {
 
-
   /*----- STATE HOOKS -----*/
   // const [] = useState();
+  const {accountType} = useContext(AllContext);
+  const {firstName} = useContext(AllContext);
+
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
@@ -25,15 +27,31 @@ export default function NavigationBar({view, applicants}) {
 
 
   /*----- RENDER METHODS -----*/
+  const loginPage = () => {
+    return (
+    <Button>
+    <LoginForm />
+    </Button>
+    )
+  }
+
+  const userPage = () => {
+    return (
+      <h1> Welcome Back {firstName}</h1>
+      //profile button
+      //Sign out button from XX
+    )
+  }
+
 
 
   /*----- RENDERER -----*/
   return (
     <NavBar>
       <NavLogo/>
-      <Button>
-        <LoginForm />
-      </Button>
+      {accountType === '' && loginPage()}
+      {(accountType === 'seeker' || accountType === 'recruiter') && userPage()}
+
     </NavBar>
   )
 }
@@ -57,4 +75,5 @@ const NavBar = styled(AppBar)({
     backgroundColor:'#75C043',
     borderColor:'#75C043',
   },
+  postion: 'sticky'
 });

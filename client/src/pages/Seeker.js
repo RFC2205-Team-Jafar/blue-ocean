@@ -15,9 +15,8 @@ const Seeker = () => {
 
   return (
     <>
-      <h1>Site logo</h1>
-      <h1>Welcome back, Seeker: {firstName}</h1>
       <HeaderGallery />
+      <h1>Welcome back, Seeker: {firstName}</h1>
 
       <div><Link to="profile" >Profile</Link></div>
       <div><Link to="">Jobs for you</Link></div>

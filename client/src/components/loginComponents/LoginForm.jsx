@@ -5,6 +5,8 @@ import {useAuth} from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
 import Button from '@mui/material/Button';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { MdOutlineLogin} from "react-icons/md";
 
 
 const LoginForm = () => {
@@ -69,7 +71,12 @@ const LoginForm = () => {
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Login </h1>
+      <h1 style={{ 'color': '#1976d2', 'fontWeight': 'lighter' }} onClick={() => setModalOpen(true)} >
+      Login
+      &nbsp;
+      <MdOutlineLogin style={{ 'color': '#1976d2'}}/>
+      </h1>
+
 
       {/* Modal Section */}
       <StyledModal
@@ -80,11 +87,12 @@ const LoginForm = () => {
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address"/>
           <div>Password</div>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
-          <Button variant='contained'  onClick={() => handlePlainLogin()}> Login </Button>
+          <Button variant='contained'  onClick={() => handlePlainLogin()}> Login/ Sign Up
+          </Button>
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
         </div>
         <div>
-          Don't have an account? <Link to="signUp">Create</Link> an account now.
+          Don't have an account? <Link to="signUp" onClick={() => setModalOpen(false)}>Create</Link> an account now.
         </div>
       </StyledModal>
     </>

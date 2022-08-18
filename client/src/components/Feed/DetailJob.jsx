@@ -7,13 +7,9 @@ import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-<<<<<<< HEAD
-import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
-import {fileUpload} from '../fileHandlers.jsx'
-=======
+
 import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import {fileUpload} from '../fileHandlers.jsx';
->>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
 
 /*========== EXPORTS ==========*/
 export default function DetailJob({ targetPost }) {
@@ -61,9 +57,7 @@ export default function DetailJob({ targetPost }) {
   };
 
   /*----- RENDER METHODS -----*/
-<<<<<<< HEAD
 
-=======
   const renderApply = () => {
     if (canApply) {
       return (
@@ -108,25 +102,11 @@ export default function DetailJob({ targetPost }) {
       )
     }
   }
->>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
 
   /*----- RENDERER -----*/
   return (
     <JobDetail>
-<<<<<<< HEAD
-      <DetailHeader>
-      <JobTitle>Job Title</JobTitle>
-      <JobLocation>Job Location</JobLocation>
-      <ButtonTray>
-        {fileUpload('Cover Letter')}
-        <Button
-          variant='contained'
-          >Apply
-        </Button>
-      </ButtonTray>
-      </DetailHeader>
-      <DetailBody>
-=======
+
         <DetailHeader>
         <JobTitle>Job Title</JobTitle>
         <JobLocation>Job Location</JobLocation>
@@ -136,7 +116,6 @@ export default function DetailJob({ targetPost }) {
           {renderApply()}
           {fileUpload('Cover Letter')}
         </ButtonBox>
->>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
         <JobDescription>Job Description:</JobDescription>
       <DetailBody>
         {renderSuccess()}

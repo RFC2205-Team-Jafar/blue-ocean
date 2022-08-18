@@ -4,12 +4,7 @@ import { useAuth } from '../components/AuthContext.jsx';
 import geoConverter from '../Google_API/geolocation.jsx';
 import axios from 'axios';
 import { AllContext } from '../index.jsx';
-<<<<<<< HEAD
-import Button from '@mui/material/Button';// import {fileUpload} from '../components/fileHandlers.jsx'
-=======
-import { fileUpload } from '../components/fileHandlers.jsx'
 import Button from '@mui/material/Button';
->>>>>>> 385b57bf64ebc47655dddd7fd650e4d6e9a6f3e0
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);

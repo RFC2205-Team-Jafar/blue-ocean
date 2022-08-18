@@ -14,6 +14,9 @@ import Grid from "@mui/material/Grid";
 
 // End Material UI
 
+//styled compoenents
+import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
+
 export const InterviewInviteModal = () => {
 
   const handleSubmit = () => {
@@ -74,6 +77,7 @@ const ModalDiv = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
 `;
 
 
