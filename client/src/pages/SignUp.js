@@ -168,7 +168,6 @@ const SignUp = () => {
                                                               setZipCode(e.target.value);
                                                               geoConverter(zipCode)
                                                               .then(geos => {
-                                                                console.log('geos: ', geos)
                                                                 setCoord_lat(geos.lat);
                                                                 setCoord_long(geos.lng);
                                                               })
