@@ -1,6 +1,7 @@
-import React, { useState, createContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import Button from "@mui/material/Button";
 import styled from 'styled-components';
+import { AllContext } from "../index.jsx";
 
 const EmbedCalendar = () => {
   const ref = useRef()
@@ -22,7 +23,9 @@ const EmbedCalendar = () => {
 
 
 
-  let email = 'nicholas.kempkes@gmail.com'; //ANCHOR Replace with email from DB and also ensure that firebase gives auth to read
+  //const { email } = useContext(AllContext); //ANCHOR Replace with email from DB and also ensure that firebase gives auth to read
+  //console.log('email: ', email);
+  const email = 'nicholas.kempkes@gmail.com'
   let titleColor = '6362a3';
   return (
     <div className="calendarWrapper" ref={ref}>
