@@ -3,8 +3,6 @@ import axios from "axios";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 
-
-
 export default function SalarySliderSteps({ handleSalary }) {
   const [sliderValue, setSliderValue] = useState(0);
 
