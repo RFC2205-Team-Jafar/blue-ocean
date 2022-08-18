@@ -247,6 +247,7 @@ module.exports = {
       } else if (account_type === 'recruiter') {
         await model.changeRecruiterProfile(req.body);
       }
+      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeeee', e);
     }

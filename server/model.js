@@ -282,7 +282,7 @@ module.exports = {
     const queryString = `UPDATE "SubmittedApplications"
                         SET "didReceivePromisedPay" = ${didReceivePromisedPay}, application_status = 'selected'
                         WHERE seeker_uuid = '${seeker_uuid}' and listing_id = $1`;
-    console.log(queryString);
+    // console.log(queryString);
     return client.query(queryString, [listing_id]);
   },
 
