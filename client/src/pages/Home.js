@@ -14,6 +14,7 @@ const Home = () => {
     <>
       <h1> LinkedOut Navbar </h1>
       <HeaderGallery />
+      <LoginForm />
       <h1> Jobs (newest 20) </h1>
 
       <div>
@@ -22,7 +23,7 @@ const Home = () => {
       <div>
         <Link to="recruiter">Redirect to Recruiter view </Link>
       </div>
-      <Feed view={{view:'seeker'}}/>
+      <Feed view={{ view: "seeker" }} />
     </>
   );
 };
