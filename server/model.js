@@ -55,7 +55,7 @@ const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -234,7 +234,7 @@ module.exports = {
     const { account_type, user_uuid } = user;
     const queryString = `INSERT INTO "Firebase"
                          VALUES ('${account_type}', '${user_uuid}')`;
-    return client,query(queryString);
+    return client.query(queryString);
   },
 
   addAJob: (j) => {
