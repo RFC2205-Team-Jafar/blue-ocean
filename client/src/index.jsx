@@ -21,6 +21,8 @@ export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
 
+  // states
+
   const [email, setEmail] = useState();
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
