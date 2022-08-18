@@ -23,7 +23,6 @@ const LoginForm = () => {
   const { resuemUrl, setResumeUrl } = useContext(AllContext);
   const { defaultJobs, setDefaultJobs } = useContext(AllContext);
   const { appliedJobs, setAppliedJobs } = useContext(AllContext);
-  const { uuid, setUuid } = useContext(AllContext);
   const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
