@@ -46,16 +46,18 @@ export default function Feed({view, applicants}) {
 
   /*----- RENDERER -----*/
   return (
-    <FeedSection>
-        {/* <Row>
-          <h4 style={{padding-left: '5px'}}>Check out these opportunities</h4>
-        </Row> */}
-          {/* <h4 style={{paddingLeft: '5px'}}>Jobs based on your criteria</h4> */}
-        <Row>
-          <PostList handleClick={handleClick} postings={postings} view={view} />
-          {renderDetail()}
-        </Row>
-    </FeedSection>
+    <Row style={{justifyContent: 'center', width:'100vw'}}>
+      <FeedSection>
+          {/* <Row>
+            <h4 style={{padding-left: '5px'}}>Check out these opportunities</h4>
+          </Row> */}
+            {/* <h4 style={{paddingLeft: '5px'}}>Jobs based on your criteria</h4> */}
+          <Row>
+            <PostList handleClick={handleClick} postings={postings} view={view} />
+            {renderDetail()}
+          </Row>
+      </FeedSection>
+    </Row>
   )
 }
 

@@ -15,7 +15,7 @@ const Home = () => {
     <>
       <h1> LinkedOut Navbar </h1>
       <HeaderGallery />
-      <FilterFunctions />
+      {/* <FilterFunctions /> */}
       <LoginForm />
       <h1> Jobs (newest 20) </h1>
       <div>
