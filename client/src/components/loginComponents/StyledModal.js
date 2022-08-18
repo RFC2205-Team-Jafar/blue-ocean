@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 // This is the modal TEMPLATE. Do not modify.
@@ -32,8 +32,23 @@ export const StyledModal = ({
   show,
   children
 }) => {
+  const ref = useRef()
+  useEffect(() => {
+    const outSideClick = (e) => {
+      if (show && ref.current && !ref.current.contains(e.target)) {
+        show(false);
+      }
+    }
+    document.addEventListener("mousedown", outSideClick)
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", outSideClick)
+    }
+  }, [show])
+
+
   return (
-    <ModalDiv block={ show ? 'block' : 'none' }>
+    <ModalDiv ref={ref} block={ show ? 'block' : 'none' }>
       <ContentDiv>
         {children}
         <button onClick = {handleClose}> Close </button>
