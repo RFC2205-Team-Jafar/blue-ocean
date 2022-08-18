@@ -122,7 +122,7 @@ const Child = styled.div`
 const Child_Text = styled.div`
   margin: auto;
   display: inline-block;
-  flex-basis: 80%;
+  flex-basis: 70%;
 `;
 
 const Styled_Text = styled.div`
