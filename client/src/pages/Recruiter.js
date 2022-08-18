@@ -17,7 +17,6 @@ import { AllContext } from '../index.jsx';
 import SignOut from '../components/Profile/SignOut.js';
 
 const Recruiter = () => {
-
   const { firstName } = useContext(AllContext);
 
   return (
@@ -49,8 +48,6 @@ const Recruiter = () => {
 
 /*========== EXPORTS ==========*/
 export default Recruiter;
-
-
 
 /*========== STYLES ==========*/
 const PostNewJob = styled(Button)({
