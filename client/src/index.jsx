@@ -23,7 +23,7 @@ const App = () => {
 
   // states
   const [email, setEmail] = useState();
-  const [firstName, setFirstName] = useState()
+  const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [accountType, setAccountType] = useState();
   const [preferredIndustry, setPreferredIndustry] = useState();
