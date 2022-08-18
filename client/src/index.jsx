@@ -25,6 +25,7 @@ const App = () => {
     userLocation();
   }, [])
 
+  const [uuid, setUuid] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -51,6 +52,7 @@ const App = () => {
         <AllContext.Provider
           value={{
             location, setLocation,
+            uuid, setUuid,
             email, setEmail,
             firstName, setFirstName,
             lastName, setLastName,

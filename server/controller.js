@@ -238,12 +238,13 @@ module.exports = {
   changeProfile: async (req, res) => {
     const { account_type } = req.body;
     try {
-      await model.changeUserEmail(req.body);
       if (account_type === 'seeker') {
-        await model.changeSeekerProfile(req.body);
+        const res = await model.changeSeekerProfile(req.body);
+        // console.log(res);
       } else if (account_type === 'recruiter') {
         await model.changeRecruiterProfile(req.body);
       }
+      res.sendStatus(200);
     } catch(e) {
       console.log('eeeeeee', e);
     }
