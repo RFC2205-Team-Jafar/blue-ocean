@@ -54,7 +54,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -85,7 +85,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -117,7 +117,7 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -267,7 +267,7 @@ module.exports = {
     return client.query(queryString, [first_name, last_name, pref_industry, zip, resume_url, user_uuid]);
   },
 
-  // TO CONFIRM
+  // WORKING
   changeRecruiterProfile: (userInfo) => {
     console.log(userInfo);
     const { user_uuid, first_name, last_name, company_name } = userInfo;
