@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const controller = require('./controller.js');
 
@@ -24,6 +25,9 @@ router.put('/jobs/closeposting', controller.closePosting);
 router.put('/jobs/verifysalary', controller.verifySalary);
 router.put('/jobs/changeprofile', controller.changeProfile);
 
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+})
 // UPLOAD DOC AND CONVERT TO URL
 
 const multer = require("multer");
