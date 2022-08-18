@@ -41,6 +41,7 @@ export const InterviewInviteModal = () => {
       <Button variant='contained' onClick={() => handleShow()} >Schedule Interview</Button>
       <ModalDiv block={show ? 'block' : 'none'}>
         <ContentDiv>
+          <Style_Title>Schedule Interview</Style_Title>
           <StyledForm>
             <Child>
               <FormLabel><b>Start Date</b></FormLabel>
@@ -122,7 +123,7 @@ const Child = styled.div`
 const Child_Text = styled.div`
   margin: auto;
   display: inline-block;
-  flex-basis: 70%;
+  flex-basis: 80%;
 `;
 
 const Styled_Text = styled.div`
@@ -136,4 +137,12 @@ const Styled_Text = styled.div`
 const Button_Container = styled.div`
   width: 100%;
   text-align: center;
+  margin-top: 25px;
+`;
+
+const Style_Title = styled.h2`
+  width: 100%;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 35px;
 `;
