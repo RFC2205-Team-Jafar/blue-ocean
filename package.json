@@ -9,7 +9,7 @@
     "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "server": "nodemon server/index.js",
-    "shotgun":"rm -rf node_modules package-lock.json && npm install"
+    "shotgun": "rm -rf node_modules package-lock.json && npm install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -24,6 +24,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "firebase": "^9.9.2",
+    "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
