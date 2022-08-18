@@ -7,13 +7,8 @@ import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-<<<<<<< HEAD
-import { Column, Row, ButtonTray } from '../../../public/stylesheets/styles.js';
-import { InterviewInviteModal } from '../../Google_API/interviewInvite.jsx';
-=======
 import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import { InterviewInviteModal } from '../../Google_API/interviewInvite.jsx'
->>>>>>> dev
 
 
 /*========== EXPORTS ==========*/
@@ -96,14 +91,7 @@ return (
     <ApplicantHeader>
       <ApplicantName>Applicant Name</ApplicantName>
       <ApplicantLocation>Applicant Location</ApplicantLocation>
-<<<<<<< HEAD
-      <ButtonTray>
-        <ApplicantButton variant='outlined'>Reject</ApplicantButton>
-        <InterviewInviteModal/>
-      </ButtonTray>
-=======
       <ApplicantResume>Applicant Resume:</ApplicantResume>
->>>>>>> dev
     </ApplicantHeader>
       <ButtonBox>
         <InterviewInviteModal/>

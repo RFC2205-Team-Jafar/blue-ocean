@@ -1,12 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import Button from "@mui/material/Button";
 import styled from 'styled-components';
-<<<<<<< HEAD
-import { AllContext } from "../index.jsx";
-=======
-import Button from '@mui/material/Button';
 import { MdOutlineCalendarToday } from "react-icons/md";
->>>>>>> dev
 
 const EmbedCalendar = () => {
   const ref = useRef()
