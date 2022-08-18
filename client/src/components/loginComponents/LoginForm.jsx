@@ -68,7 +68,7 @@ const LoginForm = () => {
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Click Here to Login </h1>
+      <h1 onClick={() => setModalOpen(true)} > Login </h1>
 
       {/* Modal Section */}
       <StyledModal

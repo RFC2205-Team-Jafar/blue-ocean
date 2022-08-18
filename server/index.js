@@ -23,9 +23,5 @@ if (!module.parent) {
   console.log("Listening on", process.env.PORT || 3000);
 }
 
-<<<<<<< HEAD
+module.exports.app = app;
 
-module.exports.app = app;
-=======
-module.exports.app = app;
->>>>>>> 94495f9c1fcf306178f5b38479141d68b172b240

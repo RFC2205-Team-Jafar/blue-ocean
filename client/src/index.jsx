@@ -11,11 +11,7 @@ import SignUp from './pages/SignUp.js';
 import Seeker from './pages/Seeker';
 import Profile from './components/Profile/Profile.js';
 import Feed from './components/Feed/Feed.jsx';
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 94495f9c1fcf306178f5b38479141d68b172b240
 import Recruiter from './pages/Recruiter';
 import PostJob from './components/PostJob/PostJob.jsx'
 import { GlobalStyle } from '../public/stylesheets/styles';

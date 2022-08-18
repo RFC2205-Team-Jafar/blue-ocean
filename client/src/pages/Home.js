@@ -19,7 +19,7 @@ const Home = () => {
       <h1> Greenhorn Navbar </h1>
       <HeaderGallery />
       {/* <FilterFunctions /> */}
-      <h1> Jobs (newest 20) </h1>
+      {/* <h1> Jobs (newest 20) </h1> */}
       <div>
         <Link to="signUp">Create Account</Link>
       </div>
@@ -31,7 +31,6 @@ const Home = () => {
       </div>
       <Feed view={{view:'seeker'}}/>
 
-      {fileUpload("Resume")}
     </>
   );
 };
