@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 // Async function that converts zipcode into latitude and longitude with Google API
 const geoConverter = function(zipcode) {
-  let token = '[API_KEY]'; // ANCHOR add Google API KEY
+  let token = ''; // ANCHOR add Google API KEY
   let getGeo = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${token}`;
   const geoConverter = axios.post(getGeo);
   return geoConverter.then(response => {

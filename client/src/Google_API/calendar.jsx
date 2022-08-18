@@ -23,9 +23,9 @@ const EmbedCalendar = () => {
 
 
 
-  //const { email } = useContext(AllContext); //ANCHOR Replace with email from DB and also ensure that firebase gives auth to read
+  //const { email } = useContext(AllContext); // Waiting to email to be saved in statef
   //console.log('email: ', email);
-  const email = 'nicholas.kempkes@gmail.com'
+  const email = ''
   let titleColor = '6362a3';
   return (
     <div className="calendarWrapper" ref={ref}>
