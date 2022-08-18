@@ -20,7 +20,7 @@ export function AuthProvider({children}) {
   }
 
   function logOut() {
-    return methods.signOut();
+    return methods.signOut(auth);
   }
 
   // function googleLogin() {

@@ -36,7 +36,6 @@ const LoginForm = () => {
     .then((res => {
       const uid = res.user.uid;
       setUuid(uid);
-      setEmail(res.user.email);
       axios.get(`/jobs/${uid}/signon`) //rework this route
       .then((res => {
         console.log('handlePlainLogin axios get res: ', res)
