@@ -1,7 +1,7 @@
-import React, {useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { StyledModal } from './StyledModal';
-import {useAuth} from '../AuthContext.jsx';
+import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
 
@@ -9,66 +9,61 @@ import { AllContext } from "../../index.jsx";
 const LoginForm = () => {
 
   //----------------State Hooks  -------------------------
-  const {email, setEmail } = useContext(AllContext);
-  const {accountType, setAccountType} = useContext(AllContext);
+  const { uuid, setUuid } = useContext(AllContext);
+  const { email, setEmail } = useContext(AllContext);
+  const { accountType, setAccountType } = useContext(AllContext);
   // const {login, googleLogin} = useAuth();
-  const {firstName, setFirstName} = useContext(AllContext);
-  const {lastName, setLastName} = useContext(AllContext);
-  const {preferredIndustry, setPreferredIndustry} = useContext(AllContext);
-  const {zipCode, setZipCode} = useContext(AllContext);
-  const {company, setCompany} = useContext(AllContext);
-  const {coord_lat, setCoord_lat} = useContext(AllContext);
-  const {coord_long, setCoord_long} = useContext(AllContext);
-  const {resuemUrl, setResumeUrl} = useContext(AllContext);
+  const { firstName, setFirstName } = useContext(AllContext);
+  const { lastName, setLastName } = useContext(AllContext);
+  const { preferredIndustry, setPreferredIndustry } = useContext(AllContext);
+  const { zipCode, setZipCode } = useContext(AllContext);
+  const { company, setCompany } = useContext(AllContext);
+  const { coord_lat, setCoord_lat } = useContext(AllContext);
+  const { coord_long, setCoord_long } = useContext(AllContext);
+  const { resuemUrl, setResumeUrl } = useContext(AllContext);
+  const { defaultJobs, setDefaultJobs } = useContext(AllContext);
+  const { appliedJobs, setAppliedJobs } = useContext(AllContext);
+  const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
-//----------------Modal Functions ----------------------
+  const navigate = useNavigate();
+  //----------------Modal Functions ----------------------
   const hideModal = () => {
     setModalOpen(false);
   };
   //----------------Embedded Functions -------------------
-  const handlePlainLogin = () => {
+  const handlePlainLogin = async () => {
     setLoading(true);
-    login(email, password)
-    .then((res => {
-      const uid = res.user.uid
-      axios.get(`/jobs/getuser/${uid}`) //rework this route
-      .then((res => {
-        console.log('handlePlainLogin axios get res: ', res)
-        setAccountType(res.body.accountType);
-      }))
-      .catch(err => console.log('there was an error from the server login: ', err))
-    })) //two important pieces: res.user.uid, res.user.email
-    .then(() => {
-      setLoading(false);
-      if (accountType = "seeker") {
-        navigate("./Seeker.js", {replace: true});
-      } else {
-        navigate("./Recruiter.js", {replace: true});
-      }
-    })
-    .catch(err => {console.log('There was an error logging in: ', err)})
+    const r = await login(email, password);
+    const uid = r.user.uid;
+    const res = await axios.get(`/jobs/${uid}/signon`);
+    console.log(res.data);
+    await setUuid(res.data.user_uuid);
+    await setAccountType(res.data.account_type);
+    await setFirstName(res.data.first_name);
+    await setLastName(res.data.last_name);
+    await setCompany(res.data.company_name);
+    await setCoord_lat(res.data.coord_lat);
+    await setCoord_long(res.data.coord_long);
+    await setResumeUrl(res.data.resume_url);
+    await setZipCode(res.data.zip);
+    await setPreferredIndustry(res.data.pref_industry);
+    await setAppliedJobs(res.data.defaultJobs);
+    await setDefaultJobs(res.data.appliedJobs);
+    if (res.data.account_type === "seeker") {
+      navigate("/seeker", { replace: true });
+    } else if (res.data.account_type === "recruiter") {
+      navigate("/recruiter", { replace: true });
+    }
+    setLoading(false);
   }
-  // const handleGoogleLogin = () => {
-  //   setLoading(true);
-  //   googleLogin()
-  //   .then(() => {
-  //     setLoading(false);
-  //     if (accountType = "seeker") {
-  //       navigate("/seeker", {replace: true});
-  //     } else {
-  //       navigate("/recruiter", {replace: true});
-  //     }
-  //   })
-  //   .catch(err => {console.log('There was an error logging in: ', err)})
-  // }
   //---------------- DOM Return -------------------------
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Click Here to Login </h1>
+      <h1 onClick={() => setModalOpen(true)} > Login </h1>
 
       {/* Modal Section */}
       <StyledModal
@@ -76,9 +71,9 @@ const LoginForm = () => {
         handleClose={hideModal}>
         <div className="login__container">
           <div>Email </div>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address"/>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address" />
           <div>Password</div>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
           <button onClick={() => handlePlainLogin()}> Login </button>
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
         </div>
