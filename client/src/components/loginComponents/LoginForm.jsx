@@ -82,8 +82,8 @@ const LoginForm = () => {
               <Avatar style={avatarStyle}><LockOutlined/></Avatar>
               <h2>Sign In</h2>
             </Grid>
-            <TextField label='Username' placeholder='Enter username' fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <TextField label='Password' placeholder='Enter password' type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <TextField label='Username' placeholder='Enter username' style={{paddingTop: "5px", paddingBottom:"7px"}} fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <TextField label='Password' placeholder='Enter password' style={{paddingTop: "5px", paddingBottom:"7px"}} type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required/>
             <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={() => handlePlainLogin()}>Sign in</Button>
             <Typography style={{textAlign: "center"}}> Don't have an account? <br/>
                 <Link to="signUp" onClick={() => {setModalOpen(false)}}>
