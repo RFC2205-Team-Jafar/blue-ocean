@@ -14,8 +14,9 @@ import Grid from "@mui/material/Grid";
 // End Material UI
 
 export const InterviewInviteModal = () => {
+  const { email } = useContext(AllContext); // Waiting to email to be saved in state
   const handleSubmit = () => {
-    sendInvite(inviteInfo);
+    sendInvite(inviteInfo, email);
     handleClose();
   }
 
