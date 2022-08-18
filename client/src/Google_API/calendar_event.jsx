@@ -6,7 +6,7 @@ import React, { useContext } from 'react';
 // stored credentials.
 // SET UP GOOGLE ENVIRONMENT
 var gapi = window.gapi;
-var CLIENT_ID = ""; //ANCHOR Add CLIENT ID
+var CLIENT_ID = " "; //ANCHOR Add CLIENT ID
 var API_KEY = ""; //ANCHOR Add API Key
 const DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
