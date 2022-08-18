@@ -8,16 +8,15 @@ import PostJob from "../components/PostJob/PostJob.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-
 import { fileUpload } from "../components/fileHandlers.jsx";
 
 const Home = () => {
   return (
     <>
-      <h1> GreenHorn Logo </h1>
+      <h1> Greenhorn Navbar </h1>
       <LoginForm />
       <HeaderGallery />
-      <FilterFunctions />
+      {/* <FilterFunctions /> */}
       <h1> Jobs (newest 20) </h1>
 
       <div>
