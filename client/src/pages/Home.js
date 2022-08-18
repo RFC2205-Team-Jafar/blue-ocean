@@ -29,8 +29,6 @@ const Home = () => {
         <Link to="recruiter">Redirect to Recruiter view </Link>
       </div>
       <Feed view={{view:'seeker'}}/>
-
-      {fileUpload("Resume")}
     </>
   );
 };
