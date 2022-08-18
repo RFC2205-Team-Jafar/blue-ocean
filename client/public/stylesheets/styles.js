@@ -182,4 +182,3 @@ export const HeaderImg = styled.img`
 export const Img = styled.img``;
 
 export const Thumbnail = styled.img``;
-

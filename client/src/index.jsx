@@ -18,6 +18,8 @@ import { GlobalStyle } from '../public/stylesheets/styles';
 import { AuthProvider } from './components/AuthContext.jsx';
 import userLocation from './Google_API/userLocation.jsx'
 
+import NavigationBar from './components/NavBar/NavigationBar.jsx';
+
 export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
@@ -43,6 +45,8 @@ const App = () => {
   }, [])
 
   return (
+    <div>
+
     <Router>
       <GlobalStyle />
       <AuthProvider>
@@ -62,6 +66,7 @@ const App = () => {
             coverLetterUrl, setCoverLetterUrl,
             // uploaded, setUploaded
           }}>
+          <NavigationBar/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="signUp" element={<SignUp />} />
@@ -78,6 +83,7 @@ const App = () => {
         </AllContext.Provider>
       </AuthProvider>
     </Router>
+    </div>
   )
 }
 

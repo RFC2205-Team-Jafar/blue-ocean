@@ -15,8 +15,8 @@ import { fileUpload } from "../components/fileHandlers.jsx";
 const Home = () => {
   return (
     <>
-      <NavigationBar/>
-      <h1> Greenhorn Navbar </h1>
+      {/* <NavigationBar/>
+      <h1> Greenhorn Navbar </h1> */}
       <HeaderGallery />
       {/* <FilterFunctions /> */}
       {/* <h1> Jobs (newest 20) </h1> */}

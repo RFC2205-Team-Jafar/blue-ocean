@@ -66,7 +66,7 @@ const fileViewer = (fileURL) => {
     <div>
       <a href={fileURL}>Download</a>
       <br />
-      <iframe src={url} width="100%" height="800px"></iframe>
+      <iframe src={url} width="100%" height = "100%" frameborder = "0" border = "0" ></iframe>
     </div>
   )
 
