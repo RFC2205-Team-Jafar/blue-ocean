@@ -13,6 +13,9 @@ import Grid from "@mui/material/Grid";
 
 // End Material UI
 
+//styled compoenents
+import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
+
 export const InterviewInviteModal = () => {
   const { email } = useContext(AllContext); // Waiting to email to be saved in state
   const handleSubmit = () => {

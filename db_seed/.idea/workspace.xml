@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="716cf1cc-d4f4-48ed-8ce4-0ddb7e1199c4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FirebaseGenerator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/listingGenerator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +128,7 @@
       <updated>1660600088537</updated>
       <workItem from="1660600091394" duration="7941000" />
       <workItem from="1660633147308" duration="1116000" />
+      <workItem from="1660747115209" duration="643000" />
     </task>
     <servers />
   </component>

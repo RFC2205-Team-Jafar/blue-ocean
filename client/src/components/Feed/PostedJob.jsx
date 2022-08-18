@@ -1,7 +1,6 @@
 /*========== EXTERNAL MODULES ==========*/
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
 import { Column, Label, Row, JobPosting } from '../../../public/stylesheets/styles.js';

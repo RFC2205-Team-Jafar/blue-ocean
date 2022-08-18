@@ -2,6 +2,8 @@ import React, { useState, useContext, useRef } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import { AllContext } from '../index.jsx';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { Row } from '../../public/stylesheets/styles.js';
 
 const fileUpload = (fileType) => {
 
@@ -37,7 +39,9 @@ const fileUpload = (fileType) => {
 
   if(uploaded){
     return (
-      <p>{fileType} uploaded </p>
+      <Row> UPLOADED &nbsp;
+      <CheckCircleOutlineOutlinedIcon style = {{color: 'green'}}/>
+      </Row>
     )
   } else {
     return (
@@ -62,11 +66,11 @@ const fileViewer = (fileURL) => {
   }
 
   return (
-    <div>
+    <>
       <a href={fileURL}>Download</a>
       <br />
-      <iframe src={url} width="100%" height="800px"></iframe>
-    </div>
+      <iframe src={url} height = "100%" frameborder = "0" border = "0" style={{ border: "solid 1px #777", width: "576px", height: "100%", maxHeight: "400px", frameBorder: "0px", scrolling: "yes", borderRadius: "5px", boxShadow: "2px 2px 10px black" }}></iframe>
+    </>
   )
 
 }

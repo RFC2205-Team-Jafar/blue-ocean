@@ -5,10 +5,10 @@ import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
 import { Row, FeedSection, Column } from '../../../public/stylesheets/styles.js';
+import {AllContext} from '../../index.jsx'
 import PostList from './PostList.jsx';
 import DetailList from './DetailList.jsx';
-import { AllContext } from '../../index.jsx';
-
+import FilterFunctions from '../Filters/FilterFunctions.jsx'
 
 /*========== EXPORTS ==========*/
 export default function Feed({view, applicants}) {
@@ -26,7 +26,7 @@ export default function Feed({view, applicants}) {
   /*----- STATE HOOKS -----*/
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
-  const { defaultJobs, appliedJobs } = useContext(AllContext);
+  const { accountType, defaultJobs, appliedJobs } = useContext(AllContext);
 
 
   /*----- LIFESTYLE METHODS -----*/
@@ -39,6 +39,7 @@ export default function Feed({view, applicants}) {
       ...prev,
       [name]: value
     }))
+
   };
 
 
@@ -55,9 +56,14 @@ export default function Feed({view, applicants}) {
   /*----- RENDERER -----*/
   return (
     <Column style={{justifyContent: 'center', width:'100vw'}}>
+      {accountType === 'seeker' && <FilterFunctions />}
       <HeaderDivider></HeaderDivider>
       <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
+
+        {/* <Row>
+          <h3 style={{padding: '10px'}}>This is the Job Feed Section</h3>
+        </Row> */}
         <Row>
           <PostList handleClick={handleClick} postings={postings} view={view} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
           {renderDetail()}

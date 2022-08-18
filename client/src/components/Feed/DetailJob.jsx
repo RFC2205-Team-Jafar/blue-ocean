@@ -7,6 +7,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
+
 import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import {fileUpload} from '../fileHandlers.jsx';
 
@@ -56,6 +57,7 @@ export default function DetailJob({ targetPost }) {
   };
 
   /*----- RENDER METHODS -----*/
+
   const renderApply = () => {
     if (canApply) {
       return (
@@ -104,6 +106,7 @@ export default function DetailJob({ targetPost }) {
   /*----- RENDERER -----*/
   return (
     <JobDetail>
+
         <DetailHeader>
         <JobTitle>Job Title</JobTitle>
         <JobLocation>Job Location</JobLocation>

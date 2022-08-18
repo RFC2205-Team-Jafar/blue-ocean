@@ -1,6 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
 import styled, {createGlobalStyle} from 'styled-components';
-import AppBar from '@mui/material/AppBar';
 
 /*========== INTERNAL MODULES ==========*/
 
@@ -59,14 +58,6 @@ export const StyledHeader = styled.header`
   padding: 40px 0;
 `;
 
-export const NavBar = styled(AppBar)({
-  backgroundColor: 'transparent',
-  '&:hover': {
-    color: '#fff',
-    backgroundColor:'#f44336',
-    borderColor:'#f44336',
-  },
-});
 
 export const ImgGalleryContainer = styled.div`
   width:33%
@@ -119,6 +110,7 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ButtonTray = styled(Row)`
@@ -217,4 +209,3 @@ export const HeaderImg = styled.img`
 export const Img = styled.img``;
 
 export const Thumbnail = styled.img``;
-

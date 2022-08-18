@@ -12,15 +12,16 @@ const  signOn = async (req, res) => {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
         let isRemote = 2;
-        let maxDistance = 50;
+        let maxDistance = 30000;
         let employmentType= "Full Time";
         let minSalary = 0;
 
+        // console.log(isSeeker.rows[0].exists);
         if(isSeeker.rows[0].exists) {
             try {
                 const user = await model.getUser(uuid, "seeker");
                 const appliedJobs = await model.appliedJobs(uuid)
-                const defaultJobs = await model.getJobs(user.rows[0].pref_industry,isRemote,employmentType,maxDistance,minSalary);
+                const defaultJobs = await model.getJobs(uuid,user.rows[0].pref_industry,isRemote,employmentType,maxDistance,minSalary);
 
                 let resData = {
                     ...user.rows[0],
@@ -38,6 +39,7 @@ const  signOn = async (req, res) => {
             try {
                 const user = await model.getUser(uuid, "recruiter");
                 const listings = await model.listings(uuid);
+                console.log(listings);
                 let resData = {
                     ...user.rows[0],
                     account_type: "recruiter",
@@ -47,7 +49,8 @@ const  signOn = async (req, res) => {
                 }
 
                 res.status(200).send(resData);
-            } catch {
+            } catch (err) {
+                console.log(err);
                 res.sendStatus(500);
             }
         } else {
@@ -68,6 +71,7 @@ const filter = async (req, res) => {
     let employmentType= req.query.employmentType || "Full Time";
     let minSalary = parseInt(req.query.minSalary) || 0;
 
+    // console.log(typeof minSalary)
     try {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
@@ -75,7 +79,7 @@ const filter = async (req, res) => {
         if(isSeeker.rows[0].exists) {
             try {
 
-                const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance, minSalary);
+                const filteredJobs = await model.getJobs(uuid,industry,isRemote,employmentType,maxDistance, minSalary);
 
                 res.status(200).send(filteredJobs[2].rows[0].json_agg)
             } catch  (err) {
@@ -130,6 +134,7 @@ const isSeeker = (req, res) => {
     uuid = req.params.uuid;
     model.isSeeker(uuid)
     .then((success) => {
+        // console.log(success);
         res.status(200).send(true);
     })
     .catch((err) => {
@@ -142,6 +147,7 @@ const isRecruiter = (req, res) => {
     uuid = req.params.uuid;
     model.isRecruiter(uuid)
     .then((success) => {
+        // console.log(success);
         res.status(200).send(true);
     })
     .catch((err) => {
@@ -156,13 +162,15 @@ module.exports = {
     if (user.account_type === 'seeker') {
       try {
         await model.addSeeker(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
-        console.log('7eeeee', e);
+        console.log('eeeeee', e);
       }
     } else if (user.account_type === 'recruiter') {
       try {
         await model.addRecruiter(user);
+        await model.addToFirebase(user);
         res.sendStatus(201);
       } catch(e) {
         console.log('eeeeee', e);
@@ -230,7 +238,7 @@ module.exports = {
     }
   },
 
-  // WORKING
+
   changeProfile: async (req, res) => {
     const { account_type } = req.body;
     try {
