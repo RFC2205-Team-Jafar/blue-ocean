@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
 /*========== INTERNAL MODULES ==========*/
-import { Row, FeedSection } from '../../../public/stylesheets/styles.js';
+import { Row, FeedSection, Column } from '../../../public/stylesheets/styles.js';
 import PostList from './PostList.jsx';
 import DetailList from './DetailList.jsx';
 
@@ -46,7 +46,9 @@ export default function Feed({view, applicants}) {
 
   /*----- RENDERER -----*/
   return (
-    <Row style={{justifyContent: 'center', width:'100vw'}}>
+    <Column style={{justifyContent: 'center', width:'100vw'}}>
+      <HeaderDivider></HeaderDivider>
+      <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
           {/* <Row>
             <h4 style={{padding-left: '5px'}}>Check out these opportunities</h4>
@@ -57,11 +59,26 @@ export default function Feed({view, applicants}) {
             {renderDetail()}
           </Row>
       </FeedSection>
-    </Row>
+    </Column>
   )
 }
 
 
 
-
 /*========== STYLES ==========*/
+
+const FeedHeader = styled(Row)`
+  width: 100vw;
+  padding: 5px;
+  align-items: flex-end;
+  font-size: 14pt;
+  font-weight: bold;
+  justify-content: center;
+`;
+
+const HeaderDivider = styled(Row)`
+  width: 100vw;
+  height: 0.1em;
+  margin: 5px;
+  background: linear-gradient(50deg, rgba(119, 201, 212, 0.75), rgba(87, 188, 144, 0.75));
+`
