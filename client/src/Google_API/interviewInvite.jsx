@@ -15,7 +15,6 @@ import Grid from "@mui/material/Grid";
 // End Material UI
 
 export const InterviewInviteModal = () => {
-  console.log(useContext(AllContext));
   const handleSubmit = () => {
     sendInvite(inviteInfo);
     handleClose();
