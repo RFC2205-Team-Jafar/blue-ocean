@@ -9,7 +9,7 @@
     "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "server": "nodemon server/index.js",
-    "shotgun":"rm -rf node_modules package-lock.json && npm install"
+    "shotgun": "rm -rf node_modules package-lock.json && npm install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -31,6 +31,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.0.3",
+    "react-icons": "^4.4.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5"
