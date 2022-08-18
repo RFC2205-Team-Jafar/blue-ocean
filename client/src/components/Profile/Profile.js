@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import { AllContext } from '../../index.jsx';
+import { fileUpload } from '../fileHandlers.jsx';
 
 const Profile = () => {
-  const { accountType } = useContext(AllContext);
-  // const accountType = 'recruiter';
+
+  const accountType = 'seeker';
+  // const { accountType } = useContext(AllContext);
+  const { firstName, lastName, email, preferredIndustry, resumeUrl, zipCode, company } = useContext(AllContext);
+  const { setFirstName, setLastName, setEmail, setPreferredIndustry, setResumeUrl, setZipCode, setCompany } = useContext(AllContext);
+
+  const updateProfile = () => {
+
+  }
 
   if (accountType === 'seeker') {
-    const { firstName, lastName, email, preferredIndustry, resumeUrl, zipCode } = useContext(AllContext);
-    const { setFirstName, setLastName, setEmail, setPreferredIndustry, setResumeUrl, setZipCode } = useContext(AllContext);
-
     return (
       <>
         <div>
@@ -33,12 +38,10 @@ const Profile = () => {
         </div>
         <div>
           <label> Email: </label>
+          {/* NOT ALLOW USER TO CHANGE EMAIL */}
           <input
             type="email"
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
           />
         </div>
         <div>
@@ -54,7 +57,7 @@ const Profile = () => {
         <div>
           <label> Resume: </label>
           <div>Upload a resume button </div>
-          {/* add a upload resume button here */}
+          {fileUpload('resume')}
         </div>
         <div>
           <label> Zip Code: </label>
@@ -66,11 +69,10 @@ const Profile = () => {
             }}
           />
         </div>
+        <button > Update Profile </button>
       </>
     )
   } else if (accountType === 'recruiter') {
-    const { firstName, lastName, email, company } = useContext(AllContext);
-    const { setFirstName, setLastName, setEmail, setCompany } = useContext(AllContext);
     return (
       <>
         <div>
@@ -95,12 +97,10 @@ const Profile = () => {
         </div>
         <div>
           <label> Email: </label>
+          {/* NOT ALLOW USER TO CHANGE EMAIL */}
           <input
             type="email"
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
           />
         </div>
         <div>
