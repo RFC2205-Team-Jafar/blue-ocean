@@ -152,15 +152,20 @@ const SignUp = () => {
           <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
           <h2>Preferred Industry</h2>
           <select value={preferredIndustry} onChange={(e) => setPreferredIndustry(e.target.value)}>
-            <option value="accounting">Accounting</option>
-            <option value="education">Education</option>
-            <option value="information technology">Information Technology</option>
-            <option value="software development">Software Development</option>
-            {/* <option value=""></option> */}
+            <option value="">Select One</option>
+            <option value="Art">Art</option>
+            <option value="Aviation">Aviation</option>
+            <option value="Construction">Construction</option>
+            <option value="Education">Education</option>
+            <option value="Food">Food</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Music">Music</option>
+            <option value="Tech">Tech</option>
+            <option value="Transportation">Transportation</option>
           </select>
           <h2>Zip Code</h2>
           <input type="text" value={zipCode} onChange={(e) => {
-                                                              setZipCode(Number(e.target.value));
+                                                              setZipCode(e.target.value);
                                                               geoConverter(zipCode)
                                                               .then(geos => {
                                                                 console.log('geos: ', geos)
