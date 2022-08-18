@@ -142,6 +142,12 @@ export const ButtonGroup = styled.div`
   align-items: center;
 `;
 
+export const ButtonBox = styled(Column)`
+  top: 15px;
+  right: 10px;
+  position: absolute;
+`;
+
 export const JobPosting = styled(Column)`
   background-color: #fcfaf5;
   border: solid thin transparent;
