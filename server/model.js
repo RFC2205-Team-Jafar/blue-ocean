@@ -1,6 +1,5 @@
 //MODEL
-
-client = require('./db.js');
+const client = require('./db.js');
 
 const getUser = (uuid, userType) => {
     if(userType === 'seeker') {
@@ -30,7 +29,7 @@ const getJobsNoAuth = () => {
 }
 
 
-const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
+const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary) => {
     // console.log("inside models", minSalary);
     if(isRemote == 2){
         // console.log("remote is not 1 or 0");
@@ -43,11 +42,11 @@ const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => 
                 WITH matchedseekerlat AS (
                     SELECT seeker.coord_lat
                     FROM "Seekers" as seeker
-                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                    WHERE user_uuid = '${uuid}'
                 ), matchedseekerlong AS (
                     SELECT seeker.coord_lat
                     FROM "Seekers" as seeker
-                    WHERE user_uuid = 'oSlHNei1PTAsG3TijrfidKJ6dI2'
+                    WHERE user_uuid = '${uuid}'
                 )
 
 
@@ -158,7 +157,6 @@ const appliedJobs = (uuid) => {
 //     `)
 // }
 
-// IN PROGRESS NEEDS TO RETURN ALL APPLICANTS FOR EACH LISTING AS WELL
 const listings = (uuid) => {
     return client.query(`
         SELECT json_agg(listings)
@@ -191,10 +189,16 @@ const listings = (uuid) => {
                     )as applicants
                 )
             FROM "Listings" as listing
-            WHERE recruiter_uuid = '${uuid}'
+            WHERE recruiter_uuid = '${uuid}' AND status = true
         ) as listings
     `)
 }
+
+// const filterListings = (filteredKeyword, uuid) => {
+//     return client.query(`
+
+//     `)
+// }
 
 const isSeeker = (uuid) => {
     return client.query(`

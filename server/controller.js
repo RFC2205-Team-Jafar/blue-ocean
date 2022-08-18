@@ -12,7 +12,7 @@ const  signOn = async (req, res) => {
         const isSeeker = await model.isSeeker(uuid);
         const isRecruiter = await model.isRecruiter(uuid);
         let isRemote = 2;
-        let maxDistance = 50;
+        let maxDistance = 30000;
         let employmentType= "Full Time";
         let minSalary = 0;
 
@@ -21,7 +21,7 @@ const  signOn = async (req, res) => {
             try {
                 const user = await model.getUser(uuid, "seeker");
                 const appliedJobs = await model.appliedJobs(uuid)
-                const defaultJobs = await model.getJobs(user.rows[0].pref_industry,isRemote,employmentType,maxDistance,minSalary);
+                const defaultJobs = await model.getJobs(uuid,user.rows[0].pref_industry,isRemote,employmentType,maxDistance,minSalary);
 
                 let resData = {
                     ...user.rows[0],
@@ -79,7 +79,7 @@ const filter = async (req, res) => {
         if(isSeeker.rows[0].exists) {
             try {
 
-                const filteredJobs = await model.getJobs(industry,isRemote,employmentType,maxDistance, minSalary);
+                const filteredJobs = await model.getJobs(uuid,industry,isRemote,employmentType,maxDistance, minSalary);
 
                 res.status(200).send(filteredJobs[2].rows[0].json_agg)
             } catch  (err) {
