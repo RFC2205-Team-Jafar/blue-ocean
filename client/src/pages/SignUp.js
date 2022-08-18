@@ -5,14 +5,18 @@ import geoConverter from '../Google_API/geolocation.jsx';
 import axios from 'axios';
 import { AllContext } from '../index.jsx';
 import { fileUpload } from '../components/fileHandlers.jsx'
-import Button from '@mui/material/Button';
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
+import {Grid, Paper, Avatar, TextField, Button, Typography, Select, FormControl, InputLabel, MenuItem} from "@mui/material";
 
 const SignUp = () => {
+
+  const paperStyle={position: "relative", padding :20, height:'95%', width:"95%", margin:"30px auto", borderRadius: '10px'};
+  const avatarStyle={backgroundColor:'#1bbd7e'};
+  const btnstyle={margin:'8px 0'};
   // console.log('useAuth: ', useAuth);
   //---------------------- State Hooks --------------------------
   const [ email, setEmail ] = useState();
-  const [ accountType, setAccountType ] = useState();
+  const [ accountType, setAccountType ] = useState("Select One");
   const [ firstName, setFirstName ] = useState();
   const [ lastName, setLastName ] = useState();
   const [ preferredIndustry, setPreferredIndustry ] = useState();
@@ -100,17 +104,32 @@ const SignUp = () => {
   };
 
   //-------------------- Returned DOM --------------------------
-  if (accountType === undefined) {
+  if (accountType === "Select One") {
     return (
       <div>
         <HeaderGallery />
-        <h1>Sign Up Form </h1>
-        <div>Form elements</div>
-        <div className="registration_container">
-          <h2>First Name</h2>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
-          <h2>Last Name</h2>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
+        <Paper elevation={10} style={paperStyle}>
+        <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4}>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>First Name</h2>
+            <TextField label='First Name' placeholder='First Name' fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Last Name</h2>
+            <TextField label='Last Name' placeholder='Last Name' fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl>
+              <InputLabel id="account-type">Account Type</InputLabel>
+              <Select labelId="account-type" value={accountType} label="Account Type" onChange={(e) => setAccountType(e.target.value)} placeholder="Select One" style={{alignSelf: "center"}}>
+                <MenuItem value="seeker">Job Seeker</MenuItem>
+                <MenuItem value="recruiter">Recruiter</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
           <h2>Account Type</h2>
           <span>
             <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
@@ -120,9 +139,9 @@ const SignUp = () => {
             <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
             <div>Recruiter</div>
           </span>
-        </div>
         <br />
         <h3> Please select account type.</h3>
+        </Paper>
       </div>
     )
   } else if (accountType === "seeker") {

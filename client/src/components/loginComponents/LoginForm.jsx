@@ -4,16 +4,17 @@ import { StyledModal } from './StyledModal';
 import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
-import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
+import {Grid, Paper, Avatar, TextField, Button, Typography, FormControlLabel} from "@mui/material";
 import {Link as MUILink} from '@mui/material/Link';
 import { LockOutlined } from '@mui/icons-material';
 
 
 const LoginForm = () => {
 
-  const paperStyle={position: "relative", top: "150px", padding :20, height:'40vh', width:280, margin:"30px auto", borderRadius: '10px'};
+  const paperStyle={position: "relative", top: "150px", padding :20, height:'47vh', width:280, margin:"30px auto", borderRadius: '10px'};
   const avatarStyle={backgroundColor:'#1bbd7e'};
-  const btnstyle={margin:'8px 0'};
+  const btnstyle={margin:'8px 0'}
+  const closebtnstyle={ position: "relative", left: "100px", margin:'8px 0'};
 
   //----------------State Hooks  -------------------------
   const { uuid, setUuid } = useContext(AllContext);
@@ -82,8 +83,8 @@ const LoginForm = () => {
               <Avatar style={avatarStyle}><LockOutlined/></Avatar>
               <h2>Sign In</h2>
             </Grid>
-            <TextField label='Username' placeholder='Enter username' fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <TextField label='Password' placeholder='Enter password' type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <TextField label='Username' placeholder='Enter username' style={{paddingTop: "5px", paddingBottom:"7px"}} fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <TextField label='Password' placeholder='Enter password' style={{paddingTop: "5px", paddingBottom:"7px"}} type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required/>
             <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={() => handlePlainLogin()}>Sign in</Button>
             <Typography style={{textAlign: "center"}}> Don't have an account? <br/>
                 <Link to="signUp" onClick={() => {setModalOpen(false)}}>
@@ -91,6 +92,7 @@ const LoginForm = () => {
                 </Link>
                 &nbsp;one now.
             </Typography>
+            <Button color='primary' variant="contained" style={closebtnstyle} onClick={() => {setModalOpen(false)}}>Back</Button>
           </Paper>
           {/* <div>Email </div>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address" />
