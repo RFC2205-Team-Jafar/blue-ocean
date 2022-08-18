@@ -51,8 +51,7 @@ function FilterFunctions() {
   const fetchFilteredListing = () => {
     axios
       .get(
-        `jobs/:uuid/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&
-        minSalary=${minSalary}`
+        `jobs/:uuid/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&minSalary=${minSalary}`
       )
       .then((res) => {
         return res.json();
@@ -68,7 +67,6 @@ function FilterFunctions() {
       <FilterRow>
         <SalarySliderSteps handleSalary={handleSalary} />
         <InputLabel>
-          {" "}
           Industry:
           <Select onChange={handleIndustry}>
             <MenuItem value="Art"> Art </MenuItem>
