@@ -50,14 +50,10 @@ export default function Feed({view, applicants}) {
       <HeaderDivider></HeaderDivider>
       <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
-          {/* <Row>
-            <h4 style={{padding-left: '5px'}}>Check out these opportunities</h4>
-          </Row> */}
-            {/* <h4 style={{paddingLeft: '5px'}}>Jobs based on your criteria</h4> */}
-          <Row>
-            <PostList handleClick={handleClick} postings={postings} view={view} />
-            {renderDetail()}
-          </Row>
+        <Row>
+          <PostList handleClick={handleClick} postings={postings} view={view} />
+          {renderDetail()}
+        </Row>
       </FeedSection>
     </Column>
   )
