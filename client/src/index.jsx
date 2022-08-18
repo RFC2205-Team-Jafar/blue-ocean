@@ -26,9 +26,9 @@ const App = () => {
 
   // states
   const [email, setEmail] = useState();
-  const [firstName, setFirstName] = useState('jean');
+  const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
-  const [accountType, setAccountType] = useState('seeker');
+  const [accountType, setAccountType] = useState();
   const [preferredIndustry, setPreferredIndustry] = useState();
   const [zipCode, setZipCode] = useState();
   const [company, setCompany] = useState();
