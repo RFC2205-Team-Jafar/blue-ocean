@@ -51,7 +51,7 @@ function FilterFunctions() {
   const fetchFilteredListing = () => {
     axios
       .get(
-        `jobs/:uuid/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&minSalary=${minSalary}`
+        `jobs/${uuid}/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&minSalary=${minSalary}`
       )
       .then((res) => {
         return res.json();
