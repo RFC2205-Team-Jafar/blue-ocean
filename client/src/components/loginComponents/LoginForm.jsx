@@ -1,7 +1,7 @@
-import React, {useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { StyledModal } from './StyledModal';
-import {useAuth} from '../AuthContext.jsx';
+import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
 import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
@@ -12,27 +12,27 @@ import { LockOutlinedIcon } from '@mui/icons-material';
 const LoginForm = () => {
 
   //----------------State Hooks  -------------------------
-  const {email, setEmail } = useContext(AllContext);
-  const {accountType, setAccountType} = useContext(AllContext);
+  const { uuid, setUuid } = useContext(AllContext);
+  const { email, setEmail } = useContext(AllContext);
+  const { accountType, setAccountType } = useContext(AllContext);
   // const {login, googleLogin} = useAuth();
-  const {firstName, setFirstName} = useContext(AllContext);
-  const {lastName, setLastName} = useContext(AllContext);
-  const {preferredIndustry, setPreferredIndustry} = useContext(AllContext);
-  const {zipCode, setZipCode} = useContext(AllContext);
-  const {company, setCompany} = useContext(AllContext);
-  const {coord_lat, setCoord_lat} = useContext(AllContext);
-  const {coord_long, setCoord_long} = useContext(AllContext);
-  const {resuemUrl, setResumeUrl} = useContext(AllContext);
-  const {defaultJobs, setDefaultJobs} = useContext(AllContext);
-  const {appliedJobs, setAppliedJobs} = useContext(AllContext);
-  const {uuid, setUuid} = useContext(AllContext);
+  const { firstName, setFirstName } = useContext(AllContext);
+  const { lastName, setLastName } = useContext(AllContext);
+  const { preferredIndustry, setPreferredIndustry } = useContext(AllContext);
+  const { zipCode, setZipCode } = useContext(AllContext);
+  const { company, setCompany } = useContext(AllContext);
+  const { coord_lat, setCoord_lat } = useContext(AllContext);
+  const { coord_long, setCoord_long } = useContext(AllContext);
+  const { resuemUrl, setResumeUrl } = useContext(AllContext);
+  const { defaultJobs, setDefaultJobs } = useContext(AllContext);
+  const { appliedJobs, setAppliedJobs } = useContext(AllContext);
   const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-//----------------Modal Functions ----------------------
+  //----------------Modal Functions ----------------------
   const hideModal = () => {
     setModalOpen(false);
   };
@@ -60,13 +60,13 @@ const LoginForm = () => {
     } else if (res.data.account_type === "recruiter") {
       navigate("/recruiter", { replace: true });
     }
-      setLoading(false);
+    setLoading(false);
   }
   //---------------- DOM Return -------------------------
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Click Here to Login </h1>
+      <h1 onClick={() => setModalOpen(true)} > Login </h1>
 
       {/* Modal Section */}
       <StyledModal
@@ -74,9 +74,9 @@ const LoginForm = () => {
         handleClose={hideModal}>
         <div className="login__container">
           <div>Email </div>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address"/>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address" />
           <div>Password</div>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
           <button onClick={() => handlePlainLogin()}> Login </button>
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
         </div>

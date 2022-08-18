@@ -18,9 +18,7 @@ const Home = () => {
       <FilterFunctions />
       <LoginForm />
       <h1> Jobs (newest 20) </h1>
-      <div>
-        <Link to="signUp">Create Account</Link>
-      </div>
+
       <div>
         <Link to="seeker">Redirect to Seeker view </Link>
       </div>

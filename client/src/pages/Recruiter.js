@@ -14,6 +14,7 @@ import PostJob from "../components/PostJob/PostJob.jsx";
 import Feed from "../components/Feed/Feed.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import { AllContext } from '../index.jsx';
+import SignOut from '../components/Profile/SignOut.js';
 
 const Recruiter = () => {
 
@@ -22,7 +23,10 @@ const Recruiter = () => {
   return (
     <Page>
       <h1>Site logo</h1>
-      <h1>Welcome back, Recruiter: {firstName}</h1>
+      <h1>
+        Welcome back, Recruiter: {firstName},
+        <SignOut />
+      </h1>
       <HeaderGallery />
 
       <div><Link to="profile" >Profile</Link></div>
