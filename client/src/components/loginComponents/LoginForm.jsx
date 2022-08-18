@@ -20,62 +20,43 @@ const LoginForm = () => {
   const {coord_lat, setCoord_lat} = useContext(AllContext);
   const {coord_long, setCoord_long} = useContext(AllContext);
   const {resuemUrl, setResumeUrl} = useContext(AllContext);
+  const {defaultJobs, setDefaultJobs} = useContext(AllContext);
+  const {appliedJobs, setAppliedJobs} = useContext(AllContext);
   const { login } = useAuth();
   // local states
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 //----------------Modal Functions ----------------------
   const hideModal = () => {
     setModalOpen(false);
   };
   //----------------Embedded Functions -------------------
-  const handlePlainLogin = () => {
+  const handlePlainLogin = async () => {
     setLoading(true);
-    login(email, password)
-    .then((res => {
-      const uid = res.user.uid
-      axios.get(`/jobs/${uid}/signon`)
-      .then((res => {
-        console.log('handlePlainLogin axios get res.body: ', res.body)
-        setAccountType(res.body.accountType);
-        setEmail(res.body.email);
-        setFirstName(res.body.first_name);
-        setLastName(res.body.last_name);
-        setCompany(res.body.company_name);
-        setCoord_lat(res.body.coord_lat);
-        setCoord_long(res.body.coord_long);
-        setResumeUrl(res.body.resume_url);
-        setZipCode(res.body.zip);
-        setPreferredIndustry(res.body.pref_industry);
-      }))
-      .catch(err => console.log('there was an error from the server login: ', err))
-    })) //two important pieces: res.user.uid, res.user.email
-    .then(() => {
+    const r = await login(email, password);
+    const uid = r.user.uid;
+    const res = await axios.get(`/jobs/${uid}/signon`);
+    console.log(res.data);
+    await setAccountType(res.data.account_type);
+    await setFirstName(res.data.first_name);
+    await setLastName(res.data.last_name);
+    await setCompany(res.data.company_name);
+    await setCoord_lat(res.data.coord_lat);
+    await setCoord_long(res.data.coord_long);
+    await setResumeUrl(res.data.resume_url);
+    await setZipCode(res.data.zip);
+    await setPreferredIndustry(res.data.pref_industry);
+    await setAppliedJobs(res.data.defaultJobs);
+    await setDefaultJobs(res.data.appliedJobs);
+    if (res.data.account_type === "seeker") {
+      navigate("/seeker", { replace: true });
+    } else if (res.data.account_type === "recruiter") {
+      navigate("/recruiter", { replace: true });
+    }
       setLoading(false);
-    .then(() => {
-        if (accountType === "seeker") {
-          navigate("/seeker", { replace: true });
-        } else {
-          navigate("/recruiter", { replace: true });
-        }
-      })
-    })
-    .catch(err => {console.log('There was an error logging in: ', err)})
   }
-  // const handleGoogleLogin = () => {
-  //   setLoading(true);
-  //   googleLogin()
-  //   .then(() => {
-  //     setLoading(false);
-  //     if (accountType = "seeker") {
-  //       navigate("/seeker", {replace: true});
-  //     } else {
-  //       navigate("/recruiter", {replace: true});
-  //     }
-  //   })
-  //   .catch(err => {console.log('There was an error logging in: ', err)})
-  // }
   //---------------- DOM Return -------------------------
   return (
     <>

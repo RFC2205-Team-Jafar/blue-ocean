@@ -21,20 +21,22 @@ export const AllContext = createContext();
 // ismounted? Grab lat & long of user
 const App = () => {
 
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [accountType, setAccountType] = useState("");
-  const [preferredIndustry, setPreferredIndustry] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [accountType, setAccountType] = useState();
+  const [preferredIndustry, setPreferredIndustry] = useState();
+  const [zipCode, setZipCode] = useState();
+  const [company, setCompany] = useState();
   const [coord_lat, setCoord_lat] = useState();
   const [coord_long, setCoord_long] = useState();
+  const [defaultJobs, setDefaultJobs] = useState();
+  const [appliedJobs, setAppliedJobs] = useState();
+  const [resumeUrl, setResumeUrl] = useState();
+  const [coverLetterUrl, setCoverLetterUrl] = useState();
 
-  const [location, setLocation] = useState({}); // ASK nick if still need this.
-  const [resumeUrl, setResumeUrl] = useState('');
-  const [coverLetterUrl, setCoverLetterUrl] = useState('');
-  // const [uploaded, setUploaded] = useState(false);
+  const [location, setLocation] = useState({});
+
   // Grabs user location asynchronously when mounted
   useEffect(() => {
     userLocation().then(data => setLocation(data));
@@ -58,7 +60,8 @@ const App = () => {
             coord_long, setCoord_long,
             resumeUrl, setResumeUrl,
             coverLetterUrl, setCoverLetterUrl,
-            // uploaded, setUploaded
+            defaultJobs, setDefaultJobs,
+            appliedJobs, setAppliedJobs
           }}>
           <Routes>
             <Route path="/" element={<Home />} />

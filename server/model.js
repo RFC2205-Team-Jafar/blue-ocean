@@ -29,9 +29,7 @@ const getJobsNoAuth = () => {
 
 
 const getJobs = (industry, isRemote, employmentType, maxDistance, minSalary) => {
-    // console.log("inside models", minSalary);
     if(isRemote == 2){
-        // console.log("remote is not 1 or 0");
         return client.query(`
             SELECT json_agg(jobs)
             FROM(
@@ -129,11 +127,9 @@ const isRecruiter = (uuid) => {
 
 module.exports = {
   addSeeker: (seeker) => {
-    console.log("seeker: ", seeker)
     const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
-                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', "${resume_url}", '${zip}')`;
-                          console.log('queryString: ', queryString);
+                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
     return client.query(queryString);
   },
 
@@ -147,7 +143,7 @@ module.exports = {
     const { account_type, user_uuid } = user;
     const queryString = `INSERT INTO "Firebase"
                          VALUES ('${account_type}', '${user_uuid}')`;
-    return client,query(queryString);
+    return client.query(queryString);
   },
 
   addAJob: (j) => {
@@ -195,7 +191,6 @@ module.exports = {
     const queryString = `UPDATE "SubmittedApplications"
                         SET "didReceivePromisedPay" = ${didReceivePromisedPay}, application_status = 'selected'
                         WHERE seeker_uuid = '${seeker_uuid}' and listing_id = $1`;
-    console.log(queryString);
     return client.query(queryString, [listing_id]);
   },
   isSeeker,
