@@ -39,7 +39,7 @@ const  signOn = async (req, res) => {
             try {
                 const user = await model.getUser(uuid, "recruiter");
                 const listings = await model.listings(uuid);
-                // console.log(listings.rows[0]);
+                console.log(listings);
                 let resData = {
                     ...user.rows[0],
                     account_type: "recruiter",
@@ -49,7 +49,8 @@ const  signOn = async (req, res) => {
                 }
 
                 res.status(200).send(resData);
-            } catch {
+            } catch (err) {
+                console.log(err);
                 res.sendStatus(500);
             }
         } else {

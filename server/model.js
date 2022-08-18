@@ -147,28 +147,54 @@ const appliedJobs = (uuid) => {
     `)
 }
 
-const listings = (uuid) => {
-    return client.query(`
-    SELECT json_agg(listings)
-    FROM (
-        SELECT *
-        FROM "Listings"
-        WHERE recruiter_uuid = '${uuid}'
-    ) as listings
-    `)
-}
-
-// IN PROGRESS NEEDS TO RETURN ALL APPLICANTS FOR EACH LISTING AS WELL
 // const listings = (uuid) => {
 //     return client.query(`
-//         SELECT json_agg(listing)
-//         FROM (
-//             SELECT *
-//             FROM "Listings"
-//             WHERE recruiter_uuid = '${uuid}'
-//         ) as listing
+//     SELECT json_agg(listings)
+//     FROM (
+//         SELECT *
+//         FROM "Listings"
+//         WHERE recruiter_uuid = '${uuid}'
+//     ) as listings
 //     `)
 // }
+
+// IN PROGRESS NEEDS TO RETURN ALL APPLICANTS FOR EACH LISTING AS WELL
+const listings = (uuid) => {
+    return client.query(`
+        SELECT json_agg(listings)
+        FROM(
+            SELECT 
+                listing.listing_id,
+                listing.industry,
+                listing.coord_lat,
+                listing.coord_long,
+                listing.is_remote,
+                listing.title,
+                listing.salary_low,
+                listing.salary_high,
+                listing.pay_adjuster,
+                listing.desc,
+                listing.num_positions,
+                listing.employment_type,
+                listing.requested_keywords,
+                listing.status,
+                (
+                    SELECT json_agg(applicants) as applicants
+                    FROM (
+                        SELECT 
+                            seeker.*,
+                            submittedApp.coverletter_url,
+                            submittedApp.application_status,
+                            submittedApp.matched_keywords
+                        FROM "SubmittedApplications" as submittedApp, "Seekers" as seeker
+                        WHERE listing_id = listing.listing_id AND seeker.user_uuid = submittedApp.seeker_uuid
+                    )as applicants
+                )
+            FROM "Listings" as listing
+            WHERE recruiter_uuid = '${uuid}'
+        ) as listings
+    `)
+}
 
 const isSeeker = (uuid) => {
     return client.query(`
