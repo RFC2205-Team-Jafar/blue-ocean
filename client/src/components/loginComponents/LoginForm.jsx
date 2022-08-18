@@ -7,7 +7,9 @@ import { AllContext } from "../../index.jsx";
 import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
 import {Link as MUILink} from '@mui/material/Link';
 import { LockOutlined } from '@mui/icons-material';
-
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { Row } from '../../../public/stylesheets/styles.js';
 
 const LoginForm = () => {
 
@@ -70,7 +72,11 @@ const LoginForm = () => {
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Login </h1>
+      <Row onClick={() => setModalOpen(true)} >
+      <h2 style={{fontWeight: 'lighter', 'color': 'black' }}>Login</h2>
+      &nbsp;
+      <LoginOutlinedIcon style={{'color': 'black' }} />
+      </Row>
 
       {/* Modal Section */}
       <StyledModal
