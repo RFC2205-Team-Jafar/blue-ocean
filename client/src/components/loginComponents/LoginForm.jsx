@@ -9,6 +9,7 @@ import { AllContext } from "../../index.jsx";
 const LoginForm = () => {
 
   //----------------State Hooks  -------------------------
+  const { uuid, setUuid } = useContext(AllContext);
   const {email, setEmail } = useContext(AllContext);
   const {accountType, setAccountType} = useContext(AllContext);
   // const {login, googleLogin} = useAuth();
@@ -33,20 +34,24 @@ const LoginForm = () => {
     setLoading(true);
     login(email, password)
     .then((res => {
-      const uid = res.user.uid
-      axios.get(`/jobs/getuser/${uid}`) //rework this route
+      const uid = res.user.uid;
+      setUuid(uid);
+      setEmail(res.user.email);
+      axios.get(`/jobs/${uid}/signon`) //rework this route
       .then((res => {
         console.log('handlePlainLogin axios get res: ', res)
-        setAccountType(res.data.account_type); //CHANGED!!!!!
+        setAccountType(res.data.account_type);
       }))
       .catch(err => console.log('there was an error from the server login: ', err))
     })) //two important pieces: res.user.uid, res.user.email
     .then(() => {
       setLoading(false);
       if (accountType = "seeker") {
-        navigate("./Seeker.js", {replace: true});
+        navigate("./Seeker.js", {replace: true}); // DOES IT WORK?
+        // navigate('/seeker');
       } else {
-        navigate("./Recruiter.js", {replace: true});
+        navigate("./Recruiter.js", {replace: true}); // DOES IT WORK?
+        // navigate('/recruiter');
       }
     })
     .catch(err => {console.log('There was an error logging in: ', err)})
