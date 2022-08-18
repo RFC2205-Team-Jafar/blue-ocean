@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
@@ -24,22 +26,60 @@ export default function DetailApplicant({ applicant }) {
   /*
 
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
+  const [canReject, setCanReject] = useState(true);
+  const [rejectSuccess, setRejectSuccess] = useState(false);
 
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-  // const handleChange = ({target: {name, value}}) => {
-  //   setJobPosting(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // };
+  const handleReject = () => {
+    axios.put('/jobs/closeposting',)
+    .then(onClose => {
+      setCanReject(false);
+      setRejectSuccess(true);
+      setTimeout(() => setRejectSuccess(false), 3000);
+    })
+    .catch(err => console.error(err))
+}
 
   /*----- RENDER METHODS -----*/
+  const renderReject = () => {
+    if (canReject) {
+      return (
+      <ApplicantButton
+        onClick={handleReject}
+        >REJECT
+      </ApplicantButton>
+      )
+    } else {
+      return (
+        <ApplicantButton
+          disabled
+          >REJECTED
+        </ApplicantButton>
+      )
+    }
+  }
 
+  const renderAlert = () => {
+    if (rejectSuccess) {
+      return (
+        <Alert
+          severity='error'
+          sx={{
+            position: 'absolute',
+            zIndex: '2',
+            width: '90%',
+          }}
+          >
+          <AlertTitle>Success</AlertTitle>
+          This applicant has been <strong>rejected</strong>
+        </Alert>
+      )
+    }
+  }
 
 /*----- RENDERER -----*/
 return (
@@ -55,9 +95,10 @@ return (
     </ApplicantHeader>
       <ButtonBox>
         <InterviewInviteModal/>
-        <ApplicantButton variant='outlined'>Reject</ApplicantButton>
+        {renderReject()}
       </ButtonBox>
     <ApplicantBody>
+      {renderAlert()}
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor. Et magnis dis parturient montes nascetur. Lectus proin nibh nisl condimentum id. Nunc consequat interdum varius sit. Laoreet suspendisse interdum consectetur libero id faucibus. Platea dictumst quisque sagittis purus sit. Felis bibendum ut tristique et egestas quis. Scelerisque mauris pellentesque pulvinar pellentesque. Luctus accumsan tortor posuere ac ut consequat semper. Vitae aliquet nec ullamcorper sit amet risus nullam. At varius vel pharetra vel. Faucibus scelerisque eleifend donec pretium vulputate. Venenatis a condimentum vitae sapien pellentesque. Mauris augue neque gravida in fermentum. Velit egestas dui id ornare arcu odio ut sem nulla.
 
