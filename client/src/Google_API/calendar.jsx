@@ -1,6 +1,7 @@
-import React, { useState, createContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import Button from "@mui/material/Button";
 import styled from 'styled-components';
-import Button from '@mui/material/Button';
+import { AllContext } from "../index.jsx";
 import { MdOutlineCalendarToday } from "react-icons/md";
 
 const EmbedCalendar = () => {
@@ -22,10 +23,7 @@ const EmbedCalendar = () => {
   }, [showCalendar])
 
 
-
-
-  let email = ''; //ANCHOR Replace with email from DB and also ensure that firebase gives auth to read
-
+  const { email } = useContext(AllContext);
   let titleColor = '6362a3';
   return (
     <div className="calendarWrapper" ref={ref}>

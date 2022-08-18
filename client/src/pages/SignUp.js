@@ -6,29 +6,27 @@ import axios from 'axios';
 import { AllContext } from '../index.jsx';
 import { fileUpload } from '../components/fileHandlers.jsx'
 import Button from '@mui/material/Button';
+import HeaderGallery from "../components/Header/ImageGallery.jsx";
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);
   //---------------------- State Hooks --------------------------
-  const { email, setEmail } = useContext(AllContext);
-  const { accountType, setAccountType } = useContext(AllContext);
-  // const {login, googleLogin} = useAuth();
-  const { firstName, setFirstName } = useContext(AllContext);
-  const { lastName, setLastName } = useContext(AllContext);
-  const { preferredIndustry, setPreferredIndustry } = useContext(AllContext);
-  const { zipCode, setZipCode } = useContext(AllContext);
-  const { company, setCompany } = useContext(AllContext);
-  const { coord_lat, setCoord_lat } = useContext(AllContext);
-  const { coord_long, setCoord_long } = useContext(AllContext);
-  const { resuemUrl, setResumeUrl } = useContext(AllContext);
+  const [ email, setEmail ] = useState();
+  const [ accountType, setAccountType ] = useState();
+  const [ firstName, setFirstName ] = useState();
+  const [ lastName, setLastName ] = useState();
+  const [ preferredIndustry, setPreferredIndustry ] = useState();
+  const [ zipCode, setZipCode ] = useState();
+  const [ company, setCompany ] = useState();
+  const [ coord_lat, setCoord_lat ] = useState();
+  const [ coord_long, setCoord_long ] = useState();
+  const [ resumeUrl, setResumeUrl ] = useState();
   // local states
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const history = useHistory();
+    // const {login, googleLogin} = useAuth();
   const { signup } = useAuth();
-  // console.log('signup: ', signup);
-  //add resume button
   const fileInputRef = useRef()
   const [uploaded, setUploaded] = useState(false);
 
@@ -63,14 +61,6 @@ const SignUp = () => {
     if (accountType === "seeker" && !zipCode) alert("Please enter a zip code");
     if (accountType === "recruiter" && !company) alert("Please enter a company");
     const name = firstName + " " + lastName;
-    var lat;
-    var long;
-    geoConverter(zipCode)
-      .then(geos => {
-        setCoord_lat(geos.lat);
-        setCoord_long(geos.lng);
-      })
-      .catch(err => { console.log('lat long err: ', err) })
     setLoading(true);
     signup(email, password)
       .then(res => {
@@ -81,7 +71,7 @@ const SignUp = () => {
           first_name: firstName,
           last_name: lastName,
           email: email,
-          userType: accountType,
+          account_type: accountType,
           pref_industry: preferredIndustry,
           zip: zipCode,
           coord_lat: coord_lat,
@@ -95,20 +85,25 @@ const SignUp = () => {
       })
       .then(() => setLoading(false))
       .then(() => {
-        if (accountType === "seeker") {
-          navigate("/seeker", { replace: true });
-        } else {
-          navigate("/recruiter", { replace: true });
-        }
+        setAccountType();
+        setFirstName();
+        setLastName();
+        setCompany();
+        setCoord_lat();
+        setCoord_long();
+        setResumeUrl();
+        setZipCode();
+        setPreferredIndustry();
+        navigate("/", { replace: true });
       })
       .catch(err => console.log("There was an error creating your account: ", err))
   };
 
   //-------------------- Returned DOM --------------------------
-  if (accountType === "") {
+  if (accountType === undefined) {
     return (
       <div>
-
+        <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
         <div className="registration_container">
@@ -120,8 +115,8 @@ const SignUp = () => {
           <span>
             <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
             <div>Job Seeker</div>
-          </span>
-          <span>
+          {/* </span>
+          <span> */}
             <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
             <div>Recruiter</div>
           </span>
@@ -133,6 +128,7 @@ const SignUp = () => {
   } else if (accountType === "seeker") {
     return (
       <div>
+        <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
         <div className="registration_container">
@@ -155,14 +151,27 @@ const SignUp = () => {
           <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
           <h2>Preferred Industry</h2>
           <select value={preferredIndustry} onChange={(e) => setPreferredIndustry(e.target.value)}>
-            <option value="accounting">Accounting</option>
-            <option value="education">Education</option>
-            <option value="information technology">Information Technology</option>
-            <option value="software development">Software Development</option>
-            {/* <option value=""></option> */}
+            <option value="">Select One</option>
+            <option value="Art">Art</option>
+            <option value="Aviation">Aviation</option>
+            <option value="Construction">Construction</option>
+            <option value="Education">Education</option>
+            <option value="Food">Food</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Music">Music</option>
+            <option value="Tech">Tech</option>
+            <option value="Transportation">Transportation</option>
           </select>
           <h2>Zip Code</h2>
-          <input type="text" value={zipCode} onChange={(e) => setZipCode(Number(e.target.value))} placeholder="Zip Code" />
+          <input type="text" value={zipCode} onChange={(e) => {
+                                                              setZipCode(e.target.value);
+                                                              geoConverter(zipCode)
+                                                              .then(geos => {
+                                                                setCoord_lat(geos.lat);
+                                                                setCoord_long(geos.lng);
+                                                              })
+                                                              .catch(err => { console.log('lat long err: ', err) })
+                                                              }} placeholder="Zip Code" />
           {uploaded
           ? <p> Resume Uploaded </p>
           : <>
@@ -179,6 +188,7 @@ const SignUp = () => {
   } else if (accountType === "recruiter") {
     return (
       <div>
+        <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
         <div className="registration_container">

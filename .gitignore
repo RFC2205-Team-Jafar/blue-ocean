@@ -4,8 +4,8 @@ yarn.lock
 package-lock.json
 .env
 *.LICENSE.txt
-Totally_Not_Tokens.txt
-blue-ocean-359302-59578a051f35.json
+passwords.txt
+credentials.json
 
 # Logs
 logs
