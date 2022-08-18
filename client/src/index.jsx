@@ -11,11 +11,14 @@ import SignUp from './pages/SignUp.js';
 import Seeker from './pages/Seeker';
 import Profile from './components/Profile/Profile.js';
 import Feed from './components/Feed/Feed.jsx';
+
 import Recruiter from './pages/Recruiter';
 import PostJob from './components/PostJob/PostJob.jsx'
 import { GlobalStyle } from '../public/stylesheets/styles';
 import { AuthProvider } from './components/AuthContext.jsx';
 import userLocation from './Google_API/userLocation.jsx'
+
+import NavigationBar from './components/NavBar/NavigationBar.jsx';
 
 export const AllContext = createContext();
 // ismounted? Grab lat & long of user
@@ -46,6 +49,8 @@ const App = () => {
   }, [])
 
   return (
+    <div>
+
     <Router>
       <GlobalStyle />
       <AuthProvider>
@@ -84,6 +89,7 @@ const App = () => {
         </AllContext.Provider>
       </AuthProvider>
     </Router>
+    </div>
   )
 }
 

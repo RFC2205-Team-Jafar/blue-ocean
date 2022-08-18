@@ -4,9 +4,10 @@ import { useAuth } from '../components/AuthContext.jsx';
 import geoConverter from '../Google_API/geolocation.jsx';
 import axios from 'axios';
 import { AllContext } from '../index.jsx';
-import { fileUpload } from '../components/fileHandlers.jsx'
 import Button from '@mui/material/Button';
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
+import NavigationBar from '../components/NavBar/NavigationBar.jsx';
+
 
 const SignUp = () => {
   // console.log('useAuth: ', useAuth);
@@ -103,6 +104,7 @@ const SignUp = () => {
   if (accountType === undefined) {
     return (
       <div>
+        <NavigationBar/>
         <HeaderGallery />
         <h1>Sign Up Form </h1>
         <div>Form elements</div>
@@ -163,6 +165,7 @@ const SignUp = () => {
             <option value="Transportation">Transportation</option>
           </select>
           <h2>Zip Code</h2>
+
           <input type="text" value={zipCode} onChange={(e) => {
                                                               setZipCode(e.target.value);
                                                               geoConverter(zipCode)
@@ -181,7 +184,6 @@ const SignUp = () => {
             <input onChange={handleUpload} multiple={false} ref={fileInputRef} type='file' hidden />
             </>
           }
-          <button onClick={register} disabled={loading}>Create Account</button>
         </div>
       </div>
     )
@@ -212,7 +214,7 @@ const SignUp = () => {
           <h2>Company</h2>
           <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
         </div>
-        <button onClick={register} disabled={loading}>Create Account</button>
+        <Button variant='contained' onClick={register} disabled={loading}>Create Account</Button>
       </div>
     )
   }
