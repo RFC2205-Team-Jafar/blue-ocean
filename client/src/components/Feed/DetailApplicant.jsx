@@ -94,7 +94,7 @@ return (
       <ApplicantResume>Applicant Resume:</ApplicantResume>
     </ApplicantHeader>
       <ButtonBox>
-        <InterviewInviteModal/>
+        <InterviewInviteModal/> {/* Need to pass through applicant email and company name */}
         {renderReject()}
       </ButtonBox>
     <ApplicantBody>

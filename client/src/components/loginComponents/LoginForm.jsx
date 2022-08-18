@@ -4,12 +4,18 @@ import { StyledModal } from './StyledModal';
 import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
-import Button from '@mui/material/Button';
+import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
+import {Link as MUILink} from '@mui/material/Link';
+import { LockOutlined } from '@mui/icons-material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { Row } from '../../../public/stylesheets/styles.js';
 
 const LoginForm = () => {
+
+  const paperStyle={position: "relative", top: "150px", padding :20, height:'40vh', width:280, margin:"30px auto", borderRadius: '10px'};
+  const avatarStyle={backgroundColor:'#1bbd7e'};
+  const btnstyle={margin:'8px 0'};
 
   //----------------State Hooks  -------------------------
   const { uuid, setUuid } = useContext(AllContext);
@@ -72,23 +78,37 @@ const LoginForm = () => {
       <LoginOutlinedIcon style={{'color': 'black' }} />
       </Row>
 
-
       {/* Modal Section */}
       <StyledModal
         show={modalOpen}
         handleClose={hideModal}>
-        <div className="login__container">
-          <div>Email </div>
+        {/* <Grid> */}
+          <Paper elevation={10} style={paperStyle}>
+            <Grid align = 'center'>
+              <Avatar style={avatarStyle}><LockOutlined/></Avatar>
+              <h2>Sign In</h2>
+            </Grid>
+            <TextField label='Username' placeholder='Enter username' style={{paddingTop: "5px", paddingBottom:"7px"}} fullWidth value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <TextField label='Password' placeholder='Enter password' style={{paddingTop: "5px", paddingBottom:"7px"}} type='password' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={() => handlePlainLogin()}>Sign in</Button>
+            <Typography style={{textAlign: "center"}}> Don't have an account? <br/>
+                <Link to="signUp" onClick={() => {setModalOpen(false)}}>
+                Create
+                </Link>
+                &nbsp;one now.
+            </Typography>
+          </Paper>
+          {/* <div>Email </div>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address" />
           <div>Password</div>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
-          <Button variant='contained'  onClick={() => handlePlainLogin()}> Login/ Sign Up
-          </Button>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+          <button onClick={() => handlePlainLogin()}> Login </button>
           {/* <button onClick={() => handleGoogleLogin()}>Login with Google</button> */}
-        </div>
+        {/* </div>
         <div>
-          Don't have an account? <Link onClick={() => setModalOpen(false)} to="signUp">Create</Link> an account now.
-        </div>
+          Don't have an account? <Link to="signUp">Create</Link> an account now.
+        // </div> */}
+        {/* </Grid> */}
       </StyledModal>
     </>
   )

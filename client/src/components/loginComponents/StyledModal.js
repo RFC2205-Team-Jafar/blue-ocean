@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '@mui/material/Button';
-
 
 // This is the modal TEMPLATE. Do not modify.
 // Import statement: import { StyledModal } from './StyledModal'
@@ -14,20 +12,7 @@ const ModalDiv = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 5000;
-`;
-
-
-const ContentDiv = styled.div`
-  position: fixed;
-  background: white;
-  width: 50%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  border-radius: 10px;
-  padding: 2rem;
-  transform: translate(-50%, -50%);
+  z-index: 3;
 `;
 
 export const StyledModal = ({
@@ -37,10 +22,7 @@ export const StyledModal = ({
 }) => {
   return (
     <ModalDiv block={ show ? 'block' : 'none' }>
-      <ContentDiv>
-        {children}
-        <Button variant='contained' onClick = {handleClose}> Close </Button>
-      </ContentDiv>
+      {children}
     </ModalDiv>
   )
 };

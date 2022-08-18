@@ -19,7 +19,6 @@ import NavigationBar from '../components/NavBar/NavigationBar.jsx';
 
 
 const Recruiter = () => {
-
   const { firstName } = useContext(AllContext);
 
   return (
@@ -46,8 +45,6 @@ const Recruiter = () => {
 
 /*========== EXPORTS ==========*/
 export default Recruiter;
-
-
 
 /*========== STYLES ==========*/
 const PostNewJob = styled(Button)({

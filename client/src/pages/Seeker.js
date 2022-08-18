@@ -20,8 +20,14 @@ const Seeker = () => {
     <>
       <NavigationBar/>
       <HeaderGallery />
-      <div><Link to="profile" >Profile</Link></div>
-      <div><Link to="">Jobs for you</Link></div>
+
+      <div>
+        <Link to="profile">Profile</Link>
+      </div>
+      <div>
+        <Link to="">Jobs for you</Link>
+      </div>
+
       <FilterFunctions />
       <FilterStatus />
       <Outlet />
