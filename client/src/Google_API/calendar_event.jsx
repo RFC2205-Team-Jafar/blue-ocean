@@ -1,10 +1,5 @@
 import React, { useContext } from 'react';
 
-// Refer to the JavaScript quickstart on how to setup the environment:
-// https://developers.google.com/calendar/quickstart/js
-// Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-// stored credentials.
-// SET UP GOOGLE ENVIRONMENT
 var gapi = window.gapi;
 var CLIENT_ID = "Client_ID"; //ANCHOR Add CLIENT ID
 var API_KEY = "API_KEY"; //ANCHOR Add API Key
