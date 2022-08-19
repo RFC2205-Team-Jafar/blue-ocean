@@ -152,7 +152,7 @@ export default function DetailJob({ targetPost }) {
           {renderSuccess()}
           <p>Number of Openings: {num_positions}</p>
           <p>Industry: {industry}</p>
-          <p>Employement Type: {employement_type}</p>
+          <p>Employment Type: {employement_type}</p>
           <p>   </p>
           <p>{desc}</p>
         </DetailBody>
