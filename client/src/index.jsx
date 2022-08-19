@@ -32,6 +32,7 @@ const App = () => {
   const [coord_long, setCoord_long] = useState();
   const [unsignedJobs, setUnsignedJobs] = useState();
   const [defaultJobs, setDefaultJobs] = useState();
+  const [listings, setListings] = useState();
   const [appliedJobs, setAppliedJobs] = useState();
   const [recruiterPostings, setRecruiterPostings] = useState();
   const [resumeUrl, setResumeUrl] = useState();
