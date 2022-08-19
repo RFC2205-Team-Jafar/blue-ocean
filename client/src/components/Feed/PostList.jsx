@@ -56,7 +56,7 @@ export default function PostList({ handleClick, postings, defaultJobs, appliedJo
 
   const renderUnsigned = () => {
     if (postings && path === '/') {
-      const unsigned = postings.map(post => <PostedJob/>)
+      const unsigned = postings.map((post, index) => <PostedJob key={index}/>)
       return (
         <ListSection
           style={{
