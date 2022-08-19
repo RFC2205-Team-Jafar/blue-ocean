@@ -80,7 +80,6 @@ export const FeedSection = styled.section`
   background: linear-gradient(50deg, rgba(119, 201, 212, 0.75), rgba(87, 188, 144, 0.75));
   overflow: scroll;
   border-radius: 10px;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -93,7 +92,6 @@ export const Page = styled.div`
 `;
 
 export const Container = styled.div`
-
 `;
 
 export const Div = styled.div``;
@@ -156,6 +154,9 @@ export const JobPosting = styled(Column)`
            -6px -6px 12px #90d9c7;
   }
 `;
+
+export const Span = styled.span`
+`
 
 /*
 =====================================

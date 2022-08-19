@@ -57,6 +57,6 @@ const Button_Calendar = styled(Button)({
 
 const CalendarDiv = styled.div`
   position: fixed;
-  bottom: 30px;
+  bottom: 40px;
   right: 30px;
 `;
