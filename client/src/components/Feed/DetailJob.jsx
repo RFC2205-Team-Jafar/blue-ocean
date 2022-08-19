@@ -160,7 +160,6 @@ const DetailBody = styled(Column)`
   align-items: flex-start;
   justify-content: flex-start;
   overflow: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }
