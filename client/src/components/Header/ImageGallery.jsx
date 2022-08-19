@@ -14,10 +14,10 @@ function srcset(image, size, rows = 1, cols = 1) {
 export default function HeaderGallery() {
   return (
     <ImageList
-      sx={{ width: "100vw", height: "450" }}
+      sx={{ width: "100vw", height: "450", marginTop: "80px" }}
       variant="quilted"
       cols={6}
-      rowHeight={250}
+      rowHeight={"17vh"}
     >
       {itemData.map((item) => (
         <ImageListItem

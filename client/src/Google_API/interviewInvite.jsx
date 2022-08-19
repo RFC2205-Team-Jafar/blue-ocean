@@ -13,6 +13,9 @@ import Grid from "@mui/material/Grid";
 
 // End Material UI
 
+//styled compoenents
+import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
+
 export const InterviewInviteModal = () => {
   const { email } = useContext(AllContext); // Waiting to email to be saved in state
   const handleSubmit = () => {
@@ -41,6 +44,7 @@ export const InterviewInviteModal = () => {
       <Button variant='contained' onClick={() => handleShow()} >Schedule Interview</Button>
       <ModalDiv block={show ? 'block' : 'none'}>
         <ContentDiv>
+          <Style_Title>Schedule Interview</Style_Title>
           <StyledForm>
             <Child>
               <FormLabel><b>Start Date</b></FormLabel>
@@ -136,4 +140,12 @@ const Styled_Text = styled.div`
 const Button_Container = styled.div`
   width: 100%;
   text-align: center;
+  margin-top: 25px;
+`;
+
+const Style_Title = styled.h2`
+  width: 100%;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 35px;
 `;

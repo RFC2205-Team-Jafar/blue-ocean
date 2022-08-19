@@ -7,6 +7,8 @@ import { AllContext } from '../index.jsx';
 import { fileUpload } from '../components/fileHandlers.jsx'
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import {Grid, Paper, Avatar, TextField, Button, Typography, Select, FormControl, InputLabel, MenuItem} from "@mui/material";
+import NavigationBar from '../components/NavBar/NavigationBar.jsx';
+
 
 const SignUp = () => {
 
@@ -108,6 +110,7 @@ const SignUp = () => {
   if (accountType === "Select One") {
     return (
       <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <NavigationBar/>
         <HeaderGallery />
         <Paper elevation={10} style={paperStyle}>
         <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
@@ -139,6 +142,7 @@ const SignUp = () => {
   } else if (accountType === "seeker") {
     return (
       <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <NavigationBar/>
         <HeaderGallery />
         <Paper elevation={10} style={paperStyle}>
         <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
@@ -245,6 +249,7 @@ const SignUp = () => {
   } else if (accountType === "recruiter") {
     return (
       <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <NavigationBar/>
         <HeaderGallery />
         <Paper elevation={10} style={paperStyle}>
         <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
@@ -297,16 +302,7 @@ const SignUp = () => {
             <div></div>
           </Grid>
         </Grid>
-
         </Paper>
-          {/* <h2>Email</h2>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="youremail@domain.com" />
-          <h2>Password</h2>
-          <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-          <h2>Company</h2>
-          <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
-        </div>
-        <button onClick={register} disabled={loading}>Create Account</button> */}
       </div>
     )
   }

@@ -20,6 +20,7 @@ export const StyledModal = ({
   show,
   children
 }) => {
+
   return (
     <ModalDiv block={ show ? 'block' : 'none' }>
       {children}
