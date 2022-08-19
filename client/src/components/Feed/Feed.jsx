@@ -20,7 +20,7 @@ export default function Feed() {
   /*----- STATE HOOKS -----*/
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
-  const { accountType, defaultJobs, appliedJobs } = useContext(AllContext);
+  const { accountType, defaultJobs, appliedJobs, unsignedJobs } = useContext(AllContext);
 
   const path = location.pathname;
   // const { accountType, defaultJobs, appliedJobs, location, uuid, email, firstName, lastName, preferredIndustry, zipCode, company, coord_lat, coord_long, resumeUrl, coverLetterUrl } = useContext(AllContext);
@@ -70,7 +70,7 @@ export default function Feed() {
       <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
         <Row>
-          <PostList handleClick={handleClick} postings={postings} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
+          <PostList handleClick={handleClick} postings={postings} unsignedJobs={unsignedJobs} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
           {renderDetail()}
         </Row>
       </FeedSection>

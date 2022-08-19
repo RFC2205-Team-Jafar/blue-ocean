@@ -10,7 +10,7 @@ import ActiveJob from './ActiveJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings, defaultJobs, appliedJobs }) {
+export default function PostList({ handleClick, postings, defaultJobs, appliedJobs, unsignedJobs }) {
   const path = location.pathname;
   /*----- STATE HOOKS -----*/
   // const [] = useState();
@@ -55,8 +55,8 @@ export default function PostList({ handleClick, postings, defaultJobs, appliedJo
   }
 
   const renderUnsigned = () => {
-    if (postings && path === '/') {
-      const unsigned = postings.map((post, index) => <PostedJob key={index}/>)
+    if (unsignedJobs && path === '/') {
+      const unsigned = unsignedJobs.map(job => <PostedJob style={{width: '50vw'}} key={job.listing_id} job={job}/>)
       return (
         <ListSection
           style={{

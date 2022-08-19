@@ -8,7 +8,7 @@ import { Column, Label, Row, JobPosting } from '../../../public/stylesheets/styl
 
 /*========== EXPORTS ==========*/
 export default function Post({ job, handleClick }) {
-
+  const path = location.pathname;
   if (job) {
     var { title, salary_low, salary_high, pay_adjuster, desc, industry, listing_id } = job;
   }
@@ -23,16 +23,43 @@ export default function Post({ job, handleClick }) {
 
 
   /*----- RENDER METHODS -----*/
+    const renderSeeker = () => {
+      if (job && path === '/seeker') {
+        return (
+        <JobPosting onClick={() => handleClick(job)} >
+          <JobTitle>{title}</JobTitle>
+          <JobLocation>{industry}</JobLocation>
+          <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
+          <JobDescription>Job Description:</JobDescription>
+            <p>{desc}</p>
+        </JobPosting>
+        )
+      }
+    }
+
+    const renderUnsigned = () => {
+      if (job && path === '/') {
+        return (
+        <JobPosting
+          style={{width: '85vw'}}
+          onClick={() => handleClick(job)}
+          >
+          <JobTitle>{title}</JobTitle>
+          <JobLocation>{industry}</JobLocation>
+          <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
+          <JobDescription>Job Description:</JobDescription>
+            <p>{desc}</p>
+        </JobPosting>
+        )
+      }
+    }
 
   /*----- RENDERER -----*/
   return (
-    <JobPosting onClick={() => handleClick(job)}>
-      <JobTitle>{title}</JobTitle>
-      <JobLocation>{industry}</JobLocation>
-      <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
-      <JobDescription>Job Description:</JobDescription>
-        <p>{desc}</p>
-    </JobPosting>
+    <>
+      {renderSeeker()}
+      {renderUnsigned()}
+    </>
   )
 }
 
