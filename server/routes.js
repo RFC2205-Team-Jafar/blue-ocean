@@ -3,10 +3,10 @@ const path = require('path');
 const router = express.Router();
 const controller = require('./controller.js');
 
-const authChecker = () => {};
+const authMiddleware = require('./authMiddleware');
 
 /*--------------------Test Routes---------------*/
-router.get('/isSeeker/:uuid', controller.isSeeker);
+router.get('/isSeeker/:uuid', authMiddleware.decodeToken, controller.isSeeker);
 router.get('/isRecruiter/:uuid', controller.isRecruiter);
 
 

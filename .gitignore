@@ -6,6 +6,7 @@ package-lock.json
 *.LICENSE.txt
 passwords.txt
 credentials.json
+firebase-secret.json
 
 # Logs
 logs
