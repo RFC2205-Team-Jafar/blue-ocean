@@ -61,8 +61,8 @@ const LoginForm = () => {
     await setResumeUrl(res.data.resume_url);
     await setZipCode(res.data.zip);
     await setPreferredIndustry(res.data.pref_industry);
-    await setAppliedJobs(res.data.defaultJobs);
-    await setDefaultJobs(res.data.appliedJobs);
+    await setAppliedJobs(res.data.appliedJobs);
+    await setDefaultJobs(res.data.defaultJobs);
     if (res.data.account_type === "seeker") {
       navigate("/seeker", { replace: true });
     } else if (res.data.account_type === "recruiter") {

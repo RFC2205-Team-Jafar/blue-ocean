@@ -21,11 +21,6 @@ const Seeker = () => {
     <>
       <NavigationBar/>
       <HeaderGallery />
-
-      <Button variant = 'contained'>
-        <Link to="">Jobs for you</Link>
-      </Button>
-
       <Outlet />
       <EmbedCalendar />
     </>

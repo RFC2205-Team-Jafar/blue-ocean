@@ -109,7 +109,6 @@ return (
 
 
 
-
 /*========== STYLES ==========*/
 const ApplicantDetail = styled(Column)`
   background-color: #fcfaf5;
