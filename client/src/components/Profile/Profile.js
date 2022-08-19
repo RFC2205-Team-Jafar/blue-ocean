@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 import { AllContext } from '../../index.jsx';
 import { fileUpload } from '../fileHandlers.jsx';
 import { Form, Label, Row, Input, ButtonGroup } from '../../../public/stylesheets/styles.js';
@@ -69,6 +71,10 @@ const Profile = () => {
 
   const seekerDOM = (
     <div className="seekerProfile">
+      <Button variant='contained'>
+        <Link to="/seeker">Jobs for you</Link>
+      </Button>
+
       <TextField
         id="outlined-basic"
         label="First Name"
