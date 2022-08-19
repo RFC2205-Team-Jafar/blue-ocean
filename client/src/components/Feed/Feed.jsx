@@ -22,11 +22,18 @@ export default function Feed() {
   const [targetPost, setTargetPost] = useState();
   const [targetListing, setTargetListing] = useState();
   const { accountType, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings } = useContext(AllContext);
+  const {currentList, setCurrentList} = useContext(AllContext);
 
   const path = location.pathname;
 
   /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
+  useEffect(() =>  {
+    if (currentList === 'default' && defaultJobs) {
+      setTargetPost(defaultJobs[0]);
+    } else if (currentList === 'applied' && appliedJobs) {
+      setTargetPost(appliedJobs[0]);
+    }
+  }, [currentList]);
 
   /*----- EVENT HANDLERS -----*/
   const handleClick = (job) => {
