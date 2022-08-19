@@ -8,7 +8,10 @@ import { Column, Label, Row, JobPosting } from '../../../public/stylesheets/styl
 
 /*========== EXPORTS ==========*/
 export default function Post({ job, handleClick }) {
-  console.log(job);
+
+  if (job) {
+    var { title, salary_low, salary_high, pay_adjuster, desc, industry, listing_id } = job;
+  }
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
@@ -23,14 +26,12 @@ export default function Post({ job, handleClick }) {
 
   /*----- RENDERER -----*/
   return (
-    <JobPosting onClick={ handleClick }>
-      <JobTitle>Job Title</JobTitle>
-      <JobLocation>Job Location</JobLocation>
-      <JobSalary>SALARY</JobSalary>
+    <JobPosting onClick={() => handleClick(job)}>
+      <JobTitle>{title}</JobTitle>
+      <JobLocation>{industry}</JobLocation>
+      <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
       <JobDescription>Job Description:</JobDescription>
-      <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum . . .
-      </p>
+        <p>{desc}</p>
     </JobPosting>
   )
 }

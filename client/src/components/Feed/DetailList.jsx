@@ -10,7 +10,7 @@ import DetailJob from './DetailJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailList({ displayPost, postings, applicants }) {
+export default function DetailList({ targetPost, postings, applicants, appliedJobs }) {
   const path = location.pathname;
   /*
   TODO: send children to be rendered to the function as props along with an
@@ -34,13 +34,13 @@ export default function DetailList({ displayPost, postings, applicants }) {
 
   /*----- RENDER METHODS -----*/
 
-  const renderDetail = (targetPost) => {
+  const renderDetail = () => {
     /*
     NOTE:
     - on page load, renders detailed information on the first listing,
     - should conditionally render buttons specific to the parent page
     */
-   targetPost = targetPost || postings[0];
+   targetPost = targetPost || appliedJobs[0];
 
     if (targetPost && path === '/seeker') return <DetailJob targetPost={targetPost} />
 

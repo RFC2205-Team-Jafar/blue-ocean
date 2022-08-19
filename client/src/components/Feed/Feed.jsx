@@ -17,12 +17,6 @@ export default function Feed() {
   identifier to indicate that it is on the job seeker or the recruiters page
   */
 
-/**
- NOTE:
- applied Jobs
- default Jobs
- */
-
   /*----- STATE HOOKS -----*/
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
@@ -52,13 +46,9 @@ export default function Feed() {
   // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
-  const handleClick = ({ target: { name, value } }) => {
+  const handleClick = (job) => {
     //TODO: set modify the background of the clicked button to be a different color
-    setTargetPost(prev => ({
-      ...prev,
-      [name]: value
-    }))
-
+    setTargetPost(job)
   };
 
 
@@ -79,10 +69,6 @@ export default function Feed() {
       <HeaderDivider></HeaderDivider>
       <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
-
-        {/* <Row>
-          <h3 style={{padding: '10px'}}>This is the Job Feed Section</h3>
-        </Row> */}
         <Row>
           <PostList handleClick={handleClick} postings={postings} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
           {renderDetail()}

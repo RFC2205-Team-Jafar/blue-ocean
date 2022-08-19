@@ -147,6 +147,8 @@ export const JobPosting = styled(Column)`
   padding: 10px;
   min-height: 12em;
   max-height: 20em;
+  width: 39vw;
+  max-width: 670px;
   overflow: clip;
   border-radius: 10px;
   box-shadow:  5px 5px 3px #84c9b7,
