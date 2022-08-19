@@ -11,11 +11,15 @@ import { Column, Label, Row, ButtonTray, JobPosting } from '../../../public/styl
 
 
 /*========== EXPORTS ==========*/
-export default function ActiveJob({ handleClick }) {
+export default function ActiveJob({ handleListing, listing }) {
+
+  if (listing) {
+    var { title, salary_low, salary_high, pay_adjuster, desc, industry, listing_id } = listing;
+  }
+
   /*----- STATE HOOKS -----*/
   const [canClose, setCanClose] = useState(true);
   const [closeSuccess, setCloseSuccess] = useState(false);
-
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
@@ -30,7 +34,7 @@ export default function ActiveJob({ handleClick }) {
           "listing_id": 93
         }
     */
-    axios.put('/jobs/closeposting',)
+    axios.put('/jobs/closeposting', listing.listing_id)
   .then(onClose => {
     setCanClose(false);
     setCloseSuccess(true);
@@ -99,16 +103,16 @@ export default function ActiveJob({ handleClick }) {
       style={{
         position: 'relative',
       }}
-      onClick={ handleClick }
+      onClick={() => {handleListing(listing)} }
       >
-      <PostingName>Job Title</PostingName>
-      <PostingLocation>Job Location</PostingLocation>
+      <PostingName>{title}</PostingName>
+      <PostingLocation>{industry}</PostingLocation>
       {renderClose()}
       <PostingBody>
         {renderAlert()}
         <p>
           Job Description:
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum . . .
+            {desc}
         </p>
       </PostingBody>
     </JobPosting>

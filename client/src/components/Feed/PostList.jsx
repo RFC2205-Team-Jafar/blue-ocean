@@ -10,7 +10,7 @@ import ActiveJob from './ActiveJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings, defaultJobs, appliedJobs, unsignedJobs }) {
+export default function PostList({ handleClick, handleListing, postings, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings }) {
   const path = location.pathname;
   /*----- STATE HOOKS -----*/
   // const [] = useState();
@@ -44,8 +44,8 @@ export default function PostList({ handleClick, postings, defaultJobs, appliedJo
       )
     }
 
-    if (postings && path === '/recruiter') {
-      const recruiter = postings.map(post => <ActiveJob handleClick={handleClick}/>)
+    if (recruiterPostings && path === '/recruiter') {
+      const recruiter = recruiterPostings.listings.map(listing => <ActiveJob key={listing.listing_id} listing={listing} handleListing={handleListing}/>)
       return (
         <ListSection>
           {recruiter}
