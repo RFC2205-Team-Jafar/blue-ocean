@@ -8,15 +8,14 @@ import PostJob from "../components/PostJob/PostJob.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
 import Feed from "../components/Feed/Feed.jsx";
-import NavigationBar from '../components/NavBar/NavigationBar.jsx';
-
+import NavigationBar from "../components/NavBar/NavigationBar.jsx";
 
 import { fileUpload } from "../components/fileHandlers.jsx";
 
 const Home = () => {
   return (
     <>
-      <NavigationBar/>
+      <NavigationBar />
       <HeaderGallery />
       <Feed view={{ view: "seeker" }} />
 
