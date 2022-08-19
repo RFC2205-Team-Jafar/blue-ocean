@@ -15,9 +15,9 @@ export default function SalarySliderSteps({ handleSalary }) {
         onChange={handleSalary}
         aria-label="Small steps"
         defaultValue={10}
-        step={5*1000}
-        min={10*1000}
-        max={250*1000}
+        step={5 * 1000}
+        min={10 * 1000}
+        max={250 * 1000}
         valueLabelDisplay="auto"
       />
     </Box>

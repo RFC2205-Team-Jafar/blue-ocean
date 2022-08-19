@@ -28,7 +28,6 @@ const Seeker = () => {
         <Link to="">Jobs for you</Link>
       </div>
 
-      <FilterStatus />
       <Outlet />
 
       <Link to="/">Back to Home</Link>
