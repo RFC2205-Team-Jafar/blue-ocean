@@ -10,7 +10,7 @@ import DetailJob from './DetailJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailList({ targetPost, postings, applicants, appliedJobs }) {
+export default function DetailList({ targetPost, recruiterPostings, targetListing, appliedJobs }) {
   const path = location.pathname;
   /*
   TODO: send children to be rendered to the function as props along with an
@@ -41,13 +41,16 @@ export default function DetailList({ targetPost, postings, applicants, appliedJo
     - should conditionally render buttons specific to the parent page
     */
    targetPost = targetPost || appliedJobs[0];
+   targetListing = targetListing || recruiterPostings.listings[0]
 
     if (targetPost && path === '/seeker') return <DetailJob targetPost={targetPost} />
 
-    if (applicants && path === '/recruiter') {
-      return applicants.map(applicant => {
-        return <DetailApplicant applicant={applicant}/>
-    })
+    if (targetListing && path === '/recruiter') {
+      if (targetListing.applicants) {
+        return targetListing.applicants.map((applicant, index) => {
+          return <DetailApplicant key={index} applicant={applicant}/>
+        })
+      }
     }
   }
 

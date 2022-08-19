@@ -20,27 +20,10 @@ export default function Feed() {
   /*----- STATE HOOKS -----*/
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
-  const { accountType, defaultJobs, appliedJobs, unsignedJobs } = useContext(AllContext);
+  const [targetListing, setTargetListing] = useState();
+  const { accountType, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings } = useContext(AllContext);
 
   const path = location.pathname;
-  // const { accountType, defaultJobs, appliedJobs, location, uuid, email, firstName, lastName, preferredIndustry, zipCode, company, coord_lat, coord_long, resumeUrl, coverLetterUrl } = useContext(AllContext);
-
-  // console.log('AllContext: ', AllContext);
-  // console.log('accountType: ', accountType);
-  // console.log('defaultJobs: ', defaultJobs);
-  // console.log('appliedJobs: ', appliedJobs);
-  // console.log('location: ', location);
-  // console.log('uuid: ', uuid);
-  // console.log('email: ', email);
-  // console.log('firstName: ', firstName);
-  // console.log('lastName: ', lastName);
-  // console.log('preferredIndustry: ', preferredIndustry);
-  // console.log('zipCode: ', zipCode);
-  // console.log('company: ', company);
-  // console.log('coord_lat: ', coord_lat);
-  // console.log('coord_long: ', coord_long);
-  // console.log('resumeUrl: ', resumeUrl);
-  // console.log('coverLetterUrl: ', coverLetterUrl);
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
@@ -48,15 +31,19 @@ export default function Feed() {
   /*----- EVENT HANDLERS -----*/
   const handleClick = (job) => {
     //TODO: set modify the background of the clicked button to be a different color
-    setTargetPost(job)
+    setTargetPost(job);
   };
+
+  const handleListing = (listing) => {
+    setTargetListing(listing);
+  }
 
 
   /*----- RENDER METHODS -----*/
   const renderDetail = () => {
     if (path && path !== '/') {
       return (
-        <DetailList targetPost={targetPost} postings={postings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
+        <DetailList targetPost={targetPost} targetListing={targetListing} recruiterPostings={recruiterPostings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
       )
     }
   }
@@ -70,7 +57,7 @@ export default function Feed() {
       <FeedHeader>YOUR FEED</FeedHeader>
       <FeedSection>
         <Row>
-          <PostList handleClick={handleClick} postings={postings} unsignedJobs={unsignedJobs} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
+          <PostList handleClick={handleClick} handleListing={handleListing} recruiterPostings={recruiterPostings} unsignedJobs={unsignedJobs} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
           {renderDetail()}
         </Row>
       </FeedSection>
