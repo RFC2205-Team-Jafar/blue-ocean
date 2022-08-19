@@ -18,7 +18,8 @@ import AlertTitle from '@mui/material/AlertTitle';
 //styled compoenents
 import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
 
-export const InterviewInviteModal = () => {
+export const InterviewInviteModal = (props) => {
+  console.log(props);
   const { email } = useContext(AllContext);
   const [failure, setFailure] = useState(false);
   const [canCreate, setCanCreate] = useState(false);
