@@ -13,19 +13,23 @@ import DetailJob from './DetailJob.jsx';
 export default function DetailList({ targetPost, recruiterPostings, targetListing, appliedJobs, unsignedJobs }) {
   const path = location.pathname;
 
+
   /*----- RENDER METHODS -----*/
 
   const renderDetail = () => {
-   targetPost = targetPost || (appliedJobs[0] || unsignedJobs[0] );
-   targetListing = targetListing || recruiterPostings.listings[0]
+    if (path === '/seeker') {
+      targetPost = (targetPost || (appliedJobs[0] || unsignedJobs[0]));
+      if (targetPost)  return <DetailJob targetPost={targetPost} />
+    }
 
-    if (targetPost && path === '/seeker') return <DetailJob targetPost={targetPost} />
-
-    if (targetListing && path === '/recruiter') {
-      if (targetListing.applicants) {
-        return targetListing.applicants.map((applicant, index) => {
-          return <DetailApplicant key={index} applicant={applicant}/>
-        })
+    if (path === '/recruiter') {
+      targetListing = targetListing || recruiterPostings.listings[0];
+      if (targetListing) {
+        if (targetListing.applicants) {
+          return targetListing.applicants.map((applicant, index) => {
+            return <DetailApplicant key={index} applicant={applicant}/>
+          })
+        }
       }
     }
   }
