@@ -86,7 +86,7 @@ const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -118,7 +118,7 @@ const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary
                 ) as distance
                 FROM "Listings" business
 
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -161,7 +161,7 @@ const listings = (uuid) => {
     return client.query(`
         SELECT json_agg(listings)
         FROM(
-            SELECT 
+            SELECT
                 listing.listing_id,
                 listing.industry,
                 listing.coord_lat,
@@ -179,7 +179,7 @@ const listings = (uuid) => {
                 (
                     SELECT json_agg(applicants) as applicants
                     FROM (
-                        SELECT 
+                        SELECT
                             seeker.*,
                             submittedApp.coverletter_url,
                             submittedApp.application_status,
@@ -218,15 +218,15 @@ const isRecruiter = (uuid) => {
 
 module.exports = {
   addSeeker: (seeker) => {
-    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
+    const { user_uuid, first_name, last_name, user_email, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
-                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
+                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}', '${user_email}')`;
     return client.query(queryString);
   },
 
   addRecruiter: (recruiter) => {
-    const { user_uuid, first_name, last_name, company_name } = recruiter;
-    const queryString = `INSERT INTO "Recruiters" VALUES ('${user_uuid}', '${first_name}', '${last_name}', '${company_name}')`;
+    const { user_uuid, first_name, last_name, company_name, user_email } = recruiter;
+    const queryString = `INSERT INTO "Recruiters" VALUES ('${user_uuid}', '${first_name}', '${last_name}', '${company_name}', '${user_email}')`;
     return client.query(queryString);
   },
 
