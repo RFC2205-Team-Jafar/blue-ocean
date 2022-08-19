@@ -12,17 +12,9 @@ import { AllContext } from '../../index.jsx';
 /*========== EXPORTS ==========*/
 export default function PostList({ handleClick, handleListing, postings, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings }) {
   const path = location.pathname;
+
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
   const {currentList, setCurrentList} = useContext(AllContext);
-
-  /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
-
-  /*----- EVENT HANDLERS -----*/
-
-
-
 
   /*----- RENDER METHODS -----*/
   const renderList = () => {

@@ -1,5 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
@@ -7,7 +7,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-
+import {AllContext} from '../../index.jsx'
 import { Column, Row, ButtonBox } from '../../../public/stylesheets/styles.js';
 import {fileUpload} from '../fileHandlers.jsx';
 
@@ -24,6 +24,9 @@ export default function DetailJob({ targetPost }) {
       listing_id,
       employement_type,
       num_positions,
+      coverletter_url,
+      resume_Url,
+      requested_keywords,
     } = targetPost;
   }
 
@@ -38,22 +41,11 @@ export default function DetailJob({ targetPost }) {
         "didReceivePromisedPay": false
       }
   */
- /*
-  NOTE:
-   - POST request to '/jobs/applyforajob'
-      {
-        "seeker_uuid": "oSl2HNei1PTAsG3TijrfidKJ6dI2",
-        "listing_id": 93,
-        "coverletter_url": "someCoverLetterUrl",
-        "resume_Url": "soemResumeUrl",
-        "requested_keywords": "react, postgres"
-      }
-    requested_keywords should be sent at as string
-  */
 
   /*----- STATE HOOKS -----*/
   const [canApply, setCanApply] = useState(true);
   const [postSuccess, setPostSuccess] = useState(false);
+  const { uuid } = useContext(AllContext);
 
 
   /*----- LIFESTYLE METHODS -----*/
@@ -61,9 +53,9 @@ export default function DetailJob({ targetPost }) {
 
   /*----- EVENT HANDLERS -----*/
   const handleApply = ({target: {name, value}}) => {
-  //   axios.post('/jobs/applyforajob',)
-  //   .then(applied => setCanApply(false))
-  //   .catch(err => console.error(err))
+    axios.post('/jobs/applyforajob', { uuid, listing_id, coverletter_url, resume_Url, requested_keywords } )
+    .then(applied => setCanApply(false))
+    .catch(err => console.error(err))
     setCanApply(false);
     setPostSuccess(true);
     setTimeout(() => setPostSuccess(false), 3000);
