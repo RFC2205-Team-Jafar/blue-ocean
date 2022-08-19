@@ -38,6 +38,7 @@ const App = () => {
   const [resumeUrl, setResumeUrl] = useState();
   const [coverLetterUrl, setCoverLetterUrl] = useState();
   const [uuid, setUuid] = useState();
+  const [currentList, setCurrentList] = useState('default');
 
   const [location, setLocation] = useState({});
 
@@ -96,7 +97,8 @@ const App = () => {
               unsignedJobs,
               setUnsignedJobs,
               recruiterPostings,
-              setRecruiterPostings
+              setRecruiterPostings,
+              currentList, setCurrentList
             }}
           >
             <Routes>
