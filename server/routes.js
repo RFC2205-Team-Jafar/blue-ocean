@@ -6,7 +6,8 @@ const controller = require('./controller.js');
 const authMiddleware = require('./authMiddleware');
 
 /*--------------------Test Routes---------------*/
-router.get('/isSeeker/:uuid', authMiddleware.decodeToken, controller.isSeeker);
+// router.get('/isSeeker/:uuid', authMiddleware.decodeToken, controller.isSeeker); Funcitoning but nothing is sending a token yet
+router.get('/isSeeker/:uuid', controller.isSeeker);
 router.get('/isRecruiter/:uuid', controller.isRecruiter);
 
 

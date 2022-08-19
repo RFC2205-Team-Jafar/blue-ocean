@@ -5,4 +5,4 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-module.export = admin;
+module.exports = admin;
