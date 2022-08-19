@@ -147,7 +147,6 @@ const DetailBody = styled(Column)`
   height: 100%
   max-height: 1200px;
   overflow: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }
