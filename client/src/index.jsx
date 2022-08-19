@@ -32,7 +32,9 @@ const App = () => {
   const [coord_long, setCoord_long] = useState();
   const [unsignedJobs, setUnsignedJobs] = useState();
   const [defaultJobs, setDefaultJobs] = useState();
+  const [listings, setListings] = useState();
   const [appliedJobs, setAppliedJobs] = useState();
+  const [recruiterPostings, setRecruiterPostings] = useState();
   const [resumeUrl, setResumeUrl] = useState();
   const [coverLetterUrl, setCoverLetterUrl] = useState();
   const [uuid, setUuid] = useState();
@@ -46,6 +48,11 @@ const App = () => {
   useEffect(() => {
     axios.get('/jobs/noAuth')
     .then(jobListings => setUnsignedJobs(jobListings.data))
+    .catch(err => console.error(err))
+  }, []);
+  useEffect(() => {
+    axios.get('/jobs/rxXyEEJqImavbPtUBHrINcvIK5p2/signOn')
+    .then(recruiterPostings => setRecruiterPostings(recruiterPostings.data))
     .catch(err => console.error(err))
   }, []);
 
@@ -87,7 +94,9 @@ const App = () => {
               appliedJobs,
               setAppliedJobs,
               unsignedJobs,
-              setUnsignedJobs
+              setUnsignedJobs,
+              recruiterPostings,
+              setRecruiterPostings
             }}
           >
             <Routes>

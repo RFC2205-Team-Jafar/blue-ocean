@@ -10,6 +10,8 @@ import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import Grid from "@mui/material/Grid";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 // End Material UI
 
@@ -17,17 +19,51 @@ import Grid from "@mui/material/Grid";
 import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
 
 export const InterviewInviteModal = () => {
-  const { email } = useContext(AllContext); // Waiting to email to be saved in state
-  const handleSubmit = () => {
-    sendInvite(inviteInfo, email);
-    handleClose();
-  }
-
+  const { email } = useContext(AllContext);
+  const [failure, setFailure] = useState(false);
+  const [canCreate, setCanCreate] = useState(false);
   const [show, setShow] = useState(false);
   const [inviteInfo, setInviteInfo] = useState({});
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleFail = () => {
+    setFailure(true);
+    setTimeout(() => setFailure(false), 3000);
+  }
+
+
+  const handleSubmit = () => {
+    if (!inviteInfo.inviteInfo) {
+      return handleFail();
+    } else if (!inviteInfo.inviteInfo.startDate || inviteInfo.inviteInfo.startDate === '') {
+      return handleFail();
+    } else if (!inviteInfo.inviteInfo.startTime || inviteInfo.inviteInfo.startTime === ''){
+      return handleFail();
+    } else if (!inviteInfo.inviteInfo.endDate || inviteInfo.inviteInfo.endDate === ''){
+      return handleFail();
+    } else if (!inviteInfo.inviteInfo.endTime || inviteInfo.inviteInfo.endTime === ''){
+      return handleFail();
+    } else if (!inviteInfo.inviteInfo.location || inviteInfo.inviteInfo.location === ''){
+      return handleFail();
+    } else if (!inviteInfo.inviteInfo.description || inviteInfo.inviteInfo.description === ''){
+      return handleFail();
+    } else {
+      sendInvite(inviteInfo, email);
+      handleClose();
+    }
+  }
+
+  const alertFail = () => {
+    if (failure)
+    return (
+      <Alert severity='error'>
+        <AlertTitle>Error</AlertTitle>
+        Please Fill Out <strong>All Fields!</strong>
+      </Alert>
+    )
+  }
+
 
   const handleChange = (e) => {
     setInviteInfo(prevState => ({
@@ -44,6 +80,7 @@ export const InterviewInviteModal = () => {
       <Button variant='contained' onClick={() => handleShow()} >Schedule Interview</Button>
       <ModalDiv block={show ? 'block' : 'none'}>
         <ContentDiv>
+          {alertFail()}
           <Style_Title>Schedule Interview</Style_Title>
           <StyledForm>
             <Child>
