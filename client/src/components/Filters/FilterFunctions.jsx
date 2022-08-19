@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import SalarySliderSteps from "./FilterSalary.jsx";
 import { AllContext } from "../../index.jsx";
 import FilterStatus from "./FilterStatus.jsx";
+import FormControl from "@mui/material/FormControl";
 
 function FilterFunctions() {
   const [filteredListing, setFilteredListing] = useState([]);
