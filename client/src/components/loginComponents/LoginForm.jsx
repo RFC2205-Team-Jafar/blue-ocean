@@ -48,6 +48,7 @@ const LoginForm = () => {
     const r = await login(email, password);
     const uid = r.user.uid;
     const res = await axios.get(`/jobs/${uid}/signon`);
+    // TODO: remove console.log
     console.log(res.data);
     await setUuid(res.data.user_uuid);
     await setAccountType(res.data.account_type);
