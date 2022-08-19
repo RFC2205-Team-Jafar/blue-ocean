@@ -129,3 +129,4 @@ export default FilterFunctions;
 const FilterRow = styled(Row)`
   justify-content: space-evenly;
 `;
+

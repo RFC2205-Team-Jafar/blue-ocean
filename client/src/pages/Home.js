@@ -9,6 +9,7 @@ import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import FilterFunctions from "../components/Filters/FilterFunctions.jsx";
 import Feed from "../components/Feed/Feed.jsx";
 import NavigationBar from "../components/NavBar/NavigationBar.jsx";
+import SloganHeader from "../components/Header/SloganHeader.jsx";
 
 import { fileUpload } from "../components/fileHandlers.jsx";
 
@@ -18,14 +19,15 @@ const Home = () => {
       <NavigationBar />
       <HeaderGallery />
 
-      <h1> Jobs (newest 20) </h1>
+      {/* <h1> Jobs (newest 20) </h1> */}
+      <SloganHeader />
 
-      <div>
+      {/* <div>
         <Link to="seeker">Redirect to Seeker view </Link>
       </div>
       <div>
         <Link to="recruiter">Redirect to Recruiter view </Link>
-      </div>
+      </div> */}
       <Feed />
     </>
   );
