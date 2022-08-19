@@ -26,7 +26,7 @@ const Home = () => {
       <div>
         <Link to="recruiter">Redirect to Recruiter view </Link>
       </div>
-      <Feed view={{view:'unsigned'}}/>
+      <Feed/>
     </>
   );
 };

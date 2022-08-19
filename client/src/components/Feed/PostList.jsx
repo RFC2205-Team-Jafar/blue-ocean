@@ -10,7 +10,11 @@ import ActiveJob from './ActiveJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings, view: { view }, defaultJobs, appliedJobs }) {
+export default function PostList({ handleClick, postings, defaultJobs, appliedJobs }) {
+
+  console.log('PostList default: ', defaultJobs);
+  console.log('PostList applied: ', appliedJobs);
+  const path = location.pathname;
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
@@ -32,8 +36,11 @@ export default function PostList({ handleClick, postings, view: { view }, defaul
     - on Click -> sends the clicked posting information to the Details listing
     */
 
-    if (defaultJobs && view === 'seeker') {
-      const seeker = defaultJobs.map(job => <PostedJob job={job} handleClick={handleClick}/>)
+    if (appliedJobs && path === '/seeker') {
+      const seeker = appliedJobs.map(job => {
+        console.log('job: ', job)
+        return <PostedJob job={job} handleClick={handleClick}/>
+      })
       return (
         <ListSection>
           {seeker}
@@ -41,7 +48,7 @@ export default function PostList({ handleClick, postings, view: { view }, defaul
       )
     }
 
-    if (postings && view === 'recruiter') {
+    if (postings && path === '/recruiter') {
       const recruiter = postings.map(post => <ActiveJob handleClick={handleClick}/>)
       return (
         <ListSection>
@@ -52,7 +59,7 @@ export default function PostList({ handleClick, postings, view: { view }, defaul
   }
 
   const renderUnsigned = () => {
-    if (postings && view === 'unsigned') {
+    if (postings && path === '/') {
       const unsigned = postings.map(post => <PostedJob/>)
       return (
         <ListSection

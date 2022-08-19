@@ -11,7 +11,7 @@ import DetailList from './DetailList.jsx';
 import FilterFunctions from '../Filters/FilterFunctions.jsx'
 
 /*========== EXPORTS ==========*/
-export default function Feed({view, applicants}) {
+export default function Feed() {
   /*
   TODO: send children to be rendered to the function as props along with an
   identifier to indicate that it is on the job seeker or the recruiters page
@@ -28,6 +28,25 @@ export default function Feed({view, applicants}) {
   const [targetPost, setTargetPost] = useState();
   const { accountType, defaultJobs, appliedJobs } = useContext(AllContext);
 
+  const path = location.pathname;
+  // const { accountType, defaultJobs, appliedJobs, location, uuid, email, firstName, lastName, preferredIndustry, zipCode, company, coord_lat, coord_long, resumeUrl, coverLetterUrl } = useContext(AllContext);
+
+  // console.log('AllContext: ', AllContext);
+  // console.log('accountType: ', accountType);
+  // console.log('defaultJobs: ', defaultJobs);
+  // console.log('appliedJobs: ', appliedJobs);
+  // console.log('location: ', location);
+  // console.log('uuid: ', uuid);
+  // console.log('email: ', email);
+  // console.log('firstName: ', firstName);
+  // console.log('lastName: ', lastName);
+  // console.log('preferredIndustry: ', preferredIndustry);
+  // console.log('zipCode: ', zipCode);
+  // console.log('company: ', company);
+  // console.log('coord_lat: ', coord_lat);
+  // console.log('coord_long: ', coord_long);
+  // console.log('resumeUrl: ', resumeUrl);
+  // console.log('coverLetterUrl: ', coverLetterUrl);
 
   /*----- LIFESTYLE METHODS -----*/
   // useEffect(() =>  {}, []);
@@ -45,9 +64,9 @@ export default function Feed({view, applicants}) {
 
   /*----- RENDER METHODS -----*/
   const renderDetail = () => {
-    if (view && view.view !== 'unsigned') {
+    if (path && path !== '/') {
       return (
-        <DetailList targetPost={targetPost} postings={postings} view={view} applicants={applicants} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
+        <DetailList targetPost={targetPost} postings={postings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
       )
     }
   }
@@ -65,7 +84,7 @@ export default function Feed({view, applicants}) {
           <h3 style={{padding: '10px'}}>This is the Job Feed Section</h3>
         </Row> */}
         <Row>
-          <PostList handleClick={handleClick} postings={postings} view={view} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
+          <PostList handleClick={handleClick} postings={postings} defaultJobs={defaultJobs} appliedJobs={appliedJobs}/>
           {renderDetail()}
         </Row>
       </FeedSection>
