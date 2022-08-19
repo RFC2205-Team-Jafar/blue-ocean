@@ -14,7 +14,7 @@ import {fileViewer} from '../fileHandlers.jsx'
 /*========== EXPORTS ==========*/
 export default function DetailApplicant({ applicant }) {
   if (applicant) {
-    var { first_name, last_name, matched_keywords } = applicant;
+    var { first_name, last_name, matched_keywords, user_email } = applicant;
   }
 
   /*
@@ -97,7 +97,7 @@ return (
       <ApplicantResume>Applicant Resume:</ApplicantResume>
     </ApplicantHeader>
       <ButtonBox>
-        <InterviewInviteModal applicantInfo={applicant} /> {/* Need to pass through applicant email and company name */}
+        <InterviewInviteModal user_email={user_email}/> {/* Need to pass through applicant email and company name */}
         {renderReject()}
       </ButtonBox>
     <ApplicantBody>
