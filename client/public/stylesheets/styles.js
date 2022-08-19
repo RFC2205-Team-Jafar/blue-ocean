@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   color: #171816;
-  max-width: 1440px;
+
   /* background-color: #414141; */
 }
 `;

@@ -4,19 +4,25 @@ import { useAuth } from '../components/AuthContext.jsx';
 import geoConverter from '../Google_API/geolocation.jsx';
 import axios from 'axios';
 import { AllContext } from '../index.jsx';
-import Button from '@mui/material/Button';
+import { fileUpload } from '../components/fileHandlers.jsx'
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
+import {Grid, Paper, Avatar, TextField, Button, Typography, Select, FormControl, InputLabel, MenuItem} from "@mui/material";
 import NavigationBar from '../components/NavBar/NavigationBar.jsx';
 
 
 const SignUp = () => {
+
+  const paperStyle={ padding: 20, height: "100%", width: "95%", borderRadius: '10px'};
+  const avatarStyle={backgroundColor:'#1bbd7e'};
+  const btnstyle={margin:'8px 0'};
+  const closebtnstyle={ position: "relative", left: "100px", margin:'8px 0'};
   // console.log('useAuth: ', useAuth);
   //---------------------- State Hooks --------------------------
   const [ email, setEmail ] = useState();
-  const [ accountType, setAccountType ] = useState();
+  const [ accountType, setAccountType ] = useState("Select One");
   const [ firstName, setFirstName ] = useState();
   const [ lastName, setLastName ] = useState();
-  const [ preferredIndustry, setPreferredIndustry ] = useState();
+  const [ preferredIndustry, setPreferredIndustry ] = useState("Select One");
   const [ zipCode, setZipCode ] = useState();
   const [ company, setCompany ] = useState();
   const [ coord_lat, setCoord_lat ] = useState();
@@ -101,72 +107,103 @@ const SignUp = () => {
   };
 
   //-------------------- Returned DOM --------------------------
-  if (accountType === undefined) {
+  if (accountType === "Select One") {
     return (
-      <div>
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <NavigationBar/>
         <HeaderGallery />
-        <h1>Sign Up Form </h1>
-        <div>Form elements</div>
-        <div className="registration_container">
-          <h2>First Name</h2>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
-          <h2>Last Name</h2>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
-          <h2>Account Type</h2>
-          <span>
-            <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <div>Job Seeker</div>
-          {/* </span>
-          <span> */}
-            <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
-            <div>Recruiter</div>
-          </span>
-        </div>
+        <Paper elevation={10} style={paperStyle}>
+        <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4}>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>First Name</h2>
+            <TextField label='First Name' placeholder='First Name' fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Last Name</h2>
+            <TextField label='Last Name' placeholder='Last Name' fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Account Type</h2>
+            <FormControl sx={{ width: "100%" }}>
+              <Select value={accountType} onChange={(e) => setAccountType(e.target.value)} placeholder="Select One">
+                <MenuItem value="seeker">Job Seeker</MenuItem>
+                <MenuItem value="recruiter">Recruiter</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
         <br />
-        <h3> Please select account type.</h3>
+        <h2 style={{textAlign:"center", margin:"30px"}}>Please select an account type.</h2>
+        </Paper>
       </div>
     )
   } else if (accountType === "seeker") {
     return (
-      <div>
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <NavigationBar/>
         <HeaderGallery />
-        <h1>Sign Up Form </h1>
-        <div>Form elements</div>
-        <div className="registration_container">
-          <h2>First Name</h2>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
-          <h2>Last Name</h2>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
-          <h2>Account Type</h2>
-          <span>
-            <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <div>Job Seeker</div>
-          </span>
-          <span>
-            <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
-            <div>Recruiter</div>
-          </span>
-          <h2>Email</h2>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="youremail@domain.com" />
-          <h2>Password</h2>
-          <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-          <h2>Preferred Industry</h2>
-          <select value={preferredIndustry} onChange={(e) => setPreferredIndustry(e.target.value)}>
-            <option value="">Select One</option>
-            <option value="Art">Art</option>
-            <option value="Aviation">Aviation</option>
-            <option value="Construction">Construction</option>
-            <option value="Education">Education</option>
-            <option value="Food">Food</option>
-            <option value="Healthcare">Healthcare</option>
-            <option value="Music">Music</option>
-            <option value="Tech">Tech</option>
-            <option value="Transportation">Transportation</option>
-          </select>
-          <h2>Zip Code</h2>
-
-          <input type="text" value={zipCode} onChange={(e) => {
+        <Paper elevation={10} style={paperStyle}>
+        <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4}>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>First Name</h2>
+            <TextField label='First Name' placeholder='First Name' fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Last Name</h2>
+            <TextField label='Last Name' placeholder='Last Name' fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Account Type</h2>
+            <FormControl sx={{ width: "100%" }}>
+              <Select value={accountType} onChange={(e) => setAccountType(e.target.value)} placeholder="Select One">
+                <MenuItem value="seeker">Job Seeker</MenuItem>
+                <MenuItem value="recruiter">Recruiter</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4}>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Email</h2>
+            <TextField label='Email' placeholder="youremail@domain.com" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Password</h2>
+            <TextField label='Password' placeholder='Min. 6 Characters' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+          <h2 style={{textAlign:"center", margin:"5px"}}>Preferred Industry</h2>
+            <FormControl sx={{ width: "100%" }}>
+              <Select value={preferredIndustry} onChange={(e) => setPreferredIndustry(e.target.value)} placeholder="Select One">
+                <MenuItem value="Art">Art</MenuItem>
+                <MenuItem value="Aviation">Aviation</MenuItem>
+                <MenuItem value="Construction">Construction</MenuItem>
+                <MenuItem value="Education">Education</MenuItem>
+                <MenuItem value="Food">Food</MenuItem>
+                <MenuItem value="Healthcare">Healthcare</MenuItem>
+                <MenuItem value="Music">Music</MenuItem>
+                <MenuItem value="Tech">Tech</MenuItem>
+                <MenuItem value="Transportation">Transportation</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4} alignItems="center" justifyContent="center">
+          <Grid item xs={4}>
+          <h2 style={{textAlign:"center", margin:"5px"}}>Zip Code</h2>
+            <TextField label='Zip Code' placeholder='Zip Code' fullWidth value={zipCode} onChange={(e) => {
                                                               setZipCode(e.target.value);
                                                               geoConverter(zipCode)
                                                               .then(geos => {
@@ -174,47 +211,98 @@ const SignUp = () => {
                                                                 setCoord_long(geos.lng);
                                                               })
                                                               .catch(err => { console.log('lat long err: ', err) })
-                                                              }} placeholder="Zip Code" />
-          {uploaded
-          ? <p> Resume Uploaded </p>
-          : <>
-            <Button variant='contained' onClick={() => fileInputRef.current.click()}>
-              Upload A Resume
-            </Button>
-            <input onChange={handleUpload} multiple={false} ref={fileInputRef} type='file' hidden />
-            </>
-          }
-        </div>
+                                                              }} />
+          </Grid>
+          <Grid item xs={4}>
+            {uploaded
+            ? <p> Resume Uploaded </p>
+            : <>
+              <Button variant='contained' onClick={() => fileInputRef.current.click()}>
+                Upload A Resume
+              </Button>
+              <input onChange={handleUpload} multiple={false} ref={fileInputRef} type='file' hidden />
+              </>
+            }
+          </Grid>
+          <Grid item xs={4}>
+            <div></div>
+          </Grid>
+        </Grid>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4} alignItems="center" justifyContent="center">
+          <Grid item xs={5}>
+            <div></div>
+          </Grid>
+          <Grid alignItems="center" justifyContent="center" item xs={2}>
+            <Button color='primary' variant="contained" style={closebtnstyle} onClick={register} disabled={loading}>Create Account</Button>
+          </Grid>
+          <Grid item xs={5}>
+            <div></div>
+          </Grid>
+        </Grid>
+        </Paper>
       </div>
     )
   } else if (accountType === "recruiter") {
     return (
-      <div>
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <NavigationBar/>
         <HeaderGallery />
-        <h1>Sign Up Form </h1>
-        <div>Form elements</div>
-        <div className="registration_container">
-          <h2>First Name</h2>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
-          <h2>Last Name</h2>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
-          <h2>Account Type</h2>
-          <span>
-            <input type="radio" value="seeker" name="account_type" onClick={() => setAccountType("seeker")} />
-            <div>Job Seeker</div>
-          </span>
-          <span>
-            <input type="radio" value="recruiter" name="account_type" onClick={() => setAccountType("recruiter")} />
-            <div>Recruiter</div>
-          </span>
-          <h2>Email</h2>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="youremail@domain.com" />
-          <h2>Password</h2>
-          <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-          <h2>Company</h2>
-          <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company" />
-        </div>
-        <Button variant='contained' onClick={register} disabled={loading}>Create Account</Button>
+        <Paper elevation={10} style={paperStyle}>
+        <h1 style={{textAlign:"center", fontSize:"64px", margin:"0px"}}>Create Account</h1>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4}>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>First Name</h2>
+            <TextField label='First Name' placeholder='First Name' fullWidth value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Last Name</h2>
+            <TextField label='Last Name' placeholder='Last Name' fullWidth value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Account Type</h2>
+            <FormControl sx={{ width: "100%" }}>
+              <Select value={accountType} onChange={(e) => setAccountType(e.target.value)} placeholder="Select One">
+                <MenuItem value="seeker">Job Seeker</MenuItem>
+                <MenuItem value="recruiter">Recruiter</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <Grid container rowSpacing={4} columnSpacing={4}>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Email</h2>
+            <TextField label='Email' placeholder="youremail@domain.com" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Password</h2>
+            <TextField label='Password' placeholder='Min. 6 Characters' fullWidth value={password} onChange={(e) => setPassword(e.target.value)} />
+          </Grid>
+          <Grid item xs={4}>
+            <h2 style={{textAlign:"center", margin:"5px"}}>Company</h2>
+            <TextField label='Company' placeholder='Company' fullWidth value={company} onChange={(e) => setCompany(e.target.value)} />
+          </Grid>
+        </Grid>
+        <Grid container rowSpacing={4} columnSpacing={4} alignItems="center" justifyContent="center">
+          <Grid item xs={5}>
+            <div></div>
+          </Grid>
+          <Grid alignItems="center" justifyContent="center" item xs={2}>
+            <Button color='primary' variant="contained" style={closebtnstyle} onClick={register} disabled={loading}>Create Account</Button>
+          </Grid>
+          <Grid item xs={5}>
+            <div></div>
+          </Grid>
+        </Grid>
+        </Paper>
       </div>
     )
   }
