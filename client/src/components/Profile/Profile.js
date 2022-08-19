@@ -72,7 +72,7 @@ const Profile = () => {
   const seekerDOM = (
     <div className="seekerProfile">
 
-      <Link to="/seeker">
+      <Link to="/seeker" style = {{textDecoration: 'none'}}>
         <Button variant='contained'>
           Jobs for you
         </Button>

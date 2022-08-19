@@ -45,7 +45,7 @@ export default function DetailJob({ targetPost }) {
   /*----- STATE HOOKS -----*/
   const [canApply, setCanApply] = useState(true);
   const [postSuccess, setPostSuccess] = useState(false);
-  const { uuid } = useContext(AllContext);
+  const { uuid, currentList, setCurrentList } = useContext(AllContext);
 
 
   /*----- LIFESTYLE METHODS -----*/
@@ -109,7 +109,8 @@ export default function DetailJob({ targetPost }) {
   }
 
   /*----- RENDERER -----*/
-  return (
+  if(currentList === 'default'){
+    return (
     <JobDetail>
 
         <DetailHeader>
@@ -117,10 +118,11 @@ export default function DetailJob({ targetPost }) {
         <JobLocation>{industry}</JobLocation>
         <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
         </DetailHeader>
-        <ButtonBox>
-          {renderApply()}
-          {fileUpload('Cover Letter')}
+        <ButtonBox style = {{visibility: 'visible'}}>
+        {renderApply()}
+        {fileUpload('Cover Letter')}
         </ButtonBox>
+
         <JobDescription>Job Description:</JobDescription>
       <DetailBody>
         {renderSuccess()}
@@ -131,7 +133,32 @@ export default function DetailJob({ targetPost }) {
         <p>{desc}</p>
       </DetailBody>
     </JobDetail>
-  )
+  )} else {
+    return (
+      <JobDetail>
+
+          <DetailHeader>
+          <JobTitle>{title}</JobTitle>
+          <JobLocation>{industry}</JobLocation>
+          <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
+          </DetailHeader>
+          <ButtonBox style = {{visibility: 'hidden'}}>
+          {renderApply()}
+          {fileUpload('Cover Letter')}
+          </ButtonBox>
+
+          <JobDescription>Job Description:</JobDescription>
+        <DetailBody>
+          {renderSuccess()}
+          <p>Number of Openings: {num_positions}</p>
+          <p>Industry: {industry}</p>
+          <p>Employement Type: {employement_type}</p>
+          <p>   </p>
+          <p>{desc}</p>
+        </DetailBody>
+      </JobDetail>
+    )
+  }
 }
 
 

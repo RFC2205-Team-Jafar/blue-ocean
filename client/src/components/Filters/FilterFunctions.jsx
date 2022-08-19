@@ -120,6 +120,7 @@ function FilterFunctions() {
           {" "}
           Clear Filters{" "}
         </Button>
+        <FilterStatus />
       </FilterRow>
     </>
   );
