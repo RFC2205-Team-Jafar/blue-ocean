@@ -27,8 +27,6 @@ const Seeker = () => {
       </Button>
 
       <Outlet />
-
-      <Link to="/">Back to Home</Link>
       <EmbedCalendar />
     </>
   );
