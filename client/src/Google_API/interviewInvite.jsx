@@ -49,7 +49,7 @@ export const InterviewInviteModal = (data) => {
     } else if (!inviteInfo.inviteInfo.description || inviteInfo.inviteInfo.description === ''){
       return handleFail();
     } else {
-      sendInvite(inviteInfo, data.applicantInfo);
+      sendInvite(inviteInfo, email, data.applicantInfo);
       handleClose();
     }
   }

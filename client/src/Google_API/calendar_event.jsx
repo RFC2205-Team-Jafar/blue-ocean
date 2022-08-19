@@ -6,22 +6,22 @@ import React, { useContext } from 'react';
 // stored credentials.
 // SET UP GOOGLE ENVIRONMENT
 var gapi = window.gapi;
-var CLIENT_ID = ""; //ANCHOR Add CLIENT ID
-var API_KEY = ""; //ANCHOR Add API Key
+var CLIENT_ID = "Client_ID"; //ANCHOR Add CLIENT ID
+var API_KEY = "API_KEY"; //ANCHOR Add API Key
 const DISCOVERY_DOCS = [
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
 ];
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-const sendInvite = function (data, applicantInfo) {
+const sendInvite = function (data, email, applicantInfo) {
   console.log(applicantInfo);
   // SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
   gapi.load("client:auth2", () => {
     console.log("loaded client");
     window.gapi.client
       .init({
-        clientId: CLIENT_ID,
-        apiKey: API_KEY,
+        clientId: "CLIENT_ID",
+        apiKey: "TOKEN",
         scope: SCOPES,
         discoveryDocs: DISCOVERY_DOCS,
         plugin_name: "GreenHorn",
@@ -41,9 +41,9 @@ const sendInvite = function (data, applicantInfo) {
         var event = {
           summary: "Interview Invitation",
           location: data.inviteInfo.location,
-          description: `Salutations ${applicantInfo.first_name} ${applicantInfo.last_name}, we are pleased to extend and invitation for an interview with us at the above date and time. If this time and date does not work, please reach out to use at ${data.inviteInfo.email} to discuss rescheduling. Once again congratulations on being selected to interview for this position.
-          Please see below for additional information:
-           ${data.inviteInfo.description}`,
+          description: `Salutations ${applicantInfo.first_name} ${applicantInfo.last_name}, we are pleased to extend and invitation for an interview with us at the above date and time. If this time and date does not work, please reach out to use at ${data.inviteInfo.email} to discuss rescheduling. Once again congratulations on being selected to interview for this position. Please see below for additional information:
+
+          ${data.inviteInfo.description}`,
           start: {
             dateTime:
               data.inviteInfo.startDate +
@@ -81,7 +81,7 @@ const sendInvite = function (data, applicantInfo) {
         });
 
         request.execute(function (event) {
-          console.log(event);
+          console.log(event.data);
           console.log("Event created: " + event.htmlLink);
         });
       });
