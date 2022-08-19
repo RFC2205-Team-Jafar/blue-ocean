@@ -10,7 +10,8 @@ import DetailJob from './DetailJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailList({ displayPost, postings, view: { view }, applicants }) {
+export default function DetailList({ targetPost, recruiterPostings, targetListing, appliedJobs }) {
+  const path = location.pathname;
   /*
   TODO: send children to be rendered to the function as props along with an
   identifier to indicate that it is on the job seeker or the recruiters page
@@ -33,20 +34,23 @@ export default function DetailList({ displayPost, postings, view: { view }, appl
 
   /*----- RENDER METHODS -----*/
 
-  const renderDetail = (targetPost) => {
+  const renderDetail = () => {
     /*
     NOTE:
     - on page load, renders detailed information on the first listing,
     - should conditionally render buttons specific to the parent page
     */
-   targetPost = targetPost || postings[0];
+   targetPost = targetPost || appliedJobs[0];
+   targetListing = targetListing || recruiterPostings.listings[0]
 
-    if (targetPost && view === 'seeker') return <DetailJob targetPost={targetPost} />
+    if (targetPost && path === '/seeker') return <DetailJob targetPost={targetPost} />
 
-    if (applicants && view === "recruiter") {
-      return applicants.map(applicant => {
-        return <DetailApplicant applicant={applicant}/>
-    })
+    if (targetListing && path === '/recruiter') {
+      if (targetListing.applicants) {
+        return targetListing.applicants.map((applicant, index) => {
+          return <DetailApplicant key={index} applicant={applicant}/>
+        })
+      }
     }
   }
 

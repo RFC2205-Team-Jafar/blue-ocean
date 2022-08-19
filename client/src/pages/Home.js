@@ -19,6 +19,7 @@ const Home = () => {
       <NavigationBar/>
       <HeaderGallery />
       <Feed view={{ view: "seeker" }} />
+
     </>
   );
 };

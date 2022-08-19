@@ -75,6 +75,8 @@ export const Footer = styled.footer`
 
 export const FeedSection = styled.section`
   display: flex;
+  width: 90vw;
+  max-width: 1440px;
   flex-direction: column;
   align-items: space-between;
   background: linear-gradient(50deg, rgba(119, 201, 212, 0.75), rgba(87, 188, 144, 0.75));
@@ -100,7 +102,6 @@ export const Column = styled.div`
   display: flex;
   flex-direction:column;
   align-items: center;
-  justify-items: center;
 `;
 
 export const Row = styled.div`
@@ -144,6 +145,8 @@ export const JobPosting = styled(Column)`
   padding: 10px;
   min-height: 12em;
   max-height: 20em;
+  width: 39vw;
+  max-width: 670px;
   overflow: clip;
   border-radius: 10px;
   box-shadow:  5px 5px 3px #84c9b7,
