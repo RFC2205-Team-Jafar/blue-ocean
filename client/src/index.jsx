@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { createRoot } from "react-dom/client";
+import axios from 'axios';
 import Home from "./pages/Home.js";
 import SignUp from "./pages/SignUp.js";
 import Seeker from "./pages/Seeker";
@@ -29,6 +30,7 @@ const App = () => {
 
   const [coord_lat, setCoord_lat] = useState();
   const [coord_long, setCoord_long] = useState();
+  const [unsignedJobs, setUnsignedJobs] = useState();
   const [defaultJobs, setDefaultJobs] = useState();
   const [appliedJobs, setAppliedJobs] = useState();
   const [resumeUrl, setResumeUrl] = useState();
@@ -40,6 +42,11 @@ const App = () => {
   // Grabs user location asynchronously when mounted
   useEffect(() => {
     userLocation().then((data) => setLocation(data));
+  }, []);
+  useEffect(() => {
+    axios.get('/jobs/noAuth')
+    .then(jobListings => setUnsignedJobs(jobListings.data))
+    .catch(err => console.error(err))
   }, []);
 
   return (
@@ -79,6 +86,8 @@ const App = () => {
               setDefaultJobs,
               appliedJobs,
               setAppliedJobs,
+              unsignedJobs,
+              setUnsignedJobs
             }}
           >
             <Routes>

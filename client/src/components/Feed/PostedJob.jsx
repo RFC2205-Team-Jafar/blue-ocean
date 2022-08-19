@@ -7,7 +7,11 @@ import { Column, Label, Row, JobPosting } from '../../../public/stylesheets/styl
 
 
 /*========== EXPORTS ==========*/
-export default function Post({ handleClick }) {
+export default function Post({ job, handleClick }) {
+  const path = location.pathname;
+  if (job) {
+    var { title, salary_low, salary_high, pay_adjuster, desc, industry, listing_id } = job;
+  }
   /*----- STATE HOOKS -----*/
   // const [] = useState();
 
@@ -19,18 +23,43 @@ export default function Post({ handleClick }) {
 
 
   /*----- RENDER METHODS -----*/
+    const renderSeeker = () => {
+      if (job && path === '/seeker') {
+        return (
+        <JobPosting onClick={() => handleClick(job)} >
+          <JobTitle>{title}</JobTitle>
+          <JobLocation>{industry}</JobLocation>
+          <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
+          <JobDescription>Job Description:</JobDescription>
+            <p>{desc}</p>
+        </JobPosting>
+        )
+      }
+    }
+
+    const renderUnsigned = () => {
+      if (job && path === '/') {
+        return (
+        <JobPosting
+          style={{width: '85vw'}}
+          onClick={() => handleClick(job)}
+          >
+          <JobTitle>{title}</JobTitle>
+          <JobLocation>{industry}</JobLocation>
+          <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
+          <JobDescription>Job Description:</JobDescription>
+            <p>{desc}</p>
+        </JobPosting>
+        )
+      }
+    }
 
   /*----- RENDERER -----*/
   return (
-    <JobPosting onClick={ handleClick }>
-      <JobTitle>Job Title</JobTitle>
-      <JobLocation>Job Location</JobLocation>
-      <JobSalary>SALARY</JobSalary>
-      <JobDescription>Job Description:</JobDescription>
-      <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum . . .
-      </p>
-    </JobPosting>
+    <>
+      {renderSeeker()}
+      {renderUnsigned()}
+    </>
   )
 }
 
