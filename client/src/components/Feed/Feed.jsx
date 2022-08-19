@@ -43,7 +43,7 @@ export default function Feed() {
   const renderDetail = () => {
     if (path && path !== '/') {
       return (
-        <DetailList targetPost={targetPost} targetListing={targetListing} recruiterPostings={recruiterPostings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
+        <DetailList targetPost={targetPost} targetListing={targetListing} recruiterPostings={recruiterPostings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} unsignedJobs={unsignedJobs} />
       )
     }
   }
