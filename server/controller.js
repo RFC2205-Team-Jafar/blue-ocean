@@ -67,7 +67,7 @@ const filter = async (req, res) => {
 
     let industry = req.query.industry || "Tech"
     let isRemote = req.query.isRemote || 2
-    let maxDistance = req.query.maxDistance || 50;
+    let maxDistance = req.query.maxDistance || 5000000000;
     let employmentType= req.query.employmentType || "Full Time";
     let minSalary = parseInt(req.query.minSalary) || 0;
 
@@ -80,7 +80,7 @@ const filter = async (req, res) => {
             try {
 
                 const filteredJobs = await model.getJobs(uuid,industry,isRemote,employmentType,maxDistance, minSalary);
-
+                console.log(filteredJobs);
                 res.status(200).send(filteredJobs[2].rows[0].json_agg)
             } catch  (err) {
 

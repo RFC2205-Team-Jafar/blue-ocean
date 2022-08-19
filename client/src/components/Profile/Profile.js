@@ -71,9 +71,12 @@ const Profile = () => {
 
   const seekerDOM = (
     <div className="seekerProfile">
-      <Button variant='contained'>
-        <Link to="/seeker">Jobs for you</Link>
-      </Button>
+
+      <Link to="/seeker">
+        <Button variant='contained'>
+          Jobs for you
+        </Button>
+      </Link>
 
       <TextField
         id="outlined-basic"
