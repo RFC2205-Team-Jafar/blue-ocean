@@ -1,5 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
@@ -7,15 +7,29 @@ import Button from '@mui/material/Button';
 import { Column } from '../../../public/stylesheets/styles.js';
 import PostedJob from './PostedJob.jsx';
 import ActiveJob from './ActiveJob.jsx';
-
+import { AllContext } from '../../index.jsx';
 
 /*========== EXPORTS ==========*/
 export default function PostList({ handleClick, handleListing, postings, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings }) {
   const path = location.pathname;
 
+  /*----- STATE HOOKS -----*/
+  const {currentList, setCurrentList} = useContext(AllContext);
+
   /*----- RENDER METHODS -----*/
   const renderList = () => {
-    if (appliedJobs && path === '/seeker') {
+    if (currentList === 'default' && defaultJobs && path === '/seeker') {
+      const seeker = defaultJobs.map(job => {
+        return <PostedJob key={job.listing_id} job={job} handleClick={handleClick}/>
+      })
+      return (
+        <ListSection>
+          {seeker}
+        </ListSection>
+      )
+    }
+
+    if (currentList === 'applied' && appliedJobs && path === '/seeker') {
       const seeker = appliedJobs.map(job => {
         return <PostedJob key={job.listing_id} job={job} handleClick={handleClick}/>
       })
