@@ -22,7 +22,7 @@ const Recruiter = () => {
   const { firstName } = useContext(AllContext);
 
   return (
-    <Page>
+    <>
       <NavigationBar/>
       <HeaderGallery />
       <div><Link to="profile" >Profile</Link></div>
@@ -39,7 +39,7 @@ const Recruiter = () => {
         />} New Posting</StyledLink>
       </PostNewJob>
       <EmbedCalendar />
-    </Page>
+    </>
   );
 };
 
