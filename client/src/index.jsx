@@ -34,6 +34,7 @@ const App = () => {
   const [defaultJobs, setDefaultJobs] = useState();
   const [listings, setListings] = useState();
   const [appliedJobs, setAppliedJobs] = useState();
+  const [unfilteredJobs, setUnfilteredJobs] = useState();
   const [recruiterPostings, setRecruiterPostings] = useState();
   const [resumeUrl, setResumeUrl] = useState();
   const [coverLetterUrl, setCoverLetterUrl] = useState();
@@ -96,7 +97,9 @@ const App = () => {
               unsignedJobs,
               setUnsignedJobs,
               recruiterPostings,
-              setRecruiterPostings
+              setRecruiterPostings,
+              unfilteredJobs,
+              setUnfilteredJobs
             }}
           >
             <Routes>
