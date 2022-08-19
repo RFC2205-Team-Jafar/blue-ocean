@@ -13,6 +13,19 @@ import {fileUpload} from '../fileHandlers.jsx';
 
 /*========== EXPORTS ==========*/
 export default function DetailJob({ targetPost }) {
+  if (targetPost) {
+    var {
+      title,
+      salary_low,
+      salary_high,
+      pay_adjuster,
+      desc,
+      industry,
+      listing_id,
+      employement_type,
+      num_positions,
+    } = targetPost;
+  }
 
   /*
   NOTE:
@@ -97,7 +110,7 @@ export default function DetailJob({ targetPost }) {
           }}
           >
           <AlertTitle>Success</AlertTitle>
-          Your job has been posted!
+          Your <strong>application</strong> has been sent!
         </Alert>
       )
     }
@@ -108,9 +121,9 @@ export default function DetailJob({ targetPost }) {
     <JobDetail>
 
         <DetailHeader>
-        <JobTitle>Job Title</JobTitle>
-        <JobLocation>Job Location</JobLocation>
-        <JobSalary>Salary</JobSalary>
+        <JobTitle>{title}</JobTitle>
+        <JobLocation>{industry}</JobLocation>
+        <JobSalary>${salary_low} to ${salary_high} a {pay_adjuster}</JobSalary>
         </DetailHeader>
         <ButtonBox>
           {renderApply()}
@@ -119,13 +132,11 @@ export default function DetailJob({ targetPost }) {
         <JobDescription>Job Description:</JobDescription>
       <DetailBody>
         {renderSuccess()}
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque convallis a cras semper auctor. Et magnis dis parturient montes nascetur. Lectus proin nibh nisl condimentum id. Nunc consequat interdum varius sit. Laoreet suspendisse interdum consectetur libero id faucibus. Platea dictumst quisque sagittis purus sit. Felis bibendum ut tristique et egestas quis. Scelerisque mauris pellentesque pulvinar pellentesque. Luctus accumsan tortor posuere ac ut consequat semper. Vitae aliquet nec ullamcorper sit amet risus nullam. At varius vel pharetra vel. Faucibus scelerisque eleifend donec pretium vulputate. Venenatis a condimentum vitae sapien pellentesque. Mauris augue neque gravida in fermentum. Velit egestas dui id ornare arcu odio ut sem nulla.
-
-          Aliquam etiam erat velit scelerisque in dictum. Aenean pharetra magna ac placerat vestibulum. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Augue neque gravida in fermentum et sollicitudin ac orci phasellus. Vulputate ut pharetra sit amet aliquam id. Mauris pharetra et ultrices neque ornare aenean euismod elementum. Mi bibendum neque egestas congue quisque egestas diam in arcu. Pellentesque elit ullamcorper dignissim cras tincidunt. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Etiam tempor orci eu lobortis elementum. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Morbi tempus iaculis urna id volutpat lacus laoreet. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Vitae sapien pellentesque habitant morbi tristique senectus et netus. Ut morbi tincidunt augue interdum velit euismod. Vel pretium lectus quam id leo in vitae turpis massa. Semper quis lectus nulla at volutpat. Pharetra et ultrices neque ornare aenean euismod elementum nisi. Tellus in metus vulputate eu scelerisque felis imperdiet. Sit amet nisl purus in.
-
-          Morbi tincidunt augue interdum velit. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer. In eu mi bibendum neque egestas. Erat pellentesque adipiscing commodo elit at imperdiet dui. Massa tincidunt nunc pulvinar sapien et ligula. Platea dictumst quisque sagittis purus sit amet volutpat. Quam quisque id diam vel quam elementum pulvinar etiam non. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed. Ipsum nunc aliquet bibendum enim facilisis. Ullamcorper sit amet risus nullam eget felis eget nunc. Ac feugiat sed lectus vestibulum mattis ullamcorper. Morbi tristique senectus et netus et malesuada fames ac turpis. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Lectus urna duis convallis convallis.
-        </p>
+        <p>Number of Openings: {num_positions}</p>
+        <p>Industry: {industry}</p>
+        <p>Employement Type: {employement_type}</p>
+        <p>   </p>
+        <p>{desc}</p>
       </DetailBody>
     </JobDetail>
   )
@@ -146,8 +157,9 @@ const DetailBody = styled(Column)`
   min-height: 55em;
   height: 100%
   max-height: 1200px;
+  align-items: flex-start;
+  justify-content: flex-start;
   overflow: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }

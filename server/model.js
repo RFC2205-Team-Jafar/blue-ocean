@@ -85,8 +85,7 @@ const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary
                     POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))
                 ) as distance
                 FROM "Listings" business
-
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -117,8 +116,7 @@ const getJobs = (uuid,industry, isRemote, employmentType, maxDistance, minSalary
                     POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))
                 ) as distance
                 FROM "Listings" business
-
-                WHERE 
+                WHERE
                     (POINT(business.coord_long, business.coord_lat)<@>POINT((SELECT * FROM matchedseekerlat LIMIT 1), (SELECT * FROM matchedseekerlong LIMIT 1))) <= ${maxDistance}
                     AND industry = '${industry}'
                     AND employment_type = '${employmentType}'
@@ -161,7 +159,7 @@ const listings = (uuid) => {
     return client.query(`
         SELECT json_agg(listings)
         FROM(
-            SELECT 
+            SELECT
                 listing.listing_id,
                 listing.industry,
                 listing.coord_lat,
@@ -179,7 +177,7 @@ const listings = (uuid) => {
                 (
                     SELECT json_agg(applicants) as applicants
                     FROM (
-                        SELECT 
+                        SELECT
                             seeker.*,
                             submittedApp.coverletter_url,
                             submittedApp.application_status,

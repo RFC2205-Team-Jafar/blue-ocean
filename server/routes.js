@@ -3,7 +3,7 @@ const path = require('path');
 const router = express.Router();
 const controller = require('./controller.js');
 
-const authChecker = () => {};
+// authMiddleWare.authz((token, req) => token.org === req.params.organisationID)
 
 /*--------------------Test Routes---------------*/
 router.get('/isSeeker/:uuid', controller.isSeeker);

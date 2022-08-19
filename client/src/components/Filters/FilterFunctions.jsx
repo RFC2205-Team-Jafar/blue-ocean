@@ -8,6 +8,8 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import SalarySliderSteps from "./FilterSalary.jsx";
 import { AllContext } from "../../index.jsx";
+import FilterStatus from "./FilterStatus.jsx";
+import FormControl from "@mui/material/FormControl";
 
 function FilterFunctions() {
   const [filteredListing, setFilteredListing] = useState([]);
@@ -51,8 +53,7 @@ function FilterFunctions() {
   const fetchFilteredListing = () => {
     axios
       .get(
-        `jobs/:uuid/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&
-        minSalary=${minSalary}`
+        `jobs/${uuid}/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&minSalary=${minSalary}`
       )
       .then((res) => {
         return res.json();
@@ -68,7 +69,6 @@ function FilterFunctions() {
       <FilterRow>
         <SalarySliderSteps handleSalary={handleSalary} />
         <InputLabel>
-          {" "}
           Industry:
           <Select onChange={handleIndustry}>
             <MenuItem value="Art"> Art </MenuItem>
@@ -118,6 +118,7 @@ function FilterFunctions() {
           {" "}
           Apply Filters{" "}
         </Button>
+        <FilterStatus />
       </FilterRow>
     </>
   );
