@@ -17,13 +17,13 @@ const Profile = () => {
   // const accountType = 'recruiter';
   const { accountType } = useContext(AllContext);
   const { uuid } = useContext(AllContext);
-  const { firstName } = useContext(AllContext);
-  const { lastName } = useContext(AllContext);
+  const { firstName, setFirstName } = useContext(AllContext);
+  const { lastName, setLastName } = useContext(AllContext);
   const { email } = useContext(AllContext);
-  const { preferredIndustry } = useContext(AllContext);
+  const { preferredIndustry, setPreferredIndustry } = useContext(AllContext);
   const { resumeUrl, setResumeUrl } = useContext(AllContext);
-  const { zipCode } = useContext(AllContext);
-  const { company } = useContext(AllContext);
+  const { zipCode, setZipCode } = useContext(AllContext);
+  const { company, setCompany } = useContext(AllContext);
   // local states
   const [updated, setUpdated] = useState(false);
   const [first_name, setFirst_name] = useState(firstName);
@@ -43,10 +43,14 @@ const Profile = () => {
       zip: zip,
       company_name: company_name
     };
-    console.log(data);
     axios.put('/jobs/changeprofile', data)
       .then(() => {
         setUpdated(true);
+        setFirstName(first_name);
+        setLastName(last_name);
+        setPreferredIndustry(pref_industry);
+        setZipCode(zip);
+        setCompany(company_name);
       })
       .catch(e => {
         console.log('update failed', e);
