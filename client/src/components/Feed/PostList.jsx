@@ -35,7 +35,7 @@ export default function PostList({ handleClick, postings, defaultJobs, appliedJo
 
     if (appliedJobs && path === '/seeker') {
       const seeker = appliedJobs.map(job => {
-        return <PostedJob job={job} handleClick={handleClick}/>
+        return <PostedJob key={job.listing_id} job={job} handleClick={handleClick}/>
       })
       return (
         <ListSection>
