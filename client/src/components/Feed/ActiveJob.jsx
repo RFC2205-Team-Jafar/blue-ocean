@@ -21,19 +21,9 @@ export default function ActiveJob({ handleListing, listing }) {
   const [canClose, setCanClose] = useState(true);
   const [closeSuccess, setCloseSuccess] = useState(false);
 
-  /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
 
   /*----- EVENT HANDLERS -----*/
   const handleClose = () => {
-    /*
-    NOTE:
-      add PUT request to close posting using '/jobs/closeposting'
-      EXPECTS:
-        {
-          "listing_id": 93
-        }
-    */
     axios.put('/jobs/closeposting', listing.listing_id)
   .then(onClose => {
     setCanClose(false);
