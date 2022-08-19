@@ -25,11 +25,8 @@ const Recruiter = () => {
     <Page>
       <NavigationBar/>
       <HeaderGallery />
-      <div><Link to="profile" >Profile</Link></div>
-      <div><Link to="">Active postings</Link></div>
+      <Button variant = 'contained'><Link to="">Active postings</Link></Button>
       <Outlet />
-
-      <Link to="/"> Back to Home </Link>
       <PostNewJob
         variant='contained'
         ><StyledLink to="postAJob">{<HiPencilAlt style={{

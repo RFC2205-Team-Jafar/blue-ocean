@@ -18,15 +18,6 @@ const Home = () => {
     <>
       <NavigationBar/>
       <HeaderGallery />
-
-      <h1> Jobs (newest 20) </h1>
-
-      <div>
-        <Link to="seeker">Redirect to Seeker view </Link>
-      </div>
-      <div>
-        <Link to="recruiter">Redirect to Recruiter view </Link>
-      </div>
       <Feed view={{ view: "seeker" }} />
     </>
   );

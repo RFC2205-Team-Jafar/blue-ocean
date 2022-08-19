@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AllContext } from '../../index.jsx';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Row } from '../../../public/stylesheets/styles.js';
+import Button from "@mui/material/Button";
+
 
 const SignOut = () => {
   // global states
@@ -43,7 +45,7 @@ const SignOut = () => {
   }
 
   return (
-    <Row onClick={() => handleLogOut()}><h3 style = {{'fontWeight': 'lighter', 'color': 'black' }} > SIGN OUT</h3>  &nbsp; <LogoutIcon style={{ color: '000000'}}/> </Row>
+    <Row onClick={() => handleLogOut()} style = {{'fontWeight': 'lighter', 'color': 'black', 'cursor': 'pointer' }}> SIGN OUT &nbsp; <LogoutIcon style={{ color: '000000'}}/></Row>
   )
 };
 
