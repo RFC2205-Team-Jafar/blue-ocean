@@ -26,13 +26,6 @@ export default function PostList({ handleClick, handleListing, postings, default
 
   /*----- RENDER METHODS -----*/
   const renderList = () => {
-    /*
-    NOTE:
-    - should render the basic information from the provided List prop,
-    - should conditionally render buttons specific to the parent page
-    - on Click -> sends the clicked posting information to the Details listing
-    */
-
     if (appliedJobs && path === '/seeker') {
       const seeker = appliedJobs.map(job => {
         return <PostedJob key={job.listing_id} job={job} handleClick={handleClick}/>
