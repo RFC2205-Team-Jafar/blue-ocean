@@ -14,7 +14,6 @@ const DISCOVERY_DOCS = [
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
 const sendInvite = function (data, email, applicantInfo) {
-  console.log(applicantInfo);
   // SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
   gapi.load("client:auth2", () => {
     console.log("loaded client");
@@ -41,7 +40,7 @@ const sendInvite = function (data, email, applicantInfo) {
         var event = {
           summary: "Interview Invitation",
           location: data.inviteInfo.location,
-          description: `Salutations ${applicantInfo.first_name} ${applicantInfo.last_name}, we are pleased to extend and invitation for an interview with us at the above date and time. If this time and date does not work, please reach out to use at ${data.inviteInfo.email} to discuss rescheduling. Once again congratulations on being selected to interview for this position. Please see below for additional information:
+          description: `Salutations ${applicantInfo.first_name} ${applicantInfo.last_name}, we are pleased to extend and invitation for an interview with us at the above date and time. If this time and date does not work, please reach out to use at ${email} to discuss rescheduling. Once again congratulations on being selected to interview for this position. Please see below for additional information:
 
           ${data.inviteInfo.description}`,
           start: {
