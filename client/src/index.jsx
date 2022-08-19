@@ -33,6 +33,7 @@ const App = () => {
   const [coord_lat, setCoord_lat] = useState();
   const [coord_long, setCoord_long] = useState();
   const [defaultJobs, setDefaultJobs] = useState();
+  const [listings, setListings] = useState();
   const [appliedJobs, setAppliedJobs] = useState();
   const [resumeUrl, setResumeUrl] = useState();
   const [coverLetterUrl, setCoverLetterUrl] = useState();
@@ -66,6 +67,7 @@ const App = () => {
             coverLetterUrl, setCoverLetterUrl,
             defaultJobs, setDefaultJobs,
             appliedJobs, setAppliedJobs,
+            listings, setListings,
           }}>
           <Routes>
             <Route path="/" element={<Home />} />
