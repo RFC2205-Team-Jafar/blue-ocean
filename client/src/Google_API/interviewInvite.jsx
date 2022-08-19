@@ -18,8 +18,8 @@ import AlertTitle from '@mui/material/AlertTitle';
 //styled compoenents
 import StyledModal from '../components/ModalTemplate/StyledModal_Template.js'
 
-export const InterviewInviteModal = (props) => {
-  console.log(props);
+export const InterviewInviteModal = (data) => {
+  console.log(data.applicantInfo);
   const { email } = useContext(AllContext);
   const [failure, setFailure] = useState(false);
   const [canCreate, setCanCreate] = useState(false);
@@ -50,7 +50,7 @@ export const InterviewInviteModal = (props) => {
     } else if (!inviteInfo.inviteInfo.description || inviteInfo.inviteInfo.description === ''){
       return handleFail();
     } else {
-      sendInvite(inviteInfo, email);
+      sendInvite(inviteInfo, applicantInfo);
       handleClose();
     }
   }

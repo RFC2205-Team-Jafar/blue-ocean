@@ -13,7 +13,7 @@ const DISCOVERY_DOCS = [
 ];
 const SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
-const sendInvite = function (data, email) {
+const sendInvite = function (data, applicantInfo) {
   // SIGNS USER IN EACH TIME -- LETS THEM SELECT CALENDAR
   gapi.load("client:auth2", () => {
     console.log("loaded client");
