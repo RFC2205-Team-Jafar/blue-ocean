@@ -3,9 +3,10 @@ const path = require('path');
 const router = express.Router();
 const controller = require('./controller.js');
 
-// authMiddleWare.authz((token, req) => token.org === req.params.organisationID)
+const authMiddleware = require('./authMiddleware');
 
 /*--------------------Test Routes---------------*/
+// router.get('/isSeeker/:uuid', authMiddleware.decodeToken, controller.isSeeker); Funcitoning but nothing is sending a token yet
 router.get('/isSeeker/:uuid', controller.isSeeker);
 router.get('/isRecruiter/:uuid', controller.isRecruiter);
 
