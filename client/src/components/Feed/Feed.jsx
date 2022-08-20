@@ -21,12 +21,18 @@ export default function Feed() {
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
   const [targetListing, setTargetListing] = useState();
-  const { accountType, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings } = useContext(AllContext);
+  const { accountType, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings, currentList, setCurrentList } = useContext(AllContext);
 
   const path = location.pathname;
 
   /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
+  useEffect(() =>  {
+    if (currentList === 'default' && defaultJobs) {
+      setTargetPost(defaultJobs[0]);
+    } else if (currentList === 'applied' && appliedJobs) {
+      setTargetPost(appliedJobs[0]);
+    }
+  }, [currentList]);
 
   /*----- EVENT HANDLERS -----*/
   const handleClick = (job) => {
@@ -43,7 +49,7 @@ export default function Feed() {
   const renderDetail = () => {
     if (path && path !== '/') {
       return (
-        <DetailList targetPost={targetPost} targetListing={targetListing} recruiterPostings={recruiterPostings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} />
+        <DetailList targetPost={targetPost} targetListing={targetListing} recruiterPostings={recruiterPostings} defaultJobs={defaultJobs} appliedJobs={appliedJobs} unsignedJobs={unsignedJobs} />
       )
     }
   }

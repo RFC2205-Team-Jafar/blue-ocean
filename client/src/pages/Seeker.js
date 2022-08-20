@@ -1,6 +1,7 @@
 /*========== EXTERNAL MODULES ==========*/
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 /*========== INTERNAL MODULES ==========*/
 import { AllContext } from "../index.jsx";
@@ -20,17 +21,7 @@ const Seeker = () => {
     <>
       <NavigationBar/>
       <HeaderGallery />
-
-      <div>
-        <Link to="profile">Profile</Link>
-      </div>
-      <div>
-        <Link to="">Jobs for you</Link>
-      </div>
-
       <Outlet />
-
-      <Link to="/">Back to Home</Link>
       <EmbedCalendar />
     </>
   );

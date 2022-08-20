@@ -10,46 +10,26 @@ import DetailJob from './DetailJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailList({ targetPost, recruiterPostings, targetListing, appliedJobs }) {
+export default function DetailList({ targetPost, recruiterPostings, targetListing, appliedJobs, unsignedJobs }) {
   const path = location.pathname;
-  /*
-  TODO: send children to be rendered to the function as props along with an
-  identifier to indicate that it is on the job seeker or the recruiters page
-  */
 
-  /*----- STATE HOOKS -----*/
-  // const [] = useState();
-
-
-  /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
-
-  /*----- EVENT HANDLERS -----*/
-  // const handleChange = ({target: {name, value}}) => {
-  //   setJobPosting(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // };
 
   /*----- RENDER METHODS -----*/
 
   const renderDetail = () => {
-    /*
-    NOTE:
-    - on page load, renders detailed information on the first listing,
-    - should conditionally render buttons specific to the parent page
-    */
-   targetPost = targetPost || appliedJobs[0];
-   targetListing = targetListing || recruiterPostings.listings[0]
+    if (path === '/seeker') {
+      targetPost = (targetPost || (appliedJobs[0] || unsignedJobs[0]));
+      if (targetPost)  return <DetailJob targetPost={targetPost} />
+    }
 
-    if (targetPost && path === '/seeker') return <DetailJob targetPost={targetPost} />
-
-    if (targetListing && path === '/recruiter') {
-      if (targetListing.applicants) {
-        return targetListing.applicants.map((applicant, index) => {
-          return <DetailApplicant key={index} applicant={applicant}/>
-        })
+    if (path === '/recruiter') {
+      targetListing = targetListing || recruiterPostings.listings[0];
+      if (targetListing) {
+        if (targetListing.applicants) {
+          return targetListing.applicants.map((applicant, index) => {
+            return <DetailApplicant key={index} applicant={applicant}/>
+          })
+        }
       }
     }
   }
@@ -68,7 +48,6 @@ return (
 
 /*========== STYLES ==========*/
 const DetailSection = styled(Column)`
-  /* background-color: #fff; */
   border-radius: 10px;
   padding: 10px;
   margin: 10px;
