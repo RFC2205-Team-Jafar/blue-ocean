@@ -216,15 +216,15 @@ const isRecruiter = (uuid) => {
 
 module.exports = {
   addSeeker: (seeker) => {
-    const { user_uuid, first_name, last_name, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
+    const { user_uuid, first_name, last_name, user_email, coord_lat, coord_long, pref_industry, resume_url, zip } = seeker;
     const queryString = `INSERT INTO "Seekers"
-                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}')`;
+                          VALUES ('${user_uuid}', '${first_name}', '${last_name}', ${coord_lat}, ${coord_long}, '${pref_industry}', '${resume_url}', '${zip}', '${user_email}')`;
     return client.query(queryString);
   },
 
   addRecruiter: (recruiter) => {
-    const { user_uuid, first_name, last_name, company_name } = recruiter;
-    const queryString = `INSERT INTO "Recruiters" VALUES ('${user_uuid}', '${first_name}', '${last_name}', '${company_name}')`;
+    const { user_uuid, first_name, user_email, last_name, company_name } = recruiter;
+    const queryString = `INSERT INTO "Recruiters" VALUES ('${user_uuid}', '${first_name}', '${last_name}', '${company_name}', '${user_email}')`;
     return client.query(queryString);
   },
 
