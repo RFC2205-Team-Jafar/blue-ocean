@@ -15,24 +15,18 @@ import Feed from "../components/Feed/Feed.jsx";
 import HeaderGallery from "../components/Header/ImageGallery.jsx";
 import { AllContext } from '../index.jsx';
 import SignOut from '../components/Profile/SignOut.js';
+import NavigationBar from '../components/NavBar/NavigationBar.jsx';
+
 
 const Recruiter = () => {
   const { firstName } = useContext(AllContext);
 
   return (
-    <Page>
-      <h1>Site logo</h1>
-      <h1>
-        Welcome back, Recruiter: {firstName},
-        <SignOut />
-      </h1>
+    <>
+      <NavigationBar/>
       <HeaderGallery />
-
-      <div><Link to="profile" >Profile</Link></div>
-      <div><Link to="">Active postings</Link></div>
+      <Button variant = 'contained'><Link to="">Active postings</Link></Button>
       <Outlet />
-
-      <Link to="/"> Back to Home </Link>
       <PostNewJob
         variant='contained'
         ><StyledLink to="postAJob">{<HiPencilAlt style={{
@@ -42,7 +36,7 @@ const Recruiter = () => {
         />} New Posting</StyledLink>
       </PostNewJob>
       <EmbedCalendar />
-    </Page>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 
@@ -7,41 +7,70 @@ import Button from '@mui/material/Button';
 import { Column } from '../../../public/stylesheets/styles.js';
 import PostedJob from './PostedJob.jsx';
 import ActiveJob from './ActiveJob.jsx';
-
+import { AllContext } from '../../index.jsx';
 
 /*========== EXPORTS ==========*/
-export default function PostList({ handleClick, postings, view: { view } }) {
+export default function PostList({ handleClick, handleListing, postings, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings }) {
+  const path = location.pathname;
+
   /*----- STATE HOOKS -----*/
-  // const [] = useState();
-
-
-  /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
-
-  /*----- EVENT HANDLERS -----*/
-
-
-
+  const {currentList, setCurrentList} = useContext(AllContext);
 
   /*----- RENDER METHODS -----*/
   const renderList = () => {
-    /*
-    NOTE:
-    - should render the basic information from the provided List prop,
-    - should conditionally render buttons specific to the parent page
-    - on Click -> sends the clicked posting information to the Details listing
-    */
-    if (postings && view === 'seeker')return postings.map(post => <PostedJob handleClick={handleClick}/>)
+    if (currentList === 'default' && defaultJobs && path === '/seeker') {
+      const seeker = defaultJobs.map(job => {
+        return <PostedJob key={job.listing_id} job={job} handleClick={handleClick}/>
+      })
+      return (
+        <ListSection>
+          {seeker}
+        </ListSection>
+      )
+    }
 
-    if (postings && view === 'recruiter') return postings.map(post => <ActiveJob handleClick={handleClick}/>)
+    if (currentList === 'applied' && appliedJobs && path === '/seeker') {
+      const seeker = appliedJobs.map(job => {
+        return <PostedJob key={job.listing_id} job={job} handleClick={handleClick}/>
+      })
+      return (
+        <ListSection>
+          {seeker}
+        </ListSection>
+      )
+    }
+
+    if (recruiterPostings && path === '/recruiter') {
+      const recruiter = recruiterPostings.listings.map(listing => <ActiveJob key={listing.listing_id} listing={listing} handleListing={handleListing}/>)
+      return (
+        <ListSection>
+          {recruiter}
+        </ListSection>
+      )
+    }
   }
 
+  const renderUnsigned = () => {
+    if (unsignedJobs && path === '/') {
+      const unsigned = unsignedJobs.map(job => <PostedJob style={{width: '50vw'}} key={job.listing_id} job={job}/>)
+      return (
+        <ListSection
+          style={{
+            width: '100%'
+          }}
+          >
+          {unsigned}
+        </ListSection>
+      )
+    }
+  }
 
-/*----- RENDERER -----*/
-return (
-  <ListSection>
-    {renderList()}
-  </ListSection>
+  /*----- RENDERER -----*/
+  return (
+    <>
+      {renderList()}
+      {renderUnsigned()}
+    </>
   )
 }
 

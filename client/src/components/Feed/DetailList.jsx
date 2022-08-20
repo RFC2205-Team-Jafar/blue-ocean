@@ -10,43 +10,27 @@ import DetailJob from './DetailJob.jsx';
 
 
 /*========== EXPORTS ==========*/
-export default function DetailList({ displayPost, postings, view: { view }, applicants }) {
-  /*
-  TODO: send children to be rendered to the function as props along with an
-  identifier to indicate that it is on the job seeker or the recruiters page
-  */
+export default function DetailList({ targetPost, recruiterPostings, targetListing, appliedJobs, unsignedJobs }) {
+  const path = location.pathname;
 
-  /*----- STATE HOOKS -----*/
-  // const [] = useState();
-
-
-  /*----- LIFESTYLE METHODS -----*/
-  // useEffect(() =>  {}, []);
-
-  /*----- EVENT HANDLERS -----*/
-  // const handleChange = ({target: {name, value}}) => {
-  //   setJobPosting(prev => ({
-  //     ...prev,
-  //     [name]: value
-  //   }))
-  // };
 
   /*----- RENDER METHODS -----*/
 
-  const renderDetail = (targetPost) => {
-    /*
-    NOTE:
-    - on page load, renders detailed information on the first listing,
-    - should conditionally render buttons specific to the parent page
-    */
-   targetPost = targetPost || postings[0];
+  const renderDetail = () => {
+    if (path === '/seeker') {
+      targetPost = (targetPost || (appliedJobs[0] || unsignedJobs[0]));
+      if (targetPost)  return <DetailJob targetPost={targetPost} />
+    }
 
-    if (targetPost && view === 'seeker') return <DetailJob targetPost={targetPost} />
-
-    if (applicants && view === "recruiter") {
-      return applicants.map(applicant => {
-        return <DetailApplicant applicant={applicant}/>
-    })
+    if (path === '/recruiter') {
+      targetListing = targetListing || recruiterPostings.listings[0];
+      if (targetListing) {
+        if (targetListing.applicants) {
+          return targetListing.applicants.map((applicant, index) => {
+            return <DetailApplicant key={index} applicant={applicant}/>
+          })
+        }
+      }
     }
   }
 
@@ -64,7 +48,6 @@ return (
 
 /*========== STYLES ==========*/
 const DetailSection = styled(Column)`
-  /* background-color: #fff; */
   border-radius: 10px;
   padding: 10px;
   margin: 10px;

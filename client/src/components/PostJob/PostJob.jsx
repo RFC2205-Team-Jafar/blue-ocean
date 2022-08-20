@@ -55,17 +55,6 @@ export default function PostJob() {
       }
     }
 
-    if (jobPosting.zipcode) {
-      const zipcode = Number(jobPosting.zipcode)
-      geoConverter(zipcode)
-      .then(latLong => setJobPosting(prev => ({
-        ...prev,
-        coord_lat: latLong.lat,
-        coord_long: latLong.lng
-      })))
-      .catch(err => console.error(err))
-    }
-
     if (jobPosting.job_type && jobPosting.job_type === 'remote') {
       setJobPosting(prev => ({
         ...prev,
@@ -85,8 +74,24 @@ export default function PostJob() {
       }))
     }
 
-    setPostSuccess(true);
-    setTimeout(() => setPostSuccess(false), 3000);
+    if (jobPosting.zipcode) {
+      // const zipcode = Number(jobPosting.zipcode)
+      geoConverter(jobPosting.zipcode)
+      .then(latLong => {
+        setJobPosting(prev => ({
+        ...prev,
+        coord_lat: latLong.lat,
+        coord_long: latLong.lng
+        }))
+        console.log(jobPosting)
+      })
+      .then(merge => axios.post('/jobs/addajob', jobPosting))
+      .then(success => {
+        setPostSuccess(true);
+        setTimeout(() => setPostSuccess(false), 3000);
+      })
+      .catch(err => console.error(err))
+    }
   };
 
 
@@ -94,7 +99,7 @@ export default function PostJob() {
   /*----- RENDER METHODS -----*/
   const renderCompany = () => {
     return (
-      <Label>Company Name
+      <Title>Company Name
         <Input
           type='text'
           placeholder='Company Name'
@@ -102,14 +107,14 @@ export default function PostJob() {
           onChange={handleChange}
           >
         </Input>
-      </Label>
+      </Title>
     )
   }
 
   const renderLocation = () => {
     return (
-    <Label>Job Location
-      <Label>Company Zipcode
+    <Title>Job Location
+      <Title>Company Zipcode
         <Input
           type='text'
           placeholder='10001'
@@ -117,21 +122,21 @@ export default function PostJob() {
           onChange={handleChange}
           >
         </Input>
-      </Label>
+      </Title>
         <ButtonGroup>
           <Button value='inPerson' name='job_type' onClick={handleClick}>In Person</Button>
           <Button value='hybrid' name='job_type' onClick={handleClick}>Hybrid</Button>
           <Button value='remote' name='job_type' onClick={handleClick}>Remote</Button>
           <Button value='onTheRoad' name='job_type' onClick={handleClick}>On the Road</Button>
         </ButtonGroup>
-      </Label>
+      </Title>
     )
   }
 
   const renderIndustry = () => {
     return (
-      <Label>Job Industry
-        <ButtonGroup>
+      <Title>Job Industry
+        <IndustryButtonBox>
           <Button value='Art' name='industry' onClick={handleClick}>Art</Button>
           <Button value='Aviation' name='industry' onClick={handleClick}>Aviation</Button>
           <Button value='Construction' name='industry' onClick={handleClick}>Construction</Button>
@@ -141,14 +146,14 @@ export default function PostJob() {
           <Button value='Music' name='industry' onClick={handleClick}>Music</Button>
           <Button value='Tech' name='industry' onClick={handleClick}>Tech</Button>
           <Button value='Transportation' name='industry' onClick={handleClick}>Transportation</Button>
-        </ButtonGroup>
-      </Label>
+        </IndustryButtonBox>
+      </Title>
     )
   }
 
   const renderJobTitle = () => {
     return (
-      <Label>Job Title
+      <Title>Job Title
         <Input
           type='text'
           placeholder='Mad Scientist'
@@ -156,38 +161,40 @@ export default function PostJob() {
           onChange={handleChange}
           >
         </Input>
-      </Label>
+      </Title>
     )
   }
 
   const renderSalary = () => {
     return (
-      <Label>Salary Range
-      <Label>Salary Start
-        <Input
-          type='number'
-          placeholder='80000'
-          name='salary_low'
-          onChange={handleChange}
-          >
-        </Input>
-      </Label>
-      <Label>Salary End
-        <Input
-          type='number'
-          placeholder='100000'
-          name='salary_high'
-          onChange={handleChange}
-          >
-        </Input>
-      </Label>
-    </Label>
+      <Title>Salary Range
+        <Row>
+          <Salary>Salary Start
+            <Input
+              type='number'
+              placeholder='80000'
+              name='salary_low'
+              onChange={handleChange}
+              >
+            </Input>
+          </Salary>
+          <Salary>Salary End
+            <Input
+              type='number'
+              placeholder='100000'
+              name='salary_high'
+              onChange={handleChange}
+              >
+            </Input>
+          </Salary>
+        </Row>
+    </Title>
     )
   }
 
 const renderPayRate = () => {
   return (
-    <Label>Pay Rate
+    <Title>Pay Rate
       <ButtonGroup>
         <Button value='hour' name='pay_adjuster' onClick={handleClick}>per hour</Button>
         <Button value='day' name='pay_adjuster' onClick={handleClick}>per day</Button>
@@ -195,45 +202,42 @@ const renderPayRate = () => {
         <Button value='month' name='pay_adjuster' onClick={handleClick}>per month</Button>
         <Button value='year' name='pay_adjuster' onClick={handleClick}>per year</Button>
       </ButtonGroup>
-    </Label>
+    </Title>
   )
 }
 
 const renderDescription = () => {
   return (
-    <Label>Description
-      <Input
-        type='text'
+    <Title>Description
+      <TextArea
+        type='textbox'
         placeholder='We are an awesome company looking to add someone amazing to our team . . .'
         name='description'
         onChange={handleChange}
         >
-      </Input>
-    </Label>
+      </TextArea>
+    </Title>
   )
 }
 
   const renderKeywords = () => {
   return (
-    <Label>Requested Keywords
-      <Input
+    <Title>Requested Keywords
+      <TextArea
         type='text'
         placeholder='chemisty, science, scientist, experiment'
         name='keywords'
         onChange={handleKeyWords}
         >
-      </Input>
-      <p
-        sx={{color:'grey'}}
-        >comma delimited
-      </p>
-    </Label>
+      </TextArea>
+      <Caption>comma delimited</Caption>
+    </Title>
   )
 }
 
 const renderAvailablePositions = () => {
   return (
-    <Label>Number of Available Positions
+    <Title>Number of Available Positions
       <Input
         type='number'
         placeholder='1'
@@ -241,29 +245,29 @@ const renderAvailablePositions = () => {
         onChange={handleChange}
         >
       </Input>
-    </Label>
+    </Title>
   )
 }
 
 const renderJobType = () => {
   return (
-    <Label>Job Type
-      <ButtonGroup>
+    <Title>Job Type
+      <IndustryButtonBox>
         <Button value='Full Time' name='employment_type' onClick={handleClick}>Full Time</Button>
         <Button value='Part Time' name='employment_type' onClick={handleClick}>Part Time</Button>
         <Button value='Contract' name='employment_type' onClick={handleClick}>Contract</Button>
         <Button value='Temp Position' name='employment_type' onClick={handleClick}>Temp Position</Button>
         <Button value='Seasonal' name='employment_type' onClick={handleClick}>Seasonal</Button>
         <Button value='Internship' name='employment_type' onClick={handleClick}>Internship</Button>
-      </ButtonGroup>
-    </Label>
+      </IndustryButtonBox>
+    </Title>
   )
 }
 
 const renderShiftSchedule = () => {
   return (
-    <Label>Shift Schedule
-      <ButtonGroup>
+    <Title>Shift Schedule
+      <ButtonBox>
         <Button value='4hourShift' name='shift_schedule' onClick={handleClick}>4 hour shift</Button>
         <Button value='8hourShift' name='shift_schedule' onClick={handleClick}>8 hour shift</Button>
         <Button value='10hourShift' name='shift_schedule' onClick={handleClick}>10 hour shift</Button>
@@ -288,8 +292,8 @@ const renderShiftSchedule = () => {
         <Button value='overtime' name='shift_schedule' onClick={handleClick}>Overtime</Button>
         <Button value='other' name='shift_schedule' onClick={handleClick}>Other</Button>
         <Button value='' name='shift_schedule' onClick={handleClick}>clear</Button>
-      </ButtonGroup>
-    </Label>
+      </ButtonBox>
+    </Title>
   )
 }
 
@@ -304,7 +308,15 @@ const renderPostJob = () => {
 const renderSalaryError = () => {
   if (!salaryPass) {
     return (
-      <Alert severity='error'>
+      <Alert
+        severity='error'
+        sx={{
+          position: 'absolute',
+          top: '52%',
+          zIndex: '2',
+          width: '50%',
+        }}
+        >
         <AlertTitle>Error</AlertTitle>
         Minimum Salary must be within <strong>20%</strong> of Maximum Salary
       </Alert>
@@ -315,9 +327,18 @@ const renderSalaryError = () => {
 const renderJobPosted = () => {
   if (postSuccess) {
     return (
-      <Alert severity='success'>
+      <Alert
+        severity='success'
+        sx={{
+          position: 'absolute',
+          top: '1.5%',
+          zIndex: '2',
+          width: '50%',
+          backgroundColor: '#8FC645'
+        }}
+        >
         <AlertTitle>Success</AlertTitle>
-        Your job has been posted!
+        Your job has been <strong>posted!</strong>
       </Alert>
     )
   }
@@ -325,7 +346,7 @@ const renderJobPosted = () => {
 
 /*----- RENDERER -----*/
   return (
-    <Form>
+    <Form style={{position: 'relative'}}>
       {renderJobPosted()}
       <Row>
         <h1>Post a Job</h1>
@@ -333,14 +354,14 @@ const renderJobPosted = () => {
       {renderCompany()}
       {renderLocation()}
       {renderIndustry()}
+      {renderJobType()}
       {renderJobTitle()}
-      {renderSalaryError()}
       {renderSalary()}
+      {renderSalaryError()}
       {renderPayRate()}
       {renderDescription()}
       {renderKeywords()}
       {renderAvailablePositions()}
-      {renderJobType()}
       {renderShiftSchedule()}
       {renderPostJob()}
     </Form>
@@ -351,3 +372,42 @@ const renderJobPosted = () => {
 
 
 /*========== STYLES ==========*/
+const Title = styled(Label)`
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 14pt;
+`;
+
+const Salary = styled(Label)`
+  /* margin-top: 20px; */
+  font-weight: bold;
+  font-size: 10pt;
+`;
+
+const TextArea = styled.textarea`
+  border: solid;
+  border-width: thin;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+  font-size: 12pt;
+  font-weight: light;
+  background-color: transparent;
+  width: 50em;
+  padding: 2px;
+  margin: 10px;
+`;
+
+const Caption = styled.p`
+  font-weight: light;
+  margin-top: -10px;
+  font-size: 8pt;
+`;
+
+const ButtonBox = styled(ButtonGroup)`
+  width: 48em;
+`;
+const IndustryButtonBox = styled(ButtonGroup)`
+  width: 15em;
+`;

@@ -4,16 +4,19 @@ import { StyledModal } from './StyledModal';
 import { useAuth } from '../AuthContext.jsx';
 import axios from 'axios';
 import { AllContext } from "../../index.jsx";
-import {Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel} from "@mui/material";
+import {Grid, Paper, Avatar, TextField, Button, Typography, FormControlLabel} from "@mui/material";
 import {Link as MUILink} from '@mui/material/Link';
 import { LockOutlined } from '@mui/icons-material';
-
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { Row } from '../../../public/stylesheets/styles.js';
 
 const LoginForm = () => {
 
-  const paperStyle={position: "relative", top: "150px", padding :20, height:'40vh', width:280, margin:"30px auto", borderRadius: '10px'};
+  const paperStyle={position: "relative", top: "150px", padding :20, height:'47vh', width:280, margin:"30px auto", borderRadius: '10px'};
   const avatarStyle={backgroundColor:'#1bbd7e'};
-  const btnstyle={margin:'8px 0'};
+  const btnstyle={margin:'8px 0'}
+  const closebtnstyle={ position: "relative", left: "100px", margin:'8px 0'};
 
   //----------------State Hooks  -------------------------
   const { uuid, setUuid } = useContext(AllContext);
@@ -46,6 +49,7 @@ const LoginForm = () => {
     const r = await login(email, password);
     const uid = r.user.uid;
     const res = await axios.get(`/jobs/${uid}/signon`);
+    // TODO: remove console.log
     console.log(res.data);
     await setUuid(res.data.user_uuid);
     await setAccountType(res.data.account_type);
@@ -57,8 +61,8 @@ const LoginForm = () => {
     await setResumeUrl(res.data.resume_url);
     await setZipCode(res.data.zip);
     await setPreferredIndustry(res.data.pref_industry);
-    await setAppliedJobs(res.data.defaultJobs);
-    await setDefaultJobs(res.data.appliedJobs);
+    await setAppliedJobs(res.data.appliedJobs);
+    await setDefaultJobs(res.data.defaultJobs);
     if (res.data.account_type === "seeker") {
       navigate("/seeker", { replace: true });
     } else if (res.data.account_type === "recruiter") {
@@ -70,7 +74,11 @@ const LoginForm = () => {
   return (
     <>
       {/* Plug in your title here */}
-      <h1 onClick={() => setModalOpen(true)} > Login </h1>
+      <Row onClick={() => setModalOpen(true)} >
+      <h2 style={{fontWeight: 'lighter', 'color': 'black' }}>Login</h2>
+      &nbsp;
+      <LoginOutlinedIcon style={{'color': 'black' }} />
+      </Row>
 
       {/* Modal Section */}
       <StyledModal
@@ -91,6 +99,7 @@ const LoginForm = () => {
                 </Link>
                 &nbsp;one now.
             </Typography>
+            <Button color='primary' variant="contained" style={closebtnstyle} onClick={() => {setModalOpen(false)}}>Back</Button>
           </Paper>
           {/* <div>Email </div>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-Mail Address" />

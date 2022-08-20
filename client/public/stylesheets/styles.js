@@ -1,6 +1,5 @@
 /*========== EXTERNAL MODULES ==========*/
 import styled, {createGlobalStyle} from 'styled-components';
-import AppBar from '@mui/material/AppBar';
 
 /*========== INTERNAL MODULES ==========*/
 
@@ -18,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   color: #171816;
-  max-width: 1440px;
+
   /* background-color: #414141; */
 }
 `;
@@ -59,14 +58,6 @@ export const StyledHeader = styled.header`
   padding: 40px 0;
 `;
 
-export const NavBar = styled(AppBar)({
-  backgroundColor: 'transparent',
-  '&:hover': {
-    color: '#fff',
-    backgroundColor:'#f44336',
-    borderColor:'#f44336',
-  },
-});
 
 export const ImgGalleryContainer = styled.div`
   width:33%
@@ -84,12 +75,13 @@ export const Footer = styled.footer`
 
 export const FeedSection = styled.section`
   display: flex;
+  width: 90vw;
+  max-width: 1440px;
   flex-direction: column;
   align-items: space-between;
   background: linear-gradient(50deg, rgba(119, 201, 212, 0.75), rgba(87, 188, 144, 0.75));
   overflow: scroll;
   border-radius: 10px;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -102,7 +94,6 @@ export const Page = styled.div`
 `;
 
 export const Container = styled.div`
-
 `;
 
 export const Div = styled.div``;
@@ -111,14 +102,13 @@ export const Column = styled.div`
   display: flex;
   flex-direction:column;
   align-items: center;
-  justify-items: center;
 `;
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
 `;
 
 export const ButtonTray = styled(Row)`
@@ -155,6 +145,8 @@ export const JobPosting = styled(Column)`
   padding: 10px;
   min-height: 12em;
   max-height: 20em;
+  width: 39vw;
+  max-width: 670px;
   overflow: clip;
   border-radius: 10px;
   box-shadow:  5px 5px 3px #84c9b7,
@@ -165,6 +157,9 @@ export const JobPosting = styled(Column)`
            -6px -6px 12px #90d9c7;
   }
 `;
+
+export const Span = styled.span`
+`
 
 /*
 =====================================
@@ -217,4 +212,3 @@ export const HeaderImg = styled.img`
 export const Img = styled.img``;
 
 export const Thumbnail = styled.img``;
-

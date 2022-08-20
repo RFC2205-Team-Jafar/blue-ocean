@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Row } from "../../../public/stylesheets/styles.js";
 import styled from "styled-components";
@@ -8,6 +8,8 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 import SalarySliderSteps from "./FilterSalary.jsx";
 import { AllContext } from "../../index.jsx";
+import FilterStatus from "./FilterStatus.jsx";
+import FormControl from "@mui/material/FormControl";
 
 function FilterFunctions() {
   const [filteredListing, setFilteredListing] = useState([]);
@@ -18,7 +20,9 @@ function FilterFunctions() {
   const [maxDistance, setMaxDistance] = useState("");
   const [minSalary, setMinSalary] = useState(0);
 
-  const { uuid } = useContext(AllContext);
+  const { uuid, setAppliedJobs, setUnfilteredJobs, unfilteredJobs, appliedJobs } = useContext(AllContext);
+
+  useEffect(() => setUnfilteredJobs(appliedJobs), []);
 
   const handleSalary = (event) => {
     setMinSalary(event.target.value);
@@ -51,15 +55,9 @@ function FilterFunctions() {
   const fetchFilteredListing = () => {
     axios
       .get(
-        `jobs/:uuid/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}&
-        minSalary=${minSalary}`
+        `jobs/${uuid}/filter/?industry=${industry}&maxDistance=${maxDistance}&minDistance=${minDistance}&isRemote=${isRemote}`
       )
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setFilteredListing(res.data);
-      });
+      .then(json => setAppliedJobs(json.data));
   };
 
   return (
@@ -67,10 +65,9 @@ function FilterFunctions() {
       <div></div>
       <FilterRow>
         <SalarySliderSteps handleSalary={handleSalary} />
-        <InputLabel>
-          {" "}
+        <InputLabel >
           Industry:
-          <Select onChange={handleIndustry}>
+          <Select onChange={handleIndustry} sx={{width: '10em'}}>
             <MenuItem value="Art"> Art </MenuItem>
             <MenuItem value="Aviation"> Aviation </MenuItem>
             <MenuItem value="Construction"> Construction </MenuItem>
@@ -85,16 +82,16 @@ function FilterFunctions() {
         <InputLabel>
           {" "}
           Site:
-          <Select onChange={handleRemote}>
+          <Select labelId='site' onChange={handleRemote} sx={{width: '10em'}}>
             <MenuItem value="Both"> Both </MenuItem>
             <MenuItem value="Remote"> Remote </MenuItem>
             <MenuItem value="On-Site"> On-Site </MenuItem>
           </Select>
         </InputLabel>
-        <InputLabel>
+        <InputLabel >
           {" "}
           Employment Type:
-          <Select onChange={handleEmployment}>
+          <Select onChange={handleEmployment} sx={{width: '10em'}}>
             <MenuItem value="Part-Time"> Part-Time </MenuItem>
             <MenuItem value="Full-Time"> Full-Time </MenuItem>
             <MenuItem value="Contract"> Contract </MenuItem>
@@ -103,21 +100,27 @@ function FilterFunctions() {
             <MenuItem value="Seasonal"> Seasonal </MenuItem>
           </Select>
         </InputLabel>
-        <InputLabel>
+        <InputLabel >
           {" "}
           Max Distance:
-          <Select onChange={handleMaxDist}>
+          <Select onChange={handleMaxDist} sx={{width: '10em'}}>
             <MenuItem value="10"> Within 10 miles </MenuItem>
             <MenuItem value="15"> Within 15 miles </MenuItem>
             <MenuItem value="25"> Within 25 miles </MenuItem>
             <MenuItem value="50"> Within 50 miles</MenuItem>
             <MenuItem value="100"> Within 100 miles </MenuItem>
+            <MenuItem value="10000000000"> Any </MenuItem>
           </Select>
         </InputLabel>
         <Button variant="contained" onClick={fetchFilteredListing}>
           {" "}
           Apply Filters{" "}
         </Button>
+        <Button variant="contained" onClick={() => {setAppliedJobs(unfilteredJobs)}}>
+          {" "}
+          Clear Filters{" "}
+        </Button>
+        <FilterStatus />
       </FilterRow>
     </>
   );
@@ -126,5 +129,6 @@ function FilterFunctions() {
 export default FilterFunctions;
 
 const FilterRow = styled(Row)`
+  width: 95vw;
   justify-content: space-evenly;
 `;
