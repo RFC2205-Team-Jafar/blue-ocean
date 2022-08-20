@@ -21,8 +21,7 @@ export default function Feed() {
   const [postings, setPostings] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
   const [targetPost, setTargetPost] = useState();
   const [targetListing, setTargetListing] = useState();
-  const { accountType, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings } = useContext(AllContext);
-  const {currentList, setCurrentList} = useContext(AllContext);
+  const { accountType, defaultJobs, appliedJobs, unsignedJobs, recruiterPostings, currentList, setCurrentList } = useContext(AllContext);
 
   const path = location.pathname;
 

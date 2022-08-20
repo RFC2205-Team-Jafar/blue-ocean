@@ -22,10 +22,10 @@ export default function DetailJob({ targetPost }) {
       desc,
       industry,
       listing_id,
-      employement_type,
+      employment_type,
       num_positions,
       coverletter_url,
-      resume_Url,
+      resume_url,
       requested_keywords,
     } = targetPost;
   }
@@ -53,7 +53,7 @@ export default function DetailJob({ targetPost }) {
 
   /*----- EVENT HANDLERS -----*/
   const handleApply = ({target: {name, value}}) => {
-    axios.post('/jobs/applyforajob', { uuid, listing_id, coverletter_url, resume_Url, requested_keywords } )
+    axios.post('/jobs/applyforajob', { uuid, listing_id, coverletter_url, resume_url, requested_keywords } )
     .then(applied => setCanApply(false))
     .catch(err => console.error(err))
     setCanApply(false);
@@ -128,7 +128,7 @@ export default function DetailJob({ targetPost }) {
         {renderSuccess()}
         <p>Number of Openings: {num_positions}</p>
         <p>Industry: {industry}</p>
-        <p>Employement Type: {employement_type}</p>
+        <p>Employment Type: {employment_type}</p>
         <p>   </p>
         <p>{desc}</p>
       </DetailBody>
@@ -152,7 +152,7 @@ export default function DetailJob({ targetPost }) {
           {renderSuccess()}
           <p>Number of Openings: {num_positions}</p>
           <p>Industry: {industry}</p>
-          <p>Employment Type: {employement_type}</p>
+          <p>Employment Type: {employment_type}</p>
           <p>   </p>
           <p>{desc}</p>
         </DetailBody>

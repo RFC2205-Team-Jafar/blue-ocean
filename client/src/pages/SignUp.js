@@ -77,7 +77,7 @@ const SignUp = () => {
           user_uuid: uid,
           first_name: firstName,
           last_name: lastName,
-          email: email,
+          user_email: email,
           account_type: accountType,
           pref_industry: preferredIndustry,
           zip: zipCode,
